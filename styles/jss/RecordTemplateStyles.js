@@ -13,7 +13,6 @@ const styles = theme => ({
     height: 21,
     borderRadius: '3px',
     outline: 'none',
-    color: theme.palette.greyscale(0.5)
   },
   buttonBase: {},
   templateFieldRow: {
@@ -23,7 +22,8 @@ const styles = theme => ({
   inputTitle: {
     fontWeight: 'bold',
     marginBottom: '5px',
-    fontFamily: 'arial'
+    fontFamily: 'arial',
+    color: theme.palette.greyscale(0.85)
   },
   nameRow: {},
   descriptionRow: {},
