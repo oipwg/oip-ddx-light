@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "next": "^8.0.4",
-    "oip-react-jss": "^1.1.2",
+    "oip-react-jss": "^1.2.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-jss": "git@github.com:/cssinjs/jss/tree/master/packages/react-jss",

@@ -5,6 +5,7 @@ import withStyles from 'react-jss'
 import SideBar from '../components/SideBar'
 import PublishPage from '../components/PublishPage'
 
+import RecordTemplateStyles from '../styles/jss/RecordTemplateStyles'
 const styles = {
   root: {
     height: '100%',
@@ -17,10 +18,12 @@ const publishTypes = [
   'recordTemplate'
 ]
 
+const StyledRecordTemplatePublisher = withStyles(RecordTemplateStyles)(RecordTemplate)
+
 function RenderPublisher (publishPage) {
   switch (publishPage) {
     case 'recordTemplate':
-      return <RecordTemplate />
+      return <StyledRecordTemplatePublisher />
     default:
       throw new Error(`Page not defined: ${publishPage}`)
   }

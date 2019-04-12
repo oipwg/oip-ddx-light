@@ -7,7 +7,6 @@ export default class JssDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>OIP Publisher</title>
           <style>{`
             * {
             margin: 0;
