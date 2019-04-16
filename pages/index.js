@@ -8,10 +8,9 @@ import RecordTemplateStyles from '../styles/jss/RecordTemplateStyles'
 
 const recordTypes = [
   'record',
-  'recordTemplate',
-  'Platform',
-  'Influencer',
-  'Profile'
+  'template',
+  'profile',
+  'influencer',
 ]
 
 const bp = {
@@ -56,7 +55,7 @@ function RenderMainContent ({ activePage, recordType, handleRecordTypeChange }) 
 
 function RenderPublisher (recordType) {
   switch (recordType) {
-    case 'recordTemplate':
+    case 'template':
       return <StyledRecordTemplatePublisher />
     default:
       return <StyledRecordTemplatePublisher />

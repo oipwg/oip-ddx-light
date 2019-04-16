@@ -98,7 +98,11 @@ const SideBar = ({ classes, recordTypes, handleRecordTypeChange, handleActivePag
           return <li
             className={classes.publishListItem}
             key={i}
-            onClick={() => handleRecordTypeChange(type)}
+            onClick={() => {
+              handleRecordTypeChange(type)
+              handleActivePageChange('PUBLISH')
+            }
+            }
           >
             <h3>{toPascalCase(type)}</h3>
           </li>
