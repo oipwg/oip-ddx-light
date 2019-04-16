@@ -16,13 +16,16 @@ const styles = theme => {
       color: theme.palette.background.main,
       display: 'flex',
       paddingTop: '40px',
-      paddingLeft: '15px'
+      paddingLeft: '15px',
+      flex: '0 0 auto'
     },
     titleHeader: {},
     sideBarNavContainer: {
       display: 'flex',
       flexDirection: 'column',
-      marginTop: '40px'
+      marginTop: '40px',
+      flex: '1 0 auto',
+      backgroundColor: theme.palette.primary.darken(2.5)
     },
     publishList: {
       listStyleType: 'none',
