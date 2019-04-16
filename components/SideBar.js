@@ -1,7 +1,7 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import toPascalCase from 'to-pascal-case'
-import { Explore, AccountBalanceWalletOutlined } from '@material-ui/icons'
+import { Explore, AccountBalanceWalletOutlined, Publish } from '@material-ui/icons'
 import classNames from 'classnames'
 
 const styles = theme => {
@@ -84,7 +84,12 @@ const SideBar = ({ classes, publishTypes, handlePublishPageChange }) => {
       >
         Explorer <Explore />
       </h2>
-      <h2 className={classes.navItemSingle}>Publish</h2>
+      <h2
+        className={classNames(classes.navLink, classes.navItemSingle)}
+        id='publish-icon'
+      >
+        Publish <Publish />
+      </h2>
       <ul className={classes.publishList}>
         {publishTypes.map((type, i) => {
           return <li
