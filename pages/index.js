@@ -42,10 +42,13 @@ const Index = ({ classes }) => {
 
   return <ThemeProvider theme={theme}>
     <div className={classes.root}>
-      <Header />
+      <Header
+        publishTypes={publishTypes}
+        handlePublishPageChange={handlePublishPageChange}
+        breakpoints={bp}
+      />
       <SideBar
         publishTypes={publishTypes}
-        publishPage={publishType}
         handlePublishPageChange={handlePublishPageChange}
       />
       <PublishPage>
