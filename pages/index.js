@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
-import { RecordTemplate, useTheme, ThemeProvider } from 'oip-react-jss'
+import { RecordTemplate, ThemeProvider, useTheme } from 'oip-react-jss'
 import withStyles from 'react-jss'
 
-import { SideBar, Header, Explorer, PublishPage, Wallet } from '../components'
+import { Explorer, Header, PublishPage, SideBar, Wallet } from '../components'
 
 import RecordTemplateStyles from '../styles/jss/RecordTemplateStyles'
 
-const publishTypes = [
-  'recordTemplate'
+const recordTypes = [
+  'record',
+  'recordTemplate',
+  'Platform',
+  'Influencer',
+  'Profile'
 ]
 
 const bp = {
@@ -23,30 +27,40 @@ const WALLET = 'WALLET'
 
 const StyledRecordTemplatePublisher = withStyles(RecordTemplateStyles)(RecordTemplate)
 
-const PublisherPage = (publishType) => {
-  return <PublishPage>
-    {RenderPublisher(publishType)}
+const PublisherPage = (recordType, handleRecordTypeChange) => {
+  return <PublishPage
+    activeRecordType={recordType}
+    recordTypes={recordTypes}
+    handleRecordTypeChange={handleRecordTypeChange}
+  >
+    {RenderPublisher(recordType)}
   </PublishPage>
 }
-function RenderMainContent (activePage, publishType) {
+
+function RenderMainContent ({ activePage, recordType, handleRecordTypeChange }) {
   switch (activePage) {
     case EXPLORER:
-      return <Explorer />
+      return <Explorer
+        activeRecordType={recordType}
+        recordTypes={recordTypes}
+        handleRecordTypeChange={handleRecordTypeChange}
+      />
     case PUBLISH:
-      return PublisherPage(publishType)
+      return PublisherPage(recordType, handleRecordTypeChange)
     case WALLET:
       return <Wallet />
     default:
-      throw new Error(`Publish type not defined: ${publishType}`)
+      throw new Error(`Publish type not defined: ${recordType}`)
   }
 }
 
-function RenderPublisher (publishType) {
-  switch (publishType) {
+function RenderPublisher (recordType) {
+  switch (recordType) {
     case 'recordTemplate':
       return <StyledRecordTemplatePublisher />
     default:
-      throw new Error(`Publish type not defined: ${publishType}`)
+      return <StyledRecordTemplatePublisher />
+      throw new Error(`Record type not defined: ${recordType}`)
   }
 }
 
@@ -54,10 +68,10 @@ const Index = ({ classes }) => {
   const { theme } = useTheme()
 
   const [activePage, setActivePage] = useState(EXPLORER)
-  const [publishType, setPublishType] = useState(publishTypes[0])
+  const [recordType, setRecordType] = useState(recordTypes[0])
 
-  const handlePublishTypeChange = (publishType) => {
-    setPublishType(publishType)
+  const handleRecordTypeChange = (recordType) => {
+    setRecordType(recordType)
   }
 
   const handleActivePageChange = (activePage) => {
@@ -71,11 +85,15 @@ const Index = ({ classes }) => {
         handleActivePageChange={handleActivePageChange}
       />
       <SideBar
-        publishTypes={publishTypes}
-        handlePublishTypeChange={handlePublishTypeChange}
+        recordTypes={recordTypes}
+        handleRecordTypeChange={handleRecordTypeChange}
         handleActivePageChange={handleActivePageChange}
       />
-      {RenderMainContent(activePage, publishType)}
+      {RenderMainContent({
+        activePage,
+        recordType,
+        handleRecordTypeChange
+      })}
     </div>
   </ThemeProvider>
 }

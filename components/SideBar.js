@@ -40,6 +40,7 @@ const styles = theme => {
       flex: '1 0 30px',
       alignItems: 'center',
       paddingLeft: '70px',
+      margin: [2, 0],
       '&:hover': {
         backgroundColor: theme.palette.primary.main
       },
@@ -72,7 +73,7 @@ const styles = theme => {
   }
 }
 
-const SideBar = ({ classes, publishTypes, handlePublishTypeChange, handleActivePageChange }) => {
+const SideBar = ({ classes, recordTypes, handleRecordTypeChange, handleActivePageChange }) => {
   return <div id='sidebar' className={classes.root}>
     <div className={classes.title}>
       <h1 className={classes.titleHeader}>OIP Publisher</h1>
@@ -93,11 +94,11 @@ const SideBar = ({ classes, publishTypes, handlePublishTypeChange, handleActiveP
         Publish <Publish />
       </h2>
       <ul className={classes.publishList}>
-        {publishTypes.map((type, i) => {
+        {recordTypes.map((type, i) => {
           return <li
             className={classes.publishListItem}
             key={i}
-            onClick={() => handlePublishTypeChange(type)}
+            onClick={() => handleRecordTypeChange(type)}
           >
             <h3>{toPascalCase(type)}</h3>
           </li>
