@@ -74,9 +74,7 @@ const styles = {
         display: 'none'
       },
       '& #header': {
-        display: 'flex',
-        flexDirection: 'row',
-        flex: '1 1 auto'
+        display: 'flex'
       }
     }
   }
