@@ -9,6 +9,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
     "next": "^8.0.4",
     "oip-react-jss": "^1.2.3",
     "react": "^16.8.6",
