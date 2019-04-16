@@ -46,7 +46,7 @@ const styles = theme => {
 }
 
 const SideBar = ({ classes, publishTypes, handlePublishPageChange }) => {
-  return <div className={classes.root}>
+  return <div id='sidebar' className={classes.root}>
     <div className={classes.title}>
       <h1 className={classes.titleHeader}>OIP Publisher</h1>
     </div>

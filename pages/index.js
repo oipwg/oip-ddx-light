@@ -4,51 +4,79 @@ import withStyles from 'react-jss'
 
 import SideBar from '../components/SideBar'
 import PublishPage from '../components/PublishPage'
+import Header from '../components/Header'
 
 import RecordTemplateStyles from '../styles/jss/RecordTemplateStyles'
-const styles = {
-  root: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'row'
-  }
-}
 
 const publishTypes = [
   'recordTemplate'
 ]
 
+const bp = {
+  xs: 0,
+  sm: 600,
+  md: 960,
+  lg: 1280,
+  xl: 1920
+}
+
 const StyledRecordTemplatePublisher = withStyles(RecordTemplateStyles)(RecordTemplate)
 
-function RenderPublisher (publishPage) {
-  switch (publishPage) {
+function RenderPublisher (publishType) {
+  switch (publishType) {
     case 'recordTemplate':
       return <StyledRecordTemplatePublisher />
     default:
-      throw new Error(`Page not defined: ${publishPage}`)
+      throw new Error(`Publish type not defined: ${publishType}`)
   }
 }
+
 const Index = ({ classes }) => {
   const { theme } = useTheme()
 
-  const [publishPage, setPublishPage] = useState(publishTypes[0])
+  const [publishType, setPublishType] = useState(publishTypes[0])
 
-  const handlePublishPageChange = (publishPage) => {
-    setPublishPage(publishPage)
+  const handlePublishPageChange = (publishType) => {
+    setPublishType(publishType)
   }
 
   return <ThemeProvider theme={theme}>
     <div className={classes.root}>
+      <Header />
       <SideBar
         publishTypes={publishTypes}
-        publishPage={publishPage}
+        publishPage={publishType}
         handlePublishPageChange={handlePublishPageChange}
       />
       <PublishPage>
-        {RenderPublisher(publishPage)}
+        {RenderPublisher(publishType)}
       </PublishPage>
     </div>
   </ThemeProvider>
+}
+
+const styles = {
+  root: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    '& #header': {
+      display: 'none'
+    }
+  },
+  [`@media (max-width: ${bp['md']}px)`]: {
+    root: {
+      flexDirection: 'column',
+      '& #sidebar': {
+        display: 'none'
+      },
+      '& #header': {
+        display: 'flex',
+        flexDirection: 'row',
+        flex: '1 1 auto'
+      }
+    }
+  }
 }
 
 export default withStyles(styles)(Index)
