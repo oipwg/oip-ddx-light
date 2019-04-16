@@ -11,6 +11,8 @@ const recordTypes = [
   'template',
   'profile',
   'influencer',
+  'platform',
+  'publisher'
 ]
 
 const bp = {
