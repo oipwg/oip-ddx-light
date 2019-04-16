@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import withStyles from 'react-jss'
-import toPascalCase from 'to-pascal-case'
-import { Menu, Explore } from '@material-ui/icons'
+import { Menu } from '@material-ui/icons'
 import useWindowSize from '../hooks/useWindowSize'
 
 const styles = theme => ({
