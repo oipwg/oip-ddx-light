@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { RecordTemplate, ThemeProvider, useTheme } from 'oip-react-jss'
 import withStyles from 'react-jss'
 
-import { Explorer, Header, PublishPage, SideBar, Wallet } from '../components'
+import { Wallet as HDMW } from 'oip-hdmw'
+import { Explorer, Header, PublishPage, SideBar, WalletContainer as Wallet } from '../components'
 
 import RecordTemplateStyles from '../styles/jss/RecordTemplateStyles'
 
@@ -38,7 +39,9 @@ const PublisherPage = (recordType, handleRecordTypeChange) => {
   </PublishPage>
 }
 
-function RenderMainContent ({ activePage, recordType, handleRecordTypeChange }) {
+function RenderMainContent ({
+  activePage, recordType, handleRecordTypeChange, initWallet, wallet
+}) {
   switch (activePage) {
     case EXPLORER:
       return <Explorer
@@ -49,7 +52,10 @@ function RenderMainContent ({ activePage, recordType, handleRecordTypeChange }) 
     case PUBLISH:
       return PublisherPage(recordType, handleRecordTypeChange)
     case WALLET:
-      return <Wallet />
+      return <Wallet
+        initWallet={initWallet}
+        wallet={wallet}
+      />
     default:
       throw new Error(`Publish type not defined: ${recordType}`)
   }
@@ -67,6 +73,7 @@ function RenderPublisher (recordType) {
 
 const Index = ({ classes }) => {
   const { theme } = useTheme()
+  const walletRef = useRef(null)
 
   const [activePage, setActivePage] = useState(EXPLORER)
   const [recordType, setRecordType] = useState(recordTypes[0])
@@ -79,6 +86,10 @@ const Index = ({ classes }) => {
     setActivePage(activePage)
   }
 
+  function initWallet (mnemonic) {
+    walletRef.current = new HDMW(mnemonic, { discover: false })
+  }
+
   return <ThemeProvider theme={theme}>
     <div className={classes.root}>
       <Header
@@ -86,6 +97,7 @@ const Index = ({ classes }) => {
         handleActivePageChange={handleActivePageChange}
       />
       <SideBar
+        wallet={walletRef.current}
         recordTypes={recordTypes}
         handleRecordTypeChange={handleRecordTypeChange}
         handleActivePageChange={handleActivePageChange}
@@ -93,7 +105,9 @@ const Index = ({ classes }) => {
       {RenderMainContent({
         activePage,
         recordType,
-        handleRecordTypeChange
+        handleRecordTypeChange,
+        initWallet,
+        wallet: walletRef.current
       })}
     </div>
   </ThemeProvider>

@@ -1,5 +1,7 @@
 import Explorer from './Explorer'
-import Wallet from './Wallet'
+import LoadWallet from './LoadWallet'
+import WalletInterface from './WalletInterface'
+import { WalletContainer } from './containers'
 import SideBar from './SideBar'
 import Header from './Header'
 import PublishPage from './PublishPage'
@@ -7,7 +9,9 @@ import RecordNav from './RecordNav'
 
 export {
   Explorer,
-  Wallet,
+  LoadWallet,
+  WalletInterface,
+  WalletContainer,
   SideBar,
   Header,
   PublishPage,
