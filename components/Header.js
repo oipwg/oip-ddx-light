@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import withStyles from 'react-jss'
 import toPascalCase from 'to-pascal-case'
-import { Menu } from '@material-ui/icons'
+import { Menu, Explore } from '@material-ui/icons'
 import useWindowSize from '../hooks/useWindowSize'
 
 const styles = theme => ({
@@ -34,7 +34,7 @@ const styles = theme => ({
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'flex-end',
-      padding: [18, 20, 15, 30],
+      padding: [18, 20, 15, 75],
       cursor: 'pointer',
       '&:hover': {
         backgroundColor: theme.palette.greyscale(0.1)
@@ -46,7 +46,7 @@ const styles = theme => ({
   }
 })
 
-const Header = ({ classes, breakpoints, publishTypes, handlePublishPageChange }) => {
+const Header = ({ classes, breakpoints }) => {
   const [menuOpen, toggleMenu] = useState(false)
 
   const handleToggleMenu = () => {
@@ -70,16 +70,10 @@ const Header = ({ classes, breakpoints, publishTypes, handlePublishPageChange })
     <div id='menu-icon' onClick={handleToggleMenu}>
       <Menu />
       <ul className={menuOpen ? classes.menuListOpen : classes.menuListClose}>
-        {publishTypes.map((type, i) => {
-          return <li
-            key={i}
-            onClick={() => handlePublishPageChange(type)}
-          >
-            {toPascalCase(type)}
-          </li>
-        })}
-        <div style={{ borderBottom: '1px solid lightgrey' }} />
         <li>Explorer</li>
+        <div style={{ borderBottom: '1px solid lightgrey' }} />
+        <li>Publish</li>
+        <div style={{ borderBottom: '1px solid lightgrey' }} />
         <li>Wallet</li>
       </ul>
     </div>
