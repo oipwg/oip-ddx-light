@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import { RecordTemplate, useTheme, ThemeProvider } from 'oip-react-jss'
 import withStyles from 'react-jss'
 
-import SideBar from '../components/SideBar'
-import PublishPage from '../components/PublishPage'
-import Header from '../components/Header'
+import { SideBar, Header, Explorer, PublishPage, Wallet } from '../components'
 
 import RecordTemplateStyles from '../styles/jss/RecordTemplateStyles'
 
@@ -19,8 +17,29 @@ const bp = {
   lg: 1280,
   xl: 1920
 }
+const EXPLORER = 'EXPLORER'
+const PUBLISH = 'PUBLISH'
+const WALLET = 'WALLET'
 
 const StyledRecordTemplatePublisher = withStyles(RecordTemplateStyles)(RecordTemplate)
+
+const PublisherPage = (publishType) => {
+  return <PublishPage>
+    {RenderPublisher(publishType)}
+  </PublishPage>
+}
+function RenderMainContent (activePage, publishType) {
+  switch (activePage) {
+    case EXPLORER:
+      return <Explorer />
+    case PUBLISH:
+      return PublisherPage(publishType)
+    case WALLET:
+      return <Wallet />
+    default:
+      throw new Error(`Publish type not defined: ${publishType}`)
+  }
+}
 
 function RenderPublisher (publishType) {
   switch (publishType) {
@@ -34,26 +53,29 @@ function RenderPublisher (publishType) {
 const Index = ({ classes }) => {
   const { theme } = useTheme()
 
+  const [activePage, setActivePage] = useState(EXPLORER)
   const [publishType, setPublishType] = useState(publishTypes[0])
 
-  const handlePublishPageChange = (publishType) => {
+  const handlePublishTypeChange = (publishType) => {
     setPublishType(publishType)
+  }
+
+  const handleActivePageChange = (activePage) => {
+    setActivePage(activePage)
   }
 
   return <ThemeProvider theme={theme}>
     <div className={classes.root}>
       <Header
-        publishTypes={publishTypes}
-        handlePublishPageChange={handlePublishPageChange}
         breakpoints={bp}
+        handleActivePageChange={handleActivePageChange}
       />
       <SideBar
         publishTypes={publishTypes}
-        handlePublishPageChange={handlePublishPageChange}
+        handlePublishTypeChange={handlePublishTypeChange}
+        handleActivePageChange={handleActivePageChange}
       />
-      <PublishPage>
-        {RenderPublisher(publishType)}
-      </PublishPage>
+      {RenderMainContent(activePage, publishType)}
     </div>
   </ThemeProvider>
 }

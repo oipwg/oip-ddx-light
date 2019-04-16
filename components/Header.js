@@ -46,7 +46,7 @@ const styles = theme => ({
   }
 })
 
-const Header = ({ classes, breakpoints }) => {
+const Header = ({ classes, breakpoints, handleActivePageChange }) => {
   const [menuOpen, toggleMenu] = useState(false)
 
   const handleToggleMenu = () => {
@@ -70,11 +70,17 @@ const Header = ({ classes, breakpoints }) => {
     <div id='menu-icon' onClick={handleToggleMenu}>
       <Menu />
       <ul className={menuOpen ? classes.menuListOpen : classes.menuListClose}>
-        <li>Explorer</li>
+        <li
+          onClick={() => handleActivePageChange('EXPLORER')}
+        >Explorer</li>
         <div style={{ borderBottom: '1px solid lightgrey' }} />
-        <li>Publish</li>
+        <li
+          onClick={() => handleActivePageChange('PUBLISH')}
+        >Publish</li>
         <div style={{ borderBottom: '1px solid lightgrey' }} />
-        <li>Wallet</li>
+        <li
+          onClick={() => handleActivePageChange('WALLET')}
+        >Wallet</li>
       </ul>
     </div>
   </div>

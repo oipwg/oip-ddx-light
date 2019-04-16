@@ -72,19 +72,21 @@ const styles = theme => {
   }
 }
 
-const SideBar = ({ classes, publishTypes, handlePublishPageChange }) => {
+const SideBar = ({ classes, publishTypes, handlePublishTypeChange, handleActivePageChange }) => {
   return <div id='sidebar' className={classes.root}>
     <div className={classes.title}>
       <h1 className={classes.titleHeader}>OIP Publisher</h1>
     </div>
     <div className={classes.sideBarNavContainer}>
       <h2
+        onClick={() => { handleActivePageChange('EXPLORER') }}
         id='explorer-icon'
         className={classNames(classes.navLink, classes.navItemSingle)}
       >
         Explorer <Explore />
       </h2>
       <h2
+        onClick={() => { handleActivePageChange('PUBLISH') }}
         className={classNames(classes.navLink, classes.navItemSingle)}
         id='publish-icon'
       >
@@ -95,7 +97,7 @@ const SideBar = ({ classes, publishTypes, handlePublishPageChange }) => {
           return <li
             className={classes.publishListItem}
             key={i}
-            onClick={() => handlePublishPageChange(type)}
+            onClick={() => handlePublishTypeChange(type)}
           >
             <h3>{toPascalCase(type)}</h3>
           </li>
@@ -103,6 +105,7 @@ const SideBar = ({ classes, publishTypes, handlePublishPageChange }) => {
       </ul>
       <div className={classes.seperator} />
       <h2
+        onClick={() => { handleActivePageChange('WALLET') }}
         className={classNames(classes.navLink, classes.navItemSingle)}
         id={'wallet-icon'}
       >
