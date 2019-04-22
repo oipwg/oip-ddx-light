@@ -7383,10 +7383,10 @@ oip-hdmw@^1.3.26:
     varuint-bitcoin "^1.1.0"
     wif "^2.0.6"
 
-oip-react@^2.0.0-beta.2.2.1:
-  version "2.0.0-beta.2.2.1"
-  resolved "https://registry.yarnpkg.com/oip-react/-/oip-react-2.0.0-beta.2.2.1.tgz#90dd8e86386d4a1b3514945ca4a266e0bbc1c80d"
-  integrity sha512-ax+IzBbkG/mpXEjlKsf8+urEtEoWNRkagaWTklYASgm6CxowivLhkmglzG3sUcTFDu8SiKLx+83lekn0p84xLw==
+oip-react@^2.0.0-beta.2.4.1:
+  version "2.0.0-beta.2.4.1"
+  resolved "https://registry.yarnpkg.com/oip-react/-/oip-react-2.0.0-beta.2.4.1.tgz#4bfac4073a15aef9ff8dd324e8674da87bbadc44"
+  integrity sha512-vz+CwOJegO0APEIpKArpgFeBox3drioBOgnJkQKqaSuUQ+YKjp6z9uXF88wh7Zl9aJsHnqUAqK9t1RnZpyQedQ==
   dependencies:
     uid "^0.0.2"
     "@material-ui/core" "^3.9.3"

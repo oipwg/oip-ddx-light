@@ -10,16 +10,24 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: '0px 40px'
+  },
+  walletWrapper: {
+    display: 'flex',
+    borderRadius: '20px',
+    boxShadow: '1px 1px 3px',
+    marginBottom: '108px'
   }
 })
 const WalletPage = ({ classes }) => {
   return <div className={classes.root}>
-    <ModuleWallet
-      coins={['flo', 'flo_testnet']}
-      height={'400px'}
-      weidth={'900px'}
-      borderRadius={'20px'}
-    />
+    <div className={classes.walletWrapper}>
+      <ModuleWallet
+        coins={['flo', 'flo_testnet']}
+        height={'400px'}
+        width={'900px'}
+        borderRadius={'20px'}
+      />
+    </div>
   </div>
 }
 

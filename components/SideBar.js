@@ -10,119 +10,105 @@ const styles = theme => {
       flexDirection: 'column',
       flex: '0 0 300px',
       backgroundColor: theme.palette.primary.darken(2.5),
-      boxShadow: '2px 4px 4px',
+      boxShadow: '2px -2px 4px',
       zIndex: 300
     },
-    title: {
+    titleSpace: {
       color: theme.palette.background.main,
-      display: 'flex',
-      paddingTop: '40px',
-      paddingLeft: '15px',
-      flex: '0 0 auto'
+      margin: 30,
+      alignSelf: 'center',
+      flexShrink: 0
     },
-    titleHeader: {},
-    sideBarNavContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      marginTop: '40px',
-      flex: '1 0 auto',
-      backgroundColor: theme.palette.primary.darken(2.5)
+    titleHeader: {
+      fontSize: '3em',
+      fontWeight: 'bold'
     },
-    publishList: {
-      listStyleType: 'none',
+    tableOfContents: {
       display: 'flex',
+      flexShrink: 0,
+      flexGrow: 1,
+      color: '#bdc3c7',
+      padding: '20px 30px',
       flexDirection: 'column'
     },
-    publishListItem: {
-      color: theme.palette.background.main,
+    tableHeader: {
+      fontWeight: 'bold',
+      padding: '5px 0px',
       cursor: 'pointer',
-      display: 'flex',
-      flexDirection: 'row',
-      flex: '1 0 30px',
-      alignItems: 'center',
-      paddingLeft: '70px',
-      margin: [2, 0],
+      fontSize: '16px',
       '&:hover': {
-        backgroundColor: theme.palette.primary.main
-      },
-      '&:active': {
-        backgroundColor: theme.palette.primary.darken(1.5)
+        color: theme.palette.background.main
       }
     },
-    navLink: {
-      cursor: 'pointer',
-      '& svg': {
-        marginLeft: 15
-      },
+    recordListItem: {
+      marginLeft: '20px',
+      marginBottom: '5px',
       '&:hover': {
-        backgroundColor: theme.palette.primary.main
+        color: theme.palette.background.main,
+        cursor: 'pointer'
       }
-    },
-    navItemSingle: {
-      paddingLeft: '30px',
-      color: theme.palette.background.main,
-      height: 50,
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      margin: [7, 0]
-    },
-    seperator: {
-      margin: [30, 25, 10],
-      borderBottom: '1px solid white'
     }
   }
 }
 
+const EXPLORER = 'EXPLORER'
+const PUBLISH = 'PUBLISH'
+const WALLET = 'WALLET'
+
 const SideBar = ({
   classes,
   recordTypes,
+  activeRecord,
+  activePage,
   handleRecordTypeChange,
   handleActivePageChange
 }) => {
+  function activePageStyle (page) {
+    if (page === activePage) {
+      return {
+        color: 'white'
+      }
+    }
+  }
+  function activeRecordStyle (record) {
+    if (record === activeRecord) {
+      return {
+        color: 'white'
+      }
+    }
+  }
   return <div id='sidebar' className={classes.root}>
-    <div className={classes.title}>
-      <h1 className={classes.titleHeader}>OIP Publisher</h1>
+    <div className={classes.titleSpace}>
+      <span className={classes.titleHeader}>OIP</span>
     </div>
-    <div className={classes.sideBarNavContainer}>
-      <h2
-        onClick={() => { handleActivePageChange('EXPLORER') }}
-        id='explorer-icon'
-        className={classNames(classes.navLink, classes.navItemSingle)}
-      >
-        Explorer
-      </h2>
-      <h2
-        onClick={() => { handleActivePageChange('PUBLISH') }}
-        className={classNames(classes.navLink, classes.navItemSingle)}
-        id='publish-icon'
-      >
-        Publish
-      </h2>
-      <ul className={classes.publishList}>
-        {recordTypes.map((type, i) => {
-          return <li
-            className={classes.publishListItem}
-            key={i}
-            onClick={() => {
-              handleRecordTypeChange(type)
-              handleActivePageChange('PUBLISH')
-            }
-            }
-          >
-            <h3>{toPascalCase(type)}</h3>
-          </li>
-        })}
-      </ul>
-      <div className={classes.seperator} />
-      <h2
-        onClick={() => { handleActivePageChange('WALLET') }}
-        className={classNames(classes.navLink, classes.navItemSingle)}
-        id={'wallet-icon'}
-      >
-        Wallet
-      </h2>
-    </div>
+    <nav className={classes.tableOfContents}>
+      <a
+        className={classes.tableHeader}
+        style={activePageStyle(EXPLORER)}
+        onClick={() => handleActivePageChange(EXPLORER)}
+      > Explorer</a>
+      <a
+        className={classes.tableHeader}
+        style={activePageStyle(PUBLISH)}
+        onClick={() => handleActivePageChange(PUBLISH)}
+      >Publisher</a>
+      {recordTypes.map((record, i) => {
+        return <a
+          key={i}
+          className={classes.recordListItem}
+          style={activeRecordStyle(record)}
+          onClick={() => handleRecordTypeChange(record)}
+        >
+          {record}
+        </a>
+      })}
+      <a
+        className={classes.tableHeader}
+        style={activePageStyle(WALLET)}
+        onClick={() => handleActivePageChange(WALLET)}
+      >Wallet</a>
+    </nav>
+
   </div>
 }
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { RecordTemplate, ThemeProvider, useTheme } from 'oip-react'
 import withStyles from 'react-jss'
 
@@ -81,6 +81,12 @@ const Index = ({ classes }) => {
     setActivePage(activePage)
   }
 
+  useEffect(() => {
+    if (activePage !== PUBLISH) {
+      setActivePage(PUBLISH)
+    }
+  }, [recordType])
+
   return <ThemeProvider theme={theme}>
     <div className={classes.root}>
       <Header
@@ -88,7 +94,7 @@ const Index = ({ classes }) => {
         handleActivePageChange={handleActivePageChange}
       />
       <SideBar
-        recordType={recordType}
+        activeRecord={recordType}
         activePage={activePage}
         recordTypes={recordTypes}
         handleRecordTypeChange={handleRecordTypeChange}
