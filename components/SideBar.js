@@ -1,7 +1,6 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import toPascalCase from 'to-pascal-case'
-import { Explore, AccountBalanceWalletOutlined, Publish } from '@material-ui/icons'
 import classNames from 'classnames'
 
 const styles = theme => {
@@ -10,7 +9,9 @@ const styles = theme => {
       display: 'flex',
       flexDirection: 'column',
       flex: '0 0 300px',
-      backgroundColor: theme.palette.primary.darken(2.5)
+      backgroundColor: theme.palette.primary.darken(2.5),
+      boxShadow: '2px 4px 4px',
+      zIndex: 300
     },
     title: {
       color: theme.palette.background.main,
@@ -73,7 +74,12 @@ const styles = theme => {
   }
 }
 
-const SideBar = ({ classes, recordTypes, handleRecordTypeChange, handleActivePageChange }) => {
+const SideBar = ({
+  classes,
+  recordTypes,
+  handleRecordTypeChange,
+  handleActivePageChange
+}) => {
   return <div id='sidebar' className={classes.root}>
     <div className={classes.title}>
       <h1 className={classes.titleHeader}>OIP Publisher</h1>
@@ -84,14 +90,14 @@ const SideBar = ({ classes, recordTypes, handleRecordTypeChange, handleActivePag
         id='explorer-icon'
         className={classNames(classes.navLink, classes.navItemSingle)}
       >
-        Explorer <Explore />
+        Explorer
       </h2>
       <h2
         onClick={() => { handleActivePageChange('PUBLISH') }}
         className={classNames(classes.navLink, classes.navItemSingle)}
         id='publish-icon'
       >
-        Publish <Publish />
+        Publish
       </h2>
       <ul className={classes.publishList}>
         {recordTypes.map((type, i) => {
@@ -114,7 +120,7 @@ const SideBar = ({ classes, recordTypes, handleRecordTypeChange, handleActivePag
         className={classNames(classes.navLink, classes.navItemSingle)}
         id={'wallet-icon'}
       >
-        Wallet <AccountBalanceWalletOutlined />
+        Wallet
       </h2>
     </div>
   </div>
