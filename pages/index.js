@@ -69,7 +69,6 @@ function RenderPublisher (recordType) {
 
 const Index = ({ classes }) => {
   const { theme } = useTheme()
-  const walletRef = useRef(null)
 
   const [activePage, setActivePage] = useState(EXPLORER)
   const [recordType, setRecordType] = useState(recordTypes[0])
@@ -89,7 +88,8 @@ const Index = ({ classes }) => {
         handleActivePageChange={handleActivePageChange}
       />
       <SideBar
-        wallet={walletRef.current}
+        recordType={recordType}
+        activePage={activePage}
         recordTypes={recordTypes}
         handleRecordTypeChange={handleRecordTypeChange}
         handleActivePageChange={handleActivePageChange}
