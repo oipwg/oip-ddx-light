@@ -7,6 +7,8 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'row',
     flex: '0 0 60px',
+    backgroundColor: 'white',
+    boxShadow: '2px 1px 4px',
     alignItems: 'center',
     justifyContent: 'flex-start',
     borderBottom: '1px solid lightgrey',
@@ -17,6 +19,7 @@ const styles = theme => ({
       cursor: 'pointer'
     },
     '&::-webkit-scrollbar': {
+      display: 'none',
       height: '4px',
       borderRadius: '10px',
       color: 'red',
