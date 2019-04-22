@@ -45,7 +45,6 @@ const RecordNav = ({ classes, recordTypes, activeRecordType, handleRecordTypeCha
       }
     }
   }
-  
   return <div className={classes.root}>
     {recordTypes.map((type, i) => {
       return <div

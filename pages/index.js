@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react'
-import { RecordTemplate, ThemeProvider, useTheme } from 'oip-react-jss'
+import { RecordTemplate, ThemeProvider, useTheme } from 'oip-react'
 import withStyles from 'react-jss'
 
-import { Wallet as HDMW } from 'oip-hdmw'
-import { Explorer, Header, PublishPage, SideBar, WalletContainer as Wallet } from '../components'
+import { Explorer, Header, PublishPage, SideBar, WalletPage } from '../components'
 
 import RecordTemplateStyles from '../styles/jss/RecordTemplateStyles'
 
@@ -40,7 +39,7 @@ const PublisherPage = (recordType, handleRecordTypeChange) => {
 }
 
 function RenderMainContent ({
-  activePage, recordType, handleRecordTypeChange, initWallet, wallet
+  activePage, recordType, handleRecordTypeChange
 }) {
   switch (activePage) {
     case EXPLORER:
@@ -52,10 +51,7 @@ function RenderMainContent ({
     case PUBLISH:
       return PublisherPage(recordType, handleRecordTypeChange)
     case WALLET:
-      return <Wallet
-        initWallet={initWallet}
-        wallet={wallet}
-      />
+      return <WalletPage />
     default:
       throw new Error(`Publish type not defined: ${recordType}`)
   }
@@ -86,10 +82,6 @@ const Index = ({ classes }) => {
     setActivePage(activePage)
   }
 
-  function initWallet (mnemonic) {
-    walletRef.current = new HDMW(mnemonic, { discover: false })
-  }
-
   return <ThemeProvider theme={theme}>
     <div className={classes.root}>
       <Header
@@ -105,9 +97,7 @@ const Index = ({ classes }) => {
       {RenderMainContent({
         activePage,
         recordType,
-        handleRecordTypeChange,
-        initWallet,
-        wallet: walletRef.current
+        handleRecordTypeChange
       })}
     </div>
   </ThemeProvider>
