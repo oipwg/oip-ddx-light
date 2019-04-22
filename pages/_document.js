@@ -8,14 +8,13 @@ export default class JssDocument extends Document {
       <Html>
         <Head>
           <style>{`
-            * {
-            margin: 0;
-            padding: 0
-            }
             html, body, #__next {
               height: 100%;
+              margin: 0;
+              padding: 0;
+              background-color: #bdc3c7;
+              font-family: sans-serif, arial;
             },
-            
           `}
           </style>
           <link rel='stylesheet' href='https://highlightjs.org/static/demo/styles/ocean.css' />
