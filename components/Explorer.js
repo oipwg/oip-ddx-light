@@ -18,7 +18,22 @@ const Explorer = ({ classes, activeRecordType, recordTypes, handleRecordTypeChan
       recordTypes={recordTypes}
       handleRecordTypeChange={handleRecordTypeChange}
     />
+    <ExplorerPageWithStyles/>
   </div>
 }
+
+const ExplorerPage = ({ classes }) => {
+  return <div className={classes.root}>
+
+  </div>
+}
+const explorerPageStyles = theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: '1 0 auto'
+  }
+})
+const ExplorerPageWithStyles = withStyles(explorerPageStyles)(ExplorerPage)
 
 export default withStyles(styles)(Explorer)
