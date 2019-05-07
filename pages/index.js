@@ -68,7 +68,7 @@ function RenderPublisher (recordType) {
 }
 
 const Index = ({ classes }) => {
-  const { theme } = useTheme()
+  const { theme } = useTheme(undefined, 'light')
 
   const [activePage, setActivePage] = useState(EXPLORER)
   const [recordType, setRecordType] = useState(recordTypes[0])
