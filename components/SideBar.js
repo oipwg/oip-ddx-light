@@ -1,7 +1,5 @@
-import React from 'react'
+import React  from 'react'
 import withStyles from 'react-jss'
-import toPascalCase from 'to-pascal-case'
-import classNames from 'classnames'
 
 const styles = theme => {
   return {
@@ -70,6 +68,7 @@ const SideBar = ({
       }
     }
   }
+
   function activeRecordStyle (record) {
     if (record === activeRecord) {
       return {
@@ -77,6 +76,14 @@ const SideBar = ({
       }
     }
   }
+
+  function handlePublisherRecordChange (record) {
+    if (activePage !== PUBLISH) {
+      handleActivePageChange(PUBLISH)
+    }
+    handleRecordTypeChange(record)
+  }
+
   return <div id='sidebar' className={classes.root}>
     <div className={classes.titleSpace}>
       <span className={classes.titleHeader}>OIP</span>
@@ -97,7 +104,7 @@ const SideBar = ({
           key={i}
           className={classes.recordListItem}
           style={activeRecordStyle(record)}
-          onClick={() => handleRecordTypeChange(record)}
+          onClick={() => handlePublisherRecordChange(record)}
         >
           {record}
         </a>
