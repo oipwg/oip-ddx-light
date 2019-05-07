@@ -81,12 +81,6 @@ const Index = ({ classes }) => {
     setActivePage(activePage)
   }
 
-  useEffect(() => {
-    if (activePage !== PUBLISH) {
-      setActivePage(PUBLISH)
-    }
-  }, [recordType])
-
   return <ThemeProvider theme={theme}>
     <div className={classes.root}>
       <Header
