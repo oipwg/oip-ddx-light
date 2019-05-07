@@ -8,7 +8,7 @@ const styles = theme => {
       flexDirection: 'column',
       flex: '0 0 300px',
       backgroundColor: theme.palette.primary.darken(2.5),
-      boxShadow: '2px -2px 4px',
+      boxShadow: theme.shadows[3],
       zIndex: 300
     },
     titleSpace: {

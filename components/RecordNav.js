@@ -8,7 +8,7 @@ const styles = theme => ({
     flexDirection: 'row',
     flex: '0 0 60px',
     backgroundColor: 'white',
-    boxShadow: '2px 1px 4px',
+    boxShadow: theme.shadows[1],
     alignItems: 'center',
     justifyContent: 'flex-start',
     borderBottom: '1px solid lightgrey',
