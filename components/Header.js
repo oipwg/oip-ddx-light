@@ -67,19 +67,22 @@ const Header = ({ classes, breakpoints, handleActivePageChange }) => {
   return <div id='header' className={classes.headerRoot}>
     <h1>OIP</h1>
     <div id='menu-icon' onClick={handleToggleMenu}>
-      <Menu />
+      <Menu/>
       <ul className={menuOpen ? classes.menuListOpen : classes.menuListClose}>
         <li
           onClick={() => handleActivePageChange('EXPLORER')}
-        >Explorer</li>
-        <div style={{ borderBottom: '1px solid lightgrey' }} />
+        >Explorer
+        </li>
+        <div style={{ borderBottom: '1px solid lightgrey' }}/>
         <li
           onClick={() => handleActivePageChange('PUBLISH')}
-        >Publish</li>
-        <div style={{ borderBottom: '1px solid lightgrey' }} />
+        >Publish
+        </li>
+        <div style={{ borderBottom: '1px solid lightgrey' }}/>
         <li
           onClick={() => handleActivePageChange('WALLET')}
-        >Wallet</li>
+        >Wallet
+        </li>
       </ul>
     </div>
   </div>
