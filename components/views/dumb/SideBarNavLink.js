@@ -1,5 +1,6 @@
 import React from 'react'
 import withStyles from 'react-jss'
+import PropTypes from 'prop-types'
 
 const styles = theme => ({
   navItem: {
@@ -14,22 +15,24 @@ const styles = theme => ({
     '&:hover': {
       cursor: 'pointer',
       background: theme.palette.background.main,
-      color: theme.palette.primary.main,
+      color: theme.palette.primary.main
     }
   },
-  pageLinkName: {}
+  pageLinkName: {
+    textTransform: 'capitalize'
+  }
 })
 
 const SideBarNavLink = ({
   classes,
-  pageLinkName,
-  handlePageLinkClick,
+  page,
+  setActivePage,
   key,
-  activePageLink,
+  activePage,
   theme
 }) => {
   const getStyleIfActive = () => {
-    if (activePageLink === pageLinkName) {
+    if (activePage === page) {
       return {
         background: theme.palette.background.main,
         color: theme.palette.primary.main
@@ -39,11 +42,19 @@ const SideBarNavLink = ({
   return <a
     key={key}
     className={classes.navItem}
-    onClick={() => handlePageLinkClick(pageLinkName)}
+    onClick={() => setActivePage(page)}
     style={getStyleIfActive()}
   >
-    <span className={classes.pageLinkName}>{pageLinkName}</span>
+    <span className={classes.pageLinkName}>{page}</span>
   </a>
+}
+
+SideBarNavLink.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+  activePage: PropTypes.string.isRequired,
+  setActivePage: PropTypes.func.isRequired,
+  page: PropTypes.string.isRequired
 }
 
 export default withStyles(styles, {injectTheme: true})(SideBarNavLink)

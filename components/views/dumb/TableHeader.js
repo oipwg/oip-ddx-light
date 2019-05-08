@@ -1,7 +1,5 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import withStyles from 'react-jss'
-import { ConstantCtx } from '../Interface/InterfaceContainer'
-import TableNavLink from './TableNavLink'
 
 const styles = theme => ({
   root: {
@@ -14,9 +12,7 @@ const styles = theme => ({
 })
 
 const TableHeader = ({ classes }) => {
-  // const { records } = useContext(ConstantCtx)
-  return <div className={classes.root}>
-  </div>
+  return <div className={classes.root} />
 }
 
 export default withStyles(styles)(TableHeader)

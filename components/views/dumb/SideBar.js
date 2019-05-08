@@ -1,5 +1,6 @@
-import React  from 'react'
+import React from 'react'
 import withStyles from 'react-jss'
+import PropTypes from 'prop-types'
 import SideBarNavLink from './SideBarNavLink'
 
 const styles = theme => {
@@ -32,7 +33,7 @@ const styles = theme => {
 const SideBar = ({
   classes,
   activePage,
-  handleActivePageChange,
+  setActivePage,
   pages
 }) => {
   return <div id='sidebar' className={classes.root}>
@@ -40,16 +41,23 @@ const SideBar = ({
       <h1 className={classes.titleHeader}>OIP</h1>
     </div>
     <nav className={classes.tableOfContents}>
-      {Object.keys(pages).map((page, i) => {
+      {pages.map((page, i) => {
         return <SideBarNavLink
-          pageLinkName={page}
+          page={page}
           key={i}
-          handlePageLinkClick={handleActivePageChange}
-          activePageLink={activePage}
+          setActivePage={setActivePage}
+          activePage={activePage}
         />
       })}
     </nav>
   </div>
+}
+
+SideBar.propTypes = {
+  classes: PropTypes.object.isRequired,
+  activePage: PropTypes.string.isRequired,
+  setActivePage: PropTypes.func.isRequired,
+  pages: PropTypes.array.isRequired
 }
 
 export default withStyles(styles)(SideBar)

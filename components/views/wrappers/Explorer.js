@@ -1,6 +1,6 @@
 import React from 'react'
 import withStyles from 'react-jss'
-import TablePaper from './TablePaper'
+import TablePaper from '../dumb/TablePaper'
 
 const styles = theme => ({
   root: {
