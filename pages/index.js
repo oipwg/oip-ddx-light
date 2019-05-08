@@ -1,128 +1,40 @@
-import React, { useState, useEffect } from 'react'
-import { RecordTemplate, ThemeProvider, useTheme } from 'oip-react'
-import withStyles from 'react-jss'
+import React from 'react'
+import { ThemeProvider, useTheme } from 'oip-react'
 
-import { Explorer, Header, PublishPage, SideBar, WalletPage } from '../components'
+import { Interface } from '../components'
 
-import RecordTemplateStyles from '../styles/jss/RecordTemplateStyles'
-
-const recordTypes = [
-  'record',
-  'template',
-  'profile',
-  'influencer',
-  'platform',
-  'publisher'
-]
-
-const bp = {
-  xs: 0,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-  xl: 1920
-}
-const EXPLORER = 'EXPLORER'
-const PUBLISH = 'PUBLISH'
-const WALLET = 'WALLET'
-
-const StyledRecordTemplatePublisher = withStyles(RecordTemplateStyles)(RecordTemplate)
-
-const PublisherPage = (recordType, handleRecordTypeChange) => {
-  return <PublishPage
-    activeRecordType={recordType}
-    recordTypes={recordTypes}
-    handleRecordTypeChange={handleRecordTypeChange}
-  >
-    {RenderPublisher(recordType)}
-  </PublishPage>
-}
-
-function RenderMainContent ({
-  activePage, recordType, handleRecordTypeChange
-}) {
-  switch (activePage) {
-    case EXPLORER:
-      return <Explorer
-        activeRecordType={recordType}
-        recordTypes={recordTypes}
-        handleRecordTypeChange={handleRecordTypeChange}
-      />
-    case PUBLISH:
-      return PublisherPage(recordType, handleRecordTypeChange)
-    case WALLET:
-      return <WalletPage />
-    default:
-      throw new Error(`Publish type not defined: ${recordType}`)
-  }
-}
-
-function RenderPublisher (recordType) {
-  switch (recordType) {
-    case 'template':
-      return <StyledRecordTemplatePublisher />
-    default:
-      return <StyledRecordTemplatePublisher />
-      throw new Error(`Record type not defined: ${recordType}`)
-  }
-}
-
-const Index = ({ classes }) => {
-  const { theme } = useTheme(undefined, 'light')
-
-  const [activePage, setActivePage] = useState(EXPLORER)
-  const [recordType, setRecordType] = useState(recordTypes[0])
-
-  const handleRecordTypeChange = (recordType) => {
-    setRecordType(recordType)
-  }
-
-  const handleActivePageChange = (activePage) => {
-    setActivePage(activePage)
-  }
-
-  return <ThemeProvider theme={theme}>
-    <div className={classes.root}>
-      <Header
-        breakpoints={bp}
-        handleActivePageChange={handleActivePageChange}
-      />
-      <SideBar
-        activeRecord={recordType}
-        activePage={activePage}
-        recordTypes={recordTypes}
-        handleRecordTypeChange={handleRecordTypeChange}
-        handleActivePageChange={handleActivePageChange}
-      />
-      {RenderMainContent({
-        activePage,
-        recordType,
-        handleRecordTypeChange
-      })}
-    </div>
-  </ThemeProvider>
-}
-
-const styles = {
-  root: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    '& #header': {
-      display: 'none'
-    }
-  },
-  [`@media (max-width: ${bp['md']}px)`]: {
-    root: {
-      flexDirection: 'column',
-      '& #sidebar': {
-        display: 'none'
+const Index = () => {
+  let options = {
+    palettes: {
+      'light': {
+        'primary': '#3688aa',
+        'secondary': '#d8443a',
+        'tertiary': '#7a89ac',
+        'background': '#ffffff',
+        'text': '#000000',
+        'success': '#339757',
+        'warning': '#fcaa32',
+        'danger': '#FF0000',
+        'info': '#5d5d66'
       },
-      '& #header': {
-        display: 'flex'
+      'dark': {
+        'primary': '#3688aa',
+        'secondary': '#c45249',
+        'tertiary': '#4f6391',
+        'background': '#000000',
+        'text': '#ffffff',
+        'success': '#339757',
+        'warning': '#ee9a26',
+        'danger': '#FF0000',
+        'info': '#74748d'
       }
     }
   }
+  const { theme } = useTheme(options, 'light')
+
+  return <ThemeProvider theme={theme}>
+    <Interface />
+  </ThemeProvider>
 }
 
-export default withStyles(styles)(Index)
+export default Index

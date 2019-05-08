@@ -1,15 +1,9 @@
-import Explorer from './Explorer'
-import WalletPage from './WalletPage'
-import SideBar from './SideBar'
-import Header from './Header'
-import PublishPage from './PublishPage'
-import RecordNav from './RecordNav'
+import { Explorer } from './Explorer'
+import { SideBar } from './SideBar'
+import { InterfaceContainer as Interface } from './Interface'
 
 export {
   Explorer,
-  WalletPage,
   SideBar,
-  Header,
-  PublishPage,
-  RecordNav
+  Interface
 }

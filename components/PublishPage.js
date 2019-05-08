@@ -1,6 +1,5 @@
 import React from 'react'
 import withStyles from 'react-jss'
-import RecordNav from './RecordNav'
 
 const styles = theme => ({
   root: {
@@ -17,13 +16,8 @@ const styles = theme => ({
   }
 })
 
-const PublishPage = ({ classes, children, recordTypes, activeRecordType, handleRecordTypeChange }) => {
+const PublishPage = ({ classes, children }) => {
   return <div className={classes.root}>
-    <RecordNav
-      recordTypes={recordTypes}
-      activeRecordType={activeRecordType}
-      handleRecordTypeChange={handleRecordTypeChange}
-    />
     <div className={classes.contentContainer}>
       {children}
     </div>
