@@ -1,6 +1,7 @@
 import * as actions from '../actions/Interface/creators'
 
 function Interface (state = {
+  pages: [actions.EXPLORER, actions.PUBLISHER, actions.WALLET],
   activePage: actions.EXPLORER
 }, action) {
   switch (action.type) {
