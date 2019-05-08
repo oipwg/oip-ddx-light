@@ -1,6 +1,6 @@
 import * as actions from '../actions/Explorer/creators'
 
-function Explorer (state = {
+const initialState = {
   status: actions.NULL,
   statusMessage: '',
   latestRecords: {},
@@ -9,7 +9,8 @@ function Explorer (state = {
   currentTemplate: undefined,
   recordCache: [],
   templateCache: []
-}, action) {
+}
+const Explorer = (state = initialState, action) => {
   switch (action.type) {
     case actions.SET_API_STATUS:
       return {
@@ -67,6 +68,8 @@ function Explorer (state = {
         ...state,
         templateCache: []
       }
+    default:
+      return state
   }
 }
 

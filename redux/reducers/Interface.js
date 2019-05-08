@@ -14,6 +14,8 @@ function Interface (state = {
         ...state,
         activeRecordType: action.recordType
       }
+    default:
+      return state
   }
 }
 

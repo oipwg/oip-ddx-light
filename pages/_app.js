@@ -3,7 +3,7 @@ import React from 'react'
 import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
 
-export default class MyApp extends App {
+class MyApp extends App {
   componentDidMount () {
     const style = document.getElementById('server-side-styles')
 
