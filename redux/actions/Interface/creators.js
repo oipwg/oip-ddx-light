@@ -1,6 +1,6 @@
-export const EXPLORER = 'EXPLORER'
-export const PUBLISHER = 'PUBLISHER'
-export const WALLET = 'WALLET'
+export const EXPLORER = 'explorer'
+export const PUBLISHER = 'publisher'
+export const WALLET = 'wallet'
 
 export const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE'
 export const setActivePage = (page) => ({
