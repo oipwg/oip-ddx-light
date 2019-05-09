@@ -4,15 +4,15 @@ import {
   SUCCESS,
   PENDING,
   NULL,
+  LATEST_RECORDS_KEYS,
+  LATEST_TEMPLATES_KEYS,
+  SEARCHED_RECORDS_KEYS,
+  SEARCHED_TEMPLATES_KEYS,
   setApiStatus,
   setStatusMessage,
   setLatestRecords,
   setLatestTemplates,
-  setCurrentRecord,
-  setCurrentTemplate,
-  cacheRecord,
-  cacheTemplate,
-  setDaemonApi
+  setDaemonApi, setSearchedRecords, setSearchedTemplates, addNextKey
 } from './creators'
 
 export const getLatestOip5Records = () => async (dispatch, getState) => {
@@ -24,12 +24,13 @@ export const getLatestOip5Records = () => async (dispatch, getState) => {
   } catch (err) {
     dispatch(setApiStatus(ERROR))
     dispatch(setStatusMessage(`failed to getLatestOip5Records: ${err}`))
-    return false
   }
   const { success, payload } = response
   if (success) {
     dispatch(setApiStatus(SUCCESS))
-    dispatch(setLatestRecords(payload))
+    const { next } = payload
+    dispatch(addNextKey(next, LATEST_RECORDS_KEYS))
+    dispatch(setLatestRecords({ payload, next }))
   } else {
     dispatch(setApiStatus(NULL))
     dispatch(setStatusMessage('Response success returned false for getting latest oip5 records'))
@@ -45,59 +46,60 @@ export const getLatestOip5Templates = () => async (dispatch, getState) => {
   } catch (err) {
     dispatch(setApiStatus(ERROR))
     dispatch(setStatusMessage(`failed to getLatestOip5Templates: ${err}`))
-    return false
   }
   const { success, payload } = response
   if (success) {
     dispatch(setApiStatus(SUCCESS))
-    dispatch(setLatestTemplates(payload))
+    const { next } = payload
+    dispatch(addNextKey(next, LATEST_TEMPLATES_KEYS))
+    dispatch(setLatestTemplates({ payload, next }))
   } else {
     dispatch(setApiStatus(NULL))
     dispatch(setStatusMessage('Response success returned false for getting latest oip5 templates'))
   }
 }
 
-export const getOip5Record = txid => async (dispatch, getState) => {
+export const searchOip5Records = query => async (dispatch, getState) => {
   const DaemonApi = getState().Explorer.daemonApi
   dispatch(setApiStatus(PENDING))
   let response
   try {
-    response = await DaemonApi.getOip5Record(txid)
+    response = await DaemonApi.searchOip5Records({ q: query })
   } catch (err) {
     dispatch(setApiStatus(ERROR))
-    dispatch(setStatusMessage(`failed to getOip5Record: ${txid} - ${err}`))
-    return false
+    dispatch(setStatusMessage(`failed to search Oip5 Records for: ${query} - ${err}`))
   }
   const { success, payload } = response
   if (success) {
     dispatch(setApiStatus(SUCCESS))
-    dispatch(setCurrentRecord(payload))
-    dispatch(cacheRecord(payload))
+    const { next } = payload
+    dispatch(addNextKey(next, SEARCHED_RECORDS_KEYS))
+    dispatch(setSearchedRecords({ next, payload }))
   } else {
     dispatch(setApiStatus(NULL))
-    dispatch(setStatusMessage(`Response success returned false for getting oip5 record: ${txid}`))
+    dispatch(setStatusMessage(`Response success returned false for getting oip5 record: ${query}`))
   }
 }
 
-export const getOip5Template = txid => async (dispatch, getState) => {
+export const searchOip5Templates = query => async (dispatch, getState) => {
   const DaemonApi = getState().Explorer.daemonApi
   dispatch(setApiStatus(PENDING))
   let response
   try {
-    response = await DaemonApi.getOip5Template(txid)
+    response = await DaemonApi.searchOip5Templates({ q: query })
   } catch (err) {
     dispatch(setApiStatus(ERROR))
-    dispatch(setStatusMessage(`failed to getOip5Template: ${txid} - ${err}`))
-    return false
+    dispatch(setStatusMessage(`failed to search Oip5 Templates: ${query} - ${err}`))
   }
   const { success, payload } = response
   if (success) {
     dispatch(setApiStatus(SUCCESS))
-    dispatch(setCurrentTemplate(payload))
-    dispatch(cacheTemplate(payload))
+    const { next } = payload
+    dispatch(addNextKey(next, SEARCHED_TEMPLATES_KEYS))
+    dispatch(setSearchedTemplates({ next, payload }))
   } else {
     dispatch(setApiStatus(NULL))
-    dispatch(setStatusMessage(`Response success returned false for getting oip5 template: ${txid}`))
+    dispatch(setStatusMessage(`Response success returned false for getting oip5 template: ${query}`))
   }
 }
 

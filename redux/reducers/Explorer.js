@@ -4,12 +4,15 @@ const initialState = {
   daemonApi: undefined,
   status: actions.NULL,
   statusMessage: '',
-  latestRecords: undefined,
-  latestTemplates: undefined,
-  currentRecord: undefined,
-  currentTemplate: undefined,
-  recordCache: [],
-  templateCache: []
+  latestRecordsNextKeys: [],
+  latestTemplatesNextKeys: [],
+  searchedRecordsNextKeys: [],
+  searchedTemplatesNextKeys: [],
+  latestRecords: {},
+  latestTemplates: {},
+  searchedRecords: {},
+  searchedTemplates: {},
+  mode: actions.LATEST
 }
 const Explorer = (state = initialState, action) => {
   switch (action.type) {
@@ -38,42 +41,40 @@ const Explorer = (state = initialState, action) => {
     case actions.SET_LATEST_RECORDS:
       return {
         ...state,
-        latestRecords: action.latestRecords
+        latestRecords: {
+          ...state.latestRecords,
+          [action.next]: action.payload
+        }
       }
     case actions.SET_LATEST_TEMPLATES:
       return {
         ...state,
-        latestTemplates: action.latestTemplates
+        latestTemplates: {
+          ...state.latestTemplates,
+          [action.next]: action.payload
+        }
       }
-    case actions.SET_CURRENT_RECORD:
+    case actions.SET_SEARCHED_RECORDS: {
       return {
         ...state,
-        currentRecord: action.currentRecord
+        searchedRecords: {
+          ...state.searchedRecords,
+          [action.next]: action.payload
+        }
       }
-    case actions.SET_CURRENT_TEMPLATE:
+    }
+    case actions.SET_SEARCHED_TEMPLATES:
       return {
         ...state,
-        currentTemplate: action.currentTemplate
+        searchedTemplates: {
+          ...state.searchedTemplates,
+          [action.next]: action.payload
+        }
       }
-    case actions.CACHE_RECORD:
+    case actions.ADD_NEXT_KEY:
       return {
         ...state,
-        recordCache: [...state.recordCache, action.record]
-      }
-    case actions.CLEAR_RECORD_CACHE:
-      return {
-        ...state,
-        recordCache: []
-      }
-    case actions.CACHE_TEMPLATE:
-      return {
-        ...state,
-        templateCache: [...state.templateCache, action.template]
-      }
-    case actions.CLEAR_TEMPLATE_CACHE:
-      return {
-        ...state,
-        templateCache: []
+        [action.property]: [...state[action.property], action.nextKey]
       }
     default:
       return state

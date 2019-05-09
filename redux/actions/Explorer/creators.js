@@ -3,6 +3,14 @@ export const SUCCESS = 'SUCCESS'
 export const PENDING = 'PENDING'
 export const NULL = 'NULL'
 
+export const SEARCH = 'SEARCH'
+export const LATEST = 'LATEST'
+
+export const LATEST_RECORDS_KEYS = 'latestRecordsNextKeys'
+export const LATEST_TEMPLATES_KEYS = 'latestTemplatesNextKeys'
+export const SEARCHED_RECORDS_KEYS = 'searchedRecordsNextKeys'
+export const SEARCHED_TEMPLATES_KEYS = 'searchedTemplatesNextKeys'
+
 export const SET_API_STATUS = 'SET_API_STATUS'
 export const setApiStatus = (status) => ({
   type: SET_API_STATUS,
@@ -21,49 +29,38 @@ export const resetStatus = () => ({
 })
 
 export const SET_LATEST_RECORDS = 'SET_LATEST_RECORDS'
-export const setLatestRecords = (latestRecords) => ({
+export const setLatestRecords = ({ payload, next }) => ({
   type: SET_LATEST_RECORDS,
-  latestRecords
+  payload,
+  next
 })
 
 export const SET_LATEST_TEMPLATES = 'SET_LATEST_TEMPLATES'
-export const setLatestTemplates = (latestTemplates) => ({
+export const setLatestTemplates = ({ payload, next }) => ({
   type: SET_LATEST_TEMPLATES,
-  latestTemplates
+  payload,
+  next
 })
 
-export const SET_CURRENT_RECORD = 'SET_CURRENT_RECORD'
-export const setCurrentRecord = (currentRecord) => ({
-  type: SET_CURRENT_RECORD,
-  currentRecord
+export const SET_SEARCHED_RECORDS = 'SET_SEARCHED_RECORDS'
+export const setSearchedRecords = ({ next, payload }) => ({
+  type: SET_SEARCHED_RECORDS,
+  next,
+  payload
 })
 
-export const SET_CURRENT_TEMPLATE = 'SET_CURRENT_TEMPLATE'
-export const setCurrentTemplate = (currentTemplate) => ({
-  type: SET_CURRENT_TEMPLATE,
-  currentTemplate
+export const SET_SEARCHED_TEMPLATES = 'SET_SEARCHED_TEMPLATES'
+export const setSearchedTemplates = ({ next, payload }) => ({
+  type: SET_SEARCHED_TEMPLATES,
+  next,
+  payload
 })
 
-export const CACHE_RECORD = 'CACHE_RECORD'
-export const cacheRecord = (record) => ({
-  type: CACHE_RECORD,
-  record
-})
-
-export const CLEAR_RECORD_CACHE = 'CLEAR_RECORD_CACHE'
-export const clearRecordCache = () => ({
-  type: CLEAR_RECORD_CACHE
-})
-
-export const CACHE_TEMPLATE = 'CACHE_TEMPLATE'
-export const cacheTemplate = (template) => ({
-  type: CACHE_TEMPLATE,
-  template
-})
-
-export const CLEAR_TEMPLATE_CACHE = 'CLEAR_TEMPLATE_CACHE'
-export const clearTemplateCache = () => ({
-  type: CLEAR_TEMPLATE_CACHE
+export const ADD_NEXT_KEY = 'ADD_NEXT_KEY'
+export const addNextKey = (nextKey, property) => ({
+  type: ADD_NEXT_KEY,
+  nextKey,
+  property
 })
 
 export const SET_DAEMON_API = 'SET_DAEMON_API'
@@ -71,4 +68,3 @@ export const setDaemonApi = (daemon) => ({
   type: SET_DAEMON_API,
   daemon
 })
-
