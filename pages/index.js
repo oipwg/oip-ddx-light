@@ -1,40 +1,38 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { ThemeProvider, useTheme } from 'oip-react'
+import config from '../config'
 
-import { Interface } from '../components'
+import InterfaceContainer from '../components/containers/InterfaceContainer'
+import { createDaemonApi } from '../redux/actions/Explorer/thunks'
+import { themeOptions } from '../styles/theme'
 
-const Index = () => {
-  let options = {
-    palettes: {
-      'light': {
-        'primary': '#3688aa',
-        'secondary': '#d8443a',
-        'tertiary': '#7a89ac',
-        'background': '#ffffff',
-        'text': '#000000',
-        'success': '#339757',
-        'warning': '#fcaa32',
-        'danger': '#FF0000',
-        'info': '#5d5d66'
-      },
-      'dark': {
-        'primary': '#3688aa',
-        'secondary': '#c45249',
-        'tertiary': '#4f6391',
-        'background': '#000000',
-        'text': '#ffffff',
-        'success': '#339757',
-        'warning': '#ee9a26',
-        'danger': '#FF0000',
-        'info': '#74748d'
-      }
-    }
-  }
-  const { theme } = useTheme(options, 'light')
+const Index = ({
+  latestRecords,
+  latestTemplates
+}) => {
+  const { theme } = useTheme(themeOptions, 'light')
 
   return <ThemeProvider theme={theme}>
-    <Interface />
+    <InterfaceContainer
+      latestRecords={latestRecords}
+      latestTemplates={latestTemplates}
+    />
   </ThemeProvider>
+}
+
+Index.getInitialProps = async (ctx) => {
+  const { dispatch } = ctx.reduxStore
+
+  dispatch(createDaemonApi(config.daemonApiUrl))
+
+  return {
+  }
+}
+
+Index.propTypes = {
+  latestRecords: PropTypes.object,
+  latestTemplates: PropTypes.object
 }
 
 export default Index

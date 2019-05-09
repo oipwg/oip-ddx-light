@@ -1,10 +1,11 @@
 import * as actions from '../actions/Explorer/creators'
 
 const initialState = {
+  daemonApi: undefined,
   status: actions.NULL,
   statusMessage: '',
-  latestRecords: {},
-  latestTemplates: {},
+  latestRecords: undefined,
+  latestTemplates: undefined,
   currentRecord: undefined,
   currentTemplate: undefined,
   recordCache: [],
@@ -12,6 +13,12 @@ const initialState = {
 }
 const Explorer = (state = initialState, action) => {
   switch (action.type) {
+    case actions.SET_DAEMON_API: {
+      return {
+        ...state,
+        daemonApi: action.daemon
+      }
+    }
     case actions.SET_API_STATUS:
       return {
         ...state,

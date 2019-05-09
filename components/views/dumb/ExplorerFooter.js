@@ -1,20 +1,24 @@
 import React from 'react'
 import withStyles from 'react-jss'
+import PropTypes from 'prop-types'
 
 const styles = theme => ({
   root: {
     display: 'flex',
-    flexDirection: 'column',
-    flex: '1',
-    padding: '0px 20px'
-
+    flex: [1, 0]
   }
 })
 
-const TableBody = ({ classes }) => {
+const ExplorerFooter = ({
+  classes
+}) => {
   return <div className={classes.root}>
 
   </div>
 }
 
-export default withStyles(styles)(TableBody)
+ExplorerFooter.propTypes = {
+
+}
+
+export default withStyles(styles)(ExplorerFooter)

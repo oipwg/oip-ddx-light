@@ -8,18 +8,24 @@ import { setActivePage } from '../../redux/actions/Interface/creators'
 const InterfaceContainer = ({
   pages,
   activePage,
-  setActivePage
+  setActivePage,
+  latestRecords,
+  latestTemplates
 }) => {
   return <Interface
     pages={pages}
     activePage={activePage}
     setActivePage={setActivePage}
+    latestRecords={latestRecords}
+    latestTemplates={latestTemplates}
   />
 }
 InterfaceContainer.propTypes = {
   activePage: PropTypes.string.isRequired,
   setActivePage: PropTypes.func.isRequired,
-  pages: PropTypes.array.isRequired
+  pages: PropTypes.array.isRequired,
+  latestRecords: PropTypes.object,
+  latestTemplates: PropTypes.object
 }
 
 function mapStateToProps (state) {

@@ -14,7 +14,10 @@ const createStoreFn = () => {
   if (process.env.NODE_ENV !== 'production') {
     const reduxLogger = require('redux-logger')
     const logger = reduxLogger.createLogger({
-      collapsed: true
+      collapsed: true,
+      predicate: (getState, action) => {
+        return process.browser
+      }
     })
     middleware.push(logger)
   }
@@ -30,7 +33,7 @@ const createStoreFn = () => {
     composeEnhancers = compose
   }
 
-  // Use the Middlewear and create an "enhancer"
+  // Use the Middleware and create an "enhancer"
   const enhancer = composeEnhancers(
     applyMiddleware(...middleware)
     // other store enhancers if any

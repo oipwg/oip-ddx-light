@@ -66,4 +66,9 @@ export const clearTemplateCache = () => ({
   type: CLEAR_TEMPLATE_CACHE
 })
 
+export const SET_DAEMON_API = 'SET_DAEMON_API'
+export const setDaemonApi = (daemon) => ({
+  type: SET_DAEMON_API,
+  daemon
+})
 
