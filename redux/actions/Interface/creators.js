@@ -2,8 +2,8 @@ export const EXPLORER = 'explorer'
 export const PUBLISHER = 'publisher'
 export const WALLET = 'wallet'
 
-export const SEARCH = 'SEARCH'
-export const LATEST = 'LATEST'
+export const SEARCHED = 'SEARCHED'
+export const DEFAULT = 'DEFAULT'
 
 export const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE'
 export const setActivePage = (page) => ({

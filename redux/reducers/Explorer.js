@@ -8,8 +8,8 @@ const initialState = {
   templateOperand: config.templateOperand,
   defaultRecordKeys: [],
   defaultTemplateKeys: [],
-  searchedRecordsKeys: [],
-  searchedTemplatesKeys: [],
+  searchedRecordKeys: [],
+  searchedTemplateKeys: [],
   searchedRecords: {},
   searchedTemplates: {},
   defaultTemplates: {},
@@ -36,7 +36,7 @@ const Explorer = (state = initialState, action) => {
         ...state,
         defaultRecords: {
           ...state.defaultRecords,
-          [action.next]: action.payload
+          [action.payload.next]: action.payload
         },
         defaultRecordKeys: [...state.defaultRecordKeys, action.payload.next]
       }
@@ -45,7 +45,7 @@ const Explorer = (state = initialState, action) => {
         ...state,
         defaultTemplates: {
           ...state.defaultTemplates,
-          [action.next]: action.payload
+          [action.payload.next]: action.payload
         },
         defaultTemplateKeys: [...state.defaultTemplateKeys, action.payload.next]
       }
@@ -54,9 +54,9 @@ const Explorer = (state = initialState, action) => {
         ...state,
         searchedRecords: {
           ...state.searchedRecords,
-          [action.next]: action.payload
+          [action.payload.next]: action.payload
         },
-        searchedRecordsKeys: [...state.searchedRecordsKeys, action.payload.next]
+        searchedRecordKeys: [...state.searchedRecordKeys, action.payload.next]
       }
     }
     case actions.SET_SEARCHED_TEMPLATES:
@@ -64,9 +64,9 @@ const Explorer = (state = initialState, action) => {
         ...state,
         searchedTemplates: {
           ...state.searchedTemplates,
-          [action.next]: action.payload
+          [action.payload.next]: action.payload
         },
-        searchedTemplatesKeys: [...state.searchedTemplatesKeys, action.payload.next]
+        searchedTemplateKeys: [...state.searchedTemplateKeys, action.payload.next]
       }
     case actions.FETCHING_RECORDS_SUCCESS:
       return {
