@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ThemeProvider, useTheme } from 'oip-react'
-import config from '../config'
 
 import InterfaceContainer from '../components/containers/InterfaceContainer'
-import { createDaemonApi } from '../redux/actions/Explorer/thunks'
+
 import { themeOptions } from '../styles/theme'
 
 const Index = ({
@@ -21,18 +20,11 @@ const Index = ({
   </ThemeProvider>
 }
 
-Index.getInitialProps = async (ctx) => {
-  const { dispatch } = ctx.reduxStore
-
-  dispatch(createDaemonApi(config.daemonApiUrl))
-
-  return {
-  }
-}
+// Index.getInitialProps = async (ctx) => {}
 
 Index.propTypes = {
-  latestRecords: PropTypes.object,
-  latestTemplates: PropTypes.object
+  displayRecords: PropTypes.object.isRequired,
+  displayTemplates: PropTypes.object.isRequired,
 }
 
 export default Index

@@ -5,29 +5,73 @@ import Explorer from '../views/wrappers/Explorer'
 import {
   getLatestOip5Records,
   getLatestOip5Templates,
-  getOip5Record,
-  getOip5Template
+  searchOip5Records,
+  searchOip5Templates
 } from '../../redux/actions/Explorer/thunks'
+
+import {
+  LATEST,
+  SEARCH
+} from '../../redux/actions/Explorer/creators'
+import isObjEmpty from '../../util/isObjEmpty'
 
 const ExplorerContainer = ({
   latestRecords,
   latestTemplates,
   getLatestOip5Records,
   getLatestOip5Templates,
-  currentRecord,
-  currentTemplate
+  searchedRecords,
+  searchedTemplates,
+  mode,
+  activeLatestRecordsPage,
+  activeLatestTemplatesPage,
+  activeSearchedRecordsPage,
+  activeSearchedTemplatesPage,
+  latestRecordsNextKeys,
+  latestTemplatesNextKeys,
+  searchedRecordsNextKeys,
+  searchedTemplatesNextKeys
 }) => {
   const [searchInput, setSearchInput] = useState('')
   const [selectOption, setSelectOption] = useState('Templates')
+  const [displayTemplates, setDisplayTemplates] = useState(latestTemplates)
+  const [displayRecords, setDisplayRecords] = useState(latestRecords)
+
+  // ACTIVE LATEST TEMPLATE KEY
+  const altKey = latestTemplatesNextKeys[activeLatestTemplatesPage]
+  // ACTIVE LATEST RECORD KEY
+  const alrKey = latestRecordsNextKeys[activeLatestRecordsPage]
+  // ACTIVE SEARCHED RECORD KEY
+  const asrKey = searchedRecordsNextKeys[activeSearchedRecordsPage]
+  // ACTIVE SEARCHED TEMPLATE KEY
+  const astKey = searchedTemplatesNextKeys[activeSearchedTemplatesPage]
 
   useEffect(() => {
-    if (!latestRecords) {
+    if (isObjEmpty(latestRecords)) {
       getLatestOip5Records()
     }
-    if (!latestTemplates) {
+    if (isObjEmpty(latestTemplates)) {
       getLatestOip5Templates()
     }
   }, [])
+
+  useEffect(() => {
+    if (mode === LATEST) {
+      setDisplayRecords(latestRecords[alrKey])
+    }
+    if (mode === SEARCH) {
+      setDisplayRecords(searchedRecords[asrKey])
+    }
+  }, [latestRecords, searchedRecords, mode, activeLatestRecordsPage, activeSearchedRecordsPage])
+
+  useEffect(() => {
+    if (mode === LATEST) {
+      setDisplayTemplates(latestTemplates[altKey])
+    }
+    if (mode === SEARCH) {
+      setDisplayTemplates(searchedTemplates[astKey])
+    }
+  }, [latestTemplates, searchedTemplates, mode, activeLatestTemplatesPage, activeSearchedTemplatesPage])
 
   function handleSearchInput (e) {
     setSearchInput(e.target.value)
@@ -39,47 +83,47 @@ const ExplorerContainer = ({
 
   function handleSearchSubmit () {
     if (selectOption === 'Records') {
-      getOip5Record(searchInput)
+      searchOip5Records(searchInput)
     }
     if (selectOption === 'Templates') {
-      getOip5Template(searchInput)
+      searchOip5Templates(searchInput)
     }
   }
 
   return <Explorer
-    latestRecords={latestRecords}
-    latestTemplates={latestTemplates}
+    displayRecords={displayRecords}
+    displayTemplates={displayTemplates}
     searchInput={searchInput}
     selectOption={selectOption}
     handleSearchInput={handleSearchInput}
     handleSelectOption={handleSelectOption}
     handleSearchSubmit={handleSearchSubmit}
-    currentRecord={currentRecord}
-    currentTemplate={currentTemplate}
   />
 }
 
 function mapStateToProps (state) { // toDo: note:: separate templates and records
-  if (!state.Explorer.latestRecords && !state.Explorer.latestTemplates) {
-    return {
-      currentRecord: state.Explorer.currentRecord,
-      currentTemplate: state.Explorer.currentTemplate
-    }
-  } else {
-    return {
-      latestRecords: state.Explorer.latestRecords,
-      latestTemplates: state.Explorer.latestTemplates,
-      currentRecord: state.Explorer.currentRecord,
-      currentTemplate: state.Explorer.currentTemplate
-    }
+  return {
+    latestRecords: state.Explorer.latestRecords,
+    latestTemplates: state.Explorer.latestTemplates,
+    searchedRecords: state.Explorer.searchInput,
+    searchedTemplates: state.Explorer.searchedTemplates,
+    mode: state.Explorer.mode,
+    activeLatestRecordsPage: state.Explorer.activeLatestRecordsPage,
+    activeLatestTemplatesPage: state.Explorer.activeLatestTemplatesPage,
+    activeSearchedRecordsPage: state.Explorer.activeSearchedRecordsPage,
+    activeSearchedTemplatesPages: state.Explorer.activeSearchedTemplatesPages,
+    latestRecordsNextKeys: state.Explorer.latestRecordsNextKeys,
+    latestTemplatesNextKeys: state.Explorer.latestTemplatesNextKeys,
+    searchedRecordsNextKeys: state.Explorer.searchedRecordsNextKeys,
+    searchedTemplatesNextKeys: state.Explorer.searchedTemplatesNextKeys
   }
 }
 
 const mapDispatchToProps = {
   getLatestOip5Records,
   getLatestOip5Templates,
-  getOip5Record,
-  getOip5Template
+  searchOip5Records,
+  searchOip5Templates
 }
 
 ExplorerContainer.propTypes = {
@@ -87,8 +131,17 @@ ExplorerContainer.propTypes = {
   latestTemplates: PropTypes.object,
   getLatestOip5Records: PropTypes.func.isRequired,
   getLatestOip5Templates: PropTypes.func.isRequired,
-  currentTemplate: PropTypes.object,
-  currentRecord: PropTypes.object
+  searchOip5Records: PropTypes.func.isRequired,
+  searchOip5Templates: PropTypes.func.isRequired,
+  mode: PropTypes.string.isRequired,
+  activeLatestRecordsPage: PropTypes.number.isRequired,
+  activeLatestTemplatesPage: PropTypes.number.isRequired,
+  activeSearchedRecordsPage: PropTypes.number.isRequired,
+  activeSearchedTemplatesPages: PropTypes.number.isRequired,
+  latestRecordsNextKeys: PropTypes.array.isRequired,
+  latestTemplatesNextKeys: PropTypes.array.isRequired,
+  searchedRecordsNextKeys: PropTypes.array.isRequired,
+  searchedTemplatesNextKeys: PropTypes.array.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExplorerContainer)

@@ -1,3 +1,4 @@
 {
-  "daemonApiUrl": "http://localhost:1606/oip"
+  "daemonApiUrl": "http://localhost:1606/oip",
+  "trackTemplates": []
 }

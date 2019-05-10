@@ -11,6 +11,11 @@ export const LATEST_TEMPLATES_KEYS = 'latestTemplatesNextKeys'
 export const SEARCHED_RECORDS_KEYS = 'searchedRecordsNextKeys'
 export const SEARCHED_TEMPLATES_KEYS = 'searchedTemplatesNextKeys'
 
+export const LATEST_RECORDS_PAGE = 'activeLatestRecordsPage'
+export const LATEST_TEMPLATES_PAGE = 'activeLatestTemplatesPage'
+export const SEARCHED_RECORDS_PAGE = 'activeSearchedRecordsPage'
+export const SEARCHED_TEMPLATES_PAGE = 'activeSearchedTemplatesPages'
+
 export const SET_API_STATUS = 'SET_API_STATUS'
 export const setApiStatus = (status) => ({
   type: SET_API_STATUS,
@@ -67,4 +72,17 @@ export const SET_DAEMON_API = 'SET_DAEMON_API'
 export const setDaemonApi = (daemon) => ({
   type: SET_DAEMON_API,
   daemon
+})
+
+export const SET_MODE = 'SET_MODE'
+export const setMode = mode => ({
+  type: SET_MODE,
+  mode
+})
+
+export const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE'
+export const setActivePage = ({ pageIndex, property }) => ({
+  type: SET_ACTIVE_PAGE,
+  pageIndex,
+  property
 })

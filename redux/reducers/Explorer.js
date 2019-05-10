@@ -1,13 +1,19 @@
+import { DaemonApi } from 'js-oip'
+import config from '../../config'
 import * as actions from '../actions/Explorer/creators'
 
 const initialState = {
-  daemonApi: undefined,
+  daemonApi: new DaemonApi(config.daemonApiUrl),
   status: actions.NULL,
   statusMessage: '',
   latestRecordsNextKeys: [],
   latestTemplatesNextKeys: [],
   searchedRecordsNextKeys: [],
   searchedTemplatesNextKeys: [],
+  activeLatestRecordsPage: 0,
+  activeLatestTemplatesPage: 0,
+  activeSearchedRecordsPage: 0,
+  activeSearchedTemplatesPages: 0,
   latestRecords: {},
   latestTemplates: {},
   searchedRecords: {},
@@ -22,6 +28,11 @@ const Explorer = (state = initialState, action) => {
         daemonApi: action.daemon
       }
     }
+    case actions.SET_MODE:
+      return {
+        ...state,
+        mode: action.mode
+      }
     case actions.SET_API_STATUS:
       return {
         ...state,
@@ -75,6 +86,11 @@ const Explorer = (state = initialState, action) => {
       return {
         ...state,
         [action.property]: [...state[action.property], action.nextKey]
+      }
+    case actions.SET_ACTIVE_PAGE:
+      return {
+        ...state,
+        [action.property]: action.pageIndex
       }
     default:
       return state

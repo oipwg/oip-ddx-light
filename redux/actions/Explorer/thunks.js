@@ -15,6 +15,8 @@ import {
   setDaemonApi, setSearchedRecords, setSearchedTemplates, addNextKey
 } from './creators'
 
+// _exists_:record.details.tmpl_000000000000F113
+
 export const getLatestOip5Records = () => async (dispatch, getState) => {
   const DaemonApi = getState().Explorer.daemonApi
   dispatch(setApiStatus(PENDING))

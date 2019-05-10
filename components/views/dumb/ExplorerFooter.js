@@ -18,7 +18,8 @@ const ExplorerFooter = ({
 }
 
 ExplorerFooter.propTypes = {
-
+  displayRecords: PropTypes.object,
+  displayTemplates: PropTypes.object
 }
 
 export default withStyles(styles)(ExplorerFooter)
