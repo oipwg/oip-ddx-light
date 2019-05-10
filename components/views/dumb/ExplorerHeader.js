@@ -7,6 +7,7 @@ const styles = theme => ({
     display: 'flex',
     flex: '0 0 70px',
     alignItems: 'center',
+    flexWrap: 'wrap'
   },
   inputContainer: {
     display: 'flex',
@@ -17,7 +18,6 @@ const styles = theme => ({
     alignItems: 'flex-end'
   },
   textInput: {
-    width: 580,
     marginRight: 15,
     border: 'none',
     borderBottom: `1px solid ${theme.palette.primary.main}`,

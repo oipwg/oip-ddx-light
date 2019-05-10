@@ -8,7 +8,6 @@ const styles = theme => ({
   root: {
     display: 'flex',
     flex: 10,
-    overflowY: 'auto',
   }
 })
 

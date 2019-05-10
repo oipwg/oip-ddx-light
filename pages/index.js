@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { ThemeProvider, useTheme } from 'oip-react'
 
@@ -12,6 +12,7 @@ const Index = ({
 }) => {
   const { theme } = useTheme(themeOptions, 'light')
 
+
   return <ThemeProvider theme={theme}>
     <InterfaceContainer
       latestRecords={latestRecords}
@@ -23,8 +24,7 @@ const Index = ({
 // Index.getInitialProps = async (ctx) => {}
 
 Index.propTypes = {
-  displayRecords: PropTypes.object.isRequired,
-  displayTemplates: PropTypes.object.isRequired,
+
 }
 
 export default Index

@@ -8,24 +8,14 @@ import ExplorerFooter from '../dumb/ExplorerFooter'
 const styles = theme => ({
   root: {
     display: 'flex',
-    flex: '0 0 calc(100% - 180px)',
+    flex: '1',
     flexDirection: 'row'
   },
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
     flex: '1',
-    padding: '15px 30px',
     overflow: 'auto'
-  },
-  explorerPaper: {
-    boxSizing: 'border-box',
-    boxShadow: theme.shadows[1],
-    flex: '0 0 100%',
-    minWidth: '1000px',
-    minHeight: '800px',
-    display: 'flex',
-    flexDirection: 'column'
   }
 })
 
