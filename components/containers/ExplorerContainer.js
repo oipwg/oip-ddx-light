@@ -62,10 +62,10 @@ function mapStateToProps (state) { // toDo: note:: separate templates and record
     defaultTemplatesPage: state.Interface.defaultTemplatesPage,
     searchedRecordsPage: state.Interface.searchedRecordsPage,
     searchedTemplatesPages: state.Interface.searchedTemplatesPages,
-    latestRecordsKeys: state.Explorer.latestRecordsNextKeys,
-    latestTemplatesKeys: state.Explorer.latestTemplatesNextKeys,
-    searchedRecordsKeys: state.Explorer.searchedRecordsNextKeys,
-    searchedTemplatesKeys: state.Explorer.searchedTemplatesNextKeys,
+    latestRecordsKeys: state.Explorer.latestRecordsKeys,
+    latestTemplatesKeys: state.Explorer.latestTemplatesKeys,
+    searchedRecordsKeys: state.Explorer.searchedRecordsKeys,
+    searchedTemplatesKeys: state.Explorer.searchedTemplatesKeys,
   }
 }
 
