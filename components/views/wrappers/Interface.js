@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import withStyles from 'react-jss'
 
-import SideBar from '../dumb/SideBar'
 import ExplorerContainer from '../../containers/ExplorerContainer'
+import SideBar from '../dumb/SideBar'
 
 const Interface = ({
   classes,
@@ -20,13 +20,18 @@ const Interface = ({
     <ExplorerContainer />
   </div>
 }
-const styles = {
+const styles = theme => ({
   root: {
     height: '100%',
     display: 'flex',
     flexDirection: 'row'
+  },
+  [`@media (max-width: ${theme.breakpoints['md']}px)`]: {
+    root: {
+      flexDirection: 'column'
+    }
   }
-}
+})
 
 Interface.propTypes = {
   classes: PropTypes.object.isRequired,

@@ -1,7 +1,8 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
-import SideBarNavLink from './SideBarNavLink'
+import NavMenu from './NavMenu'
+import NavMenuMobile from './NavMenuMobile'
 
 const styles = theme => {
   return {
@@ -15,17 +16,26 @@ const styles = theme => {
     },
     titleSpace: {
       color: theme.palette.background.main,
-      margin: '0px auto',
       alignSelf: 'center',
-      flexShrink: 0
+      flexShrink: 0,
     },
     titleHeader: {
       fontSize: '3em',
       fontWeight: 'bold'
     },
-    tableOfContents: {
-      display: 'flex',
-      flexDirection: 'column'
+    [`@media (max-width: ${theme.breakpoints['md']}px)`]: {
+      root: {
+        flexDirection: 'row',
+        flex: '0 0 70px',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+      },
+      titleSpace: {
+        marginLeft: 40,
+        '& h1': {
+          margin: 0
+        }
+      }
     }
   }
 }
@@ -40,16 +50,16 @@ const SideBar = ({
     <div className={classes.titleSpace}>
       <h1 className={classes.titleHeader}>OIP</h1>
     </div>
-    <nav className={classes.tableOfContents}>
-      {pages.map((page, i) => {
-        return <SideBarNavLink
-          page={page}
-          key={i}
-          setActivePage={setActivePage}
-          activePage={activePage}
-        />
-      })}
-    </nav>
+    <NavMenu
+      activePage={activePage}
+      setActivePage={setActivePage}
+      pages={pages}
+    />
+    <NavMenuMobile
+      activePage={activePage}
+      setActivePage={setActivePage}
+      pages={pages}
+    />
   </div>
 }
 

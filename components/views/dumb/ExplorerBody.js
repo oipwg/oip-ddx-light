@@ -30,8 +30,8 @@ const ExplorerBody = ({
 }
 
 ExplorerBody.propTypes = {
-  records: PropTypes.records,
-  templates: PropTypes.object.templates,
+  records: PropTypes.object,
+  templates: PropTypes.object,
   activeSelection: PropTypes.string
 }
 
