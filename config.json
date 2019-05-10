@@ -1,4 +1,5 @@
 {
   "daemonApiUrl": "http://localhost:1606/oip",
-  "trackTemplates": []
+  "templateFilter": [],
+  "templateOperand": "AND"
 }

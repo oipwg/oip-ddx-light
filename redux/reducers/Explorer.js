@@ -4,6 +4,8 @@ import * as actions from '../actions/Explorer/creators'
 
 const initialState = {
   daemonApi: new DaemonApi(config.daemonApiUrl),
+  templateFilter: config.templateFilter,
+  templateOperand: config.templateOperand,
   status: actions.NULL,
   statusMessage: '',
   latestRecordsNextKeys: [],

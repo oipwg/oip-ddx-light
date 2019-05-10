@@ -17,6 +17,25 @@ import {
 
 // _exists_:record.details.tmpl_000000000000F113
 
+const EXISTS = '_exists_'
+
+export const applyTemplateFilter = query => (_, getState) => {
+  const { templateFilter, templateOperand } = getState().Explorer
+  if (templateFilter.length === 0) {
+    return query
+  }
+  let queryArray = []
+  for (let template of templateFilter) {
+    let tmpFilter = `${EXISTS}:${template}`
+    queryArray.push(tmpFilter)
+  }
+  let queryString = queryArray.join(` ${templateOperand} `)
+  if (query) {
+    queryString = `(${queryString}) AND ${query}`
+  }
+  return queryString
+}
+
 export const getLatestOip5Records = () => async (dispatch, getState) => {
   const DaemonApi = getState().Explorer.daemonApi
   dispatch(setApiStatus(PENDING))
@@ -65,8 +84,9 @@ export const searchOip5Records = query => async (dispatch, getState) => {
   const DaemonApi = getState().Explorer.daemonApi
   dispatch(setApiStatus(PENDING))
   let response
+  let q = applyTemplateFilter(query)
   try {
-    response = await DaemonApi.searchOip5Records({ q: query })
+    response = await DaemonApi.searchOip5Records({ q })
   } catch (err) {
     dispatch(setApiStatus(ERROR))
     dispatch(setStatusMessage(`failed to search Oip5 Records for: ${query} - ${err}`))
@@ -86,9 +106,10 @@ export const searchOip5Records = query => async (dispatch, getState) => {
 export const searchOip5Templates = query => async (dispatch, getState) => {
   const DaemonApi = getState().Explorer.daemonApi
   dispatch(setApiStatus(PENDING))
+  let q = applyTemplateFilter(query)
   let response
   try {
-    response = await DaemonApi.searchOip5Templates({ q: query })
+    response = await DaemonApi.searchOip5Templates({ q })
   } catch (err) {
     dispatch(setApiStatus(ERROR))
     dispatch(setStatusMessage(`failed to search Oip5 Templates: ${query} - ${err}`))
