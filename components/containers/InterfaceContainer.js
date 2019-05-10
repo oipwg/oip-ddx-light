@@ -9,23 +9,19 @@ const InterfaceContainer = ({
   pages,
   activePage,
   setActivePage,
-  latestRecords,
-  latestTemplates
+  name
 }) => {
   return <Interface
     pages={pages}
     activePage={activePage}
     setActivePage={setActivePage}
-    latestRecords={latestRecords}
-    latestTemplates={latestTemplates}
+    name={name}
   />
 }
 InterfaceContainer.propTypes = {
   activePage: PropTypes.string.isRequired,
   setActivePage: PropTypes.func.isRequired,
-  pages: PropTypes.array.isRequired,
-  latestRecords: PropTypes.object,
-  latestTemplates: PropTypes.object
+  pages: PropTypes.array.isRequired
 }
 
 function mapStateToProps (state) {

@@ -3,48 +3,54 @@ export const SUCCESS = 'SUCCESS'
 export const PENDING = 'PENDING'
 export const NULL = 'NULL'
 
-export const SEARCH = 'SEARCH'
-export const LATEST = 'LATEST'
+export const LATEST_RECORDS_KEYS = 'defaultRecordKeys'
+export const LATEST_TEMPLATES_KEYS = 'defaultTemplateKeys'
+export const SEARCHED_RECORDS_KEYS = 'searchedRecordsKeys'
+export const SEARCHED_TEMPLATES_KEYS = 'searchedTemplatesKeys'
 
-export const LATEST_RECORDS_KEYS = 'latestRecordsNextKeys'
-export const LATEST_TEMPLATES_KEYS = 'latestTemplatesNextKeys'
-export const SEARCHED_RECORDS_KEYS = 'searchedRecordsNextKeys'
-export const SEARCHED_TEMPLATES_KEYS = 'searchedTemplatesNextKeys'
 
-export const LATEST_RECORDS_PAGE = 'activeLatestRecordsPage'
-export const LATEST_TEMPLATES_PAGE = 'activeLatestTemplatesPage'
-export const SEARCHED_RECORDS_PAGE = 'activeSearchedRecordsPage'
-export const SEARCHED_TEMPLATES_PAGE = 'activeSearchedTemplatesPages'
-
-export const SET_API_STATUS = 'SET_API_STATUS'
-export const setApiStatus = (status) => ({
-  type: SET_API_STATUS,
-  status
+export const FETCHING_RECORDS = 'FETCHING_RECORDS'
+export const fetchingRecords = () => ({
+  type: FETCHING_RECORDS
 })
 
-export const SET_STATUS_MESSAGE = 'SET_STATUS_MESSAGE'
-export const setStatusMessage = (statusMessage) => ({
-  type: SET_STATUS_MESSAGE,
-  statusMessage
+export const FETCHING_RECORDS_SUCCESS = 'FETCHING_RECORDS_SUCCESS'
+export const fetchingRecordsSuccess = () => ({
+  type: FETCHING_RECORDS_SUCCESS
 })
 
-export const RESET_STATUS = 'RESET_STATUS'
-export const resetStatus = () => ({
-  type: RESET_STATUS
+export const FETCHING_RECORDS_ERROR = 'FETCHING_RECORDS_ERROR'
+export const fetchingRecordsError = (error) => ({
+  type: FETCHING_RECORDS_ERROR,
+  error
 })
 
-export const SET_LATEST_RECORDS = 'SET_LATEST_RECORDS'
-export const setLatestRecords = ({ payload, next }) => ({
-  type: SET_LATEST_RECORDS,
-  payload,
-  next
+export const SET_DEFAULT_RECORDS = 'SET_DEFAULT_RECORDS'
+export const setDefaultRecords = (payload) => ({
+  type: SET_DEFAULT_RECORDS,
+  payload
 })
 
-export const SET_LATEST_TEMPLATES = 'SET_LATEST_TEMPLATES'
-export const setLatestTemplates = ({ payload, next }) => ({
-  type: SET_LATEST_TEMPLATES,
-  payload,
-  next
+export const FETCHING_TEMPLATES = 'FETCHING_TEMPLATES'
+export const fetchingTemplates = () => ({
+  type: FETCHING_TEMPLATES
+})
+
+export const FETCHING_TEMPLATES_SUCCESS = 'FETCHING_TEMPLATES_SUCCESS'
+export const fetchingTemplatesSuccess = () => ({
+  type: FETCHING_TEMPLATES_SUCCESS
+})
+
+export const FETCHING_TEMPLATES_ERROR = 'FETCHING_TEMPLATES_ERROR'
+export const fetchingTemplatesError = (error) => ({
+  type: FETCHING_TEMPLATES_ERROR,
+  error
+})
+
+export const SET_DEFAULT_TEMPLATES = 'SET_DEFAULT_TEMPLATES'
+export const setDefaultTemplates = (payload) => ({
+  type: SET_DEFAULT_TEMPLATES,
+  payload
 })
 
 export const SET_SEARCHED_RECORDS = 'SET_SEARCHED_RECORDS'
@@ -72,17 +78,4 @@ export const SET_DAEMON_API = 'SET_DAEMON_API'
 export const setDaemonApi = (daemon) => ({
   type: SET_DAEMON_API,
   daemon
-})
-
-export const SET_MODE = 'SET_MODE'
-export const setMode = mode => ({
-  type: SET_MODE,
-  mode
-})
-
-export const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE'
-export const setActivePage = ({ pageIndex, property }) => ({
-  type: SET_ACTIVE_PAGE,
-  pageIndex,
-  property
 })

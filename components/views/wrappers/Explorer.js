@@ -21,8 +21,8 @@ const styles = theme => ({
 
 const Explorer = ({
   classes,
-  displayTemplates,
-  displayRecords,
+  templates,
+  records,
   searchInput,
   handleSearchInput,
   selectOption,
@@ -31,31 +31,30 @@ const Explorer = ({
 }) => {
   return <div className={classes.root}>
     <div className={classes.wrapper}>
-
-      <ExplorerHeader
-        searchInput={searchInput}
-        handleSearchInput={handleSearchInput}
-        selectOption={selectOption}
-        handleSelectOption={handleSelectOption}
-        handleSearchSubmit={handleSearchSubmit}
-      />
-      <ExplorerBody
-        activeSelection={selectOption}
-        displayRecords={displayRecords}
-        displayTemplates={displayTemplates}
-      />
-      <ExplorerFooter
-        displayRecords={displayRecords}
-        displayTemplates={displayTemplates}
-        activeSelection={selectOption}
-      />
+      {/*<ExplorerHeader*/}
+      {/*  searchInput={searchInput}*/}
+      {/*  handleSearchInput={handleSearchInput}*/}
+      {/*  selectOption={selectOption}*/}
+      {/*  handleSelectOption={handleSelectOption}*/}
+      {/*  handleSearchSubmit={handleSearchSubmit}*/}
+      {/*/>*/}
+      {/*<ExplorerBody*/}
+      {/*  activeSelection={selectOption}*/}
+      {/*  records={records}*/}
+      {/*  templates={templates}*/}
+      {/*/>*/}
+      {/*<ExplorerFooter*/}
+      {/*  displayRecords={templates}*/}
+      {/*  records={records}*/}
+      {/*  activeSelection={selectOption}*/}
+      {/*/>*/}
     </div>
   </div>
 }
 
 Explorer.propTypes = {
-  displayRecords: PropTypes.object.isRequired,
-  displayTemplates: PropTypes.object.isRequired,
+  records: PropTypes.object,
+  templates: PropTypes.object,
   searchInput: PropTypes.string.isRequired,
   handleSearchInput: PropTypes.func.isRequired,
   selectOption: PropTypes.string.isRequired,

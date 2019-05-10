@@ -9,9 +9,7 @@ const Interface = ({
   classes,
   activePage,
   setActivePage,
-  pages,
-  latestRecords,
-  latestTemplates
+  pages
 }) => {
   return <div className={classes.root}>
     <SideBar
@@ -19,10 +17,7 @@ const Interface = ({
       activePage={activePage}
       setActivePage={setActivePage}
     />
-    <ExplorerContainer
-      latestRecords={latestRecords}
-      latestTemplates={latestTemplates}
-    />
+    <ExplorerContainer />
   </div>
 }
 const styles = {
@@ -37,9 +32,7 @@ Interface.propTypes = {
   classes: PropTypes.object.isRequired,
   activePage: PropTypes.string.isRequired,
   setActivePage: PropTypes.func.isRequired,
-  pages: PropTypes.array.isRequired,
-  latestRecords: PropTypes.object,
-  latestTemplates: PropTypes.object
+  pages: PropTypes.array.isRequired
 }
 
 export default withStyles(styles)(Interface)

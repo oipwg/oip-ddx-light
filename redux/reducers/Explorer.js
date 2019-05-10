@@ -6,21 +6,22 @@ const initialState = {
   daemonApi: new DaemonApi(config.daemonApiUrl),
   templateFilter: config.templateFilter,
   templateOperand: config.templateOperand,
-  status: actions.NULL,
-  statusMessage: '',
-  latestRecordsNextKeys: [],
-  latestTemplatesNextKeys: [],
-  searchedRecordsNextKeys: [],
-  searchedTemplatesNextKeys: [],
-  activeLatestRecordsPage: 0,
-  activeLatestTemplatesPage: 0,
-  activeSearchedRecordsPage: 0,
-  activeSearchedTemplatesPages: 0,
-  latestRecords: {},
-  latestTemplates: {},
+  defaultRecordKeys: [],
+  defaultTemplateKeys: [],
+  searchedRecordsKeys: [],
+  searchedTemplatesKeys: [],
   searchedRecords: {},
   searchedTemplates: {},
-  mode: actions.LATEST
+  defaultTemplates: {},
+  defaultRecords: {},
+  recordsFetching: false,
+  recordsSuccess: false,
+  recordsError: false,
+  recordsErrorMessage: undefined,
+  templatesFetching: false,
+  templatesSuccess: false,
+  templatesError: false,
+  templatesErrorMessage: undefined
 }
 const Explorer = (state = initialState, action) => {
   switch (action.type) {
@@ -30,42 +31,23 @@ const Explorer = (state = initialState, action) => {
         daemonApi: action.daemon
       }
     }
-    case actions.SET_MODE:
+    case actions.SET_DEFAULT_RECORDS:
       return {
         ...state,
-        mode: action.mode
-      }
-    case actions.SET_API_STATUS:
-      return {
-        ...state,
-        status: action.status
-      }
-    case actions.SET_STATUS_MESSAGE:
-      return {
-        ...state,
-        statusMessage: action.statusMessage
-      }
-    case actions.RESET_STATUS:
-      return {
-        ...state,
-        statusMessage: '',
-        status: actions.NULL
-      }
-    case actions.SET_LATEST_RECORDS:
-      return {
-        ...state,
-        latestRecords: {
-          ...state.latestRecords,
+        defaultRecords: {
+          ...state.defaultRecords,
           [action.next]: action.payload
-        }
+        },
+        defaultRecordKeys: [...state.defaultRecordKeys, action.payload.next]
       }
-    case actions.SET_LATEST_TEMPLATES:
+    case actions.SET_DEFAULT_TEMPLATES:
       return {
         ...state,
-        latestTemplates: {
-          ...state.latestTemplates,
+        defaultTemplates: {
+          ...state.defaultTemplates,
           [action.next]: action.payload
-        }
+        },
+        defaultTemplateKeys: [...state.defaultTemplateKeys, action.payload.next]
       }
     case actions.SET_SEARCHED_RECORDS: {
       return {
@@ -73,7 +55,8 @@ const Explorer = (state = initialState, action) => {
         searchedRecords: {
           ...state.searchedRecords,
           [action.next]: action.payload
-        }
+        },
+        searchedRecordsKeys: [...state.searchedRecordsKeys, action.payload.next]
       }
     }
     case actions.SET_SEARCHED_TEMPLATES:
@@ -82,17 +65,56 @@ const Explorer = (state = initialState, action) => {
         searchedTemplates: {
           ...state.searchedTemplates,
           [action.next]: action.payload
-        }
+        },
+        searchedTemplatesKeys: [...state.searchedTemplatesKeys, action.payload.next]
       }
-    case actions.ADD_NEXT_KEY:
+    case actions.FETCHING_RECORDS_SUCCESS:
       return {
         ...state,
-        [action.property]: [...state[action.property], action.nextKey]
+        recordsFetching: false,
+        recordsError: false,
+        recordsErrorMessage: null,
+        recordsSuccess: true
       }
-    case actions.SET_ACTIVE_PAGE:
+    case actions.FETCHING_RECORDS_ERROR:
       return {
         ...state,
-        [action.property]: action.pageIndex
+        recordsFetching: false,
+        recordsError: true,
+        recordsErrorMessage: action.error,
+        recordsSuccess: false
+      }
+    case actions.FETCHING_RECORDS:
+      return {
+        ...state,
+        recordsFetching: true,
+        recordsError: false,
+        recordsErrorMessage: null,
+        recordsSuccess: false
+      }
+    case actions.FETCHING_TEMPLATES:
+      return {
+        ...state,
+        templatesError: false,
+        templatesFetching: true,
+        templatesSuccess: false,
+        templatesErrorMessage: null
+      }
+    case actions.FETCHING_TEMPLATES_SUCCESS:
+      return {
+        ...state,
+        templatesError: false,
+        templatesFetching: false,
+        templatesSuccess: true,
+        templatesErrorMessage: null
+      }
+    case actions.FETCHING_TEMPLATES_ERROR:
+      return {
+        ...state,
+        templatesError: true,
+        templatesFetching: false,
+        templatesSuccess: false,
+        templatesErrorMessage: action.error
       }
     default:
       return state

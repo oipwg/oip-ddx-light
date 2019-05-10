@@ -1,18 +1,14 @@
 import { DaemonApi } from 'js-oip'
 import {
-  ERROR,
-  SUCCESS,
-  PENDING,
-  NULL,
-  LATEST_RECORDS_KEYS,
-  LATEST_TEMPLATES_KEYS,
-  SEARCHED_RECORDS_KEYS,
-  SEARCHED_TEMPLATES_KEYS,
-  setApiStatus,
-  setStatusMessage,
-  setLatestRecords,
-  setLatestTemplates,
-  setDaemonApi, setSearchedRecords, setSearchedTemplates, addNextKey
+  setDaemonApi,
+  fetchingRecords,
+  fetchingRecordsSuccess,
+  fetchingRecordsError,
+  setDefaultRecords,
+  fetchingTemplates,
+  fetchingTemplatesSuccess,
+  setDefaultTemplates,
+  fetchingTemplatesError
 } from './creators'
 
 // _exists_:record.details.tmpl_000000000000F113
@@ -21,6 +17,7 @@ const EXISTS = '_exists_'
 
 export const applyTemplateFilter = query => (_, getState) => {
   const { templateFilter, templateOperand } = getState().Explorer
+
   if (templateFilter.length === 0) {
     return query
   }
@@ -36,93 +33,54 @@ export const applyTemplateFilter = query => (_, getState) => {
   return queryString
 }
 
-export const getLatestOip5Records = () => async (dispatch, getState) => {
-  const DaemonApi = getState().Explorer.daemonApi
-  dispatch(setApiStatus(PENDING))
-  let response
-  try {
-    response = await DaemonApi.getLatestOip5Records()
-  } catch (err) {
-    dispatch(setApiStatus(ERROR))
-    dispatch(setStatusMessage(`failed to getLatestOip5Records: ${err}`))
-  }
-  const { success, payload } = response
+export const getDefaultRecords = query => async dispatch => {
+  dispatch(fetchingRecords())
+  const response = await dispatch(getOip5Records(query))
+  const { success, error, payload } = response
   if (success) {
-    dispatch(setApiStatus(SUCCESS))
-    const { next } = payload
-    dispatch(addNextKey(next, LATEST_RECORDS_KEYS))
-    dispatch(setLatestRecords({ payload, next }))
+    dispatch(fetchingRecordsSuccess())
+    dispatch(setDefaultRecords(payload))
   } else {
-    dispatch(setApiStatus(NULL))
-    dispatch(setStatusMessage('Response success returned false for getting latest oip5 records'))
+    dispatch(fetchingRecordsError(error))
+  }
+  return payload
+}
+
+export const getOip5Records = query => async (dispatch, getState) => {
+  const { templateFilter, daemonApi } = getState().Explorer
+  // if query or filter, search artifacts
+  if (query || templateFilter.length > 0) {
+    let q = dispatch(applyTemplateFilter(query))
+    return daemonApi.searchOip5Records({ q })
+    // else if filter get filtered records
+  } else {
+    console.log('get latest records')
+    return daemonApi.getLatestOip5Records()
   }
 }
 
-export const getLatestOip5Templates = () => async (dispatch, getState) => {
-  const DaemonApi = getState().Explorer.daemonApi
-  dispatch(setApiStatus(PENDING))
-  let response
-  try {
-    response = await DaemonApi.getLatestOip5Templates()
-  } catch (err) {
-    dispatch(setApiStatus(ERROR))
-    dispatch(setStatusMessage(`failed to getLatestOip5Templates: ${err}`))
-  }
-  const { success, payload } = response
+export const getDefaultTemplates = query => async dispatch => {
+  dispatch(fetchingTemplates())
+  const response = await dispatch(getOip5Templates(query))
+  const { success, error, payload } = response
   if (success) {
-    dispatch(setApiStatus(SUCCESS))
-    const { next } = payload
-    dispatch(addNextKey(next, LATEST_TEMPLATES_KEYS))
-    dispatch(setLatestTemplates({ payload, next }))
+    dispatch(fetchingTemplatesSuccess())
+    dispatch(setDefaultTemplates(payload))
   } else {
-    dispatch(setApiStatus(NULL))
-    dispatch(setStatusMessage('Response success returned false for getting latest oip5 templates'))
+    dispatch(fetchingTemplatesError(error))
   }
+  return payload
 }
 
-export const searchOip5Records = query => async (dispatch, getState) => {
-  const DaemonApi = getState().Explorer.daemonApi
-  dispatch(setApiStatus(PENDING))
-  let response
-  let q = applyTemplateFilter(query)
-  try {
-    response = await DaemonApi.searchOip5Records({ q })
-  } catch (err) {
-    dispatch(setApiStatus(ERROR))
-    dispatch(setStatusMessage(`failed to search Oip5 Records for: ${query} - ${err}`))
-  }
-  const { success, payload } = response
-  if (success) {
-    dispatch(setApiStatus(SUCCESS))
-    const { next } = payload
-    dispatch(addNextKey(next, SEARCHED_RECORDS_KEYS))
-    dispatch(setSearchedRecords({ next, payload }))
-  } else {
-    dispatch(setApiStatus(NULL))
-    dispatch(setStatusMessage(`Response success returned false for getting oip5 record: ${query}`))
-  }
-}
+export const getOip5Templates = query => async (dispatch, getState) => {
+  const { daemonApi } = getState().Explorer
 
-export const searchOip5Templates = query => async (dispatch, getState) => {
-  const DaemonApi = getState().Explorer.daemonApi
-  dispatch(setApiStatus(PENDING))
-  let q = applyTemplateFilter(query)
-  let response
-  try {
-    response = await DaemonApi.searchOip5Templates({ q })
-  } catch (err) {
-    dispatch(setApiStatus(ERROR))
-    dispatch(setStatusMessage(`failed to search Oip5 Templates: ${query} - ${err}`))
-  }
-  const { success, payload } = response
-  if (success) {
-    dispatch(setApiStatus(SUCCESS))
-    const { next } = payload
-    dispatch(addNextKey(next, SEARCHED_TEMPLATES_KEYS))
-    dispatch(setSearchedTemplates({ next, payload }))
+  // if query or filter, search artifacts
+  if (query) {
+    return daemonApi.searchOip5Templates({ q: query })
+    // else if filter get filtered records
   } else {
-    dispatch(setApiStatus(NULL))
-    dispatch(setStatusMessage(`Response success returned false for getting oip5 template: ${query}`))
+    return daemonApi.getLatestOip5Templates()
   }
 }
 
