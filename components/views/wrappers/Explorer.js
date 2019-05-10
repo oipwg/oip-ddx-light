@@ -27,27 +27,27 @@ const Explorer = ({
   handleSearchInput,
   selectOption,
   handleSelectOption,
-  handleSearchSubmit,
+  handleSearchSubmit
 }) => {
   return <div className={classes.root}>
     <div className={classes.wrapper}>
-      {/*<ExplorerHeader*/}
-      {/*  searchInput={searchInput}*/}
-      {/*  handleSearchInput={handleSearchInput}*/}
-      {/*  selectOption={selectOption}*/}
-      {/*  handleSelectOption={handleSelectOption}*/}
-      {/*  handleSearchSubmit={handleSearchSubmit}*/}
-      {/*/>*/}
-      {/*<ExplorerBody*/}
-      {/*  activeSelection={selectOption}*/}
-      {/*  records={records}*/}
-      {/*  templates={templates}*/}
-      {/*/>*/}
-      {/*<ExplorerFooter*/}
-      {/*  displayRecords={templates}*/}
-      {/*  records={records}*/}
-      {/*  activeSelection={selectOption}*/}
-      {/*/>*/}
+      <ExplorerHeader
+        searchInput={searchInput}
+        handleSearchInput={handleSearchInput}
+        selectOption={selectOption}
+        handleSelectOption={handleSelectOption}
+        handleSearchSubmit={handleSearchSubmit}
+      />
+      <ExplorerBody
+        activeSelection={selectOption}
+        records={records}
+        templates={templates}
+      />
+      <ExplorerFooter
+        templates={templates}
+        records={records}
+        activeSelection={selectOption}
+      />
     </div>
   </div>
 }
@@ -59,7 +59,7 @@ Explorer.propTypes = {
   handleSearchInput: PropTypes.func.isRequired,
   selectOption: PropTypes.string.isRequired,
   handleSelectOption: PropTypes.func.isRequired,
-  handleSearchSubmit: PropTypes.func.isRequired,
+  handleSearchSubmit: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(Explorer)

@@ -13,11 +13,11 @@ const styles = theme => ({
 
 const TemplateMap = ({
   classes,
-  displayTemplates
+  templates
 }) => {
   let templateData = []
-  if (!isObjEmpty(displayTemplates)) {
-    templateData = [...displayTemplates.results]
+  if (!isObjEmpty(templates)) {
+    templateData = [...templates.results]
   }
   return <div className={classes.root}>
     {templateData.map((payload, i) => {
@@ -32,7 +32,7 @@ const TemplateMap = ({
 
 TemplateMap.propTypes = {
   classes: PropTypes.object.isRequired,
-  displayTemplates: PropTypes.object
+  templates: PropTypes.object
 }
 
 export default withStyles(styles)(TemplateMap)

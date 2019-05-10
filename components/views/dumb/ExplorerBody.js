@@ -13,25 +13,25 @@ const styles = theme => ({
 
 const ExplorerBody = ({
   classes,
-  displayRecords,
-  displayTemplates,
+  records,
+  templates,
   activeSelection
 }) => {
-  let records = activeSelection === 'Records'
-  let templates = activeSelection === 'Templates'
+  let displayRecords = activeSelection === 'Records'
+  let displayTemplates = activeSelection === 'Templates'
   return <div className={classes.root}>
-    {records && <RecordMap
-      displayRecords={displayRecords}
+    {displayRecords && <RecordMap
+      records={records}
     />}
-    {templates && <TemplateMap
-      displayTemplates={displayTemplates}
+    {displayTemplates && <TemplateMap
+      templates={templates}
     />}
   </div>
 }
 
 ExplorerBody.propTypes = {
-  displayRecords: PropTypes.object.isRequired,
-  displayTemplates: PropTypes.object.isRequired,
+  records: PropTypes.records,
+  templates: PropTypes.object.templates,
   activeSelection: PropTypes.string
 }
 

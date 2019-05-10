@@ -13,16 +13,16 @@ const styles = theme => ({
 
 const RecordMap = ({
   classes,
-  displayRecords
+  records
 }) => {
   let recordData = []
-  if (!isObjEmpty(displayRecords)) {
-    recordData = [...displayRecords.results]
+  if (!isObjEmpty(records)) {
+    recordData = [...records.results]
   }
   return <div className={classes.root}>
     {recordData.map((payload, i) => {
       return <RecordCard
-        template={payload.record}
+        record={payload.record}
         meta={payload.meta}
         key={i}
       />
@@ -32,7 +32,7 @@ const RecordMap = ({
 
 RecordMap.propTypes = {
   classes: PropTypes.object.isRequired,
-  displayRecords: PropTypes.object
+  records: PropTypes.object
 }
 
 export default withStyles(styles)(RecordMap)

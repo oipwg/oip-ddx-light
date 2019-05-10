@@ -10,7 +10,11 @@ const styles = theme => ({
 })
 
 const ExplorerFooter = ({
-  classes
+  classes,
+  records,
+  templates,
+  activeSelection
+
 }) => {
   return <div className={classes.root}>
 
@@ -18,8 +22,10 @@ const ExplorerFooter = ({
 }
 
 ExplorerFooter.propTypes = {
-  displayRecords: PropTypes.object,
-  displayTemplates: PropTypes.object
+  classes: PropTypes.object.isRequired,
+  records: PropTypes.object,
+  activeSelection: PropTypes.string,
+  templates: PropTypes.object
 }
 
 export default withStyles(styles)(ExplorerFooter)
