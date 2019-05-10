@@ -7,7 +7,6 @@ const styles = theme => ({
     display: 'flex',
     flex: '0 0 70px',
     alignItems: 'center',
-    padding: [0, 70]
   },
   inputContainer: {
     display: 'flex',

@@ -1,48 +1,39 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
-import TemplateTable from './TemplateTable'
-import RecordTable from './RecordTable'
+import TemplateMap from './TemplateMap'
+import RecordMap from './RecordMap'
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flex: 10,
     overflowY: 'auto',
-    paddingTop: 30,
-    paddingRight: 50,
-    paddingLeft: 50
   }
 })
 
 const ExplorerBody = ({
   classes,
-  latestRecords,
-  latestTemplates,
-  activeSelection,
-  currentRecord,
-  currentTemplate
+  displayRecords,
+  displayTemplates,
+  activeSelection
 }) => {
   let records = activeSelection === 'Records'
   let templates = activeSelection === 'Templates'
   return <div className={classes.root}>
-    {records && <RecordTable
-      latestRecords={latestRecords}
-      currentRecord={currentRecord}
+    {records && <RecordMap
+      displayRecords={displayRecords}
     />}
-    {templates && <TemplateTable
-      latestTemplates={latestTemplates}
-      currentTemplate={currentTemplate}
+    {templates && <TemplateMap
+      displayTemplates={displayTemplates}
     />}
   </div>
 }
 
 ExplorerBody.propTypes = {
-  latestRecords: PropTypes.object,
-  latestTemplates: PropTypes.object,
-  activeSelection: PropTypes.string,
-  currentRecord: PropTypes.object,
-  currentTemplate: PropTypes.object
+  displayRecords: PropTypes.object.isRequired,
+  displayTemplates: PropTypes.object.isRequired,
+  activeSelection: PropTypes.string
 }
 
 export default withStyles(styles)(ExplorerBody)

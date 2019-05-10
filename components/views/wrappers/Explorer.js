@@ -15,7 +15,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     flex: '1',
-    padding: '30px 70px',
+    padding: '15px 30px',
     overflow: 'auto'
   },
   explorerPaper: {
@@ -31,55 +31,46 @@ const styles = theme => ({
 
 const Explorer = ({
   classes,
-  latestRecords,
-  latestTemplates,
+  displayTemplates,
+  displayRecords,
   searchInput,
   handleSearchInput,
   selectOption,
   handleSelectOption,
   handleSearchSubmit,
-  currentRecord,
-  currentTemplate
 }) => {
   return <div className={classes.root}>
     <div className={classes.wrapper}>
-      <div className={classes.explorerPaper}>
-        <ExplorerHeader
-          searchInput={searchInput}
-          handleSearchInput={handleSearchInput}
-          selectOption={selectOption}
-          handleSelectOption={handleSelectOption}
-          handleSearchSubmit={handleSearchSubmit}
-        />
-        <ExplorerBody
-          latestRecords={latestRecords}
-          latestTemplates={latestTemplates}
-          activeSelection={selectOption}
-          currentRecord={currentRecord}
-          currentTemplate={currentTemplate}
-        />
-        <ExplorerFooter
-          latestRecords={latestRecords}
-          latestTemplates={latestTemplates}
-          activeSelection={selectOption}
-          currentRecord={currentRecord}
-          currentTemplate={currentTemplate}
-        />
-      </div>
+
+      <ExplorerHeader
+        searchInput={searchInput}
+        handleSearchInput={handleSearchInput}
+        selectOption={selectOption}
+        handleSelectOption={handleSelectOption}
+        handleSearchSubmit={handleSearchSubmit}
+      />
+      <ExplorerBody
+        activeSelection={selectOption}
+        displayRecords={displayRecords}
+        displayTemplates={displayTemplates}
+      />
+      <ExplorerFooter
+        displayRecords={displayRecords}
+        displayTemplates={displayTemplates}
+        activeSelection={selectOption}
+      />
     </div>
   </div>
 }
 
 Explorer.propTypes = {
-  latestRecords: PropTypes.object,
-  latestTemplates: PropTypes.object,
+  displayRecords: PropTypes.object.isRequired,
+  displayTemplates: PropTypes.object.isRequired,
   searchInput: PropTypes.string.isRequired,
   handleSearchInput: PropTypes.func.isRequired,
   selectOption: PropTypes.string.isRequired,
   handleSelectOption: PropTypes.func.isRequired,
   handleSearchSubmit: PropTypes.func.isRequired,
-  currentRecord: PropTypes.object,
-  currentTemplate: PropTypes.object
 }
 
 export default withStyles(styles)(Explorer)
