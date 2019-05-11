@@ -8,7 +8,8 @@ import {
   SEARCHED
 } from '../../redux/actions/Interface/creators'
 
-import isObjEmpty from '../../util/isObjEmpty'
+const Records = 'Records'
+const Templates = 'Templates'
 
 const ExplorerContainer = ({
   defaultRecords,
@@ -23,10 +24,16 @@ const ExplorerContainer = ({
   defaultRecordKeys,
   defaultTemplateKeys,
   searchedRecordKeys,
-  searchedTemplateKeys
+  searchedTemplateKeys,
+  recordsFetching,
+  recordsSuccess,
+  recordsError,
+  templatesFetching,
+  templatesSuccess,
+  templatesError
 }) => {
   const [searchInput, setSearchInput] = useState('')
-  const [selectOption, setSelectOption] = useState('Templates')
+  const [selectOption, setSelectOption] = useState(Records)
 
   function handleSearchInput (e) {
     setSearchInput(e.target.value)
@@ -37,9 +44,10 @@ const ExplorerContainer = ({
   }
 
   function handleSearchSubmit () {
-    if (selectOption === 'Records') {
+    if (selectOption === Records) {
     }
-    if (selectOption === 'Templates') {
+    if (selectOption === Templates) {
+      console.log('search templates for ', searchInput)
     }
   }
 
@@ -70,6 +78,12 @@ const ExplorerContainer = ({
     handleSearchInput={handleSearchInput}
     handleSelectOption={handleSelectOption}
     handleSearchSubmit={handleSearchSubmit}
+    recordsFetching={recordsFetching}
+    recordsSuccess={recordsSuccess}
+    recordsError={recordsError}
+    templatesFetching={templatesFetching}
+    templatesSuccess={templatesSuccess}
+    templatesError={templatesError}
   />
 }
 
@@ -87,7 +101,13 @@ function mapStateToProps (state) { // toDo: note:: separate templates and record
     defaultRecordKeys: state.Explorer.defaultRecordKeys,
     defaultTemplateKeys: state.Explorer.defaultTemplateKeys,
     searchedRecordKeys: state.Explorer.searchedRecordKeys,
-    searchedTemplateKeys: state.Explorer.searchedTemplateKeys
+    searchedTemplateKeys: state.Explorer.searchedTemplateKeys,
+    recordsFetching: state.Explorer.recordsFetching,
+    recordsSuccess: state.Explorer.recordsSuccess,
+    recordsError: state.Explorer.recordsError,
+    templatesFetching: state.Explorer.templatesFetching,
+    templatesSuccess: state.Explorer.templatesSuccess,
+    templatesError: state.Explorer.templatesError
   }
 }
 
@@ -106,7 +126,13 @@ ExplorerContainer.propTypes = {
   defaultRecordKeys: PropTypes.array,
   defaultTemplateKeys: PropTypes.array,
   searchedRecordKeys: PropTypes.array,
-  searchedTemplateKeys: PropTypes.array
+  searchedTemplateKeys: PropTypes.array,
+  recordsFetching: PropTypes.bool,
+  recordsSuccess: PropTypes.bool,
+  recordsError: PropTypes.bool,
+  templatesFetching: PropTypes.bool,
+  templatesSuccess: PropTypes.bool,
+  templatesError: PropTypes.bool
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExplorerContainer)

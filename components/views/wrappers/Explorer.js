@@ -27,7 +27,11 @@ const Explorer = ({
   handleSearchInput,
   selectOption,
   handleSelectOption,
-  handleSearchSubmit
+  handleSearchSubmit,
+  recordsFetching,
+  recordsError,
+  templatesFetching,
+  templatesError
 }) => {
   return <div className={classes.root}>
     <div className={classes.wrapper}>
@@ -37,11 +41,15 @@ const Explorer = ({
         selectOption={selectOption}
         handleSelectOption={handleSelectOption}
         handleSearchSubmit={handleSearchSubmit}
+        recordsFetching={recordsFetching}
+        templatesFetching={templatesFetching}
       />
       <ExplorerBody
         activeSelection={selectOption}
         records={records}
         templates={templates}
+        recordsError={recordsError}
+        templatesError={templatesError}
       />
       <ExplorerFooter
         templates={templates}
@@ -59,7 +67,11 @@ Explorer.propTypes = {
   handleSearchInput: PropTypes.func.isRequired,
   selectOption: PropTypes.string.isRequired,
   handleSelectOption: PropTypes.func.isRequired,
-  handleSearchSubmit: PropTypes.func.isRequired
+  handleSearchSubmit: PropTypes.func.isRequired,
+  recordsFetching: PropTypes.bool,
+  recordsError: PropTypes.bool,
+  templatesFetching: PropTypes.bool,
+  templatesError: PropTypes.bool
 }
 
 export default withStyles(styles)(Explorer)

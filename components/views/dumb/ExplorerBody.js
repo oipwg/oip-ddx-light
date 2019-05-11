@@ -15,7 +15,8 @@ const ExplorerBody = ({
   classes,
   records,
   templates,
-  activeSelection
+  activeSelection,
+
 }) => {
   let displayRecords = activeSelection === 'Records'
   let displayTemplates = activeSelection === 'Templates'

@@ -2,6 +2,7 @@ import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import { MdSearch } from 'react-icons/md'
+import ReactLoader from '../../shared/ReactLoader'
 
 const styles = theme => ({
   root: {
@@ -33,6 +34,7 @@ const styles = theme => ({
     flex: 1,
     padding: [0, 20],
     boxSizing: 'border-box',
+    outline: 'none'
   },
   submitInput: {
     backgroundColor: 'transparent',
@@ -82,8 +84,19 @@ const ExplorerHeader = ({
   handleSearchInput,
   selectOption,
   handleSelectOption,
-  handleSearchSubmit
+  handleSearchSubmit,
+  recordsFetching,
+  templatesFetching,
+  theme
 }) => {
+  const fetching = recordsFetching || templatesFetching
+
+  function handleOnEnter (e) {
+    if (e.keyCode === 13 && !fetching) {
+      handleSearchSubmit()
+    }
+  }
+
   return <div className={classes.root}>
     <div className={classes.searchContainer}>
       <div className={classes.inputContainer}>
@@ -93,12 +106,20 @@ const ExplorerHeader = ({
           onChange={handleSearchInput}
           type='text'
           placeholder={`Search`}
+          onKeyUp={handleOnEnter}
         />
       </div>
       <button
         onClick={handleSearchSubmit}
         className={classes.submitInput}
-      ><MdSearch/></button>
+        disabled={fetching}
+      >
+        {fetching ? <ReactLoader
+          size={17}
+          color={theme.palette.primary.main}
+        /> : <MdSearch /> }
+
+      </button>
     </div>
     <div className={classes.selectOptionContainer}>
       <select className={classes.selectOption} value={selectOption} onChange={handleSelectOption}>
@@ -110,11 +131,15 @@ const ExplorerHeader = ({
 }
 
 ExplorerHeader.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   searchInput: PropTypes.string.isRequired,
   handleSearchInput: PropTypes.func.isRequired,
   selectOption: PropTypes.string.isRequired,
   handleSelectOption: PropTypes.func.isRequired,
-  handleSearchSubmit: PropTypes.func.isRequired
+  handleSearchSubmit: PropTypes.func.isRequired,
+  recordsFetching: PropTypes.bool,
+  templatesFetching: PropTypes.bool
 }
 
-export default withStyles(styles)(ExplorerHeader)
+export default withStyles(styles, { injectTheme: true })(ExplorerHeader)
