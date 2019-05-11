@@ -7,7 +7,10 @@ import isObjEmpty from '../../../util/isObjEmpty'
 const styles = theme => ({
   root: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    padding: [0, 20],
+    flex: 1
   }
 })
 

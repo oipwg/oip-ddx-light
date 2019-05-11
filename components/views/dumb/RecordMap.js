@@ -7,7 +7,10 @@ import RecordCard from './RecordCard'
 const styles = theme => ({
   root: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    padding: [0, 20],
+    flex: 1
   }
 })
 

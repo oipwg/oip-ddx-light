@@ -32,25 +32,25 @@ const Index = ({
 }
 
 Index.getInitialProps = async (ctx) => {
-  return {}
-  // const { req, reduxStore } = ctx
-  // const { dispatch } = reduxStore
-  // const isServer = !!req
-  //
-  // // this is a part of render blocking I think
-  // const recordsPayload = await dispatch(getDefaultRecords())
-  // const templatesPayload = await dispatch(getDefaultTemplates())
-  //
-  // if (isServer) {
-  //   return {
-  //     defaultRecords: recordsPayload,
-  //     defaultTemplates: templatesPayload
-  //   }
-  // } else {
-  //   dispatch(setDefaultRecords(recordsPayload))
-  //   dispatch(setDefaultTemplates(templatesPayload))
-  //   return {}
-  // }
+  // return {}
+  const { req, reduxStore } = ctx
+  const { dispatch } = reduxStore
+  const isServer = !!req
+
+  // this is a part of render blocking I think
+  const recordsPayload = await dispatch(getDefaultRecords())
+  const templatesPayload = await dispatch(getDefaultTemplates())
+
+  if (isServer) {
+    return {
+      defaultRecords: recordsPayload,
+      defaultTemplates: templatesPayload
+    }
+  } else {
+    dispatch(setDefaultRecords(recordsPayload))
+    dispatch(setDefaultTemplates(templatesPayload))
+    return {}
+  }
 }
 
 Index.propTypes = {
