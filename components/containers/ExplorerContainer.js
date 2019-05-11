@@ -5,8 +5,10 @@ import Explorer from '../views/wrappers/Explorer'
 
 import {
   DEFAULT,
-  SEARCHED
+  SEARCH,
+  setMode
 } from '../../redux/actions/Interface/creators'
+import { searchRecords, searchTemplates } from '../../redux/actions/Explorer/thunks'
 
 const Records = 'Records'
 const Templates = 'Templates'
@@ -30,7 +32,10 @@ const ExplorerContainer = ({
   recordsError,
   templatesFetching,
   templatesSuccess,
-  templatesError
+  templatesError,
+  searchRecords,
+  searchTemplates,
+  setMode
 }) => {
   const [searchInput, setSearchInput] = useState('')
   const [selectOption, setSelectOption] = useState(Records)
@@ -42,12 +47,19 @@ const ExplorerContainer = ({
   function handleSelectOption (e) {
     setSelectOption(e.target.value)
   }
-
+  
   function handleSearchSubmit () {
-    if (selectOption === Records) {
-    }
-    if (selectOption === Templates) {
-      console.log('search templates for ', searchInput)
+    if (searchInput === '') {
+      setMode(DEFAULT)
+    } else {
+      if (selectOption === Records) {
+        setMode(SEARCH)
+        searchRecords(searchInput)
+      }
+      if (selectOption === Templates) {
+        setMode(SEARCH)
+        searchTemplates(searchInput)
+      }
     }
   }
 
@@ -60,7 +72,7 @@ const ExplorerContainer = ({
     templates = defaultTemplates
     const templateKey = defaultTemplateKeys[defaultTemplatePage]
     templates = templates[templateKey]
-  } else if (mode === SEARCHED) {
+  } else if (mode === SEARCH) {
     records = searchedRecords
     const recordKey = searchedRecordKeys[searchedRecordPage]
     records = records[recordKey]
@@ -111,9 +123,16 @@ function mapStateToProps (state) { // toDo: note:: separate templates and record
   }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  setMode,
+  searchRecords,
+  searchTemplates
+}
 
 ExplorerContainer.propTypes = {
+  setMode: PropTypes.func.isRequired,
+  searchRecords: PropTypes.func.isRequired,
+  searchTemplates: PropTypes.func.isRequired,
   defaultRecords: PropTypes.object,
   defaultTemplates: PropTypes.object,
   searchedRecords: PropTypes.object,

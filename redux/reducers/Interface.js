@@ -10,6 +10,12 @@ function Interface (state = {
   searchedTemplatePage: 0
 }, action) {
   switch (action.type) {
+    case actions.SET_MODE: {
+      return {
+        ...state,
+        mode: action.mode
+      }
+    }
     case actions.SET_ACTIVE_PAGE:
       return {
         ...state,

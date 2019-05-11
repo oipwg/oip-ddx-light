@@ -52,21 +52,15 @@ const Explorer = (state = initialState, action) => {
     case actions.SET_SEARCHED_RECORDS: {
       return {
         ...state,
-        searchedRecords: {
-          ...state.searchedRecords,
-          [action.payload.next]: action.payload
-        },
-        searchedRecordKeys: [...state.searchedRecordKeys, action.payload.next]
+        searchedRecords: { [action.payload.next]: action.payload },
+        searchedRecordKeys: [action.payload.next]
       }
     }
     case actions.SET_SEARCHED_TEMPLATES:
       return {
         ...state,
-        searchedTemplates: {
-          ...state.searchedTemplates,
-          [action.payload.next]: action.payload
-        },
-        searchedTemplateKeys: [...state.searchedTemplateKeys, action.payload.next]
+        searchedTemplates: { [action.payload.next]: action.payload },
+        searchedTemplateKeys: [action.payload.next]
       }
     case actions.FETCHING_RECORDS_SUCCESS:
       return {
@@ -115,6 +109,18 @@ const Explorer = (state = initialState, action) => {
         templatesFetching: false,
         templatesSuccess: false,
         templatesErrorMessage: action.error
+      }
+    case actions.CLEAR_FETCH_STATUS:
+      return {
+        ...state,
+        templatesError: false,
+        templatesFetching: false,
+        templatesSuccess: false,
+        templatesErrorMessage: null,
+        recordsFetching: false,
+        recordsError: false,
+        recordsErrorMessage: null,
+        recordsSuccess: false
       }
     default:
       return state

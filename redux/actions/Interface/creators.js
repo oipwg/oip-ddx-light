@@ -2,7 +2,7 @@ export const EXPLORER = 'explorer'
 export const PUBLISHER = 'publisher'
 export const WALLET = 'wallet'
 
-export const SEARCHED = 'SEARCHED'
+export const SEARCH = 'SEARCH'
 export const DEFAULT = 'DEFAULT'
 
 export const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE'

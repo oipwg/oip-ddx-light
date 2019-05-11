@@ -54,16 +54,14 @@ export const setDefaultTemplates = (payload) => ({
 })
 
 export const SET_SEARCHED_RECORDS = 'SET_SEARCHED_RECORDS'
-export const setSearchedRecords = ({ next, payload }) => ({
+export const setSearchedRecords = (payload ) => ({
   type: SET_SEARCHED_RECORDS,
-  next,
   payload
 })
 
 export const SET_SEARCHED_TEMPLATES = 'SET_SEARCHED_TEMPLATES'
-export const setSearchedTemplates = ({ next, payload }) => ({
+export const setSearchedTemplates = (payload) => ({
   type: SET_SEARCHED_TEMPLATES,
-  next,
   payload
 })
 
@@ -78,4 +76,9 @@ export const SET_DAEMON_API = 'SET_DAEMON_API'
 export const setDaemonApi = (daemon) => ({
   type: SET_DAEMON_API,
   daemon
+})
+
+export const CLEAR_FETCH_STATUS = 'CLEAR_FETCH_STATUS'
+export const clearFetchStatus = () => ({
+  type: CLEAR_FETCH_STATUS
 })

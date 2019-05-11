@@ -8,7 +8,7 @@ import {
   fetchingTemplates,
   fetchingTemplatesSuccess,
   setDefaultTemplates,
-  fetchingTemplatesError
+  fetchingTemplatesError, setSearchedRecords, setSearchedTemplates
 } from './creators'
 
 // _exists_:record.details.tmpl_000000000000F113
@@ -46,6 +46,19 @@ export const getDefaultRecords = query => async dispatch => {
   return payload
 }
 
+export const searchRecords = query => async dispatch => {
+  dispatch(fetchingRecords())
+  const response = await dispatch(getOip5Records(query))
+  const { success, error, payload } = response
+  if (success) {
+    dispatch(fetchingRecordsSuccess())
+    dispatch(setSearchedRecords(payload))
+  } else {
+    dispatch(fetchingRecordsError(error))
+  }
+  return payload
+}
+
 export const getOip5Records = query => async (dispatch, getState) => {
   const { templateFilter, daemonApi } = getState().Explorer
   // if query or filter, search artifacts
@@ -57,6 +70,19 @@ export const getOip5Records = query => async (dispatch, getState) => {
     console.log('get latest records')
     return daemonApi.getLatestOip5Records()
   }
+}
+
+export const searchTemplates = query => async dispatch => {
+  dispatch(fetchingTemplates())
+  const response = await dispatch(getOip5Templates(query))
+  const { success, error, payload } = response
+  if (success) {
+    dispatch(fetchingTemplatesSuccess())
+    dispatch(setSearchedTemplates(payload))
+  } else {
+    dispatch(fetchingTemplatesError(error))
+  }
+  return payload
 }
 
 export const getDefaultTemplates = query => async dispatch => {

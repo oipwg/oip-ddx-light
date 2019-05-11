@@ -93,8 +93,12 @@ const ExplorerHeader = ({
 
   function handleOnEnter (e) {
     if (e.keyCode === 13 && !fetching) {
-      handleSearchSubmit()
+      handleSubmit()
     }
+  }
+
+  function handleSubmit () {
+    handleSearchSubmit()
   }
 
   return <div className={classes.root}>
@@ -110,12 +114,12 @@ const ExplorerHeader = ({
         />
       </div>
       <button
-        onClick={handleSearchSubmit}
+        onClick={handleSubmit}
         className={classes.submitInput}
         disabled={fetching}
       >
         {fetching ? <ReactLoader
-          size={17}
+          size={14}
           color={theme.palette.primary.main}
         /> : <MdSearch /> }
 
