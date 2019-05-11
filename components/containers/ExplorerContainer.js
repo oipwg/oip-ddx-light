@@ -47,7 +47,7 @@ const ExplorerContainer = ({
   function handleSelectOption (e) {
     setSelectOption(e.target.value)
   }
-  
+
   function handleSearchSubmit () {
     if (searchInput === '') {
       setMode(DEFAULT)

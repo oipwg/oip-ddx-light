@@ -11,6 +11,11 @@ const styles = theme => ({
     justifyContent: 'flex-start',
     padding: [0, 20],
     flex: 1
+  },
+  [`@media (max-width: ${theme.breakpoints['sm']}px)`]: {
+    root: {
+      justifyContent: 'center'
+    }
   }
 })
 
