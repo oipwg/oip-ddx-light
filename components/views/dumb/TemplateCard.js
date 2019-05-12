@@ -1,6 +1,7 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
+import { GoRepoForked, GoCloudUpload } from 'react-icons/go'
 
 const styles = theme => ({
   root: {
@@ -35,11 +36,28 @@ const styles = theme => ({
   templateActions: {
     display: 'flex',
     flexDirection: 'row',
-    flex: 1
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    '& > span': {
+      cursor: 'pointer'
+    }
   }
 })
 
 const TemplateCard = ({ classes, template, fileDescriptor, meta }) => {
+
+  function handleTemplateFork () {
+    // setMode to publish
+    // set publishTemplate to active template
+    // merge template with fileDescriptor
+    // decrypt file descriptor
+  }
+
+  function handleRecordPublish () {
+
+  }
+
   return <div className={classes.root}>
     <div className={classes.templateField}>
       <span className={classes.fieldName}>
@@ -70,7 +88,8 @@ const TemplateCard = ({ classes, template, fileDescriptor, meta }) => {
     </div>
 
     <div className={classes.templateActions}>
-
+      <span onClick={handleTemplateFork}><GoRepoForked /></span>
+      <span onClick={handleRecordPublish}><GoCloudUpload /></span>
     </div>
   </div>
 }
