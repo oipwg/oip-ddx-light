@@ -23,7 +23,7 @@ export const applyTemplateFilter = query => (_, getState) => {
   }
   let queryArray = []
   for (let template of templateFilter) {
-    let tmpFilter = `${EXISTS}:${template}`
+    let tmpFilter = `${EXISTS}:record.details.${template}`
     queryArray.push(tmpFilter)
   }
   let queryString = queryArray.join(` ${templateOperand} `)
