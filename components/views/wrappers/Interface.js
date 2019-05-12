@@ -4,6 +4,7 @@ import withStyles from 'react-jss'
 
 import ExplorerContainer from '../../containers/ExplorerContainer'
 import SideBar from '../dumb/SideBar'
+import WalletPage from '../../WalletPage'
 
 const Interface = ({
   classes,
@@ -11,13 +12,16 @@ const Interface = ({
   setActivePage,
   pages
 }) => {
+  const explorer = activePage === 'explorer'
+  const wallet = activePage === 'wallet'
   return <div className={classes.root}>
     <SideBar
       pages={pages}
       activePage={activePage}
       setActivePage={setActivePage}
     />
-    <ExplorerContainer />
+    {explorer && <ExplorerContainer />}
+    {wallet && <WalletPage />}
   </div>
 }
 const styles = theme => ({
