@@ -32,6 +32,7 @@ const TemplateMap = ({
       return <TemplateCard
         template={payload.template}
         meta={payload.meta}
+        fileDescriptor={payload.file_descriptor_set}
         key={i}
       />
     })}

@@ -39,7 +39,7 @@ const styles = theme => ({
   }
 })
 
-const TemplateCard = ({ classes, template, meta }) => {
+const TemplateCard = ({ classes, template, fileDescriptor, meta }) => {
   return <div className={classes.root}>
     <div className={classes.templateField}>
       <span className={classes.fieldName}>
@@ -78,7 +78,8 @@ const TemplateCard = ({ classes, template, meta }) => {
 TemplateCard.propTypes = {
   classes: PropTypes.object.isRequired,
   template: PropTypes.object.isRequired,
-  meta: PropTypes.object.isRequired
+  meta: PropTypes.object.isRequired,
+  fileDescriptor: PropTypes.string.isRequired
 }
 
 export default withStyles(styles)(TemplateCard)
