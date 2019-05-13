@@ -44,6 +44,10 @@ const NavMenuMobile = ({
     }
   }, [width])
 
+  useEffect(() => {
+    toggleMenu(false)
+  }, [activePage])
+
   function handleToggleMenu () {
     toggleMenu(prevState => !prevState)
   }
