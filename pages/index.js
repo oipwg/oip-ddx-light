@@ -26,16 +26,16 @@ const Index = ({
 
   useEffect(() => {
     if (defaultRecords) {
-      const { success, error } = defaultRecords
-      if (success) {
-        setDefaultRecords(defaultRecords)
-      } else fetchingRecordsError(error)
+      const { error } = defaultRecords
+      if (error) {
+        fetchingRecordsError(error)
+      } else setDefaultRecords(defaultRecords)
     }
     if (defaultTemplates) {
-      const { success, error } = defaultTemplates
-      if ( success ) {
-        setDefaultTemplates(defaultTemplates)
-      } else fetchingTemplatesError(error)
+      const { error } = defaultTemplates
+      if (error) {
+        fetchingTemplatesError(error)
+      } else setDefaultTemplates(defaultTemplates)
     }
   }, [])
 
