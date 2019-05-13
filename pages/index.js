@@ -47,8 +47,6 @@ Index.getInitialProps = async (ctx) => {
       defaultTemplates: templatesPayload
     }
   } else {
-    dispatch(setDefaultRecords(recordsPayload))
-    dispatch(setDefaultTemplates(templatesPayload))
     return {}
   }
 }
