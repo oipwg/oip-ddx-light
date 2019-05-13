@@ -31,7 +31,10 @@ const Explorer = ({
   recordsFetching,
   recordsError,
   templatesFetching,
-  templatesError
+  templatesError,
+  publishRecord,
+  publishTemplate,
+  forkTemplate
 }) => {
   return <div className={classes.root}>
     <div className={classes.wrapper}>
@@ -50,6 +53,9 @@ const Explorer = ({
         templates={templates}
         recordsError={recordsError}
         templatesError={templatesError}
+        publishRecord={publishRecord}
+        publishTemplate={publishTemplate}
+        forkTemplate={forkTemplate}
       />
       <ExplorerFooter
         templates={templates}
@@ -71,7 +77,10 @@ Explorer.propTypes = {
   recordsFetching: PropTypes.bool,
   recordsError: PropTypes.bool,
   templatesFetching: PropTypes.bool,
-  templatesError: PropTypes.bool
+  templatesError: PropTypes.bool,
+  publishRecord: PropTypes.func.isRequired,
+  publishTemplate: PropTypes.func.isRequired,
+  forkTemplate: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(Explorer)

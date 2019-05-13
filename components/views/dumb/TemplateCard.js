@@ -45,17 +45,21 @@ const styles = theme => ({
   }
 })
 
-const TemplateCard = ({ classes, template, fileDescriptor, meta }) => {
-
+const TemplateCard = ({
+  classes,
+  template,
+  fileDescriptor,
+  publishRecord,
+  publishTemplate,
+  forkTemplate
+}) => {
   function handleTemplateFork () {
-    // setMode to publish
-    // set publishTemplate to active template
-    // merge template with fileDescriptor
-    // decrypt file descriptor
+    publishTemplate()
+    forkTemplate(fileDescriptor)
   }
 
   function handleRecordPublish () {
-
+    publishRecord()
   }
 
   return <div className={classes.root}>
@@ -97,8 +101,11 @@ const TemplateCard = ({ classes, template, fileDescriptor, meta }) => {
 TemplateCard.propTypes = {
   classes: PropTypes.object.isRequired,
   template: PropTypes.object.isRequired,
-  meta: PropTypes.object.isRequired,
-  fileDescriptor: PropTypes.string.isRequired
+  meta: PropTypes.object,
+  fileDescriptor: PropTypes.string.isRequired,
+  publishRecord: PropTypes.func.isRequired,
+  publishTemplate: PropTypes.func.isRequired,
+  forkTemplate: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(TemplateCard)

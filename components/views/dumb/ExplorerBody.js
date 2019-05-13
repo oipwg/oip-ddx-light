@@ -16,7 +16,9 @@ const ExplorerBody = ({
   records,
   templates,
   activeSelection,
-
+  publishRecord,
+  publishTemplate,
+  forkTemplate
 }) => {
   let displayRecords = activeSelection === 'Records'
   let displayTemplates = activeSelection === 'Templates'
@@ -26,6 +28,9 @@ const ExplorerBody = ({
     />}
     {displayTemplates && <TemplateMap
       templates={templates}
+      publishRecord={publishRecord}
+      publishTemplate={publishTemplate}
+      forkTemplate={forkTemplate}
     />}
   </div>
 }
@@ -33,7 +38,10 @@ const ExplorerBody = ({
 ExplorerBody.propTypes = {
   records: PropTypes.object,
   templates: PropTypes.object,
-  activeSelection: PropTypes.string
+  activeSelection: PropTypes.string,
+  publishRecord: PropTypes.func.isRequired,
+  publishTemplate: PropTypes.func.isRequired,
+  forkTemplate: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(ExplorerBody)

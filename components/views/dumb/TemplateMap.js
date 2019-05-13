@@ -21,7 +21,10 @@ const styles = theme => ({
 
 const TemplateMap = ({
   classes,
-  templates
+  templates,
+  publishRecord,
+  publishTemplate,
+  forkTemplate
 }) => {
   let templateData = []
   if (!isObjEmpty(templates)) {
@@ -34,6 +37,9 @@ const TemplateMap = ({
         meta={payload.meta}
         fileDescriptor={payload.file_descriptor_set}
         key={i}
+        publishRecord={publishRecord}
+        publishTemplate={publishTemplate}
+        forkTemplate={forkTemplate}
       />
     })}
   </div>
@@ -41,7 +47,10 @@ const TemplateMap = ({
 
 TemplateMap.propTypes = {
   classes: PropTypes.object.isRequired,
-  templates: PropTypes.object
+  templates: PropTypes.object,
+  publishRecord: PropTypes.func.isRequired,
+  publishTemplate: PropTypes.func.isRequired,
+  forkTemplate: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(TemplateMap)

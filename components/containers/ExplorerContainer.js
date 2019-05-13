@@ -9,6 +9,7 @@ import {
   setMode
 } from '../../redux/actions/Interface/creators'
 import { searchRecords, searchTemplates } from '../../redux/actions/Explorer/thunks'
+import { forkTemplate, publishRecord, publishTemplate } from '../../redux/actions/Publisher/creators'
 
 const Records = 'Records'
 const Templates = 'Templates'
@@ -35,7 +36,10 @@ const ExplorerContainer = ({
   templatesError,
   searchRecords,
   searchTemplates,
-  setMode
+  setMode,
+  publishRecord,
+  publishTemplate,
+  forkTemplate
 }) => {
   const [searchInput, setSearchInput] = useState('')
   const [selectOption, setSelectOption] = useState(Records)
@@ -96,6 +100,9 @@ const ExplorerContainer = ({
     templatesFetching={templatesFetching}
     templatesSuccess={templatesSuccess}
     templatesError={templatesError}
+    publishRecord={publishRecord}
+    publishTemplate={publishTemplate}
+    forkTemplate={forkTemplate}
   />
 }
 
@@ -126,7 +133,10 @@ function mapStateToProps (state) { // toDo: note:: separate templates and record
 const mapDispatchToProps = {
   setMode,
   searchRecords,
-  searchTemplates
+  searchTemplates,
+  publishRecord,
+  publishTemplate,
+  forkTemplate
 }
 
 ExplorerContainer.propTypes = {
@@ -151,7 +161,10 @@ ExplorerContainer.propTypes = {
   recordsError: PropTypes.bool,
   templatesFetching: PropTypes.bool,
   templatesSuccess: PropTypes.bool,
-  templatesError: PropTypes.bool
+  templatesError: PropTypes.bool,
+  publishRecord: PropTypes.func.isRequired,
+  publishTemplate: PropTypes.func.isRequired,
+  forkTemplate: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExplorerContainer)
