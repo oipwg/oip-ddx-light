@@ -26,12 +26,14 @@ function Publisher (state = {
     case actions.PUBLISH_RECORD:
       return {
         ...state,
-        publishType: RECORD
+        publishType: RECORD,
+        openPublisherModal: true
       }
     case actions.PUBLISH_TEMPLATE:
       return {
         ...state,
-        publishType: TEMPLATE
+        publishType: TEMPLATE,
+        openPublisherModal: true
       }
     case actions.FORK_TEMPLATE:
       return {
