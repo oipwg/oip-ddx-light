@@ -5,12 +5,14 @@ import withStyles from 'react-jss'
 import ExplorerContainer from '../../containers/ExplorerContainer'
 import SideBar from '../dumb/SideBar'
 import WalletPage from '../../WalletPage'
+import PublisherContainer from '../../containers/PublisherContainer'
 
 const Interface = ({
   classes,
   activePage,
   setActivePage,
-  pages
+  pages,
+  openPublisherModal
 }) => {
   const explorer = activePage === 'explorer'
   const wallet = activePage === 'wallet'
@@ -21,6 +23,7 @@ const Interface = ({
       setActivePage={setActivePage}
     />
     {explorer && <ExplorerContainer />}
+    {openPublisherModal && <PublisherContainer />}
     {wallet && <WalletPage />}
   </div>
 }
@@ -41,7 +44,8 @@ Interface.propTypes = {
   classes: PropTypes.object.isRequired,
   activePage: PropTypes.string.isRequired,
   setActivePage: PropTypes.func.isRequired,
-  pages: PropTypes.array.isRequired
+  pages: PropTypes.array.isRequired,
+  openPublisherModal: PropTypes.bool.isRequired
 }
 
 export default withStyles(styles)(Interface)
