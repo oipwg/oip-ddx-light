@@ -35,7 +35,13 @@ export const applyTemplateFilter = query => (_, getState) => {
 
 export const getDefaultRecords = query => async dispatch => {
   dispatch(fetchingRecords())
-  const response = await dispatch(getOip5Records(query))
+  let response
+  try {
+    response = await dispatch(getOip5Records(query))
+  } catch (err) {
+    dispatch(fetchingRecordsError(err.message))
+    return { success: false, error: err.message, results: [] }
+  }
   const { success, error, payload } = response
   if (success) {
     dispatch(fetchingRecordsSuccess())
@@ -48,7 +54,13 @@ export const getDefaultRecords = query => async dispatch => {
 
 export const searchRecords = query => async dispatch => {
   dispatch(fetchingRecords())
-  const response = await dispatch(getOip5Records(query))
+  let response
+  try {
+    response = await dispatch(getOip5Records(query))
+  } catch (err) {
+    dispatch(fetchingRecordsError(err.message))
+    return { success: false, error: err.message, results: [] }
+  }
   const { success, error, payload } = response
   if (success) {
     dispatch(fetchingRecordsSuccess())
@@ -64,16 +76,30 @@ export const getOip5Records = query => async (dispatch, getState) => {
   // if query or filter, search artifacts
   if (query || templateFilter.length > 0) {
     let q = dispatch(applyTemplateFilter(query))
-    return daemonApi.searchOip5Records({ q })
+    try {
+      return daemonApi.searchOip5Records({ q })
+    } catch (err) {
+      throw Error(err)
+    }
     // else if filter get filtered records
   } else {
-    return daemonApi.getLatestOip5Records()
+    try {
+      return daemonApi.getLatestOip5Records()
+    } catch (err) {
+      throw new Error(err)
+    }
   }
 }
 
 export const searchTemplates = query => async dispatch => {
   dispatch(fetchingTemplates())
-  const response = await dispatch(getOip5Templates(query))
+  let response
+  try {
+    response = await dispatch(getOip5Templates(query))
+  } catch (err) {
+    dispatch(fetchingTemplatesError(err.message))
+    return { success: false, error: err.message, results: [] }
+  }
   const { success, error, payload } = response
   if (success) {
     dispatch(fetchingTemplatesSuccess())
@@ -86,7 +112,13 @@ export const searchTemplates = query => async dispatch => {
 
 export const getDefaultTemplates = query => async dispatch => {
   dispatch(fetchingTemplates())
-  const response = await dispatch(getOip5Templates(query))
+  let response
+  try {
+    response = await dispatch(getOip5Templates(query))
+  } catch (err) {
+    dispatch(fetchingTemplatesError(err.message))
+    return { success: false, error: err.message, results: [] }
+  }
   const { success, error, payload } = response
   if (success) {
     dispatch(fetchingTemplatesSuccess())
@@ -102,10 +134,18 @@ export const getOip5Templates = query => async (dispatch, getState) => {
 
   // if query or filter, search artifacts
   if (query) {
-    return daemonApi.searchOip5Templates({ q: query })
+    try {
+      return daemonApi.searchOip5Templates({ q: query })
+    } catch (err) {
+      throw Error(err)
+    }
     // else if filter get filtered records
   } else {
-    return daemonApi.getLatestOip5Templates()
+    try {
+      return daemonApi.getLatestOip5Templates()
+    } catch (err) {
+      throw Error(err)
+    }
   }
 }
 

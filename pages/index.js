@@ -6,23 +6,36 @@ import { connect } from 'react-redux'
 import InterfaceContainer from '../components/containers/InterfaceContainer'
 
 import { themeOptions } from '../styles/theme'
-import { setDefaultRecords, setDefaultTemplates } from '../redux/actions/Explorer/creators'
+import {
+  fetchingRecordsError,
+  fetchingTemplatesError,
+  setDefaultRecords,
+  setDefaultTemplates
+} from '../redux/actions/Explorer/creators'
 import { getDefaultRecords, getDefaultTemplates } from '../redux/actions/Explorer/thunks'
 
 const Index = ({
   defaultRecords,
   defaultTemplates,
   setDefaultRecords,
-  setDefaultTemplates
+  setDefaultTemplates,
+  fetchingRecordsError,
+  fetchingTemplatesError
 }) => {
   const { theme } = useTheme(themeOptions, 'light')
 
   useEffect(() => {
     if (defaultRecords) {
-      setDefaultRecords(defaultRecords)
+      const { success, error } = defaultRecords
+      if (success) {
+        setDefaultRecords(defaultRecords)
+      } else fetchingRecordsError(error)
     }
     if (defaultTemplates) {
-      setDefaultTemplates(defaultTemplates)
+      const { success, error } = defaultTemplates
+      if ( success ) {
+        setDefaultTemplates(defaultTemplates)
+      } else fetchingTemplatesError(error)
     }
   }, [])
 
@@ -32,7 +45,6 @@ const Index = ({
 }
 
 Index.getInitialProps = async (ctx) => {
-  // return {}
   const { req, reduxStore } = ctx
   const { dispatch } = reduxStore
   const isServer = !!req
@@ -46,9 +58,7 @@ Index.getInitialProps = async (ctx) => {
       defaultRecords: recordsPayload,
       defaultTemplates: templatesPayload
     }
-  } else {
-    return {}
-  }
+  } else return {}
 }
 
 Index.propTypes = {
@@ -58,7 +68,9 @@ Index.propTypes = {
 
 const mapDispatchToProps = {
   setDefaultTemplates,
-  setDefaultRecords
+  setDefaultRecords,
+  fetchingRecordsError,
+  fetchingTemplatesError
 }
 
 export default connect(undefined, mapDispatchToProps)(Index)
