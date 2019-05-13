@@ -67,7 +67,6 @@ export const getOip5Records = query => async (dispatch, getState) => {
     return daemonApi.searchOip5Records({ q })
     // else if filter get filtered records
   } else {
-    console.log('get latest records')
     return daemonApi.getLatestOip5Records()
   }
 }
