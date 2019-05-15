@@ -48,14 +48,13 @@ const styles = theme => ({
 const TemplateCard = ({
   classes,
   template,
-  fileDescriptor,
   publishRecord,
   publishTemplate,
   forkTemplate
 }) => {
   function handleTemplateFork () {
     publishTemplate()
-    forkTemplate(fileDescriptor)
+    forkTemplate(template.identifier)
   }
 
   function handleRecordPublish () {
@@ -102,7 +101,6 @@ TemplateCard.propTypes = {
   classes: PropTypes.object.isRequired,
   template: PropTypes.object.isRequired,
   meta: PropTypes.object,
-  fileDescriptor: PropTypes.string.isRequired,
   publishRecord: PropTypes.func.isRequired,
   publishTemplate: PropTypes.func.isRequired,
   forkTemplate: PropTypes.func.isRequired
