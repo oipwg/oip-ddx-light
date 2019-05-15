@@ -19,9 +19,9 @@ export const publishTemplate = () => ({
 })
 
 export const FORK_TEMPLATE = 'FORK_TEMPLATE'
-export const forkTemplate = descriptorSetProto => ({
+export const forkTemplate = forkedTemplate => ({
   type: FORK_TEMPLATE,
-  descriptorSetProto
+  forkedTemplates: [forkedTemplate]
 })
 
 export const PUBLISH_SUCCESS = 'PUBLISH_SUCCESS'

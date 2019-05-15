@@ -40,7 +40,7 @@ const mapDispatchToProps = {
 }
 
 PublisherContainer.propTypes = {
-  forkedTemplate: PropTypes.string,
+  forkedTemplate: PropTypes.array,
   publishSuccess: PropTypes.bool.isRequired,
   publishError: PropTypes.bool.isRequired,
   publishPending: PropTypes.bool.isRequired,

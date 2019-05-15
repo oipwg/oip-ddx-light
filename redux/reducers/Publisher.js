@@ -1,8 +1,8 @@
 import * as actions from '../actions/Publisher/creators'
 
-const RECORD = 'record'
+export const RECORD = 'record'
 
-const TEMPLATE = 'TEMPLATE'
+export const TEMPLATE = 'template'
 
 function Publisher (state = {
   openPublisherModal: false,
@@ -10,7 +10,8 @@ function Publisher (state = {
   publishSuccess: false,
   publishPending: false,
   publishError: false,
-  publishErrorMessage: null
+  publishErrorMessage: null,
+  forkedTemplate: []
 }, action) {
   switch (action.type) {
     case actions.OPEN_PUBLISHER_MODAL:
@@ -38,7 +39,7 @@ function Publisher (state = {
     case actions.FORK_TEMPLATE:
       return {
         ...state,
-        forkedTemplate: action.descriptorSetProto
+        forkedTemplate: [...action.forkedTemplates]
       }
     case actions.PUBLISH_SUCCESS:
       return {
