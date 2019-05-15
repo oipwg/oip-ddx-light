@@ -22,7 +22,12 @@ function Publisher (state = {
     case actions.CLOSE_PUBLISHER_MODAL:
       return {
         ...state,
-        openPublisherModal: false
+        openPublisherModal: false,
+        publishSuccess: false,
+        publishPending: false,
+        publishError: false,
+        publishErrorMessage: null,
+        forkedTemplate: []
       }
     case actions.PUBLISH_RECORD:
       return {
