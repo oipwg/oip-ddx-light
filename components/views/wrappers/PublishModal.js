@@ -2,6 +2,8 @@ import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import { MdClose } from 'react-icons/md'
+import { TEMPLATE, RECORD } from '../../../redux/reducers/Publisher'
+import TemplatePublisher from '../dumb/TemplatePublisher'
 
 const styles = theme => ({
   modalBackground: {
@@ -26,15 +28,40 @@ const styles = theme => ({
   modalHead: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
     alignItems: 'center',
     padding: 17,
     fontSize: 20,
-    flex: '0 0 50px',
+    flex: '0 0 90px',
     boxSizing: 'border-box',
+    position: 'relative',
     '& #closeModal': {
-      cursor: 'pointer'
+      cursor: 'pointer',
+      position: 'absolute',
+      top: 25,
+      right: 25
+    },
+    '& > h2': {
+      margin: 0,
+      marginLeft: 25
     }
+  },
+  modalFoot: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: '0 0 70px',
+    paddingBottom: 17,
+    paddingRight: 5,
+    paddingLeft: 5
+  },
+  modalBody: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: '1',
+    overflowY: 'auto'
+  },
+  publishHeader: {
+    textTransform: 'capitalize'
   }
 })
 
@@ -48,6 +75,9 @@ const PublishModal = ({
   publishType,
   closePublisherModal
 }) => {
+  const publishRecord = publishType === RECORD
+  const publishTemplate = publishType === TEMPLATE
+
   function handleCloseModal () {
     closePublisherModal()
   }
@@ -55,7 +85,15 @@ const PublishModal = ({
     <div className={classes.modal}>
       <div className={classes.modalHead}>
         <span id='closeModal' onClick={handleCloseModal}><MdClose /></span>
+        <h2 className={classes.publishHeader}>{publishType}</h2>
       </div>
+      <div className={classes.modalBody}>
+        {publishTemplate && <TemplatePublisher
+          forkedTempalte={forkedTemplate}
+        />}
+        {/* {publishRecord && <RecordPublisher />} */}
+      </div>
+      <div className={classes.modalFoot} />
     </div>
   </div>
 }
