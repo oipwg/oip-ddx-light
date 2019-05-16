@@ -2,6 +2,5 @@ node_modules/*
 .DS_Store
 .idea
 src/components/AudioViewer/scratch.js
-lib/*
 localStorage/
 .next
