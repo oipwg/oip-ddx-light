@@ -1,27 +1,9 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { closePublisherModal } from '../../redux/actions/Publisher/creators'
-import PublishModal from '../views/wrappers/PublishModal'
 
-const PublisherContainer = ({
-  forkedTemplate,
-  publishSuccess,
-  publishError,
-  publishPending,
-  publishErrorMessage,
-  publishType,
-  closePublisherModal
-}) => {
-  return <PublishModal
-    forkedTemplate={forkedTemplate}
-    publishSuccess={publishSuccess}
-    publishError={publishError}
-    publishPending={publishPending}
-    publishErrorMessage={publishErrorMessage}
-    publishType={publishType}
-    closePublisherModal={closePublisherModal}
-  />
+const PublisherContainer = (props) => {
+  return props.render(props)
 }
 
 function mapStateToProps (state) {
