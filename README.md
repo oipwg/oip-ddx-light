@@ -1,5 +1,7 @@
 ### Install instructions
 
+If not done so already, [install yarn here](https://yarnpkg.com/en/docs/install#debian-stable).
+
 `git clone git@github.com:oipwg/oip-ddx-light.git`
 
 `cd oip-ddx-light`
