@@ -17,6 +17,7 @@ const Interface = ({
   openPublisherModal
 }) => {
   const explorer = activePage === 'explorer'
+  const publisher = activePage === 'publisher'
   const wallet = activePage === 'wallet'
   return <div className={classes.root}>
     <SideBar
@@ -25,7 +26,12 @@ const Interface = ({
       setActivePage={setActivePage}
     />
     {explorer && <ExplorerContainer />}
-    {openPublisherModal && <PublisherContainer />}
+    {(openPublisherModal) && <PublisherContainer render={props => (
+      <PublishModal {...props} />
+    )} />}
+    {(publisher) && <PublisherContainer render={props => (
+      <Publisher {...props} />
+    )} />}
     {wallet && <WalletPage />}
   </div>
 }
