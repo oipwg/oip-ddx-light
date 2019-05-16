@@ -9,7 +9,8 @@ const styles = theme => ({
     flex: '1 1 auto',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '0px 40px'
+    padding: '0px 40px',
+    overflowX: 'auto'
   },
   walletWrapper: {
     display: 'flex',
