@@ -6,6 +6,8 @@ import ExplorerContainer from '../../containers/ExplorerContainer'
 import SideBar from '../dumb/SideBar'
 import WalletPage from '../../WalletPage'
 import PublisherContainer from '../../containers/PublisherContainer'
+import PublishModal from '../dumb/PublishModal'
+import Publisher from './Publisher'
 
 const Interface = ({
   classes,

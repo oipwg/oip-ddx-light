@@ -3,7 +3,7 @@ import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import { MdClose } from 'react-icons/md'
 import { TEMPLATE, RECORD } from '../../../redux/reducers/Publisher'
-import TemplatePublisher from '../dumb/TemplatePublisher'
+import TemplatePublisher from './TemplatePublisher'
 
 const styles = theme => ({
   modalBackground: {
