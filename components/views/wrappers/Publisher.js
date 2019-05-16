@@ -1,15 +1,22 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
+import TemplatePublisher from '../dumb/TemplatePublisher'
 
 const styles = theme => ({
-  root: {}
+  root: {
+    display: 'flex',
+    flex: 1,
+    marginTop: 52,
+    overflowY: 'auto'
+  }
 })
 
 const Publisher = ({
   classes
 }) => {
   return <div className={classes.root}>
+    <TemplatePublisher />
   </div>
 }
 
