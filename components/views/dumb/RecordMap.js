@@ -29,9 +29,14 @@ const RecordMap = ({
   }
   return <div className={classes.root}>
     {recordData.map((payload, i) => {
+      const { meta, record } = payload
+      if (!record) {
+        console.error('Missing record data for following payload:', payload)
+        return null
+      }
       return <RecordCard
-        record={payload.record}
-        meta={payload.meta}
+        record={record}
+        meta={meta}
         key={i}
       />
     })}

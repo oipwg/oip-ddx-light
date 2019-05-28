@@ -32,6 +32,10 @@ const TemplateMap = ({
   }
   return <div className={classes.root}>
     {templateData.map((payload, i) => {
+      if (!payload.template) {
+        console.error(`missing template data for following payload: `, payload)
+        return null
+      }
       return <TemplateCard
         template={payload.template}
         meta={payload.meta}
