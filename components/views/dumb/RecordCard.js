@@ -41,6 +41,11 @@ const RecordCard = ({ classes, record, meta }) => {
   const { details } = record
   const { [BASIC_TEMPLATE]: basicTemplate } = details
 
+  // toDo: handle records without the BASIC template
+  if (!basicTemplate) {
+    return null
+  }
+
   const { title, description, year } = basicTemplate
 
   return <div className={classes.root}>
