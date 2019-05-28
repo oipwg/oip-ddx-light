@@ -683,7 +683,14 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0":
+  version "7.4.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
+  integrity sha512-TuI4qpWZP6lGOGIuGWtp9sPluqYICmbk8T/1vpSysqJxRPkudh/ofFWyqdcMsDf2s7KvDL4/YHgKyvcS3g9CJQ==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
+"@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.4.tgz#dc2e34982eb236803aa27a07fea6857af1b9171d"
   integrity sha512-w0+uT71b6Yi7i5SE0co4NioIpSYS6lLiXvCzWzGSKvpK5vdQtCbICHMj+gbAKAOtxiV6HsVh/MBdaF9EQ6faSg==
@@ -943,9 +950,9 @@
   integrity sha512-Exw4yUWMBXM3X+8oqzJNRqZSwUAaS4+7NdvHqQuFi/d+synz++xmX3QIf+BFqneW8N31R8Ky+sikfZUXq07ggQ==
 
 "@types/node@^10.1.0":
-  version "10.14.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.6.tgz#9cbfcb62c50947217f4d88d4d274cc40c22625a9"
-  integrity sha512-Fvm24+u85lGmV4hT5G++aht2C5I4Z4dYlWZIh62FAfFO/TfzXtPpoLI6I7AuBWkIFqZCnhFOoTT7RjjaIL5Fjg==
+  version "10.14.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.7.tgz#1854f0a9aa8d2cd6818d607b3d091346c6730362"
+  integrity sha512-on4MmIDgHXiuJDELPk1NFaKVUxxCFr37tm8E9yN6rAiF5Pzp/9bBfBHkoexqRiY+hk/Z04EJU9kKEb59YqJ82A==
 
 "@types/prop-types@*":
   version "15.7.1"
@@ -960,9 +967,9 @@
     "@types/react" "*"
 
 "@types/react@*":
-  version "16.8.17"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.17.tgz#f287b76a5badb93bc9aa3f54521a3eb53d6c2374"
-  integrity sha512-pln3mgc6VfkNg92WXODul/ONo140huK9OMsx62GlBlZ2lvjNK86PQJhYMPLO1i66aF5O9OPyZefogvNltBIszA==
+  version "16.8.19"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.19.tgz#629154ef05e2e1985cdde94477deefd823ad9be3"
+  integrity sha512-QzEzjrd1zFzY9cDlbIiFvdr+YUmefuuRYrPxmkwG0UQv5XF35gFIi7a95m1bNVcFU0VimxSZ5QVGSiBmlggQXQ==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -1805,16 +1812,16 @@ bip32@^1.0.0, bip32@^1.0.4:
     typeforce "^1.11.5"
     wif "^2.0.6"
 
-bip32@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/bip32/-/bip32-2.0.2.tgz#7f131b84fb2b84cf8a52aa206def6a8f1037f82b"
-  integrity sha512-Wws0wBYp+KViCTJLLalmOUhefd1puJslme6ks1HPRuEEXGA28HNRVcx6aIGnH0VNYr/NqoUMYf/QakCjbXcElQ==
+bip32@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/bip32/-/bip32-2.0.3.tgz#02575a78e25decec5c31ee950ecd5839508c6d3e"
+  integrity sha512-Tg4dHUXiYBkJyCQq4g++C2PqKcZRveVqy7cKxyl88Uai7MmmknFGaF88odYrXcXk5EMyrlXLuAMC3yEiLxRnNA==
   dependencies:
     "@types/node" "10.12.18"
     bs58check "^2.1.1"
     create-hash "^1.2.0"
     create-hmac "^1.1.7"
-    tiny-secp256k1 "^1.0.0"
+    tiny-secp256k1 "^1.1.0"
     typeforce "^1.11.5"
     wif "^2.0.6"
 
@@ -1878,13 +1885,13 @@ bitcoinjs-lib@^4.0.2:
     wif "^2.0.1"
 
 bitcoinjs-lib@^5.0.1, bitcoinjs-lib@^5.0.2:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/bitcoinjs-lib/-/bitcoinjs-lib-5.0.3.tgz#26b79889e894c8909a3ab3d2a8c439a85e776a84"
-  integrity sha512-uc1htf5acG5vcwyhOnES1MFIe21fNn+0VnJLNAcw1/uAQGDF0SNfzEA8SUwnMZ4J26zHiAmk6hVnlVl8yYOTPA==
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/bitcoinjs-lib/-/bitcoinjs-lib-5.0.5.tgz#1c76f82479913affac2b0b9821884a6f7373902b"
+  integrity sha512-BUimtgWFoWmoXQ74XxlQH8y9Vzi8ypFiWErDkP+VBe0nGcU3bKAJbNhzhZOO1/QAfyelfNvxVV5Cj189XinmPg==
   dependencies:
     "@types/node" "10.12.18"
     bech32 "^1.1.2"
-    bip32 "^2.0.0"
+    bip32 "^2.0.3"
     bip66 "^1.1.0"
     bitcoin-ops "^1.4.0"
     bs58check "^2.0.0"
@@ -1893,7 +1900,7 @@ bitcoinjs-lib@^5.0.1, bitcoinjs-lib@^5.0.2:
     merkle-lib "^2.0.10"
     pushdata-bitcoin "^1.0.1"
     randombytes "^2.0.1"
-    tiny-secp256k1 "^1.0.0"
+    tiny-secp256k1 "^1.1.1"
     typeforce "^1.11.3"
     varuint-bitcoin "^1.0.4"
     wif "^2.0.1"
@@ -2779,10 +2786,15 @@ core-js@^1.0.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
   integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
 
-core-js@^2.4.0, core-js@^2.5.7, core-js@^2.6.5:
+core-js@^2.4.0, core-js@^2.5.7:
   version "2.6.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
   integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
+
+core-js@^2.6.5:
+  version "2.6.9"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.9.tgz#6b4b214620c834152e179323727fc19741b084f2"
+  integrity sha512-HOpZf6eXmnl7la+cUdMnLvUxKNqLUzJvgIziQ0DiF3JwSImNphIqdGqzj6hIKyX04MmV0poclQ7+wjWvxQyR2A==
 
 core-util-is@~1.0.0:
   version "1.0.2"
@@ -2908,7 +2920,12 @@ css-vendor@^2.0.1:
     "@babel/runtime" "^7.3.1"
     is-in-browser "^1.0.2"
 
-csstype@^2.0.0, csstype@^2.2.0, csstype@^2.5.2, csstype@^2.5.7:
+csstype@^2.0.0, csstype@^2.2.0, csstype@^2.5.2:
+  version "2.6.5"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.5.tgz#1cd1dff742ebf4d7c991470ae71e12bb6751e034"
+  integrity sha512-JsTaiksRsel5n7XwqPAfB0l3TFKdpjW/kgAELf9vrb5adGA7UCPLajKK5s3nFrcFm3Rkyp/Qkgl73ENc1UY3cA==
+
+csstype@^2.5.7:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.4.tgz#d585a6062096e324e7187f80e04f92bd0f00e37f"
   integrity sha512-lAJUJP3M6HxFXbqtGRc0iZrdyeN+WzOWeY0q/VnFzI+kqVrYIzC7bWlKqCW7oCIdzoPkvfp82EVvrTlQ8zsWQg==
@@ -6034,7 +6051,24 @@ js-oip@^2.1.0:
     varuint-bitcoin "^1.1.0"
     wif "^2.0.6"
 
-"js-oip@github:oipwg/js-oip#oip5-apis", js-oip@oipwg/js-oip#oip5-apis:
+"js-oip@github:oipwg/js-oip#oip5-apis":
+  version "2.2.0"
+  resolved "https://codeload.github.com/oipwg/js-oip/tar.gz/d31fa04bed6b70922071ea01c0e90a23459a4491"
+  dependencies:
+    axios "^0.18.0"
+    bitcoinjs-lib "git+https://github.com/oipwg/bitcoinjs-lib.git#export-classify"
+    bitcoinjs-message "^2.0.0"
+    coinselect "^3.1.11"
+    fcoin "^1.0.0-beta.34"
+    insight-explorer "^1.0.10"
+    ipfs "^0.35.0"
+    ipfs-http-client "^28.0.0"
+    node-localstorage "^1.3.1"
+    rfc6902 "^3.0.1"
+    varuint-bitcoin "^1.1.0"
+    wif "^2.0.6"
+
+js-oip@oipwg/js-oip#oip5-apis:
   version "2.2.0"
   resolved "https://codeload.github.com/oipwg/js-oip/tar.gz/1a0b8549dc47a921a9d88b254e29f97eb3bcc262"
   dependencies:
@@ -8223,10 +8257,10 @@ oip-hdmw@^1.3.27:
     varuint-bitcoin "^1.1.0"
     wif "^2.0.6"
 
-oip-protobufjs@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/oip-protobufjs/-/oip-protobufjs-1.3.0.tgz#5a3d89e2ab0bb6112a784f86e7a82c19ca2b81dc"
-  integrity sha512-YX5gZmvWnIv2WOJncvIZw6vKKQFnYLsaFscPZSl/uEwS7uAOyM/8tAEq/t2eu7rsYll5Vw5KB7rbfOjH5EjAcw==
+oip-protobufjs@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/oip-protobufjs/-/oip-protobufjs-1.5.2.tgz#230242d19c4e00e583b068549ac5cb3232f8c2c4"
+  integrity sha512-DgzAq/3zdXyS2Qmm+xCgg/b1OMN2ccJzfq+g0tBv5rDbkvXVO1Xrv9eREk2fEO4g1Djg/+pl+vQfS8YXXY/WNA==
   dependencies:
     bitcoinjs-lib "^5.0.2"
     bitcoinjs-message "^2.0.0"
@@ -8236,10 +8270,10 @@ oip-protobufjs@^1.3.0:
     lodash "^4.17.11"
     protobufjs "^6.8.8"
 
-oip-react@^2.0.0-beta.2.6.6:
-  version "2.0.0-beta.2.6.6"
-  resolved "https://registry.yarnpkg.com/oip-react/-/oip-react-2.0.0-beta.2.6.6.tgz#7369343e810236d3fd1fcfa4c197f1f0b2d76043"
-  integrity sha512-X3mJqnPHb5ZYl1t/rBHg9hSTf6zqj0cDu9nrqmcNzPOyhMmfPNOLSBVDtJFGsMh/snEqUD5V2NsfqrxBejBT2Q==
+oip-react@^2.0.0-beta.3.0.2:
+  version "2.0.0-beta.3.0.2"
+  resolved "https://registry.yarnpkg.com/oip-react/-/oip-react-2.0.0-beta.3.0.2.tgz#3f469621caf94eb51ed41c2a496c73a6875d4d1a"
+  integrity sha512-cZA14KE75NwNWx/mO3TM9pLjW6GpafXua2tdpnvGj9tV2Q+95EKdp2PB78osFGY8ZytcT0SohrSc8dq/CVfK0Q==
   dependencies:
     uid "^0.0.2"
     "@material-ui/core" "^3.9.3"
@@ -8255,7 +8289,7 @@ oip-react@^2.0.0-beta.2.6.6:
     lodash "^4.17.11"
     moment "^2.24.0"
     oip-hdmw "^1.3.27"
-    oip-protobufjs "^1.3.0"
+    oip-protobufjs "^1.5.2"
     prop-types "^15.7.2"
     protobufjs "~6.8.8"
     react "^16.8.4"
@@ -9097,7 +9131,7 @@ pull-write@^1.1.4:
     pull-cat "^1.1.11"
     pull-stream "^3.4.5"
 
-"pull-ws@github:hugomrdias/pull-ws#fix/bundle-size":
+pull-ws@hugomrdias/pull-ws#fix/bundle-size:
   version "3.3.1"
   resolved "https://codeload.github.com/hugomrdias/pull-ws/tar.gz/8e2ce0bb3b1cd6804828316e937fff8e0bef6225"
   dependencies:
@@ -10866,6 +10900,14 @@ tiny-emitter@^2.0.0:
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
 
+tiny-secp256k1-native@1.1.x:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/tiny-secp256k1-native/-/tiny-secp256k1-native-1.1.0.tgz#b554a73061836a0914e7f9461fc336dd7386de73"
+  integrity sha512-ZEt41e4pvq52Zs6MqNZpbDH3qg5fQkOCH9bzGsVPtlLeo9tdfNFz2XfjiKzo1Rc+Yvv4cb0lzy7ClQ3FbE4kKg==
+  dependencies:
+    bindings "^1.3.0"
+    nan "^2.13.2"
+
 tiny-secp256k1@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/tiny-secp256k1/-/tiny-secp256k1-0.1.0.tgz#6c0e66b7d70955dda5d66ccd26d91303e36f9ba3"
@@ -10887,6 +10929,17 @@ tiny-secp256k1@^1.0.0:
     create-hmac "^1.1.7"
     elliptic "^6.4.0"
     nan "^2.12.1"
+
+tiny-secp256k1@^1.1.0, tiny-secp256k1@^1.1.1:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/tiny-secp256k1/-/tiny-secp256k1-1.1.2.tgz#b8c852a7c9d93285dd2a0adb148af60f2dfc1fc9"
+  integrity sha512-InukePecGvfngAEmPR/AIVpAmBTBCdO7tFuMKCpQDE6Zr+lQVT/hDArPkUUolPPpCgwbN/yk2rSAGhJsoIl4hA==
+  dependencies:
+    bn.js "^4.11.8"
+    create-hmac "^1.1.7"
+    elliptic "^6.4.0"
+  optionalDependencies:
+    tiny-secp256k1-native "1.1.x"
 
 tiny-warning@^1.0.2:
   version "1.0.2"
