@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { MdClose } from 'react-icons/md'
 import { TEMPLATE, RECORD } from '../../../redux/reducers/Publisher'
 import TemplatePublisher from './TemplatePublisher'
+import RecordPublisher from './RecordPublisher'
 
 const styles = theme => ({
   modalBackground: {
@@ -73,7 +74,8 @@ const PublishModal = ({
   publishPending,
   publishErrorMessage,
   publishType,
-  closePublisherModal
+  closePublisherModal,
+  publishData
 }) => {
   const publishRecord = publishType === RECORD
   const publishTemplate = publishType === TEMPLATE
@@ -89,9 +91,11 @@ const PublishModal = ({
       </div>
       <div className={classes.modalBody}>
         {publishTemplate && <TemplatePublisher
-          forkedTempalte={forkedTemplate}
+          forkedTemplate={forkedTemplate}
         />}
-        {/* {publishRecord && <RecordPublisher />} */}
+        {publishRecord && <RecordPublisher
+          publishData={publishData}
+        />}
       </div>
       <div className={classes.modalFoot} />
     </div>
@@ -108,6 +112,7 @@ PublishModal.propTypes = {
     PropTypes.object // null
   ]),
   publishType: PropTypes.string.isRequired,
-  closePublisherModal: PropTypes.func.isRequired
+  closePublisherModal: PropTypes.func.isRequired,
+  publishData: PropTypes.object
 }
 export default withStyles(styles)(PublishModal)

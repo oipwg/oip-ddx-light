@@ -6051,26 +6051,9 @@ js-oip@^2.1.0:
     varuint-bitcoin "^1.1.0"
     wif "^2.0.6"
 
-"js-oip@github:oipwg/js-oip#oip5-apis":
-  version "2.2.0"
-  resolved "https://codeload.github.com/oipwg/js-oip/tar.gz/d31fa04bed6b70922071ea01c0e90a23459a4491"
-  dependencies:
-    axios "^0.18.0"
-    bitcoinjs-lib "git+https://github.com/oipwg/bitcoinjs-lib.git#export-classify"
-    bitcoinjs-message "^2.0.0"
-    coinselect "^3.1.11"
-    fcoin "^1.0.0-beta.34"
-    insight-explorer "^1.0.10"
-    ipfs "^0.35.0"
-    ipfs-http-client "^28.0.0"
-    node-localstorage "^1.3.1"
-    rfc6902 "^3.0.1"
-    varuint-bitcoin "^1.1.0"
-    wif "^2.0.6"
-
 js-oip@oipwg/js-oip#oip5-apis:
   version "2.2.0"
-  resolved "https://codeload.github.com/oipwg/js-oip/tar.gz/1a0b8549dc47a921a9d88b254e29f97eb3bcc262"
+  resolved "https://codeload.github.com/oipwg/js-oip/tar.gz/d31fa04bed6b70922071ea01c0e90a23459a4491"
   dependencies:
     axios "^0.18.0"
     bitcoinjs-lib "git+https://github.com/oipwg/bitcoinjs-lib.git#export-classify"
@@ -8270,10 +8253,10 @@ oip-protobufjs@^1.5.2:
     lodash "^4.17.11"
     protobufjs "^6.8.8"
 
-oip-react@^2.0.0-beta.3.0.2:
-  version "2.0.0-beta.3.0.2"
-  resolved "https://registry.yarnpkg.com/oip-react/-/oip-react-2.0.0-beta.3.0.2.tgz#3f469621caf94eb51ed41c2a496c73a6875d4d1a"
-  integrity sha512-cZA14KE75NwNWx/mO3TM9pLjW6GpafXua2tdpnvGj9tV2Q+95EKdp2PB78osFGY8ZytcT0SohrSc8dq/CVfK0Q==
+oip-react@^2.0.0-beta.3.0.3:
+  version "2.0.0-beta.3.0.3"
+  resolved "https://registry.yarnpkg.com/oip-react/-/oip-react-2.0.0-beta.3.0.3.tgz#a92f68b818b565217268e2ad72262620bb7d76c1"
+  integrity sha512-1gu/i2OTE329SPmlmMnJaUzKEHtUfBUcCSNcMoY9d/7RAmUxg5zNgxAHa5gtTNCd0ibpMpvRBIX23AkcSDOKSw==
   dependencies:
     uid "^0.0.2"
     "@material-ui/core" "^3.9.3"

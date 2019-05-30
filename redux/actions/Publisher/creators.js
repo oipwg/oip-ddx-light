@@ -9,8 +9,10 @@ export const closePublisherModal = () => ({
 })
 
 export const PUBLISH_RECORD = 'PUBLISH_RECORD'
-export const publishRecord = () => ({
-  type: PUBLISH_RECORD
+export const publishRecord = ({ descriptor, templateName }) => ({
+  type: PUBLISH_RECORD,
+  descriptor,
+  templateName
 })
 
 export const PUBLISH_TEMPLATE = 'PUBLISH_TEMPLATE'

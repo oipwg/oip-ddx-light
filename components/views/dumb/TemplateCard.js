@@ -50,7 +50,8 @@ const TemplateCard = ({
   template,
   publishRecord,
   publishTemplate,
-  forkTemplate
+  forkTemplate,
+  fileDescriptor
 }) => {
   function handleTemplateFork () {
     publishTemplate()
@@ -58,7 +59,10 @@ const TemplateCard = ({
   }
 
   function handleRecordPublish () {
-    publishRecord()
+    publishRecord({
+      descriptor: fileDescriptor,
+      templateName: template.name
+    })
   }
 
   return <div className={classes.root}>
@@ -103,7 +107,8 @@ TemplateCard.propTypes = {
   meta: PropTypes.object,
   publishRecord: PropTypes.func.isRequired,
   publishTemplate: PropTypes.func.isRequired,
-  forkTemplate: PropTypes.func.isRequired
+  forkTemplate: PropTypes.func.isRequired,
+  fileDescriptor: PropTypes.string.isRequired
 }
 
 export default withStyles(styles)(TemplateCard)

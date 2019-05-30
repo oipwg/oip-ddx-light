@@ -34,7 +34,7 @@ const Explorer = ({
   templatesError,
   publishRecord,
   publishTemplate,
-  forkTemplate
+  forkTemplate,
 }) => {
   return <div className={classes.root}>
     <div className={classes.wrapper}>

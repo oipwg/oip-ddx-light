@@ -11,7 +11,11 @@ function Publisher (state = {
   publishPending: false,
   publishError: false,
   publishErrorMessage: null,
-  forkedTemplate: []
+  forkedTemplate: [],
+  publishData: {
+    descriptor: undefined,
+    templateName: undefined
+  }
 }, action) {
   switch (action.type) {
     case actions.OPEN_PUBLISHER_MODAL:
@@ -33,7 +37,11 @@ function Publisher (state = {
       return {
         ...state,
         publishType: RECORD,
-        openPublisherModal: true
+        openPublisherModal: true,
+        publishData: {
+          descriptor: action.descriptor,
+          templateName: action.templateName
+        }
       }
     case actions.PUBLISH_TEMPLATE:
       return {

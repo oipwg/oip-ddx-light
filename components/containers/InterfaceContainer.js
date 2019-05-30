@@ -10,7 +10,8 @@ const InterfaceContainer = ({
   activePage,
   setActivePage,
   name,
-  openPublisherModal
+  openPublisherModal,
+  publishData
 }) => {
   return <Interface
     pages={pages}
@@ -18,20 +19,23 @@ const InterfaceContainer = ({
     setActivePage={setActivePage}
     name={name}
     openPublisherModal={openPublisherModal}
+    publishData={publishData}
   />
 }
 InterfaceContainer.propTypes = {
   activePage: PropTypes.string.isRequired,
   setActivePage: PropTypes.func.isRequired,
   pages: PropTypes.array.isRequired,
-  openPublisherModal: PropTypes.bool.isRequired
+  openPublisherModal: PropTypes.bool.isRequired,
+  publishData: PropTypes.object.isRequired
 }
 
 function mapStateToProps (state) {
   return {
     pages: state.Interface.pages,
     activePage: state.Interface.activePage,
-    openPublisherModal: state.Publisher.openPublisherModal
+    openPublisherModal: state.Publisher.openPublisherModal,
+    publishData: state.Publisher.publishData
   }
 }
 const mapDispatchToProps = {
