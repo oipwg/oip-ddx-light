@@ -3,11 +3,12 @@ import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import TemplateMap from './TemplateMap'
 import RecordMap from './RecordMap'
+import Explorer from '../wrappers/Explorer'
 
 const styles = theme => ({
   root: {
     display: 'flex',
-    flex: 10,
+    flex: 10
   }
 })
 
@@ -18,7 +19,9 @@ const ExplorerBody = ({
   activeSelection,
   publishRecord,
   publishTemplate,
-  forkTemplate
+  forkTemplate,
+  handleSelectTemplate,
+  selectedTemplates
 }) => {
   let displayRecords = activeSelection === 'Records'
   let displayTemplates = activeSelection === 'Templates'
@@ -31,6 +34,8 @@ const ExplorerBody = ({
       publishRecord={publishRecord}
       publishTemplate={publishTemplate}
       forkTemplate={forkTemplate}
+      handleSelectTemplate={handleSelectTemplate}
+      selectedTemplates={selectedTemplates}
     />}
   </div>
 }

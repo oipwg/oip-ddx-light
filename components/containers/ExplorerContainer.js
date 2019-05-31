@@ -44,6 +44,21 @@ const ExplorerContainer = ({
   const [searchInput, setSearchInput] = useState('')
   const [selectOption, setSelectOption] = useState(Records)
 
+  const [selectedTemplates, setSelectedTemplates] = useState({})
+  function handleSelectTemplate ({ id, template }) {
+    if (selectedTemplates[id]) {
+      let { [id]: _, ...newSelection } = selectedTemplates
+      setSelectedTemplates(newSelection)
+    } else {
+      setSelectedTemplates(prevState => {
+        return {
+          ...prevState,
+          [id]: template
+        }
+      })
+    }
+  }
+
   function handleSearchInput (e) {
     setSearchInput(e.target.value)
   }
@@ -103,6 +118,8 @@ const ExplorerContainer = ({
     publishRecord={publishRecord}
     publishTemplate={publishTemplate}
     forkTemplate={forkTemplate}
+    handleSelectTemplate={handleSelectTemplate}
+    selectedTemplates={selectedTemplates}
   />
 }
 

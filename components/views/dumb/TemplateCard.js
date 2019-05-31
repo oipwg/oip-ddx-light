@@ -2,6 +2,8 @@ import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import { GoRepoForked, GoCloudUpload } from 'react-icons/go'
+import { MdRadioButtonChecked, MdRadioButtonUnchecked } from 'react-icons/md'
+import Explorer from '../wrappers/Explorer'
 
 const styles = theme => ({
   root: {
@@ -13,7 +15,17 @@ const styles = theme => ({
     margin: [5, 10],
     boxShadow: theme.shadows[1],
     borderRadius: '3px',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    position: 'relative'
+  },
+  templateSelector: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    zIndex: 300,
+    '& > span': {
+      cursor: 'pointer'
+    }
   },
   templateField: {
     display: 'flex',
@@ -51,7 +63,9 @@ const TemplateCard = ({
   publishRecord,
   publishTemplate,
   forkTemplate,
-  fileDescriptor
+  key,
+  handleSelectTemplate,
+  selectedTemplates = {}
 }) => {
   function handleTemplateFork () {
     publishTemplate()
@@ -60,12 +74,22 @@ const TemplateCard = ({
 
   function handleRecordPublish () {
     publishRecord({
-      descriptor: fileDescriptor,
+      descriptor: template.file_descriptor_set,
       templateName: template.name
     })
   }
+  function onSelectTemplate () {
+    handleSelectTemplate({ id: template.name, template })
+  }
 
-  return <div className={classes.root}>
+  const selected = Object.keys(selectedTemplates).includes(template.name)
+  return <div className={classes.root} key={key}>
+    <div className={classes.templateSelector}>
+      <Selector
+        onTemplateSelect={onSelectTemplate}
+        selected={selected}
+      />
+    </div>
     <div className={classes.templateField}>
       <span className={classes.fieldName}>
         Friendly Name
@@ -101,14 +125,26 @@ const TemplateCard = ({
   </div>
 }
 
+const Selector = ({
+  selected,
+  onTemplateSelect
+}) => {
+  return <>
+    {selected ? <span onClick={onTemplateSelect}> <MdRadioButtonChecked /></span> : <span
+      onClick={onTemplateSelect}
+    >
+      <MdRadioButtonUnchecked />
+    </span>}
+    </>
+}
+
 TemplateCard.propTypes = {
   classes: PropTypes.object.isRequired,
   template: PropTypes.object.isRequired,
   meta: PropTypes.object,
   publishRecord: PropTypes.func.isRequired,
   publishTemplate: PropTypes.func.isRequired,
-  forkTemplate: PropTypes.func.isRequired,
-  fileDescriptor: PropTypes.string.isRequired
+  forkTemplate: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(TemplateCard)

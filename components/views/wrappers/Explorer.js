@@ -35,6 +35,8 @@ const Explorer = ({
   publishRecord,
   publishTemplate,
   forkTemplate,
+  handleSelectTemplate,
+  selectedTemplates
 }) => {
   return <div className={classes.root}>
     <div className={classes.wrapper}>
@@ -56,6 +58,8 @@ const Explorer = ({
         publishRecord={publishRecord}
         publishTemplate={publishTemplate}
         forkTemplate={forkTemplate}
+        handleSelectTemplate={handleSelectTemplate}
+        selectedTemplates={selectedTemplates}
       />
       <ExplorerFooter
         templates={templates}
