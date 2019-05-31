@@ -59,6 +59,9 @@ const ExplorerContainer = ({
     }
   }
 
+  function handlePublishRecordWithTemplates () {}
+  function handleExtendTemplates () {}
+
   function handleSearchInput (e) {
     setSearchInput(e.target.value)
   }
@@ -120,6 +123,8 @@ const ExplorerContainer = ({
     forkTemplate={forkTemplate}
     handleSelectTemplate={handleSelectTemplate}
     selectedTemplates={selectedTemplates}
+    handlePublishRecordWithTemplates={handlePublishRecordWithTemplates}
+    handleExtendTemplates={handleExtendTemplates}
   />
 }
 

@@ -3,7 +3,6 @@ import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import TemplateCard from './TemplateCard'
 import isObjEmpty from '../../../util/isObjEmpty'
-import Explorer from '../wrappers/Explorer'
 
 const styles = theme => ({
   root: {
@@ -42,7 +41,7 @@ const TemplateMap = ({
   }]
 
   return <div className={classes.root}>
-    {templateData.map((payload, i) => {
+    {templateData.map(payload => {
       if (!payload.template) {
         console.error(`missing template data for following payload: `, payload)
         return null
@@ -51,7 +50,7 @@ const TemplateMap = ({
         template={payload.template}
         meta={payload.meta}
         fileDescriptor={payload.file_descriptor_set}
-        key={i}
+        key={payload.template.name}
         publishRecord={publishRecord}
         publishTemplate={publishTemplate}
         forkTemplate={forkTemplate}

@@ -36,7 +36,9 @@ const Explorer = ({
   publishTemplate,
   forkTemplate,
   handleSelectTemplate,
-  selectedTemplates
+  selectedTemplates,
+  handlePublishRecordWithTemplates,
+  handleExtendTemplates
 }) => {
   return <div className={classes.root}>
     <div className={classes.wrapper}>
@@ -65,6 +67,9 @@ const Explorer = ({
         templates={templates}
         records={records}
         activeSelection={selectOption}
+        selectedTemplates={selectedTemplates}
+        handlePublishRecordWithTemplates={handlePublishRecordWithTemplates}
+        handleExtendTemplates={handleExtendTemplates}
       />
     </div>
   </div>
