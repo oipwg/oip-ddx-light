@@ -60,7 +60,17 @@ const ExplorerContainer = ({
   }
 
   function handlePublishRecordWithTemplates () {}
-  function handleExtendTemplates () {}
+  function handleExtendTemplates () {
+    // get template IDs
+    let ids = []
+    for (let tmpl in selectedTemplates) {
+      if (selectedTemplates.hasOwnProperty(tmpl)) {
+        ids.push(selectedTemplates[tmpl].identifier)
+      }
+    }
+    publishTemplate()
+    extendTemplates(ids)
+  }
 
   function handleSearchInput (e) {
     setSearchInput(e.target.value)

@@ -68,7 +68,7 @@ const styles = theme => ({
 
 const PublishModal = ({
   classes,
-  forkedTemplate,
+  extendTemplateIds,
   publishSuccess,
   publishError,
   publishPending,
@@ -91,7 +91,7 @@ const PublishModal = ({
       </div>
       <div className={classes.modalBody}>
         {publishTemplate && <TemplatePublisher
-          forkedTemplate={forkedTemplate}
+          extendTemplateIds={extendTemplateIds}
         />}
         {publishRecord && <RecordPublisher
           publishData={publishData}
@@ -103,7 +103,10 @@ const PublishModal = ({
 }
 
 PublishModal.propTypes = {
-  forkedTemplate: PropTypes.array,
+  extendTemplateIds: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.number),
+    PropTypes.number
+  ]),
   publishSuccess: PropTypes.bool.isRequired,
   publishError: PropTypes.bool.isRequired,
   publishPending: PropTypes.bool.isRequired,

@@ -32,14 +32,6 @@ const TemplateMap = ({
   if (!isObjEmpty(templates)) {
     templateData = [...templates.results]
   }
-  templateData = [{
-    template: {
-      file_descriptor_set: 'CmcKGG9pcFByb3RvX3RlbXBsYXRlcy5wcm90bxISb2lwUHJvdG8udGVtcGxhdGVzIi8KAVASDAoEbmFtZRgBIAEoCRIMCgRzb2lsGAIgASgJEg4KBmNvbG9ycxgDIAMoCWIGcHJvdG8z',
-      name: 'tmpl_5D8DB85B',
-      identifier: '1569568859'
-    }
-  }]
-
   return <div className={classes.root}>
     {templateData.map(payload => {
       if (!payload.template) {

@@ -31,7 +31,7 @@ function Publisher (state = {
         publishPending: false,
         publishError: false,
         publishErrorMessage: null,
-        forkedTemplate: []
+        extendTemplateIds: []
       }
     case actions.PUBLISH_RECORD:
       return {

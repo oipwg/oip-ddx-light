@@ -22,7 +22,7 @@ const RecordTemplateJSS = withStyles(RecordTemplateStyles)(RecordTemplate)
 
 const TemplatePublisher = ({
   classes,
-  forkedTemplate
+  extendTemplateIds
 }) => {
   function handleOnSuccess (txid) {
     console.log('Success: ', txid)
@@ -36,14 +36,17 @@ const TemplatePublisher = ({
     <RecordTemplateJSS
       onSuccess={handleOnSuccess}
       onError={handleOnError}
-      _extends={forkedTemplate}
+      _extends={extendTemplateIds}
     />
   </div>
 }
 
 TemplatePublisher.propTypes = {
   classes: PropTypes.object.isRequired,
-  forkedTemplate: PropTypes.array
+  extendTemplateIds: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.number),
+    PropTypes.number
+  ])
 }
 
 export default withStyles(styles)(TemplatePublisher)

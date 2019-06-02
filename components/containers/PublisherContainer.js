@@ -8,7 +8,7 @@ const PublisherContainer = (props) => {
 
 function mapStateToProps (state) {
   return {
-    forkedTemplate: state.Publisher.forkedTemplate,
+    extendTemplateIds: state.Publisher.extendTemplateIds,
     publishSuccess: state.Publisher.publishSuccess,
     publishError: state.Publisher.publishError,
     publishPending: state.Publisher.publishPending,
@@ -22,7 +22,10 @@ const mapDispatchToProps = {
 }
 
 PublisherContainer.propTypes = {
-  forkedTemplate: PropTypes.array,
+  extendTemplateIds: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.number),
+    PropTypes.number
+  ]),
   publishSuccess: PropTypes.bool.isRequired,
   publishError: PropTypes.bool.isRequired,
   publishPending: PropTypes.bool.isRequired,
