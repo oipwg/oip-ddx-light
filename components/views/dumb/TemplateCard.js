@@ -21,7 +21,7 @@ const styles = theme => ({
     position: 'absolute',
     top: 10,
     right: 10,
-    zIndex: 300,
+    zIndex: 100,
     '& > span': {
       cursor: 'pointer'
     }
@@ -72,10 +72,7 @@ const TemplateCard = ({
   }
 
   function handleRecordPublish () {
-    publishRecord({
-      descriptor: template.file_descriptor_set,
-      templateName: template.name
-    })
+    publishRecord(template)
   }
   function onSelectTemplate () {
     handleSelectTemplate({ id: template.name, template })

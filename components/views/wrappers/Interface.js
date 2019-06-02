@@ -14,8 +14,7 @@ const Interface = ({
   activePage,
   setActivePage,
   pages,
-  openPublisherModal,
-  publishData
+  openPublisherModal
 }) => {
   const explorer = activePage === 'explorer'
   const publisher = activePage === 'publisher'
@@ -28,7 +27,7 @@ const Interface = ({
     />
     {explorer && <ExplorerContainer />}
     {(openPublisherModal) && <PublisherContainer render={props => (
-      <PublishModal publishData={publishData} {...props} />
+      <PublishModal {...props} />
     )} />}
     {(publisher) && <PublisherContainer render={props => (
       <Publisher {...props} />
@@ -54,8 +53,7 @@ Interface.propTypes = {
   activePage: PropTypes.string.isRequired,
   setActivePage: PropTypes.func.isRequired,
   pages: PropTypes.array.isRequired,
-  openPublisherModal: PropTypes.bool.isRequired,
-  publishData: PropTypes.object.isRequired
+  openPublisherModal: PropTypes.bool.isRequired
 }
 
 export default withStyles(styles)(Interface)

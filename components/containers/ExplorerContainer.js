@@ -59,7 +59,16 @@ const ExplorerContainer = ({
     }
   }
 
-  function handlePublishRecordWithTemplates () {}
+  function handlePublishRecordWithTemplates () {
+    let templates = []
+    for (let tmpl in selectedTemplates) {
+      if (selectedTemplates.hasOwnProperty(tmpl)) {
+        templates.push(selectedTemplates[tmpl])
+      }
+    }
+    publishRecord(templates)
+  }
+
   function handleExtendTemplates () {
     // get template IDs
     let ids = []

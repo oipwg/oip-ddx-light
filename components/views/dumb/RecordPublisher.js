@@ -1,7 +1,7 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
-import { RecordProto } from 'oip-react'
+import { RecordProtoContainer } from 'oip-react'
 
 const styles = {
   root: {
@@ -11,16 +11,18 @@ const styles = {
 }
 
 const RecordProtoStyles = ({
-  recordRecordRoot: { marginTop: '30px' }
+  rpcRoot: {
+    marginTop: '30px',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  }
 })
-const RecordProtoJSS = withStyles(RecordProtoStyles)(RecordProto)
+const RecordProtoJSS = withStyles(RecordProtoStyles)(RecordProtoContainer)
 
 const RecordPublisher = ({
   classes,
-  publishData
+  publishTemplates
 }) => {
-  const { descriptor, templateName } = publishData
-
   function handleOnSuccess (txid) {
     console.log('Success: ', txid)
   }
@@ -29,10 +31,11 @@ const RecordPublisher = ({
     console.error(err)
   }
 
+  console.log('pub temps', publishTemplates)
+
   return <div className={classes.root}>
     <RecordProtoJSS
-      descriptor={descriptor}
-      templateName={templateName}
+      templates={publishTemplates}
       onSuccess={handleOnSuccess}
       onError={handleOnError}
     />
@@ -41,7 +44,10 @@ const RecordPublisher = ({
 
 RecordPublisher.propTypes = {
   classes: PropTypes.object.isRequired,
-  publishData: PropTypes.object
+  publishTemplates: PropTypes.oneOfType([
+    PropTypes.object.isRequired,
+    PropTypes.arrayOf(PropTypes.object).isRequired
+  ])
 }
 
 export default withStyles(styles)(RecordPublisher)

@@ -75,7 +75,7 @@ const PublishModal = ({
   publishErrorMessage,
   publishType,
   closePublisherModal,
-  publishData
+  publishTemplates
 }) => {
   const publishRecord = publishType === RECORD
   const publishTemplate = publishType === TEMPLATE
@@ -94,7 +94,7 @@ const PublishModal = ({
           extendTemplateIds={extendTemplateIds}
         />}
         {publishRecord && <RecordPublisher
-          publishData={publishData}
+          publishTemplates={publishTemplates}
         />}
       </div>
       <div className={classes.modalFoot} />
@@ -107,6 +107,10 @@ PublishModal.propTypes = {
     PropTypes.arrayOf(PropTypes.number),
     PropTypes.number
   ]),
+  publishTemplates: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.arrayOf(PropTypes.object)
+  ]),
   publishSuccess: PropTypes.bool.isRequired,
   publishError: PropTypes.bool.isRequired,
   publishPending: PropTypes.bool.isRequired,
@@ -115,7 +119,6 @@ PublishModal.propTypes = {
     PropTypes.object // null
   ]),
   publishType: PropTypes.string.isRequired,
-  closePublisherModal: PropTypes.func.isRequired,
-  publishData: PropTypes.object
+  closePublisherModal: PropTypes.func.isRequired
 }
 export default withStyles(styles)(PublishModal)

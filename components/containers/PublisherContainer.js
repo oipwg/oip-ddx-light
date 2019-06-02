@@ -13,7 +13,8 @@ function mapStateToProps (state) {
     publishError: state.Publisher.publishError,
     publishPending: state.Publisher.publishPending,
     publishErrorMessage: state.Publisher.publishErrorMessage,
-    publishType: state.Publisher.publishType
+    publishType: state.Publisher.publishType,
+    publishTemplates: state.Publisher.publishTemplates
   }
 }
 
@@ -25,6 +26,10 @@ PublisherContainer.propTypes = {
   extendTemplateIds: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.number),
     PropTypes.number
+  ]),
+  publishTemplates: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.arrayOf(PropTypes.object)
   ]),
   publishSuccess: PropTypes.bool.isRequired,
   publishError: PropTypes.bool.isRequired,
