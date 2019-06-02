@@ -19,7 +19,7 @@ const ExplorerBody = ({
   activeSelection,
   publishRecord,
   publishTemplate,
-  forkTemplate,
+  extendTemplates,
   handleSelectTemplate,
   selectedTemplates
 }) => {
@@ -33,7 +33,7 @@ const ExplorerBody = ({
       templates={templates}
       publishRecord={publishRecord}
       publishTemplate={publishTemplate}
-      forkTemplate={forkTemplate}
+      extendTemplates={extendTemplates}
       handleSelectTemplate={handleSelectTemplate}
       selectedTemplates={selectedTemplates}
     />}
@@ -46,7 +46,7 @@ ExplorerBody.propTypes = {
   activeSelection: PropTypes.string,
   publishRecord: PropTypes.func.isRequired,
   publishTemplate: PropTypes.func.isRequired,
-  forkTemplate: PropTypes.func.isRequired
+  extendTemplates: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(ExplorerBody)

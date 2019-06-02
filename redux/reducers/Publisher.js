@@ -11,7 +11,7 @@ function Publisher (state = {
   publishPending: false,
   publishError: false,
   publishErrorMessage: null,
-  forkedTemplate: [],
+  extendTemplateIds: [],
   publishData: {
     descriptor: undefined,
     templateName: undefined
@@ -49,10 +49,10 @@ function Publisher (state = {
         publishType: TEMPLATE,
         openPublisherModal: true
       }
-    case actions.FORK_TEMPLATE:
+    case actions.EXTEND_TEMPLATES:
       return {
         ...state,
-        forkedTemplate: [...action.forkedTemplates]
+        extendTemplateIds: action.templateIds
       }
     case actions.PUBLISH_SUCCESS:
       return {

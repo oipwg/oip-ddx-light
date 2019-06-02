@@ -24,7 +24,7 @@ const TemplateMap = ({
   templates,
   publishRecord,
   publishTemplate,
-  forkTemplate,
+  extendTemplates,
   handleSelectTemplate,
   selectedTemplates
 }) => {
@@ -53,7 +53,7 @@ const TemplateMap = ({
         key={payload.template.name}
         publishRecord={publishRecord}
         publishTemplate={publishTemplate}
-        forkTemplate={forkTemplate}
+        extendTemplates={extendTemplates}
         handleSelectTemplate={handleSelectTemplate}
         selectedTemplates={selectedTemplates}
       />
@@ -66,7 +66,7 @@ TemplateMap.propTypes = {
   templates: PropTypes.object,
   publishRecord: PropTypes.func.isRequired,
   publishTemplate: PropTypes.func.isRequired,
-  forkTemplate: PropTypes.func.isRequired
+  extendTemplates: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(TemplateMap)

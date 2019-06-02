@@ -3,7 +3,6 @@ import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import { GoRepoForked, GoCloudUpload } from 'react-icons/go'
 import { MdRadioButtonChecked, MdRadioButtonUnchecked } from 'react-icons/md'
-import Explorer from '../wrappers/Explorer'
 
 const styles = theme => ({
   root: {
@@ -62,14 +61,14 @@ const TemplateCard = ({
   template,
   publishRecord,
   publishTemplate,
-  forkTemplate,
+  extendTemplates,
   key,
   handleSelectTemplate,
   selectedTemplates = {}
 }) => {
-  function handleTemplateFork () {
+  function handleTemplateExtend () {
     publishTemplate()
-    forkTemplate(template.identifier)
+    extendTemplates(template.identifier)
   }
 
   function handleRecordPublish () {
@@ -119,7 +118,7 @@ const TemplateCard = ({
     </div>
 
     <div className={classes.templateActions}>
-      <span onClick={handleTemplateFork}><GoRepoForked /></span>
+      <span onClick={handleTemplateExtend}><GoRepoForked /></span>
       <span onClick={handleRecordPublish}><GoCloudUpload /></span>
     </div>
   </div>
@@ -144,7 +143,7 @@ TemplateCard.propTypes = {
   meta: PropTypes.object,
   publishRecord: PropTypes.func.isRequired,
   publishTemplate: PropTypes.func.isRequired,
-  forkTemplate: PropTypes.func.isRequired
+  extendTemplates: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(TemplateCard)

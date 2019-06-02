@@ -20,10 +20,10 @@ export const publishTemplate = () => ({
   type: PUBLISH_TEMPLATE
 })
 
-export const FORK_TEMPLATE = 'FORK_TEMPLATE'
-export const forkTemplate = forkedTemplate => ({
-  type: FORK_TEMPLATE,
-  forkedTemplates: [forkedTemplate]
+export const EXTEND_TEMPLATES = 'EXTEND_TEMPLATES'
+export const extendTemplates = templateIds => ({
+  type: EXTEND_TEMPLATES,
+  templateIds
 })
 
 export const PUBLISH_SUCCESS = 'PUBLISH_SUCCESS'
