@@ -22,7 +22,8 @@ const RecordTemplateJSS = withStyles(RecordTemplateStyles)(RecordTemplate)
 
 const TemplatePublisher = ({
   classes,
-  extendTemplateIds
+  extendTemplateIds,
+  withPublisher = true
 }) => {
   function handleOnSuccess (txid) {
     console.log('Success: ', txid)
@@ -37,12 +38,14 @@ const TemplatePublisher = ({
       onSuccess={handleOnSuccess}
       onError={handleOnError}
       _extends={extendTemplateIds}
+      withPublisher={withPublisher}
     />
   </div>
 }
 
 TemplatePublisher.propTypes = {
   classes: PropTypes.object.isRequired,
+  withPublisher: PropTypes.bool,
   extendTemplateIds: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.number),
     PropTypes.number
