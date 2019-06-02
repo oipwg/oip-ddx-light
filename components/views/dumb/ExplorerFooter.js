@@ -9,7 +9,7 @@ const styles = theme => ({
     position: 'relative'
   },
   selectActionsContainer: {
-    position: 'absolute',
+    position: 'fixed',
     display: 'flex',
     flexDirection: 'row',
     bottom: 0,

@@ -17,6 +17,7 @@ const styles = theme => ({
     borderRadius: '3px',
     boxSizing: 'border-box'
   },
+  basicTemplateRoot: {},
   recordSection: {
     display: 'flex',
     flexDirection: 'column',
@@ -42,13 +43,32 @@ const RecordCard = ({ classes, record, meta }) => {
   const { [BASIC_TEMPLATE]: basicTemplate } = details
 
   // toDo: handle records without the BASIC template
-  if (!basicTemplate) {
-    return null
-  }
-
-  const { title, description, year } = basicTemplate
+  // if (!basicTemplate) {
+  //   return null
+  // }
 
   return <div className={classes.root}>
+    {basicTemplate ? <BasicTemplate
+      classes={classes}
+      basicTemplate={basicTemplate}
+    /> : <DumbTemplate
+      classes={classes}
+      record={record}
+    />}
+  </div>
+}
+const DumbTemplate = ({ classes, record }) => {
+  let details = record.details
+  return <div className={classes.basicTemplateRoot}>
+    {Object.keys(details).map((tmpl, i) => {
+      return <div key={i}>{tmpl}</div>
+    })}
+  </div>
+}
+
+const BasicTemplate = ({ classes, basicTemplate }) => {
+  const { title, description, year } = basicTemplate
+  return <div className={classes.basicTemplateRoot}>
     <div className={classes.recordSection}>
       <span className={classes.recordFieldTitle}>Title</span>
       <span className={classes.recordField}>{title}</span>
