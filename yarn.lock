@@ -7917,10 +7917,10 @@ oip-hdmw@^1.3.27:
     varuint-bitcoin "^1.1.0"
     wif "^2.0.6"
 
-oip-protobufjs@^1.6.5:
-  version "1.6.5"
-  resolved "https://registry.yarnpkg.com/oip-protobufjs/-/oip-protobufjs-1.6.5.tgz#182f273ea5fdd8e7054217fec0962cd08a1ede9a"
-  integrity sha512-DJlwgnDjPXN9+ZnQzMa01Msa8Pb7FwJxbjFSWjqfK1C0WHRLBLLX2vqNvG30YhsRmuoKxHw8Ca3J4FjpGGx8GQ==
+oip-protobufjs@^1.6.6:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/oip-protobufjs/-/oip-protobufjs-1.6.6.tgz#a42d0d6842eb051b27a111b795f8115f49aa935a"
+  integrity sha512-k5ZJBKeqe7Ig/eqpr955ZHQwvuErTFn/wq9Zukndazjw7zXMjvbOzlEKTRRjtsmDEbRSM0XbdoJuUC1GLHLKJg==
   dependencies:
     bitcoinjs-lib "^5.0.2"
     bitcoinjs-message "^2.0.0"
@@ -7930,10 +7930,10 @@ oip-protobufjs@^1.6.5:
     lodash "^4.17.11"
     protobufjs "^6.8.8"
 
-oip-react@^2.0.0-beta.3.9.6:
-  version "2.0.0-beta.3.9.6"
-  resolved "https://registry.yarnpkg.com/oip-react/-/oip-react-2.0.0-beta.3.9.6.tgz#781e7308b54727bf7f69f44f1649ab506d9e3c9c"
-  integrity sha512-LPcPR38l4uw7WDv37HXxJOe/BSgc2hGWCL0BwTSrqADlUFdPipzKbQ+xXObS5ZeftpdIFs6PfkRFiYHnn10KRg==
+oip-react@^2.0.0-beta.3.9.7:
+  version "2.0.0-beta.3.9.7"
+  resolved "https://registry.yarnpkg.com/oip-react/-/oip-react-2.0.0-beta.3.9.7.tgz#313221155b9ec9c9db055569a6ac548f29f689d4"
+  integrity sha512-Lv4YHoQkSniDC/+f9RMh81MJ+1gYeuHtw1KMxUzGZNCAQbNed6W8l8G5cLLLLUNall5z/u4zXBMMWc2ee4OUSg==
   dependencies:
     uid "^0.0.2"
     "@material-ui/core" "^3.9.3"
@@ -7949,7 +7949,7 @@ oip-react@^2.0.0-beta.3.9.6:
     lodash "^4.17.11"
     moment "^2.24.0"
     oip-hdmw "^1.3.27"
-    oip-protobufjs "^1.6.5"
+    oip-protobufjs "^1.6.6"
     prop-types "^15.7.2"
     protobufjs "~6.8.8"
     react "^16.8.4"
