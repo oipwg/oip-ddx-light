@@ -45,7 +45,7 @@ on search.
 
 ### Config
 Currently the config allows you to set the URL of the OIPdaemon and a template filter. 
-To use the template filter, add the template identifiers you want this app to target. The template operator
+To use the template filter, add the `template name (tmpl_XXX)` you want this app to target. The template operator
 config can be set to either **AND** or **OR**. This specifies whether you want the filter to get 
 each filter or any one of them.
 

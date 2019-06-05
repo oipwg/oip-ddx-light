@@ -2,4 +2,5 @@
   "daemonApiUrl": "http://localhost:1606/oip",
   "templateFilter": [],
   "templateOperand": "AND"
+  "ignoreUnverifiedPublishers":  "false"
 }
