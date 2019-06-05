@@ -26,6 +26,13 @@ const knownTemplates = {
     'description': 'All registered publishers in OIP',
     'file_descriptor_set': 'Ck4KB3AucHJvdG8SEm9pcFByb3RvLnRlbXBsYXRlcyInCgFQEgwKBG5hbWUYASABKAkSFAoMZmxvQmlwNDRYUHViGAIgASgJYgZwcm90bzM=',
     'identifier': 1128015747
+  },
+  tmpl_F471DFF9: {
+    'friendly_name': 'Verified Publisher',
+    'name': 'tmpl_F471DFF9',
+    'description': 'reference data to verify registered publishers',
+    'file_descriptor_set': 'CoQBCgdwLnByb3RvEhJvaXBQcm90by50ZW1wbGF0ZXMiXQoBUBIhChNyZWdpc3RlcmVkUHVibGlzaGVyGAEgASgLMgRUeGlkEhEKCXR3aXR0ZXJJZBgCIAEoCRINCgVnYWJJZBgDIAEoCRoTCgRUeGlkEgsKA3JhdxgBIAEoDGIGcHJvdG8z',
+    'identifier': 4101103609
   }
 }
 
