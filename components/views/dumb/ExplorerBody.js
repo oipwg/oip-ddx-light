@@ -21,13 +21,15 @@ const ExplorerBody = ({
   publishTemplate,
   extendTemplates,
   handleSelectTemplate,
-  selectedTemplates
+  selectedTemplates,
+  isVerified
 }) => {
   let displayRecords = activeSelection === 'Records'
   let displayTemplates = activeSelection === 'Templates'
   return <div className={classes.root}>
     {displayRecords && <RecordMap
       records={records}
+      isVerified={isVerified}
     />}
     {displayTemplates && <TemplateMap
       templates={templates}

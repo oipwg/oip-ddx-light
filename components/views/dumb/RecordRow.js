@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import knownTemplates from '../../../templates/knownTemplates'
@@ -40,9 +40,24 @@ const styles = theme => ({
 const RecordRow = ({
   classes,
   record,
-  meta
+  meta,
+  isVerified
 }) => {
   const { details } = record // tags, payment, permissions
+  // eslint-disable-next-line camelcase
+  const { signed_by } = meta
+
+  let verified
+  useEffect(() => {
+    async function verify (pubAddr) {
+      const {success, payload} = await isVerified(pubAddr)
+      if (success) {
+        verified = payload
+      }
+    }
+    verify(signed_by)
+  }, [])
+
   return <tr
     key={meta.txid}
     className={classes.root}
@@ -56,8 +71,10 @@ const RecordRow = ({
           keyIndex={i}
         />
       })}
-      {meta.signed_by && <>
-        <span className={classes.templateName}>signed_by:</span><span> {meta.signed_by}</span>
+      {/* eslint-disable-next-line camelcase */}
+      {signed_by && <>
+        {/* eslint-disable-next-line camelcase */}
+        <span className={classes.templateName}>signed_by:</span><span> {signed_by}</span>
       </>}
     </td>
   </tr>

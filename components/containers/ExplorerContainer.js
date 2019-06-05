@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Explorer from '../views/wrappers/Explorer'
@@ -39,12 +39,23 @@ const ExplorerContainer = ({
   setMode,
   publishRecord,
   publishTemplate,
-  extendTemplates
+  extendTemplates,
+  daemonApi
 }) => {
   const [searchInput, setSearchInput] = useState('')
   const [selectOption, setSelectOption] = useState(Records)
 
+  async function isVerified (pubAddr) {
+    try {
+      return await daemonApi.isVerifiedPublisher(pubAddr)
+    } catch (err) {
+      console.error(`Failed to verify pub address: ${pubAddr}: \n ${err}`)
+      return { success: false, error: err}
+    }
+  }
+
   const [selectedTemplates, setSelectedTemplates] = useState({})
+
   function handleSelectTemplate ({ id, template }) {
     if (selectedTemplates[id]) {
       let { [id]: _, ...newSelection } = selectedTemplates
@@ -144,11 +155,13 @@ const ExplorerContainer = ({
     selectedTemplates={selectedTemplates}
     handlePublishRecordWithTemplates={handlePublishRecordWithTemplates}
     handleExtendTemplates={handleExtendTemplates}
+    isVerified={isVerified}
   />
 }
 
 function mapStateToProps (state) { // toDo: note:: separate templates and records
   return {
+    daemonApi: state.Explorer.daemonApi,
     defaultRecords: state.Explorer.defaultRecords,
     defaultTemplates: state.Explorer.defaultTemplates,
     searchedRecords: state.Explorer.searchedRecords,
@@ -181,6 +194,7 @@ const mapDispatchToProps = {
 }
 
 ExplorerContainer.propTypes = {
+  daemonApi: PropTypes.object.isRequired,
   setMode: PropTypes.func.isRequired,
   searchRecords: PropTypes.func.isRequired,
   searchTemplates: PropTypes.func.isRequired,

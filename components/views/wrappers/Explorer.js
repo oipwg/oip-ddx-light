@@ -38,7 +38,8 @@ const Explorer = ({
   handleSelectTemplate,
   selectedTemplates,
   handlePublishRecordWithTemplates,
-  handleExtendTemplates
+  handleExtendTemplates,
+  isVerified
 }) => {
   return <div className={classes.root}>
     <div className={classes.wrapper}>
@@ -62,6 +63,7 @@ const Explorer = ({
         extendTemplates={extendTemplates}
         handleSelectTemplate={handleSelectTemplate}
         selectedTemplates={selectedTemplates}
+        isVerified={isVerified}
       />
       <ExplorerFooter
         templates={templates}

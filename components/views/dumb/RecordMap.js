@@ -23,7 +23,8 @@ const styles = theme => ({
 
 const RecordMap = ({
   classes,
-  records
+  records,
+  isVerified
 }) => {
   let recordData = []
   if (!isObjEmpty(records)) {
@@ -40,6 +41,7 @@ const RecordMap = ({
         return <RecordRow
           record={record}
           meta={meta}
+          isVerified={isVerified}
         />
       })}
     </tbody>
