@@ -18,7 +18,7 @@ You need to set the url of the OIPdaemon the web app will target in the `config.
 of the project.
 
 The daemon must be oip5 compatible otherwise it will throw errors or you will not receive any records
-or templates back.
+or templates back. Our hosted endpoint can be found at https://api.oip.io/oip
 
 ###ALSO IMPORTANT (PLEASE READ)
 This app has been developed really quickly and misses a lot of user-friendly features and is in beta. It's core purpose is 
