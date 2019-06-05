@@ -1,8 +1,10 @@
+import config from '../config'
+
 export const themeOptions = {
   palettes: {
     'light': {
-      'primary': '#3688aa',
-      'secondary': '#d8443a',
+      'primary': config.primaryColor,
+      'secondary': config.secondaryColor,
       'tertiary': '#7a89ac',
       'background': '#ffffff',
       'text': '#000000',
