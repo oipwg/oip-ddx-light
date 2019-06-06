@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
+import config from '../../../config'
 import knownTemplates from '../../../templates/knownTemplates'
 
 const styles = theme => ({
   root: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     overflow: 'hidden',
     wordBreak: 'break-word',
     borderTop: `1px solid ${theme.palette.greyscale(0.3)}`,
@@ -47,22 +48,29 @@ const RecordRow = ({
   // eslint-disable-next-line camelcase
   const { signed_by } = meta
 
-  let verified
+  const [verified, setVerified] = useState({ twitter: false, gab: false })
+
   useEffect(() => {
     async function verify (pubAddr) {
-      const {success, payload} = await isVerified(pubAddr)
+      let tmplName; let localhost = false
+      if (config.testnet) {
+        tmplName = 'tmpl_2A46C905'
+        localhost = true
+      }
+      const { success, payload } = await isVerified({ pubAddr, templateName: tmplName, localhost })
       if (success) {
-        verified = payload
+        setVerified(payload)
       }
     }
+
     verify(signed_by)
   }, [])
 
-  return <tr
+  return <div
     key={meta.txid}
     className={classes.root}
   >
-    <td className={classes.tableData}>
+    <div className={classes.tableData}>
       {Object.keys(details).map((tmpl, i) => {
         return <TemplateData
           classes={classes}
@@ -76,8 +84,8 @@ const RecordRow = ({
         {/* eslint-disable-next-line camelcase */}
         <span className={classes.templateName}>signed_by:</span><span> {signed_by}</span>
       </>}
-    </td>
-  </tr>
+    </div>
+  </div>
 }
 
 const TemplateData = ({
@@ -87,8 +95,11 @@ const TemplateData = ({
   keyIndex
 }) => {
   let templateName
+
   if (knownTemplates[tmpl]) {
     templateName = knownTemplates[tmpl].friendly_name
+  } else if (knownTemplates.testnet[tmpl]) {
+    templateName = knownTemplates.testnet[tmpl].friendly_name
   } else {
     templateName = 'Unknown Template'
   }
@@ -98,7 +109,7 @@ const TemplateData = ({
     {Object.keys(details).map((recordField, i) => {
       return <RecordField
         classes={classes}
-        keyIndex={i}
+        keyIndex={`${tmpl}-${i}`}
         recordField={recordField}
         recordFieldData={details[recordField]}
       />
