@@ -45,12 +45,12 @@ const ExplorerContainer = ({
   const [searchInput, setSearchInput] = useState('')
   const [selectOption, setSelectOption] = useState(Records)
 
-  async function isVerified (pubAddr) {
+  async function isVerified ({ pubAddr, templateName, apiUrl, localhost }) {
     try {
-      return await daemonApi.isVerifiedPublisher(pubAddr)
+      return await daemonApi.isVerifiedPublisher({ pubAddr, templateName, apiUrl, localhost })
     } catch (err) {
       console.error(`Failed to verify pub address: ${pubAddr}: \n ${err}`)
-      return { success: false, error: err}
+      return { success: false, error: err }
     }
   }
 
