@@ -2,7 +2,7 @@
   "daemonApiUrl": "http://localhost:1606/oip",
   "templateFilter": [],
   "templateOperand": "OR",
-  "testnet": true,
+  "testnet": false,
   "ignoreUnverifiedPublishers":  false,
   "primaryColor": "#3688aa",
   "secondaryColor": "#d8443a"
