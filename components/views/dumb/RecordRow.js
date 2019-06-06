@@ -51,19 +51,25 @@ const RecordRow = ({
   const [verified, setVerified] = useState({ twitter: false, gab: false })
 
   useEffect(() => {
+    let current = true
     async function verify (pubAddr) {
-      let tmplName; let localhost = false
+      let tmplName
+      let localhost = false
       if (config.testnet) {
         tmplName = 'tmpl_2A46C905'
         localhost = true
       }
       const { success, payload } = await isVerified({ pubAddr, templateName: tmplName, localhost })
-      if (success) {
+      if (success && current) {
         setVerified(payload)
+        console.log('payload v', payload)
       }
     }
 
     verify(signed_by)
+    return () => {
+      current = false
+    }
   }, [])
 
   return <div
