@@ -11,7 +11,7 @@ const styles = theme => ({
     padding: [0, 30],
     '& table': {
       borderCollapse: 'collapse',
-      borderSpacing: 0,
+      borderSpacing: 0
     }
   },
   [`@media (max-width: ${theme.breakpoints['sm']}px)`]: {
@@ -30,8 +30,8 @@ const RecordMap = ({
   if (!isObjEmpty(records)) {
     recordData = [...records.results]
   }
-  return <table className={classes.root}>
-    <tbody>
+  return <div className={classes.root}>
+    <div>
       {recordData.map(payload => {
         const { meta, record } = payload
         if (!record) {
@@ -44,8 +44,8 @@ const RecordMap = ({
           isVerified={isVerified}
         />
       })}
-    </tbody>
-  </table>
+    </div>
+  </div>
 }
 
 RecordMap.propTypes = {
