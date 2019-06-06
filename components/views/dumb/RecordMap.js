@@ -42,6 +42,7 @@ const RecordMap = ({
           record={record}
           meta={meta}
           isVerified={isVerified}
+          key={meta.txid}
         />
       })}
     </div>

@@ -71,12 +71,12 @@ const RecordRow = ({
     className={classes.root}
   >
     <div className={classes.tableData}>
-      {Object.keys(details).map((tmpl, i) => {
+      {Object.keys(details).map(tmpl => {
         return <TemplateData
           classes={classes}
           tmpl={tmpl}
           details={details[tmpl]}
-          keyIndex={i}
+          key={tmpl}
         />
       })}
       {/* eslint-disable-next-line camelcase */}
@@ -91,8 +91,7 @@ const RecordRow = ({
 const TemplateData = ({
   classes,
   tmpl,
-  details,
-  keyIndex
+  details
 }) => {
   let templateName
 
@@ -103,13 +102,13 @@ const TemplateData = ({
   } else {
     templateName = 'Unknown Template'
   }
-  return <div key={keyIndex} className={classes.templateDataRow}>
+  return <div className={classes.templateDataRow}>
     <span className={classes.templateName}>{templateName}:</span>
     <span> {tmpl}</span>
-    {Object.keys(details).map((recordField, i) => {
+    {Object.keys(details).map(recordField => {
       return <RecordField
         classes={classes}
-        keyIndex={`${tmpl}-${i}`}
+        key={recordField}
         recordField={recordField}
         recordFieldData={details[recordField]}
       />
@@ -119,14 +118,13 @@ const TemplateData = ({
 
 const RecordField = ({
   classes,
-  keyIndex,
   recordField,
   recordFieldData
 }) => {
   if (recordFieldData.raw) {
     recordFieldData = recordFieldData.raw
   }
-  return <div className={classes.recordFieldRow} key={keyIndex}>
+  return <div className={classes.recordFieldRow}>
     <span className={classes.recordField}>{recordField}:</span>
     <span> {recordFieldData}</span>
   </div>
