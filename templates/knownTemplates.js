@@ -34,6 +34,13 @@ const knownTemplates = {
     'file_descriptor_set': 'CoQBCgdwLnByb3RvEhJvaXBQcm90by50ZW1wbGF0ZXMiXQoBUBIhChNyZWdpc3RlcmVkUHVibGlzaGVyGAEgASgLMgRUeGlkEhEKCXR3aXR0ZXJJZBgCIAEoCRINCgVnYWJJZBgDIAEoCRoTCgRUeGlkEgsKA3JhdxgBIAEoDGIGcHJvdG8z',
     'identifier': 4101103609
   },
+  tmpl_AFFDC192: {
+    'friendly_name': 'Registered Platforms',
+    'name': 'tmpl_AFFDC192',
+    'description': 'All registered platforms in OIP',
+    'file_descriptor_set': 'CpoBCgdwLnByb3RvEhJvaXBQcm90by50ZW1wbGF0ZXMicwoBUBIMCgRuYW1lGAEgASgJEhMKC2Rlc2NyaXB0aW9uGAIgASgJEg8KB2h0dHBVcmwYAyABKAkSHAoUcGF5bWVudHNCdGNCaXA0NFhQdWIYBCABKAkSHAoUcGF5bWVudHNGbG9CaXA0NFhQdWIYBSABKAliBnByb3RvMw==',
+    'identifier': 2952642962
+  },
   testnet: {
     tmpl_BE47CC68: {
       'friendly_name': 'Basic',
