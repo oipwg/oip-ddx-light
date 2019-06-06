@@ -7930,10 +7930,10 @@ oip-protobufjs@^1.6.6:
     lodash "^4.17.11"
     protobufjs "^6.8.8"
 
-oip-react@^2.0.0-beta.3.9.8:
-  version "2.0.0-beta.3.9.8"
-  resolved "https://registry.yarnpkg.com/oip-react/-/oip-react-2.0.0-beta.3.9.8.tgz#7ac7918b8aa035c111c151de2870e892873613f4"
-  integrity sha512-wETB4MZ2H3Pbaqr0rZGMyaD5C+SIPCgi9Y1U+xSp+InNKelSnc73mJgsiS62P7yie2OEBMkIuPSoJv1TyDUTIA==
+oip-react@^2.0.0-beta.3.9.9:
+  version "2.0.0-beta.3.9.9"
+  resolved "https://registry.yarnpkg.com/oip-react/-/oip-react-2.0.0-beta.3.9.9.tgz#c9c78eed137cb8fde8981f409a9f73a364311867"
+  integrity sha512-lxjCYfQS84GgglSb2R7IPE62aE8Vc8I6YS7uEWkXc72QeOjRV1PZULoV+3Tn7b6JLqXoALQmp35vCjq4kd/+Zw==
   dependencies:
     uid "^0.0.2"
     "@material-ui/core" "^3.9.3"
