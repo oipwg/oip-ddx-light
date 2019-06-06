@@ -7,8 +7,6 @@ import { MdSearch } from 'react-icons/md'
 import config from '../../../config'
 import knownTemplates from '../../../templates/knownTemplates'
 
-// import gab from '../../../static/assets/icons/Gab_text_logo.svg'
-
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -131,11 +129,9 @@ const ActionBar = ({
 const LinkRow = ({
   classes,
   verified,
-  txid,
-  twitterId,
-  gabId
+  txid
 }) => {
-  const { twitter, gab } = verified
+  const { twitter } = verified
 
   return <div className={classes.linkRowRoot}>
     {twitter && <button className={classes.twitterButton}>
