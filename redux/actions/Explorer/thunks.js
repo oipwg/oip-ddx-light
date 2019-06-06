@@ -14,6 +14,7 @@ import {
 // _exists_:record.details.tmpl_000000000000F113
 
 const EXISTS = '_exists_'
+const limit = 100
 
 export const applyTemplateFilter = query => (_, getState) => {
   const { templateFilter, templateOperand } = getState().Explorer
@@ -77,14 +78,14 @@ export const getOip5Records = query => async (dispatch, getState) => {
   if (query || templateFilter.length > 0) {
     let q = dispatch(applyTemplateFilter(query))
     try {
-      return daemonApi.searchOip5Records({ q })
+      return daemonApi.searchOip5Records({ q, limit })
     } catch (err) {
       throw Error(err)
     }
     // else if filter get filtered records
   } else {
     try {
-      return daemonApi.getLatestOip5Records()
+      return daemonApi.getLatestOip5Records({ limit })
     } catch (err) {
       throw new Error(err)
     }
@@ -135,14 +136,14 @@ export const getOip5Templates = query => async (dispatch, getState) => {
   // if query or filter, search artifacts
   if (query) {
     try {
-      return daemonApi.searchOip5Templates({ q: query })
+      return daemonApi.searchOip5Templates({ q: query, limit })
     } catch (err) {
       throw Error(err)
     }
     // else if filter get filtered records
   } else {
     try {
-      return daemonApi.getLatestOip5Templates()
+      return daemonApi.getLatestOip5Templates( { limit } )
     } catch (err) {
       throw Error(err)
     }
