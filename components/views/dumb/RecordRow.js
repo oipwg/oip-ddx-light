@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
+import Link from 'next/link'
+import { FaTwitter } from 'react-icons/fa'
+import { MdSearch } from 'react-icons/md'
 import config from '../../../config'
 import knownTemplates from '../../../templates/knownTemplates'
+
+// import gab from '../../../static/assets/icons/Gab_text_logo.svg'
 
 const styles = theme => ({
   root: {
@@ -35,8 +40,120 @@ const styles = theme => ({
   },
   recordFieldRow: {
     margin: [7, 16]
+  },
+  actionBarRoot: {
+    display: 'flex',
+    flex: '0 0 30px',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  actionIcon: {
+    cursor: 'pointer'
+  },
+  txidHeader: {
+    fontSize: 12,
+    color: theme.palette.primary.main,
+    outline: 'none',
+    textDecoration: 'none',
+    '&:visited': {
+      color: theme.palette.tertiary.main
+    },
+    '&:hover': {
+      borderBottom: '1px solid'
+    }
+  },
+  linkRowRoot: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  actionIconButton: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    padding: [3, 7],
+    border: '1px solid',
+    borderRadius: 3,
+    marginLeft: 7,
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: 'black',
+      color: 'white'
+    }
+  },
+  searchLink: {
+    display: 'inherit'
+  },
+  twitterButton: {
+    extend: 'actionIconButton',
+    borderColor: '#1DA1F2',
+    '&:hover': {
+      backgroundColor: '#1DA1F2',
+      '& > $twitterLink': {
+        color: 'white'
+      }
+    }
+  },
+  twitterLink: {
+    display: 'flex',
+    color: '#1DA1F2',
+    borderColor: '#1DA1F2',
+    backgroundColor: 'transparent'
   }
 })
+
+const ActionBar = ({
+  classes,
+  verified,
+  txid
+}) => {
+  let explorerLink
+  if (config.testnet) {
+    explorerLink = `https://testnet.flocha.in/tx/${txid}`
+  } else explorerLink = `https://livenet.flocha.in/tx/${txid}`
+
+  return <div className={classes.actionBarRoot}>
+    <a
+      className={classes.txidHeader}
+      href={explorerLink}
+      target='_blank'
+    >
+      {txid}
+    </a>
+    <LinkRow
+      classes={classes}
+      verified={verified}
+      txid={txid}
+    />
+  </div>
+}
+
+const LinkRow = ({
+  classes,
+  verified,
+  txid,
+  twitterId,
+  gabId
+}) => {
+  const { twitter, gab } = verified
+
+  return <div className={classes.linkRowRoot}>
+    {twitter && <button className={classes.twitterButton}>
+      <a
+        className={classes.twitterLink}
+        href={`https://twitter.com/oip/status/${verified.twitterId}`}
+        target='_blank'
+      >
+        <FaTwitter />
+      </a>
+    </button>}
+    <Link prefetch passHref href={`/record?txid=${txid}`}>
+      <button className={classes.actionIconButton}>
+        <a className={classes.searchLink}><MdSearch /></a>
+      </button>
+    </Link>
+  </div>
+}
 
 const RecordRow = ({
   classes,
@@ -73,9 +190,14 @@ const RecordRow = ({
   }, [])
 
   return <div
-    key={meta.txid}
     className={classes.root}
   >
+    <ActionBar
+      classes={classes}
+      verified={verified}
+      recordDetails={details}
+      txid={meta.txid}
+    />
     <div className={classes.tableData}>
       {Object.keys(details).map(tmpl => {
         return <TemplateData
