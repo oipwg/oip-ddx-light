@@ -1,4 +1,7 @@
 const knownTemplates = {
+  video: [ 'tmpl_4769368E', 'tmpl_5679C4E4' ],
+  audio: [],
+  image: [],
   tmpl_66089C48: {
     'friendly_name': 'Basic',
     'name': 'tmpl_66089C48',
