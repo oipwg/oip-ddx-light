@@ -238,6 +238,13 @@ const TemplateData = ({
   } else {
     templateName = 'Unknown Template'
   }
+  if (tmpl === BASIC) {
+    details = {
+      title: details.title,
+      description: details.description,
+      year: details.description
+    }
+  }
   return <div className={classes.templateDataRow}>
     <span className={classes.templateName}>{templateName}:</span>
     <span> {tmpl}</span>
