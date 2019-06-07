@@ -27,7 +27,9 @@ const RecordMap = ({
   isVerified
 }) => {
   let recordData = []
-  if (!isObjEmpty(records)) {
+  if (Array.isArray(records)) {
+    recordData = records
+  } else if (!isObjEmpty(records)) {
     recordData = [...records.results]
   }
   return <div className={classes.root}>
@@ -51,7 +53,10 @@ const RecordMap = ({
 
 RecordMap.propTypes = {
   classes: PropTypes.object.isRequired,
-  records: PropTypes.object
+  records: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array
+  ])
 }
 
 export default withStyles(styles)(RecordMap)
