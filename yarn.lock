@@ -6001,10 +6001,10 @@ js-oip@^2.3.0:
     varuint-bitcoin "^1.1.0"
     wif "^2.0.6"
 
-js-oip@^2.3.5:
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/js-oip/-/js-oip-2.3.5.tgz#dc218afa963bcb6d277935527987e2b9a8d6e71c"
-  integrity sha512-QdR8T8jMoRz2kgzoYbDmI5i+FD8xtsaKtHUuQSlGa9Knf0SqIrxnkLQo9UAL19QqnzlA4NeOyVA7ogb8IfFX0w==
+js-oip@^2.3.6:
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/js-oip/-/js-oip-2.3.6.tgz#77ca4449b13f3457e85576c8700cb8949ff9a487"
+  integrity sha512-C6TLsIurgfy0jm7Hys0Tzx+JaxlqRhavmPp3y50AQWuGFhEWVt+0iTrLzPjeGS2fV3N1wfJ6FifqFVUX7OsKjQ==
   dependencies:
     axios "^0.19.0"
     bitcoinjs-lib "git+https://github.com/oipwg/bitcoinjs-lib.git#export-classify"
