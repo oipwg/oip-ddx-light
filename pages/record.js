@@ -16,7 +16,12 @@ const styles = theme => ({
   },
   recordsByPublisher: {
     display: 'flex',
-    flex: 1
+    flex: 1,
+    flexDirection: 'column',
+    '& h3': {
+      paddingLeft: 30,
+      color: theme.palette.greyscale(0.8)
+    }
   }
 })
 
@@ -75,6 +80,7 @@ const Record = ({
       />
     </div>
     <div className={classes.recordsByPublisher}>
+      <h3>Records by this publisher</h3>
       <RecordMap
         records={recordsByPublisher}
         isVerified={isVerified}
