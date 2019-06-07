@@ -3,8 +3,6 @@ import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import videojs from 'video.js'
 
-
-
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -16,15 +14,37 @@ const styles = theme => ({
   }
 })
 
-const getIpfsUrl = ({ dir, file }) => {
-
+const getIpfsUrl = ({ dirName, filename }) => {
+  return `${ipfsGateway}${dirName}/${filename}`
 }
+
+const stripFileExtension = (filename) => {
+  let split = filename.split('.')
+  return split[split.length - 1]
+}
+
+const ipfsGateway = 'https://ipfs.io/ipfs/'
+// const ipfsGatewayFallback = 'https://cloudflare-ipfs.com/ipfs/'
+
+const MAINNET_VIDEO_TEMPLATE = 'tmpl_4769368E'
+const TESTNET_VIDEO_TEMPLATE = 'tmpl_5679C4E4'
 
 const VideoViewer = ({
   classes,
   recordPayload
 }) => {
-  let videoExtension = 'mp4'
+  const { record } = recordPayload
+  const { details } = record
+
+  let template
+  if (details[MAINNET_VIDEO_TEMPLATE]) {
+    template = details[MAINNET_VIDEO_TEMPLATE]
+  } else {
+    template = details[TESTNET_VIDEO_TEMPLATE]
+  }
+  const { thumbnailFilename, addressDirectory, filename, displayName, publishDate } = template
+
+  let videoExtension = stripFileExtension(filename)
 
   // init video js
   const videoRef = useRef(null)
@@ -40,7 +60,6 @@ const VideoViewer = ({
 
     player.on('ready', () => {
       console.log('player is ready')
-      player.addClass(classes.videojss);
     })
 
     return () => {
@@ -52,7 +71,7 @@ const VideoViewer = ({
 
   return <div className={classes.root}>
     <video ref={videoRef} className={'video-js vjs-oip vjs-big-play-centered'}>
-      <source src={'#'} type={`video/${videoExtension}`} />
+      <source src={getIpfsUrl({dirName: addressDirectory, filename})} type={`video/${videoExtension}`} />
     </video>
 
   </div>
