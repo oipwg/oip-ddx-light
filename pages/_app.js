@@ -2,6 +2,8 @@ import App, { Container } from 'next/app'
 import React from 'react'
 import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
+import { ThemeProvider, useTheme } from 'oip-react'
+import { themeOptions } from '../styles/theme'
 
 class MyApp extends App {
   componentDidMount () {
@@ -13,14 +15,22 @@ class MyApp extends App {
   }
   render () {
     const { Component, pageProps, reduxStore } = this.props
+
     return (
       <Container>
         <Provider store={reduxStore}>
-          <Component {...pageProps} />
+          <ThemedApp Component={Component} pageProps={pageProps} />
         </Provider>
       </Container>
     )
   }
+}
+
+const ThemedApp = ({ Component, pageProps }) => {
+  const { theme } = useTheme(themeOptions, 'light')
+  return <ThemeProvider theme={theme}>
+    <Component {...pageProps} />
+  </ThemeProvider>
 }
 
 export default withReduxStore(MyApp)

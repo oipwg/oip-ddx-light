@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { ThemeProvider, useTheme } from 'oip-react'
 import { connect } from 'react-redux'
 
 import InterfaceContainer from '../components/containers/InterfaceContainer'
 
-import { themeOptions } from '../styles/theme'
 import {
   fetchingRecordsError,
   fetchingTemplatesError,
@@ -22,7 +20,6 @@ const Index = ({
   fetchingRecordsError,
   fetchingTemplatesError
 }) => {
-  const { theme } = useTheme(themeOptions, 'light')
 
   useEffect(() => {
     if (defaultRecords) {
@@ -39,9 +36,7 @@ const Index = ({
     }
   }, [])
 
-  return <ThemeProvider theme={theme}>
-    <InterfaceContainer />
-  </ThemeProvider>
+  return <InterfaceContainer />
 }
 
 Index.getInitialProps = async (ctx) => {
