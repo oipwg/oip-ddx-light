@@ -9,6 +9,7 @@ const styles = theme => ({
     width: '100%',
     maxWidth: '100%',
     padding: [0, 30],
+    boxSizing: 'border-box',
     '& table': {
       borderCollapse: 'collapse',
       borderSpacing: 0
