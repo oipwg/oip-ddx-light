@@ -5,6 +5,9 @@ import { Provider } from 'react-redux'
 import { ThemeProvider, useTheme } from 'oip-react'
 import { themeOptions } from '../styles/theme'
 
+import 'video.js/dist/video-js.css'
+import '../static/styles/css/VideoPlayer.css'
+
 class MyApp extends App {
   componentDidMount () {
     const style = document.getElementById('server-side-styles')
