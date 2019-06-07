@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import knownTemplates from '../../../templates/knownTemplates'
 import VideoViewer from './VideoViewer'
-import GenericRecordViewer from './GenericRecordVideo'
+import GenericRecordViewer from './GenericRecordViewer'
 
 const SwitchViewer = ({
   recordPayload
