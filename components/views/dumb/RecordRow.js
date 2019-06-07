@@ -175,7 +175,6 @@ const RecordRow = ({
       const { success, payload } = await isVerified({ pubAddr, templateName: tmplName, localhost })
       if (success && current) {
         setVerified(payload)
-        console.log('payload v', payload)
       }
     }
 
