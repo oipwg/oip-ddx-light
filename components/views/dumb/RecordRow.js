@@ -245,6 +245,23 @@ const TemplateData = ({
       year: details.description
     }
   }
+  if (tmpl === VIDEO) {
+    details = {
+      displayName: details.displayName,
+      addressDirectory: details.addressDirectory,
+      filename: details.filename,
+      thumbnailFilename: details.thumbnailFilename,
+      publishDate: details.publishDate
+    }
+  }
+  if (tmpl === PAYMENT) {
+    details = {
+      platformCut: details.platformCut,
+      influencerCut: details.influencerCut,
+      ...details
+    }
+  }
+  // console.log('details', details)
   return <div className={classes.templateDataRow}>
     <span className={classes.templateName}>{templateName}:</span>
     <span> {tmpl}</span>
