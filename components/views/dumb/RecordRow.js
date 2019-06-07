@@ -150,6 +150,9 @@ const LinkRow = ({
     </Link>
   </div>
 }
+const BASIC = 'tmpl_66089C48'
+const VIDEO = 'tmpl_4769368E'
+const PAYMENT = 'tmpl_3084380E'
 
 const RecordRow = ({
   classes,
@@ -184,6 +187,15 @@ const RecordRow = ({
     }
   }, [])
 
+  // order template data to start with basic and end with payments
+  let tmpDetails = [BASIC, VIDEO, ...Object.keys(details), PAYMENT]
+  let orderedDetails = []
+  for (let tmpl of tmpDetails) {
+    if (!orderedDetails.includes(tmpl)) {
+      orderedDetails.push(tmpl)
+    }
+  }
+
   return <div
     className={classes.root}
   >
@@ -194,7 +206,8 @@ const RecordRow = ({
       txid={meta.txid}
     />
     <div className={classes.tableData}>
-      {Object.keys(details).map(tmpl => {
+      {orderedDetails.map(tmpl => {
+        if (!details[tmpl]) return null
         return <TemplateData
           classes={classes}
           tmpl={tmpl}
