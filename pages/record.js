@@ -3,6 +3,7 @@ import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import SwitchViewer from '../components/views/dumb/SwitchViewer'
 import RecordMap from '../components/views/dumb/RecordMap'
+import PaymentRow from '../components/views/dumb/PaymentRow'
 
 const styles = theme => ({
   root: {
@@ -12,11 +13,13 @@ const styles = theme => ({
   },
   recordViewer: {
     display: 'flex',
-    flex: '1 0 450px'
+    flex: '1 0 450px',
+    flexDirection: 'column'
   },
   recordsByPublisher: {
     display: 'flex',
     flex: 1,
+    minHeight: '50%',
     flexDirection: 'column',
     '& h3': {
       paddingLeft: 30,
@@ -72,15 +75,20 @@ const Record = ({
       return { success: false, error: err }
     }
   }
-
+  const TMPL_PAYMENT = 'tmpl_3084380E'
+  let payment = false; let paymentInfo
+  if (recordPayload.record.details[TMPL_PAYMENT]) {
+    payment = true
+    paymentInfo = recordPayload.record.details[TMPL_PAYMENT]
+  }
   return <div className={classes.root}>
     <div className={classes.recordViewer}>
       <SwitchViewer
         recordPayload={recordPayload}
       />
+      {payment && <PaymentRow paymentInfo={paymentInfo} />}
     </div>
     <div className={classes.recordsByPublisher}>
-      <h3>Records by this publisher</h3>
       <RecordMap
         records={recordsByPublisher}
         isVerified={isVerified}
