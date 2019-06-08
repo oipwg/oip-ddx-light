@@ -220,7 +220,7 @@ const RecordRow = ({
         {/* eslint-disable-next-line camelcase */}
         <span className={classes.templateName}>signed_by:</span><span> {signed_by}</span>
       </>}
-      {verified.name && <div style={{marginTop: '7px'}}>
+      {verified.name && <div style={{ marginTop: '7px' }}>
         {/* eslint-disable-next-line camelcase */}
         <span className={classes.templateName}>name:</span><span> {verified.name}</span>
       </div>}
