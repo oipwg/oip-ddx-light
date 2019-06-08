@@ -3,7 +3,9 @@
   "templateFilter": [],
   "templateOperand": "OR",
   "testnet": false,
-  "ignoreUnverifiedPublishers":  false,
+  "privatekey": "",
+  "network": "mainnet",
+  "explorerUrl": "https://flocha.in/api",
   "primaryColor": "#3688aa",
   "secondaryColor": "#d8443a"
 }
