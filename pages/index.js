@@ -11,6 +11,7 @@ import {
   setDefaultTemplates
 } from '../redux/actions/Explorer/creators'
 import { getDefaultRecords, getDefaultTemplates } from '../redux/actions/Explorer/thunks'
+import { getExchangeRate } from '../redux/actions/Wallet/thunks'
 
 const Index = ({
   defaultRecords,
@@ -47,6 +48,7 @@ Index.getInitialProps = async (ctx) => {
   // this is a part of render blocking I think
   const recordsPayload = await dispatch(getDefaultRecords())
   const templatesPayload = await dispatch(getDefaultTemplates())
+  await dispatch(getExchangeRate())
 
   if (isServer) {
     return {
