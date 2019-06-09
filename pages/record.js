@@ -56,6 +56,8 @@ const Record = ({
       } catch (err) {
         console.error(err)
       }
+      if (!res) return
+
       const { success, payload, error } = res
       if (success) {
         const { results } = payload
@@ -69,7 +71,11 @@ const Record = ({
       }
     }
     if (recordPayload) {
-      getRecordsByPublisher()
+      try {
+        getRecordsByPublisher()
+      } catch (err) {
+        console.error(`Failed to get records by publisher: \n ${err}`)
+      }
     }
 
     return () => {
@@ -92,7 +98,7 @@ const Record = ({
     paymentInfo = recordPayload.record.details[TMPL_PAYMENT]
   }
   return <div className={classes.root}>
-    <SideBar reroute={true} />
+    <SideBar reroute />
     <div className={classes.content}>
       <div className={classes.recordViewer}>
         <SwitchViewer
