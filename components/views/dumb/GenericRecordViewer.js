@@ -7,7 +7,10 @@ const styles = theme => ({
     display: 'flex',
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    '& h1': {
+      textAlign: 'center'
+    }
   }
 })
 
