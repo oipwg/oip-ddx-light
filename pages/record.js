@@ -4,12 +4,22 @@ import PropTypes from 'prop-types'
 import SwitchViewer from '../components/views/dumb/SwitchViewer'
 import RecordMap from '../components/views/dumb/RecordMap'
 import PaymentRow from '../components/views/dumb/PaymentRow'
+import SideBar from '../components/views/dumb/SideBar'
 
 const styles = theme => ({
   root: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     height: '100%'
+  },
+  [`@media (max-width: ${theme.breakpoints['md']}px)`]: {
+    root: {
+      flexDirection: 'column'
+    }
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'column'
   },
   recordViewer: {
     display: 'flex',
@@ -82,17 +92,20 @@ const Record = ({
     paymentInfo = recordPayload.record.details[TMPL_PAYMENT]
   }
   return <div className={classes.root}>
-    <div className={classes.recordViewer}>
-      <SwitchViewer
-        recordPayload={recordPayload}
-      />
-      {payment && <PaymentRow paymentInfo={paymentInfo} />}
-    </div>
-    <div className={classes.recordsByPublisher}>
-      <RecordMap
-        records={recordsByPublisher}
-        isVerified={isVerified}
-      />
+    <SideBar reroute={true} />
+    <div className={classes.content}>
+      <div className={classes.recordViewer}>
+        <SwitchViewer
+          recordPayload={recordPayload}
+        />
+        {payment && <PaymentRow paymentInfo={paymentInfo} />}
+      </div>
+      <div className={classes.recordsByPublisher}>
+        <RecordMap
+          records={recordsByPublisher}
+          isVerified={isVerified}
+        />
+      </div>
     </div>
   </div>
 }

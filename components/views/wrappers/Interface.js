@@ -12,19 +12,13 @@ import Publisher from './Publisher'
 const Interface = ({
   classes,
   activePage,
-  setActivePage,
-  pages,
   openPublisherModal
 }) => {
   const explorer = activePage === 'explorer'
   const publisher = activePage === 'publisher'
   const wallet = activePage === 'wallet'
   return <div className={classes.root}>
-    <SideBar
-      pages={pages}
-      activePage={activePage}
-      setActivePage={setActivePage}
-    />
+    <SideBar />
     {explorer && <ExplorerContainer />}
     {(openPublisherModal) && <PublisherContainer render={props => (
       <PublishModal {...props} />
@@ -51,8 +45,6 @@ const styles = theme => ({
 Interface.propTypes = {
   classes: PropTypes.object.isRequired,
   activePage: PropTypes.string.isRequired,
-  setActivePage: PropTypes.func.isRequired,
-  pages: PropTypes.array.isRequired,
   openPublisherModal: PropTypes.bool.isRequired
 }
 
