@@ -1,13 +1,14 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { Explorer, Interface, Publisher } from './reducers'
+import { Explorer, Interface, Publisher, Wallet } from './reducers'
 
 // Create our Store
 const createStoreFn = () => {
   const reducers = {
     Explorer,
     Interface,
-    Publisher
+    Publisher,
+    Wallet
   }
 
   // Create the logger to log Actions to the console
