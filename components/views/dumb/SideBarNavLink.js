@@ -1,6 +1,7 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
+import NavMenu from './NavMenu'
 
 const styles = theme => ({
   navItem: {
@@ -20,6 +21,9 @@ const styles = theme => ({
   },
   pageLinkName: {
     textTransform: 'capitalize'
+  },
+  fiatPrice: {
+    marginLeft: 10
   }
 })
 
@@ -29,7 +33,9 @@ const SideBarNavLink = ({
   setActivePage,
   key,
   activePage,
-  theme
+  theme,
+  floExchangeRate,
+  floBalanceSat
 }) => {
   const getStyleIfActive = () => {
     if (activePage === page) {
@@ -39,6 +45,9 @@ const SideBarNavLink = ({
       }
     } else return {}
   }
+  let floDec = floBalanceSat / 1e8
+  let fiat = (floDec * floExchangeRate).toFixed(2)
+  const wallet = page === 'wallet'
   return <a
     key={key}
     className={classes.navItem}
@@ -46,6 +55,7 @@ const SideBarNavLink = ({
     style={getStyleIfActive()}
   >
     <span className={classes.pageLinkName}>{page}</span>
+    {wallet && <span className={classes.fiatPrice}>${fiat}</span>}
   </a>
 }
 

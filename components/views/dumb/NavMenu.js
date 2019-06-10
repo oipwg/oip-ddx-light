@@ -20,7 +20,9 @@ const NavMenu = ({
   classes,
   pages,
   activePage,
-  setActivePage
+  setActivePage,
+  floExchangeRate,
+  floBalanceSat
 }) => {
   return <div className={classes.root}>
     <nav className={classes.tableOfContents}>
@@ -30,6 +32,8 @@ const NavMenu = ({
           key={i}
           setActivePage={setActivePage}
           activePage={activePage}
+          floExchangeRate={floExchangeRate}
+          floBalanceSat={floBalanceSat}
         />
       })}
     </nav>

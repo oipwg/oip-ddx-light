@@ -11,7 +11,7 @@ import {
   setDefaultTemplates
 } from '../redux/actions/Explorer/creators'
 import { getDefaultRecords, getDefaultTemplates } from '../redux/actions/Explorer/thunks'
-import { getExchangeRate } from '../redux/actions/Wallet/thunks'
+import { getBalance, getExchangeRate } from '../redux/actions/Wallet/thunks'
 
 const Index = ({
   defaultRecords,
@@ -19,9 +19,10 @@ const Index = ({
   setDefaultRecords,
   setDefaultTemplates,
   fetchingRecordsError,
-  fetchingTemplatesError
+  fetchingTemplatesError,
+  getExchangeRate,
+  getBalance
 }) => {
-
   useEffect(() => {
     if (defaultRecords) {
       const { error } = defaultRecords
@@ -37,6 +38,16 @@ const Index = ({
     }
   }, [])
 
+  // get flo balance and exchange rate
+  useEffect(() => {
+    const getXrAndBalance = async () => {
+      await getExchangeRate()
+      await getBalance()
+    }
+
+    getXrAndBalance()
+  }, [])
+
   return <InterfaceContainer />
 }
 
@@ -48,7 +59,6 @@ Index.getInitialProps = async (ctx) => {
   // this is a part of render blocking I think
   const recordsPayload = await dispatch(getDefaultRecords())
   const templatesPayload = await dispatch(getDefaultTemplates())
-  await dispatch(getExchangeRate())
 
   if (isServer) {
     return {
@@ -67,7 +77,9 @@ const mapDispatchToProps = {
   setDefaultTemplates,
   setDefaultRecords,
   fetchingRecordsError,
-  fetchingTemplatesError
+  fetchingTemplatesError,
+  getExchangeRate,
+  getBalance
 }
 
-export default connect(undefined, mapDispatchToProps)(Index)
+export default connect(null, mapDispatchToProps)(Index)

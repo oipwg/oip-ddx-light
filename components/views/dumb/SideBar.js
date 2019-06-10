@@ -49,7 +49,9 @@ const SideBar = ({
   setActivePage,
   pages,
   reroute,
-  router
+  router,
+  floExchangeRate,
+  floBalanceSat
 }) => {
   function handleSetActivePage (page) {
     if (reroute) {
@@ -66,6 +68,8 @@ const SideBar = ({
       activePage={activePage}
       setActivePage={handleSetActivePage}
       pages={pages}
+      floExchangeRate={floExchangeRate}
+      floBalanceSat={floBalanceSat}
     />
     <NavMenuMobile
       activePage={activePage}
@@ -86,7 +90,9 @@ SideBar.propTypes = {
 function mapStateToProps (state) {
   return {
     activePage: state.Interface.activePage,
-    pages: state.Interface.pages
+    pages: state.Interface.pages,
+    floBalanceSat: state.Wallet.floBalanceSat,
+    floExchangeRate: state.Wallet.floExchangeRate
   }
 }
 
