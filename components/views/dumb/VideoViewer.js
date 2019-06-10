@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import videojs from 'video.js'
+import getIpfsUrl from '../../../helpers/getIpfsUrl'
 
 const styles = theme => ({
   root: {
@@ -14,17 +15,10 @@ const styles = theme => ({
   }
 })
 
-const getIpfsUrl = ({ dirName, filename }) => {
-  return `${ipfsGateway}${dirName}/${filename}`
-}
-
 const stripFileExtension = (filename) => {
   let split = filename.split('.')
   return split[split.length - 1]
 }
-
-const ipfsGateway = 'https://ipfs.io/ipfs/'
-// const ipfsGatewayFallback = 'https://cloudflare-ipfs.com/ipfs/'
 
 const MAINNET_VIDEO_TEMPLATE = 'tmpl_4769368E'
 const TESTNET_VIDEO_TEMPLATE = 'tmpl_5679C4E4'
@@ -71,7 +65,7 @@ const VideoViewer = ({
 
   return <div className={classes.root}>
     <video ref={videoRef} className={'video-js vjs-oip vjs-big-play-centered'}>
-      <source src={getIpfsUrl({dirName: addressDirectory, filename})} type={`video/${videoExtension}`} />
+      <source src={getIpfsUrl({ dirName: addressDirectory, filename })} type={`video/${videoExtension}`} />
     </video>
 
   </div>

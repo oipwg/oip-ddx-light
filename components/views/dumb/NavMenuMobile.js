@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import { MdMenu, MdClose } from 'react-icons/md'
-import useWindowSize from '../../../hooks/useWindowSize'
+import useWindowSize from '../../../helpers/hooks/useWindowSize'
 
 const styles = theme => ({
   root: {

@@ -3,9 +3,10 @@ import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import { FaTwitter } from 'react-icons/fa'
-import { MdSearch } from 'react-icons/md'
+// import { MdSearch } from 'react-icons/md'
 import config from '../../../config'
 import knownTemplates from '../../../templates/knownTemplates'
+import getIpfsUrl from '../../../helpers/getIpfsUrl'
 
 const styles = theme => ({
   root: {
@@ -20,6 +21,16 @@ const styles = theme => ({
   },
   tableData: {
     width: '100%'
+  },
+  thumbnail: {
+    width: 300,
+    float: 'left',
+    paddingRight: 16,
+    paddingBottom: 10,
+    marginTop: 10
+  },
+  templateData: {
+
   },
   templateDataRow: {
     // width: 30
@@ -199,6 +210,15 @@ const RecordRow = ({
     }
   }
 
+  // get VIDEO and thumbnail
+  let thumbnail; let ipfsUrl
+  if (Object.keys(details).includes(VIDEO)) {
+    if (details[VIDEO].thumbnailFilename && details[VIDEO].addressDirectory) {
+      ipfsUrl = getIpfsUrl({ dirName: details[VIDEO].addressDirectory, filename: details[VIDEO].thumbnailFilename })
+      thumbnail = true
+    }
+  }
+
   return <div
     className={classes.root}
   >
@@ -209,26 +229,34 @@ const RecordRow = ({
       txid={meta.txid}
     />
     <div className={classes.tableData}>
-      {orderedDetails.map(tmpl => {
-        if (!details[tmpl]) return null
-        return <TemplateData
-          classes={classes}
-          tmpl={tmpl}
-          details={details[tmpl]}
-          key={tmpl}
-        />
-      })}
-      {/* eslint-disable-next-line camelcase */}
-      {signed_by && <>
+      {/* thumbnail here */}
+      {thumbnail && <Thumbnail src={ipfsUrl} classes={classes} />}
+      <div className={classes.templateData}>
+        {orderedDetails.map(tmpl => {
+          if (!details[tmpl]) return null
+          return <TemplateData
+            classes={classes}
+            tmpl={tmpl}
+            details={details[tmpl]}
+            key={tmpl}
+          />
+        })}
         {/* eslint-disable-next-line camelcase */}
-        <span className={classes.templateName}>signed_by:</span><span> {signed_by}</span>
-      </>}
-      {verified.name && <div style={{ marginTop: '7px' }}>
-        {/* eslint-disable-next-line camelcase */}
-        <span className={classes.templateName}>name:</span><span> {verified.name}</span>
-      </div>}
+        {signed_by && <>
+          {/* eslint-disable-next-line camelcase */}
+          <span className={classes.templateName}>signed_by:</span><span> {signed_by}</span>
+        </>}
+        {verified.name && <div style={{ marginTop: '7px' }}>
+          {/* eslint-disable-next-line camelcase */}
+          <span className={classes.templateName}>name:</span><span> {verified.name}</span>
+        </div>}
+      </div>
     </div>
   </div>
+}
+
+const Thumbnail = ({ src, classes }) => {
+  return <img className={classes.thumbnail} src={src} alt={'thumbnail'} />
 }
 
 const TemplateData = ({
