@@ -74,13 +74,16 @@ const styles = theme => ({
     borderRadius: 3,
     marginLeft: 7,
     '&:hover': {
-      cursor: 'pointer',
-      backgroundColor: 'black',
-      color: 'white'
+      cursor: 'pointer'
+      // backgroundColor: 'black',
+      // color: 'white'
     }
   },
   searchLink: {
-    display: 'inherit'
+    display: 'inherit',
+    '& > img': {
+      height: 13
+    }
   },
   twitterButton: {
     extend: 'actionIconButton',
@@ -145,7 +148,7 @@ const LinkRow = ({
     </button>}
     <Link prefetch passHref href={`/record?txid=${txid}`}>
       <button className={classes.actionIconButton}>
-        <a className={classes.searchLink}><MdSearch /></a>
+        <a className={classes.searchLink}><img src={'/static/assets/icons/expand.png'} alt={'expand'} /></a>
       </button>
     </Link>
   </div>
