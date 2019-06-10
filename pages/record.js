@@ -19,12 +19,14 @@ const styles = theme => ({
   },
   content: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    overflowY: 'auto'
   },
   recordViewer: {
     display: 'flex',
-    flex: '1 0 450px',
-    flexDirection: 'column'
+    // flex: '1 0 450px',
+    flexDirection: 'column',
+    height: 1000
   },
   recordsByPublisher: {
     display: 'flex',
