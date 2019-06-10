@@ -1,7 +1,8 @@
 import { OIP } from 'js-oip'
+import Exchange from 'oip-exchange-rate'
+
 import config from '../../config'
 import * as actions from '../actions/Wallet/creators'
-import Exchange from 'oip-exchange-rate'
 
 const initialState = {
   xWallet: new OIP(config.privatekey, config.network, { explorerUrl: config.explorerUrl }).wallet,
@@ -10,7 +11,7 @@ const initialState = {
   txSuccess: false,
   txError: false,
   txErrorMessage: undefined,
-  floBalance: undefined,
+  floBalanceSat: undefined,
   floExchangeRate: undefined
 }
 const Wallet = (state = initialState, action) => {
@@ -56,7 +57,7 @@ const Wallet = (state = initialState, action) => {
     case actions.SET_FLO_BALANCE:
       return {
         ...state,
-        floBalance: action.balance
+        floBalanceSat: action.balance
       }
     case actions.SET_FLO_XR:
       return {
