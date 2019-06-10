@@ -8,5 +8,6 @@
   "network": "mainnet",
   "explorerUrl": "https://livenet.flocha.in/api",
   "primaryColor": "#3688aa",
-  "secondaryColor": "#d8443a"
+  "secondaryColor": "#d8443a",
+  "platformRegistrationTxid": "8b91d54d396ada336eb599f91c9ccd03e0e64c596859937c17d13b921e4b75b5"
 }

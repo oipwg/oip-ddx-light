@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+import config from '../config'
 import InterfaceContainer from '../components/containers/InterfaceContainer'
 
 import {
@@ -12,6 +13,8 @@ import {
 } from '../redux/actions/Explorer/creators'
 import { getDefaultRecords, getDefaultTemplates } from '../redux/actions/Explorer/thunks'
 import { getBalance, getExchangeRate } from '../redux/actions/Wallet/thunks'
+import useRegisterPlatform from '../helpers/hooks/useRegisterPlatform'
+import { registerPlatform, setPlatformData } from '../redux/actions/Platform/creators'
 
 const Index = ({
   defaultRecords,
@@ -21,8 +24,20 @@ const Index = ({
   fetchingRecordsError,
   fetchingTemplatesError,
   getExchangeRate,
-  getBalance
+  getBalance,
+  daemonApi,
+  setPlatformData,
+  registerPlatform
 }) => {
+  const { registered, platformData } = useRegisterPlatform({
+    txid: config.platformRegistrationTxid,
+    daemon: daemonApi
+  })
+  if (registered) {
+    registerPlatform(registered)
+    setPlatformData(platformData)
+  }
+
   useEffect(() => {
     if (defaultRecords) {
       const { error } = defaultRecords
@@ -73,13 +88,21 @@ Index.propTypes = {
   defaultRecords: PropTypes.object
 }
 
+const mapStateToProps = (state) => {
+  return {
+    daemonApi: state.Explorer.daemonApi
+  }
+}
+
 const mapDispatchToProps = {
   setDefaultTemplates,
   setDefaultRecords,
   fetchingRecordsError,
   fetchingTemplatesError,
   getExchangeRate,
-  getBalance
+  getBalance,
+  setPlatformData,
+  registerPlatform
 }
 
-export default connect(null, mapDispatchToProps)(Index)
+export default connect(mapStateToProps, mapDispatchToProps)(Index)
