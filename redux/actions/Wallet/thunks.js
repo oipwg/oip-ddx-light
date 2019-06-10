@@ -1,5 +1,5 @@
 import config from '../../../config'
-import { setFloExchangeRate, txError, txPending, txSuccess } from './creators'
+import { setFloBalance, setFloExchangeRate, txError, txPending, txSuccess } from './creators'
 
 export const sendTx = ({ address, value }) => async (dispatch, getState) => {
   const { Wallet } = getState()
@@ -30,21 +30,21 @@ export const getBalance = (addr) => async (dispatch, getState) => {
     console.error('failed to get address from explorer. private key not set')
     return
   }
+  let address = addr || config.pubKeyHash
   let explorer = Wallet.xWallet.explorer
   let res
   try {
-    res = await explorer.getAddress('oRpmeYvjgfhkSpPWGL8eP5ePupyop3hz9j')
+    res = await explorer.getAddress(address)
   } catch (err) {
     console.error(`failed to get address from explorer: \n ${err}`)
     return
   }
-
-  console.log('res xplr address ', res)
+  dispatch(setFloBalance(res.balanceSat))
+  return res.balanceSat
 }
 
 export const getExchangeRate = () => async (dispatch, getState) => {
   const { _exchange } = getState().Wallet
-
   let xr
   try {
     xr = await _exchange.getExchangeRate('flo', 'usd')
