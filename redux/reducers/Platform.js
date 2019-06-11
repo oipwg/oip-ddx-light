@@ -2,7 +2,7 @@ import * as actions from '../actions/Platform/creators'
 
 function Platform (state = {
   registered: false,
-  platformData: undefined
+  platformData: {}
 }, action) {
   if (action.type === actions.SET_PLATFORM_DATA) {
     return {
