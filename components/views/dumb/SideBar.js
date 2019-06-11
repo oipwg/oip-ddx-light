@@ -32,7 +32,15 @@ const styles = theme => {
     toggleSwitch: {
       marginBottom: 30,
       marginTop: 'auto',
-      alignSelf: 'center'
+      display: 'flex',
+      width: 180,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    toggleSwitchText: {
+      fontSize: 12,
+      color: 'white',
+      margin: [0, 5]
     },
     [`@media (max-width: ${theme.breakpoints['md']}px)`]: {
       root: {
@@ -96,10 +104,13 @@ const SideBar = ({
       pages={pages}
     />
     <div className={classes.toggleSwitch}>
+      <span className={classes.toggleSwitchText}>All</span>
+
       <ToggleSwitchJSS
         onSwitch={handleToggleSwitch}
         defaultState={showVerifiedPublishers}
       />
+      <span className={classes.toggleSwitchText}>Verified Pubs Only</span>
     </div>
   </div>
 }
