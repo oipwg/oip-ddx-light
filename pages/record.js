@@ -6,7 +6,7 @@ import SwitchViewer from '../components/views/dumb/SwitchViewer'
 import RecordMap from '../components/views/dumb/RecordMap'
 import PaymentRow from '../components/views/dumb/PaymentRow'
 import SideBar from '../components/views/dumb/SideBar'
-import { tip } from '../redux/actions/Wallet/thunks'
+import { getBalance, getExchangeRate, tip } from '../redux/actions/Wallet/thunks'
 import { setActivePage } from '../redux/actions/Interface/creators'
 
 const styles = theme => ({
@@ -53,7 +53,9 @@ const Record = ({
   platformData,
   tip,
   showOnlyVerifiedPublishers,
-  setActivePage
+  setActivePage,
+  getExchangeRate,
+  getBalance
 }) => {
   useEffect(() => {
     setActivePage(null)
@@ -64,7 +66,6 @@ const Record = ({
   useEffect(() => {
     let current = true
     const getRecordsByPublisher = async () => {
-
       const { meta } = recordPayload
       const q = `meta.signed_by:${meta.signed_by}`
       let res
@@ -95,6 +96,21 @@ const Record = ({
       }
     }
 
+    return () => {
+      current = false
+    }
+  }, [])
+
+  // get flo balance and exchange rate
+  useEffect(() => {
+    let current = true
+    const getXrAndBalance = async () => {
+      if (current) {
+        await getExchangeRate()
+        await getBalance()
+      }
+    }
+    getXrAndBalance()
     return () => {
       current = false
     }
@@ -169,7 +185,9 @@ Record.propTypes = {
   registered: PropTypes.bool.isRequired,
   platformData: PropTypes.object.isRequired,
   daemonApi: PropTypes.object.isRequired,
-  setActivePage: PropTypes.func.isRequired
+  setActivePage: PropTypes.func.isRequired,
+  getExchangeRate: PropTypes.func.isRequired,
+  getBalance: PropTypes.func.isRequired
 }
 
 function mapStateToProps (state) {
@@ -182,6 +200,8 @@ function mapStateToProps (state) {
 }
 const mapDispatchToProps = {
   tip,
-  setActivePage
+  setActivePage,
+  getExchangeRate,
+  getBalance
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Record))
