@@ -18,7 +18,7 @@ const useRegisterPlatform = ({
         return
       }
 
-      console.log(res)
+      // console.log(res)
       const { success, payload } = res
       if (success) {
         let httpUrl
