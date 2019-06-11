@@ -43,7 +43,7 @@ const PaymentRow = ({
   tip
 }) => {
   const [txid, setTxid] = useState(undefined)
-  const [showTxid, setShowTxid] = useState(true)
+  const [showTxid, setShowTxid] = useState(false)
   async function sendTip () {
     let tx = await tip({
       paymentAddr: paymentAddress,
