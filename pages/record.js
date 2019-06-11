@@ -64,6 +64,7 @@ const Record = ({
   useEffect(() => {
     let current = true
     const getRecordsByPublisher = async () => {
+
       const { meta } = recordPayload
       const q = `meta.signed_by:${meta.signed_by}`
       let res
@@ -146,31 +147,26 @@ Record.getInitialProps = async (ctx) => {
 
   let state = getState()
   const { Explorer } = state
-  let daemon = Explorer.daemonApi
 
   const txid = query.txid
 
-  let response = await daemon.getOip5Record(txid)
+  let response = await Explorer.daemonApi.getOip5Record(txid)
   const { success, payload, error } = response
   if (success) {
     const { results } = payload
     if (results[0]) {
       return {
-        recordPayload: results[0],
-        daemonApi: daemon
+        recordPayload: results[0]
       }
     }
   } else { console.error(error) }
 
-  return {
-    daemonApi: daemon
-  }
+  return {}
 }
 
 Record.propTypes = {
   classes: PropTypes.object.isRequired,
   registered: PropTypes.bool.isRequired,
-  platformData: PropTypes.object.isRequired
   platformData: PropTypes.object.isRequired,
   daemonApi: PropTypes.object.isRequired,
   setActivePage: PropTypes.func.isRequired
@@ -180,7 +176,8 @@ function mapStateToProps (state) {
   return {
     registered: state.Platform.registered,
     platformData: state.Platform.platformData,
-    showOnlyVerifiedPublishers: state.Platform.showOnlyVerifiedPublishers
+    showOnlyVerifiedPublishers: state.Platform.showOnlyVerifiedPublishers,
+    daemonApi: state.Explorer.daemonApi
   }
 }
 const mapDispatchToProps = {
