@@ -99,15 +99,22 @@ const navStyles = theme => ({
     marginLeft: 20
   }
 })
+
 const Nav = ({ classes, pages, setActivePage }) => {
   return <div className={classes.root}>
     {pages.map((page, i) => {
+      let displayName
+      if (page === 'publisher') {
+        displayName = 'New Template'
+      } else if (page === 'explorer') {
+        displayName = 'Explorers'
+      } else displayName = page
       return <div
         className={classes.navItem}
         key={i}
         onClick={() => setActivePage(page)}
       >
-        <span className={classes.pageName}>{page}</span>
+        <span className={classes.pageName}>{displayName}</span>
       </div>
     })}
   </div>

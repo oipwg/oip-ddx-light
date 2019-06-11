@@ -338,7 +338,7 @@ const TableData = ({
       </>}
       {verified.name && <div style={{ marginTop: '7px' }}>
         {/* eslint-disable-next-line camelcase */}
-        <span className={classes.templateName}>name:</span><span> {verified.name}</span>
+        <span className={classes.templateName}>verified name:</span><span> {verified.name}</span>
       </div>}
     </div>
   </div>
