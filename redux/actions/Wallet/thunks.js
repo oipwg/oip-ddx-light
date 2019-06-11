@@ -23,7 +23,7 @@ export const tip = ({
   const { Platform, Wallet } = getState()
   const wallet = Wallet.xWallet
   if (!wallet) {
-    console.error(`Failed to send tip. private key probably is set. Wallet undefined`)
+    console.error(`Failed to send tip. private key is probably not set. Wallet undefined`)
     return
   }
   console.log(paymentAddr, paymentTemplate, tipAmountSat)
@@ -82,7 +82,7 @@ export const sendTx = (outputs) => async (dispatch, getState) => {
   const { Wallet } = getState()
   const xWallet = Wallet.xWallet
   if (!xWallet) {
-    console.error(`Failed to send tip. private key probably is set. Wallet undefined`)
+    console.error(`Failed to send transaction. private key is probably not set. Wallet undefined`)
     return
   }
 
@@ -103,7 +103,7 @@ export const getBalance = (addr) => async (dispatch, getState) => {
   const { Wallet } = getState()
   const xWallet = Wallet.xWallet
   if (!xWallet) {
-    console.error(`Failed to send tip. private key probably is set. Wallet undefined`)
+    console.error(`Failed to get balance. private key is probably not set. Wallet undefined`)
     return
   }
   let address = addr || getPubAddress(config.privatekey)
