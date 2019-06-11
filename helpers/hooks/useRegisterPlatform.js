@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 
+const REGISTERED_PLATFORM_TMPL = 'tmpl_F6A8A55E'
 const useRegisterPlatform = ({
   txid,
   daemon
@@ -17,6 +18,7 @@ const useRegisterPlatform = ({
         return
       }
 
+      console.log(res)
       const { success, payload } = res
       if (success) {
         let httpUrl
@@ -24,7 +26,7 @@ const useRegisterPlatform = ({
         if (results[0]) {
           const { record } = results[0]
           const { details } = record
-          setPlatformData(details['tmpl_AFFDC192'])
+          setPlatformData(details[REGISTERED_PLATFORM_TMPL])
           httpUrl = platformData.httpUrl
         }
         if (window) {
