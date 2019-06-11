@@ -74,7 +74,7 @@ export const tip = ({
   // console.log('sent tip: ', txid)
   setTimeout(() => {
     dispatch(getBalance())
-  }, 1500)
+  }, 5000)
   return txid
 }
 
