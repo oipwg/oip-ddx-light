@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import SwitchViewer from '../components/views/dumb/SwitchViewer'
 import RecordMap from '../components/views/dumb/RecordMap'
 import PaymentRow from '../components/views/dumb/PaymentRow'
 import SideBar from '../components/views/dumb/SideBar'
+import { tip } from '../redux/actions/Wallet/thunks'
 
 const styles = theme => ({
   root: {
@@ -45,7 +47,10 @@ const styles = theme => ({
 const Record = ({
   classes,
   recordPayload,
-  daemonApi
+  daemonApi,
+  registered,
+  platformData,
+  tip
 }) => {
   // get records by the same publisher
   const [ recordsByPublisher, setRecordsByPublisher ] = useState([])
@@ -95,11 +100,11 @@ const Record = ({
       return { success: false, error: err }
     }
   }
+  // check if record includes a payment template
   const TMPL_PAYMENT = 'tmpl_3084380E'
-  let payment = false; let paymentInfo
+  let payment = false
   if (recordPayload.record.details[TMPL_PAYMENT]) {
     payment = true
-    paymentInfo = recordPayload.record.details[TMPL_PAYMENT]
   }
   return <div className={classes.root}>
     <SideBar reroute />
@@ -108,7 +113,13 @@ const Record = ({
         <SwitchViewer
           recordPayload={recordPayload}
         />
-        {payment && <PaymentRow paymentInfo={paymentInfo} />}
+        {payment && <PaymentRow
+          paymentTemplate={recordPayload.record.details[TMPL_PAYMENT]}
+          registered={registered}
+          platformData={platformData}
+          paymentAddress={recordPayload.meta.signed_by}
+          tip={tip}
+        />}
       </div>
       <div className={classes.recordsByPublisher}>
         <RecordMap
@@ -149,7 +160,18 @@ Record.getInitialProps = async (ctx) => {
 }
 
 Record.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  registered: PropTypes.bool.isRequired,
+  platformData: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Record)
+function mapStateToProps (state) {
+  return {
+    registered: state.Platform.registered,
+    platformData: state.Platform.platformData
+  }
+}
+const mapDispatchToProps = {
+  tip
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Record))

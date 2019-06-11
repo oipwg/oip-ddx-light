@@ -1,7 +1,62 @@
 import config from '../../../config'
 import { setFloBalance, setFloExchangeRate, txError, txPending, txSuccess } from './creators'
 
-export const sendTx = ({ address, value }) => async (dispatch, getState) => {
+export const tip = ({
+  paymentAddr,
+  paymentTemplate,
+  tipAmountSat
+}) => async (dispatch, getState) => {
+  const { Platform, Wallet } = getState()
+  const wallet = Wallet.xWallet
+  if (!wallet) {
+    console.error(`Failed to send tip. private key probably is set. Wallet undefined`)
+    return
+  }
+  const TIP_FIAT = 0.05
+  const TIP_FIAT_FLO = (TIP_FIAT * Wallet.floExchangeRate).toFixed(8)
+  const TIP_FLO_SAT = TIP_FIAT_FLO * 1e8
+
+  let platformAddr
+  if (Platform.registered) {
+    platformAddr = Platform.platformData.floPaymentAddress
+  }
+
+  let amount = tipAmountSat || Math.floor(TIP_FLO_SAT)
+
+  let pubCut
+  let pubValue
+  let platformValue
+  let toPlatform
+  if (paymentTemplate && paymentTemplate.platformCut) {
+    pubCut = (100 - paymentTemplate.platformCut) / 100
+    pubValue = Math.floor(amount * pubCut)
+    platformValue = Math.floor(amount * (paymentTemplate.platformCut / 100))
+    toPlatform = {
+      address: platformAddr,
+      value: platformValue
+    }
+  } else pubValue = amount
+
+
+  const toPublisher = {
+    address: paymentAddr,
+    value: pubValue
+  }
+
+  let outputs = [toPublisher, toPlatform]
+  let txid
+  try {
+    txid = await dispatch(sendTx(outputs))
+  } catch (err) {
+    console.error(err)
+    return
+  }
+
+  dispatch(getBalance())
+  return txid
+}
+
+export const sendTx = (outputs) => async (dispatch, getState) => {
   const { Wallet } = getState()
   if (config.privatekey === '' || !config.privatekey) {
     console.error('failed to send tx. private key not set')
@@ -9,15 +64,13 @@ export const sendTx = ({ address, value }) => async (dispatch, getState) => {
   }
   let xWallet = Wallet.xWallet
 
-  let output = { address, value }
-
   dispatch(txPending())
   let txid
   try {
-    txid = await xWallet.sendTx(output)
+    txid = await xWallet.sendTx(outputs)
   } catch (err) {
-    console.error(`failed to send tx. \n ${err}`)
     dispatch(txError(err))
+    throw Error(`Failed to sendTx: \n ${err}`)
   }
   dispatch(txSuccess())
   console.log('tx sent: ', txid)

@@ -1,7 +1,6 @@
-import React, { useRef } from 'react'
+import React  from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
-import { OIP } from 'js-oip'
 
 const styles = theme => ({
   root: {
@@ -9,7 +8,7 @@ const styles = theme => ({
     flexDirection: 'row',
     flex: '0 0 50px',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     padding: [0, 30]
   },
   tipButton: {
@@ -19,7 +18,7 @@ const styles = theme => ({
       cursor: 'pointer'
     },
     '& > img': {
-      height: '40px',
+      height: 40,
       '&:hover': {
         height: 42
       }
@@ -29,22 +28,29 @@ const styles = theme => ({
 
 const PaymentRow = ({
   classes,
-  paymentInfo
+  paymentTemplate,
+  paymentAddress,
+  tip
 }) => {
-  const oipRef = useRef(null)
-
-  function sendTip = () => {
-
+  function sendTip () {
+    tip({
+      paymentAddr: paymentAddress,
+      paymentTemplate
+    })
   }
+
   return <div className={classes.root}>
-    <button className={classes.tipButton}>
+    <button onClick={sendTip} className={classes.tipButton}>
       <img src={'/static/assets/icons/tip.png'} alt={'tip'} />
     </button>
   </div>
 }
 
 PaymentRow.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  paymentTemplate: PropTypes.object.isRequired,
+  paymentAddress: PropTypes.string.isRequired,
+  tip: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(PaymentRow)
