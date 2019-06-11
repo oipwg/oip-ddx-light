@@ -25,7 +25,8 @@ const styles = theme => ({
 const RecordMap = ({
   classes,
   records,
-  isVerified
+  isVerified,
+  showOnlyVerifiedPublishers
 }) => {
   let recordData = []
   if (Array.isArray(records)) {
@@ -46,6 +47,7 @@ const RecordMap = ({
           meta={meta}
           isVerified={isVerified}
           key={meta.txid}
+          showOnlyVerifiedPublishers={showOnlyVerifiedPublishers}
         />
       })}
     </div>

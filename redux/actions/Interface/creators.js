@@ -46,3 +46,9 @@ export const setSearchedTemplatesPage = (pageIndex ) => ({
   type: SET_SEARCHED_TEMPLATES_PAGE,
   pageIndex
 })
+
+export const SHOW_ONLY_VERIFIED_PUBLISHER = 'SHOW_ONLY_VERIFIED_PUBLISHER'
+export const toggleVerifiedPublishers = (showOnlyVerifiedPublishers) => ({
+  type: SHOW_ONLY_VERIFIED_PUBLISHER,
+  showOnlyVerifiedPublishers
+})

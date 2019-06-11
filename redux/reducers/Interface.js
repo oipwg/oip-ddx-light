@@ -1,4 +1,5 @@
 import * as actions from '../actions/Interface/creators'
+import config from '../../config'
 
 function Interface (state = {
   pages: [actions.EXPLORER, actions.PUBLISHER, actions.WALLET],
@@ -7,7 +8,8 @@ function Interface (state = {
   defaultRecordPage: 0,
   defaultTemplatePage: 0,
   searchedRecordPage: 0,
-  searchedTemplatePage: 0
+  searchedTemplatePage: 0,
+  showOnlyVerifiedPublishers: config.showOnlyVerifiedPublishers
 }, action) {
   switch (action.type) {
     case actions.SET_MODE: {
@@ -45,6 +47,11 @@ function Interface (state = {
       return {
         ...state,
         searchedTemplatePage: action.pageIndex
+      }
+    case actions.SHOW_ONLY_VERIFIED_PUBLISHER:
+      return {
+        ...state,
+        showOnlyVerifiedPublishers: action.showOnlyVerifiedPublishers
       }
     default:
       return state

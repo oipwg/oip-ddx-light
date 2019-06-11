@@ -39,7 +39,8 @@ const Explorer = ({
   selectedTemplates,
   handlePublishRecordWithTemplates,
   handleExtendTemplates,
-  isVerified
+  isVerified,
+  showOnlyVerifiedPublishers
 }) => {
   return <div className={classes.root}>
     <div className={classes.wrapper}>
@@ -64,6 +65,7 @@ const Explorer = ({
         handleSelectTemplate={handleSelectTemplate}
         selectedTemplates={selectedTemplates}
         isVerified={isVerified}
+        showOnlyVerifiedPublishers={showOnlyVerifiedPublishers}
       />
       <ExplorerFooter
         templates={templates}

@@ -172,7 +172,8 @@ const RecordRow = ({
   classes,
   record,
   meta,
-  isVerified
+  isVerified,
+  showOnlyVerifiedPublishers = false
 }) => {
   const { details } = record // tags, payment, permissions
   // eslint-disable-next-line camelcase
@@ -186,7 +187,7 @@ const RecordRow = ({
       let tmplName
       let localhost = false
       if (config.testnet) {
-        tmplName = 'tmpl_2A46C905'
+        tmplName = 'tmpl_2A46C905' // verified pub testnet template
         localhost = true
       }
       const { success, payload } = await isVerified({ pubAddr, templateName: tmplName, localhost })
@@ -219,6 +220,45 @@ const RecordRow = ({
     }
   }
 
+  if (showOnlyVerifiedPublishers) {
+    if (verified.gab || verified.twitter) {
+      return <RecordRowData
+        classes={classes}
+        meta={meta}
+        thumbnail={thumbnail}
+        ipfsUrl={ipfsUrl}
+        orderedDetails={orderedDetails}
+        details={details}
+        // eslint-disable-next-line camelcase
+        signed_by={signed_by}
+        verified={verified}
+      />
+    } else return null
+  }
+  return <RecordRowData
+    classes={classes}
+    meta={meta}
+    thumbnail={thumbnail}
+    ipfsUrl={ipfsUrl}
+    orderedDetails={orderedDetails}
+    details={details}
+    // eslint-disable-next-line camelcase
+    signed_by={signed_by}
+    verified={verified}
+  />
+}
+
+const RecordRowData = ({
+  classes,
+  verified,
+  details,
+  meta,
+  thumbnail,
+  ipfsUrl,
+  orderedDetails,
+  // eslint-disable-next-line camelcase
+  signed_by
+}) => {
   return <div
     className={classes.root}
   >
@@ -228,29 +268,51 @@ const RecordRow = ({
       recordDetails={details}
       txid={meta.txid}
     />
-    <div className={classes.tableData}>
-      {/* thumbnail here */}
-      {thumbnail && <Thumbnail src={ipfsUrl} classes={classes} />}
-      <div className={classes.templateData}>
-        {orderedDetails.map(tmpl => {
-          if (!details[tmpl]) return null
-          return <TemplateData
-            classes={classes}
-            tmpl={tmpl}
-            details={details[tmpl]}
-            key={tmpl}
-          />
-        })}
+    <TableData
+      classes={classes}
+      thumbnail={thumbnail}
+      ipfsUrl={ipfsUrl}
+      orderedDetails={orderedDetails}
+      details={details}
+      // eslint-disable-next-line camelcase
+      signed_by={signed_by}
+      verified={verified}
+    />
+  </div>
+}
+
+const TableData = ({
+  classes,
+  thumbnail,
+  ipfsUrl,
+  orderedDetails,
+  details,
+  // eslint-disable-next-line camelcase
+  signed_by,
+  verified
+}) => {
+  return <div className={classes.tableData}>
+    {/* thumbnail here */}
+    {thumbnail && <Thumbnail src={ipfsUrl} classes={classes} />}
+    <div className={classes.templateData}>
+      {orderedDetails.map(tmpl => {
+        if (!details[tmpl]) return null
+        return <TemplateData
+          classes={classes}
+          tmpl={tmpl}
+          details={details[tmpl]}
+          key={tmpl}
+        />
+      })}
+      {/* eslint-disable-next-line camelcase */}
+      {signed_by && <>
         {/* eslint-disable-next-line camelcase */}
-        {signed_by && <>
-          {/* eslint-disable-next-line camelcase */}
-          <span className={classes.templateName}>signed_by:</span><span> {signed_by}</span>
-        </>}
-        {verified.name && <div style={{ marginTop: '7px' }}>
-          {/* eslint-disable-next-line camelcase */}
-          <span className={classes.templateName}>name:</span><span> {verified.name}</span>
-        </div>}
-      </div>
+        <span className={classes.templateName}>signed_by:</span><span> {signed_by}</span>
+      </>}
+      {verified.name && <div style={{ marginTop: '7px' }}>
+        {/* eslint-disable-next-line camelcase */}
+        <span className={classes.templateName}>name:</span><span> {verified.name}</span>
+      </div>}
     </div>
   </div>
 }

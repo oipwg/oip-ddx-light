@@ -40,7 +40,8 @@ const ExplorerContainer = ({
   publishRecord,
   publishTemplate,
   extendTemplates,
-  daemonApi
+  daemonApi,
+  showOnlyVerifiedPublishers
 }) => {
   const [searchInput, setSearchInput] = useState('')
   const [selectOption, setSelectOption] = useState(Records)
@@ -156,6 +157,7 @@ const ExplorerContainer = ({
     handlePublishRecordWithTemplates={handlePublishRecordWithTemplates}
     handleExtendTemplates={handleExtendTemplates}
     isVerified={isVerified}
+    showOnlyVerifiedPublishers={showOnlyVerifiedPublishers}
   />
 }
 
@@ -180,7 +182,8 @@ function mapStateToProps (state) { // toDo: note:: separate templates and record
     recordsError: state.Explorer.recordsError,
     templatesFetching: state.Explorer.templatesFetching,
     templatesSuccess: state.Explorer.templatesSuccess,
-    templatesError: state.Explorer.templatesError
+    templatesError: state.Explorer.templatesError,
+    showOnlyVerifiedPublishers: state.Interface.showOnlyVerifiedPublishers
   }
 }
 

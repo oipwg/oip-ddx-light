@@ -22,7 +22,8 @@ const ExplorerBody = ({
   extendTemplates,
   handleSelectTemplate,
   selectedTemplates,
-  isVerified
+  isVerified,
+  showOnlyVerifiedPublishers
 }) => {
   let displayRecords = activeSelection === 'Records'
   let displayTemplates = activeSelection === 'Templates'
@@ -30,6 +31,7 @@ const ExplorerBody = ({
     {displayRecords && <RecordMap
       records={records}
       isVerified={isVerified}
+      showOnlyVerifiedPublishers={showOnlyVerifiedPublishers}
     />}
     {displayTemplates && <TemplateMap
       templates={templates}
