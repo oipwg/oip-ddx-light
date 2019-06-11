@@ -1,4 +1,4 @@
-import React  from 'react'
+import React, { useState } from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 
@@ -8,10 +8,13 @@ const styles = theme => ({
     flexDirection: 'row',
     flex: '0 0 50px',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: [0, 30]
+    justifyContent: 'center',
+    padding: [0, 30],
+    position: 'relative'
   },
   tipButton: {
+    position: 'absolute',
+    left: 30,
     backgroundColor: 'transparent',
     border: 'none',
     '&:hover': {
@@ -23,6 +26,13 @@ const styles = theme => ({
         height: 42
       }
     }
+  },
+  transactionContainer: {
+  },
+  transactionLink: {
+    cursor: 'pointer',
+    borderBottom: 'none',
+    color: theme.palette.primary.main
   }
 })
 
@@ -32,17 +42,30 @@ const PaymentRow = ({
   paymentAddress,
   tip
 }) => {
-  function sendTip () {
-    tip({
+  const [txid, setTxid] = useState(undefined)
+  const [showTxid, setShowTxid] = useState(true)
+  async function sendTip () {
+    let tx = await tip({
       paymentAddr: paymentAddress,
       paymentTemplate
     })
+    console.log('tip txid: ', tx)
+    if (tx) {
+      setTxid(tx)
+      setShowTxid(true)
+    }
+    setTimeout(() => {
+      setShowTxid(false)
+    }, 20000)
   }
 
   return <div className={classes.root}>
     <button onClick={sendTip} className={classes.tipButton}>
       <img src={'/static/assets/icons/tip.png'} alt={'tip'} />
     </button>
+    <div className={classes.transactionContainer}>
+      {showTxid && <a target='_blank' href={`https://livenet.flocha.in/tx/${txid}`} className={classes.transactionLink}>See payment here</a>}
+    </div>
   </div>
 }
 
