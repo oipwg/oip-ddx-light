@@ -17,6 +17,7 @@ const styles = theme => ({
     left: 30,
     backgroundColor: 'transparent',
     border: 'none',
+    outline: 'none',
     '&:hover': {
       cursor: 'pointer'
     },
