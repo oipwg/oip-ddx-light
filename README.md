@@ -13,15 +13,21 @@ If not done so already, [install yarn here](https://yarnpkg.com/en/docs/install#
 `yarn dev`
 
 
-### Important!!
-YOU MUST SET A PRIVATE KEY IN THE CONFIG (WIF) OR EXPERIENCE A FATAL SERVER ERROR
+### Important Config Settings!
+Set your privateKey (wif) `config.js` at the root level of the project folder to send tips and see balance.
 
 
-You can optionally set the url of the OIPdaemon the web app will target in the `config.json` at the root
+You can optionally set the url of the OIPdaemon the web app will target in the `config.js` at the root
 of the project.
 
 The daemon must be oip5 compatible otherwise it will throw errors or you will not receive any records
 or templates back. Our hosted endpoint can be found at https://api.oip.io/oip
+
+To use the template filter, add the template name `(tmpl_XXXXXXXX)` you want this app to target. The template operator
+config can be set to either **AND** or **OR**. This specifies whether you want the filter to get 
+each filter or any one of them.
+
+Comments in config.js for each variable.
 
 ###ALSO IMPORTANT (PLEASE READ)
 This app has been developed really quickly and misses a lot of user-friendly features and is in beta. It's core purpose is 
@@ -39,16 +45,9 @@ buttons appear at the button right of the screen. These buttons allow you to pub
 all templates selected or allows you to publish a record using the fields from all specified templates. 
 
 When you publish a template or a record CHECK THE CONSOLE LOGS for success and error messages. If successful, you will
-receive back a txid. If error, it will leave a stack trace with hopefully some error messages that probably only I or Bitspill could debug.
+receive back a txid. If error, it will leave a stack trace with hopefully some error messages that probably only I or Bitspill could debug
+at the moment.
 
-Currently if a record does not contain the basic template, the record card will only dump the Template identifiers 
-it uses. Record and Template cards need UI/UX work! You may also experience a bit of render blocking depending on the network requests.
 Last note: to see an updated list of templates/record, REFRESH. It currently only pulls records/templates on startup or
 on search.
-
-### Config
-Currently the config allows you to set the URL of the OIPdaemon and a template filter. 
-To use the template filter, add the `template name (tmpl_XXX)` you want this app to target. The template operator
-config can be set to either **AND** or **OR**. This specifies whether you want the filter to get 
-each filter or any one of them.
 
