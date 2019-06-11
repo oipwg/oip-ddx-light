@@ -176,7 +176,7 @@ function mapStateToProps (state) {
   return {
     registered: state.Platform.registered,
     platformData: state.Platform.platformData,
-    showOnlyVerifiedPublishers: state.Platform.showOnlyVerifiedPublishers,
+    showOnlyVerifiedPublishers: state.Interface.showOnlyVerifiedPublishers,
     daemonApi: state.Explorer.daemonApi
   }
 }
