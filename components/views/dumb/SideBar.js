@@ -127,13 +127,16 @@ const toggleStyles = theme => ({
       width: 18,
       left: '-8px',
       top: '-2px',
-      backgroundColor: theme.palette.info.main
+      backgroundColor: 'black'
     }
   },
   '@global': {
     input: {
       '&:checked + $slider': {
-        backgroundColor: theme.palette.greyscale(0.1)
+        backgroundColor: 'black'
+      },
+      '&:checked + $slider:before': {
+        backgroundColor: 'white'
       }
     }
   }
