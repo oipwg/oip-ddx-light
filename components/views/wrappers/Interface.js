@@ -44,7 +44,7 @@ const styles = theme => ({
 
 Interface.propTypes = {
   classes: PropTypes.object.isRequired,
-  activePage: PropTypes.string.isRequired,
+  activePage: PropTypes.string,
   openPublisherModal: PropTypes.bool.isRequired
 }
 

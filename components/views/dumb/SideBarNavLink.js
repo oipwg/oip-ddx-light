@@ -47,13 +47,14 @@ const SideBarNavLink = ({
   let floDec = floBalanceSat / 1e8
   let fiat = (floDec * floExchangeRate).toFixed(2)
   const wallet = page === 'wallet'
+
   return <a
     key={key}
     className={classes.navItem}
     onClick={() => setActivePage(page)}
     style={getStyleIfActive()}
   >
-    <span className={classes.pageLinkName}>{page}</span>
+    <span className={classes.pageLinkName}>{page === 'publisher' ? 'New Record Template' : page}</span>
     {wallet && <span className={classes.fiatPrice}>${fiat}</span>}
   </a>
 }
@@ -66,4 +67,4 @@ SideBarNavLink.propTypes = {
   page: PropTypes.string.isRequired
 }
 
-export default withStyles(styles, {injectTheme: true})(SideBarNavLink)
+export default withStyles(styles, { injectTheme: true })(SideBarNavLink)

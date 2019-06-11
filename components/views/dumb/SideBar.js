@@ -110,7 +110,7 @@ const SideBar = ({
         onSwitch={handleToggleSwitch}
         defaultState={showVerifiedPublishers}
       />
-      <span className={classes.toggleSwitchText}>Verified Pubs Only</span>
+      <span className={classes.toggleSwitchText}>Verified</span>
     </div>
   </div>
 }
