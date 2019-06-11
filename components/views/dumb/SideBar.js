@@ -131,7 +131,7 @@ const ToggleSwitchJSS = withStyles(toggleStyles)(ToggleSwitch)
 
 SideBar.propTypes = {
   classes: PropTypes.object.isRequired,
-  activePage: PropTypes.string.isRequired,
+  activePage: PropTypes.string,
   setActivePage: PropTypes.func.isRequired,
   pages: PropTypes.array.isRequired,
   reroute: PropTypes.bool

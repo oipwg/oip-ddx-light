@@ -61,7 +61,7 @@ const SideBarNavLink = ({
 SideBarNavLink.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  activePage: PropTypes.string.isRequired,
+  activePage: PropTypes.string,
   setActivePage: PropTypes.func.isRequired,
   page: PropTypes.string.isRequired
 }

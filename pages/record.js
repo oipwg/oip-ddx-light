@@ -7,6 +7,7 @@ import RecordMap from '../components/views/dumb/RecordMap'
 import PaymentRow from '../components/views/dumb/PaymentRow'
 import SideBar from '../components/views/dumb/SideBar'
 import { tip } from '../redux/actions/Wallet/thunks'
+import { setActivePage } from '../redux/actions/Interface/creators'
 
 const styles = theme => ({
   root: {
@@ -51,8 +52,13 @@ const Record = ({
   registered,
   platformData,
   tip,
-  showOnlyVerifiedPublishers
+  showOnlyVerifiedPublishers,
+  setActivePage
 }) => {
+  useEffect(() => {
+    setActivePage(null)
+  }, [])
+
   // get records by the same publisher
   const [ recordsByPublisher, setRecordsByPublisher ] = useState([])
   useEffect(() => {
@@ -165,6 +171,9 @@ Record.propTypes = {
   classes: PropTypes.object.isRequired,
   registered: PropTypes.bool.isRequired,
   platformData: PropTypes.object.isRequired
+  platformData: PropTypes.object.isRequired,
+  daemonApi: PropTypes.object.isRequired,
+  setActivePage: PropTypes.func.isRequired
 }
 
 function mapStateToProps (state) {
@@ -175,6 +184,7 @@ function mapStateToProps (state) {
   }
 }
 const mapDispatchToProps = {
-  tip
+  tip,
+  setActivePage
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Record))

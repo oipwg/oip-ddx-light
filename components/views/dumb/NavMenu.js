@@ -42,7 +42,7 @@ const NavMenu = ({
 
 NavMenu.propTypes = {
   classes: PropTypes.object.isRequired,
-  activePage: PropTypes.string.isRequired,
+  activePage: PropTypes.string,
   setActivePage: PropTypes.func.isRequired,
   pages: PropTypes.array.isRequired
 }
