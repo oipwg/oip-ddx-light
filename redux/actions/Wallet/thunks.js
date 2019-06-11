@@ -80,11 +80,11 @@ export const tip = ({
 
 export const sendTx = (outputs) => async (dispatch, getState) => {
   const { Wallet } = getState()
-  if (config.privatekey === '' || !config.privatekey) {
-    console.error('failed to send tx. private key not set')
+  const xWallet = Wallet.xWallet
+  if (!xWallet) {
+    console.error(`Failed to send tip. private key probably is set. Wallet undefined`)
     return
   }
-  let xWallet = Wallet.xWallet
 
   dispatch(txPending())
   let txid
@@ -101,12 +101,13 @@ export const sendTx = (outputs) => async (dispatch, getState) => {
 
 export const getBalance = (addr) => async (dispatch, getState) => {
   const { Wallet } = getState()
-  if (config.privatekey === '' || !config.privatekey) {
-    console.error('failed to get address from explorer. private key not set')
+  const xWallet = Wallet.xWallet
+  if (!xWallet) {
+    console.error(`Failed to send tip. private key probably is set. Wallet undefined`)
     return
   }
   let address = addr || getPubAddress(config.privatekey)
-  let explorer = Wallet.xWallet.explorer
+  let explorer = xWallet.explorer
   let res
   try {
     res = await explorer.getAddress(address)
