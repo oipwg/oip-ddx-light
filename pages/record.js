@@ -50,7 +50,8 @@ const Record = ({
   daemonApi,
   registered,
   platformData,
-  tip
+  tip,
+  showOnlyVerifiedPublishers
 }) => {
   // get records by the same publisher
   const [ recordsByPublisher, setRecordsByPublisher ] = useState([])
@@ -125,6 +126,7 @@ const Record = ({
         <RecordMap
           records={recordsByPublisher}
           isVerified={isVerified}
+          showOnlyVerifiedPublishers={showOnlyVerifiedPublishers}
         />
       </div>
     </div>
@@ -168,7 +170,8 @@ Record.propTypes = {
 function mapStateToProps (state) {
   return {
     registered: state.Platform.registered,
-    platformData: state.Platform.platformData
+    platformData: state.Platform.platformData,
+    showOnlyVerifiedPublishers: state.Platform.showOnlyVerifiedPublishers
   }
 }
 const mapDispatchToProps = {

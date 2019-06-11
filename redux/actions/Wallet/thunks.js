@@ -1,5 +1,19 @@
+import { Networks } from 'js-oip'
+import { ECPair, payments } from 'bitcoinjs-lib'
 import config from '../../../config'
 import { setFloBalance, setFloExchangeRate, txError, txPending, txSuccess } from './creators'
+
+const { floMainnet, floTestnet } = Networks
+
+const network = {
+  flo_mainnet: floMainnet.network,
+  flo_testnet: floTestnet.network
+}
+function getPubAddress (wif, useNetwork = 'mainnet') {
+  let floNetwork = useNetwork === 'mainnet' ? network.flo_mainnet : network.floTestnet
+  const EC = ECPair.fromWIF(wif, floNetwork)
+  return payments.p2pkh({ pubkey: EC.publicKey, network: floNetwork }).address
+}
 
 export const tip = ({
   paymentAddr,
@@ -12,16 +26,19 @@ export const tip = ({
     console.error(`Failed to send tip. private key probably is set. Wallet undefined`)
     return
   }
-  const TIP_FIAT = 0.05
-  const TIP_FIAT_FLO = (TIP_FIAT * Wallet.floExchangeRate).toFixed(8)
-  const TIP_FLO_SAT = TIP_FIAT_FLO * 1e8
+  console.log(paymentAddr, paymentTemplate, tipAmountSat)
+  const TIP_FIAT = 0.02
+  const TIP_FLO_SAT = (TIP_FIAT * 1e8) / (Wallet.floExchangeRate * 1e8) * 1e8
+  console.log(TIP_FLO_SAT, Wallet.floExchangeRate)
 
   let platformAddr
   if (Platform.registered) {
+    console.log(Platform.registered, Platform.platformData.floPaymentAddress)
     platformAddr = Platform.platformData.floPaymentAddress
   }
 
   let amount = tipAmountSat || Math.floor(TIP_FLO_SAT)
+  console.log('amount', amount)
 
   let pubCut
   let pubValue
@@ -37,6 +54,7 @@ export const tip = ({
     }
   } else pubValue = amount
 
+  console.log(pubCut, pubValue, platformValue)
 
   const toPublisher = {
     address: paymentAddr,
@@ -44,6 +62,7 @@ export const tip = ({
   }
 
   let outputs = [toPublisher, toPlatform]
+  console.log(outputs)
   let txid
   try {
     txid = await dispatch(sendTx(outputs))
@@ -52,6 +71,7 @@ export const tip = ({
     return
   }
 
+  console.log('sent tip: ', txid)
   dispatch(getBalance())
   return txid
 }
@@ -83,7 +103,7 @@ export const getBalance = (addr) => async (dispatch, getState) => {
     console.error('failed to get address from explorer. private key not set')
     return
   }
-  let address = addr || config.pubKeyHash
+  let address = addr || getPubAddress(config.privatekey)
   let explorer = Wallet.xWallet.explorer
   let res
   try {

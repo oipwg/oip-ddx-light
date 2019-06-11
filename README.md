@@ -14,7 +14,10 @@ If not done so already, [install yarn here](https://yarnpkg.com/en/docs/install#
 
 
 ### Important!!
-You need to set the url of the OIPdaemon the web app will target in the `config.json` at the root
+YOU MUST SET A PRIVATE KEY IN THE CONFIG (WIF) OR EXPERIENCE A FATAL SERVER ERROR
+
+
+You can optionally set the url of the OIPdaemon the web app will target in the `config.json` at the root
 of the project.
 
 The daemon must be oip5 compatible otherwise it will throw errors or you will not receive any records

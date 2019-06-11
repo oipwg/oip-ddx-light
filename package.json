@@ -11,6 +11,7 @@
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "bip39": "^3.0.1",
+    "bitcoinjs-lib": "^5.0.5",
     "classnames": "^2.2.6",
     "js-oip": "^2.3.7",
     "lodash": "^4.17.11",
