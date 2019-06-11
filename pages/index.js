@@ -33,34 +33,55 @@ const Index = ({
     txid: config.platformRegistrationTxid,
     daemon: daemonApi
   })
-  if (registered) {
-    registerPlatform(registered)
-    setPlatformData(platformData)
-  }
+  useEffect(() => {
+    let current = true
+    if (current) {
+      if (registered) {
+        registerPlatform(registered)
+        setPlatformData(platformData)
+      }
+    }
+    return () => {
+      current = false
+    }
+  }, [registered, platformData])
 
   useEffect(() => {
+    let current = true
     if (defaultRecords) {
       const { error } = defaultRecords
-      if (error) {
-        fetchingRecordsError(error)
-      } else setDefaultRecords(defaultRecords)
+      if (current) {
+        if (error) {
+          fetchingRecordsError(error)
+        } else setDefaultRecords(defaultRecords)
+      }
     }
     if (defaultTemplates) {
       const { error } = defaultTemplates
-      if (error) {
-        fetchingTemplatesError(error)
-      } else setDefaultTemplates(defaultTemplates)
+      if (current) {
+        if (error) {
+          fetchingTemplatesError(error)
+        } else setDefaultTemplates(defaultTemplates)
+      }
+    }
+    return () => {
+      current = false
     }
   }, [])
 
   // get flo balance and exchange rate
   useEffect(() => {
+    let current = true
     const getXrAndBalance = async () => {
-      await getExchangeRate()
-      await getBalance()
+      if (current) {
+        await getExchangeRate()
+        await getBalance()
+      }
     }
-
     getXrAndBalance()
+    return () => {
+      current = false
+    }
   }, [])
 
   return <InterfaceContainer />
