@@ -1,5 +1,5 @@
 import * as actions from '../actions/Interface/creators'
-import config from '../../config'
+import config from '../../config.js'
 
 function Interface (state = {
   pages: [actions.EXPLORER, actions.PUBLISHER, actions.WALLET],

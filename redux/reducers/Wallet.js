@@ -1,7 +1,7 @@
 import { OIP } from 'js-oip'
 import Exchange from 'oip-exchange-rate'
 
-import config from '../../config'
+import config from '../../config.js'
 import * as actions from '../actions/Wallet/creators'
 
 let explorerWallet

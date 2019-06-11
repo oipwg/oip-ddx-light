@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import config from '../config'
+import config from '../config.js'
 import InterfaceContainer from '../components/containers/InterfaceContainer'
 
 import {

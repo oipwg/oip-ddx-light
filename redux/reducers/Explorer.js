@@ -1,5 +1,5 @@
 import { DaemonApi } from 'js-oip'
-import config from '../../config'
+import config from '../../config.js'
 import * as actions from '../actions/Explorer/creators'
 
 const initialState = {

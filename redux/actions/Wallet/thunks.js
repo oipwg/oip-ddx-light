@@ -1,6 +1,6 @@
 import { Networks } from 'js-oip'
 import { ECPair, payments } from 'bitcoinjs-lib'
-import config from '../../../config'
+import config from '../../../config.js'
 import { setFloBalance, setFloExchangeRate, txError, txPending, txSuccess } from './creators'
 
 const { floMainnet, floTestnet } = Networks
