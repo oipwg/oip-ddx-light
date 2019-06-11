@@ -1,5 +1,5 @@
 {
-  "daemonApiUrl": "http://localhost:1606/oip",
+  "daemonApiUrl": "https://api.oip.io/oip",
   "templateFilter": [],
   "templateOperand": "OR",
   "testnet": false,
@@ -9,5 +9,6 @@
   "explorerUrl": "https://livenet.flocha.in/api",
   "primaryColor": "#3688aa",
   "secondaryColor": "#d8443a",
-  "platformRegistrationTxid": "8b91d54d396ada336eb599f91c9ccd03e0e64c596859937c17d13b921e4b75b5"
+  "platformRegistrationTxid": "7b4f590cc82d3a023e5842ab1c9395a216551d085918158fae19a2b4138fe106",
+  "showOnlyVerifiedPublishers": false
 }
