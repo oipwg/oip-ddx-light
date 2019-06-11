@@ -29,16 +29,16 @@ export const tip = ({
   console.log(paymentAddr, paymentTemplate, tipAmountSat)
   const TIP_FIAT = 0.02
   const TIP_FLO_SAT = (TIP_FIAT * 1e8) / (Wallet.floExchangeRate * 1e8) * 1e8
-  console.log(TIP_FLO_SAT, Wallet.floExchangeRate)
+  // console.log(TIP_FLO_SAT, Wallet.floExchangeRate)
 
   let platformAddr
   if (Platform.registered) {
-    console.log(Platform.registered, Platform.platformData.floPaymentAddress)
+    // console.log(Platform.registered, Platform.platformData.floPaymentAddress)
     platformAddr = Platform.platformData.floPaymentAddress
   }
 
   let amount = tipAmountSat || Math.floor(TIP_FLO_SAT)
-  console.log('amount', amount)
+  // console.log('amount', amount)
 
   let pubCut
   let pubValue
@@ -54,7 +54,7 @@ export const tip = ({
     }
   } else pubValue = amount
 
-  console.log(pubCut, pubValue, platformValue)
+  // console.log(pubCut, pubValue, platformValue)
 
   const toPublisher = {
     address: paymentAddr,
@@ -62,7 +62,7 @@ export const tip = ({
   }
 
   let outputs = [toPublisher, toPlatform]
-  console.log(outputs)
+  // console.log(outputs)
   let txid
   try {
     txid = await dispatch(sendTx(outputs))
@@ -71,7 +71,7 @@ export const tip = ({
     return
   }
 
-  console.log('sent tip: ', txid)
+  // console.log('sent tip: ', txid)
   dispatch(getBalance())
   return txid
 }
