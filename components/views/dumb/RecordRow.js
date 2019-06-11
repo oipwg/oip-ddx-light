@@ -111,6 +111,25 @@ const styles = theme => ({
     color: '#1DA1F2',
     borderColor: '#1DA1F2',
     backgroundColor: 'transparent'
+  },
+  gabButton: {
+    extend: 'actionIconButton',
+    borderColor: '#00D384',
+    '&:hover': {
+      // backgroundColor: '#1DA1F2',
+      '& > $twitterLink': {
+        // color: 'white'
+      }
+    }
+  },
+  gabLink: {
+    display: 'flex',
+    // color: '#1DA1F2',
+    // borderColor: '#1DA1F2',
+    backgroundColor: 'transparent',
+    '& > img': {
+      height: 14
+    }
   }
 })
 
@@ -145,9 +164,18 @@ const LinkRow = ({
   verified,
   txid
 }) => {
-  const { twitter } = verified
+  const { twitter, gab } = verified
 
   return <div className={classes.linkRowRoot}>
+    {gab && <button className={classes.gabButton}>
+      <a
+        className={classes.gabLink}
+        href={`https://gab.com/OpenIndexProtocol/posts/${verified.gabId}`}
+        target='_blank'
+      >
+        <img src={'/static/assets/icons/gabSvg.svg'} alt={'gab'} />
+      </a>
+    </button>}
     {twitter && <button className={classes.twitterButton}>
       <a
         className={classes.twitterLink}
