@@ -36,7 +36,7 @@ const VideoViewer = ({
   } else {
     template = details[TESTNET_VIDEO_TEMPLATE]
   }
-  const { thumbnailFilename, addressDirectory, filename, displayName, publishDate } = template
+  const { addressDirectory, filename } = template
 
   let videoExtension = stripFileExtension(filename)
 
@@ -63,9 +63,16 @@ const VideoViewer = ({
     }
   }, [])
 
+  const videoSrc = getIpfsUrl({ dirName: addressDirectory, filename })
+
+  useEffect(() => {
+    playerRef.current.src(videoSrc)
+    playerRef.current.load()
+  }, [videoSrc])
+
   return <div className={classes.root}>
     <video ref={videoRef} className={'video-js vjs-oip vjs-big-play-centered'}>
-      <source src={getIpfsUrl({ dirName: addressDirectory, filename })} type={`video/${videoExtension}`} />
+      <source src={videoSrc} type={`video/${videoExtension}`} />
     </video>
 
   </div>
