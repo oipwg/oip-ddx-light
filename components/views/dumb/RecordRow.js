@@ -139,7 +139,7 @@ const ActionBar = ({
   txid
 }) => {
   let explorerLink
-  if (config.testnet) {
+  if (config.network === 'testnet') {
     explorerLink = `https://testnet.flocha.in/tx/${txid}`
   } else explorerLink = `https://livenet.flocha.in/tx/${txid}`
 
@@ -214,7 +214,7 @@ const RecordRow = ({
     async function verify (pubAddr) {
       let tmplName
       let localhost = false
-      if (config.testnet) {
+      if (config.network === 'testnet') {
         tmplName = 'tmpl_2A46C905' // verified pub testnet template
         localhost = true
       }
