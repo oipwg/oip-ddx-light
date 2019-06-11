@@ -4,8 +4,13 @@ import Exchange from 'oip-exchange-rate'
 import config from '../../config'
 import * as actions from '../actions/Wallet/creators'
 
+let explorerWallet
+if (config.privatekey) {
+  explorerWallet = new OIP(config.privatekey, config.network, { explorerUrl: config.explorerUrl }).wallet
+}
+
 const initialState = {
-  xWallet: new OIP(config.privatekey, config.network, { explorerUrl: config.explorerUrl }).wallet,
+  xWallet: explorerWallet,
   _exchange: new Exchange(),
   txPending: false,
   txSuccess: false,
