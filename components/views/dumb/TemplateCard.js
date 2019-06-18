@@ -42,7 +42,10 @@ const styles = theme => ({
   },
   fieldData: {
     margin: 0,
-    fontSize: 12
+    fontSize: 12,
+    whiteSpace: 'pre',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden'
   },
   templateActions: {
     display: 'flex',
