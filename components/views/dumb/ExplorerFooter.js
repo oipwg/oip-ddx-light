@@ -14,7 +14,8 @@ const styles = theme => ({
     flexDirection: 'row',
     bottom: 0,
     right: 0,
-    padding: 30
+    padding: 30,
+    zIndex: 200
   },
   buttonBase: {
     backgroundColor: 'white',
@@ -51,9 +52,6 @@ const styles = theme => ({
 
 const ExplorerFooter = ({
   classes,
-  records,
-  templates,
-  activeSelection,
   selectedTemplates,
   handlePublishRecordWithTemplates,
   handleExtendTemplates
