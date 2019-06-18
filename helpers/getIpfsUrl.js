@@ -1,5 +1,6 @@
-const ipfsGateway = 'https://ipfs.io/ipfs/'
-// const ipfsGatewayFallback = 'https://cloudflare-ipfs.com/ipfs/'
+import config from '../config'
+
+const ipfsGateway = config.ipfsGatewayUrl
 
 const getIpfsUrl = ({ dirName, filename }) => {
   return `${ipfsGateway}${dirName}/${filename}`
