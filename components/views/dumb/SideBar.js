@@ -7,6 +7,7 @@ import NavMenu from './NavMenu'
 import NavMenuMobile from './NavMenuMobile'
 import { setActivePage, toggleVerifiedPublishers } from '../../../redux/actions/Interface/creators'
 import ToggleSwitch from '../../ui/ToggleSwitch'
+import { getDefaultRecords, getDefaultTemplates } from '../../../redux/actions/Explorer/thunks'
 
 const styles = theme => {
   return {
@@ -73,7 +74,9 @@ const SideBar = ({
   floExchangeRate,
   floBalanceSat,
   toggleVerifiedPublishers,
-  showVerifiedPublishers
+  showVerifiedPublishers,
+  getDefaultRecords,
+  getDefaultTemplates
 }) => {
   function handleSetActivePage (page) {
     if (reroute) {
@@ -81,6 +84,10 @@ const SideBar = ({
       router.push('/')
     }
     setActivePage(page)
+    if (activePage === 'explorer' && page === 'explorer') {
+      getDefaultRecords()
+      getDefaultTemplates()
+    }
   }
 
   function handleToggleSwitch (toggleState) {
@@ -148,7 +155,9 @@ SideBar.propTypes = {
   activePage: PropTypes.string,
   setActivePage: PropTypes.func.isRequired,
   pages: PropTypes.array.isRequired,
-  reroute: PropTypes.bool
+  reroute: PropTypes.bool,
+  getDefaultRecords: PropTypes.func.isRequired,
+  getDefaultTemplates: PropTypes.func.isRequired
 }
 
 function mapStateToProps (state) {
@@ -163,7 +172,9 @@ function mapStateToProps (state) {
 
 const mapDispatchToProps = {
   setActivePage,
-  toggleVerifiedPublishers
+  toggleVerifiedPublishers,
+  getDefaultRecords,
+  getDefaultTemplates
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(withRouter(SideBar)))
