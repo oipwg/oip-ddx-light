@@ -405,6 +405,9 @@ const RecordField = ({
   recordField,
   recordFieldData
 }) => {
+  if (!recordFieldData) {
+    return null
+  }
   if (recordFieldData.raw) {
     recordFieldData = recordFieldData.raw
   }
