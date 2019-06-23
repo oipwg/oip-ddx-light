@@ -366,7 +366,7 @@ const TemplateData = ({
     details = {
       title: details.title,
       description: details.description,
-      year: details.description
+      year: details.year
     }
   }
   if (tmpl === VIDEO) {
