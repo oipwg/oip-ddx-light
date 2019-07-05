@@ -74,7 +74,7 @@ const SideBar = ({
   floExchangeRate,
   floBalanceSat,
   toggleVerifiedPublishers,
-  showVerifiedPublishers,
+  showOnlyVerifiedPublishers,
   getDefaultRecords,
   getDefaultTemplates
 }) => {
@@ -115,7 +115,7 @@ const SideBar = ({
 
       <ToggleSwitchJSS
         onSwitch={handleToggleSwitch}
-        defaultState={showVerifiedPublishers}
+        defaultState={showOnlyVerifiedPublishers}
       />
       <span className={classes.toggleSwitchText}>Verified</span>
     </div>
@@ -166,7 +166,7 @@ function mapStateToProps (state) {
     pages: state.Interface.pages,
     floBalanceSat: state.Wallet.floBalanceSat,
     floExchangeRate: state.Wallet.floExchangeRate,
-    showVerifiedPublishers: state.Interface.showVerifiedPublishers
+    showOnlyVerifiedPublishers: state.Interface.showOnlyVerifiedPublishers
   }
 }
 
