@@ -28,6 +28,7 @@ const styles = (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     overflowY: 'auto',
+    overflowX: 'hidden',
     flex: 1
   },
   recordViewer: {

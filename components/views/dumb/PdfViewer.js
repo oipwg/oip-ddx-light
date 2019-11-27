@@ -5,7 +5,7 @@ import { Document, Page } from 'react-pdf';
 
 /*******************************************npm install react-pdf or yarn add react-pdf */
 
-const styles = (theme) => ({
+const styles = () => ({
   pdfCont: {
     display: 'flex',
     justifyContent: 'center',
