@@ -97,7 +97,7 @@ const PaymentRow = ({ classes, paymentTemplate, paymentAddress, tip }) => {
     return (
       <div className={classes.root}>
         <button onClick={() => sendTip(0.2)} className={classes.tipButton}>
-          <h4>20 𝇍</h4>
+          <h4>.20𝇍</h4>
           <img src={'/static/assets/icons/tip.png'} alt={'tip'} />
         </button>
         <div className={classes.transactionContainer}>

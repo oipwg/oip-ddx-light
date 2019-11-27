@@ -1,0 +1,45 @@
+.vjs-oip .vjs-big-play-button {
+    border: none;
+    background: none;
+    opacity: .8;
+    font-size: 5em;
+    color: black; }
+
+.vjs-oip:hover .vjs-big-play-button,
+.video-oip .vjs-big-play-button:focus {
+    border: none;
+    background: none;
+    outline: none;
+    opacity: .9;
+    cursor: default; }
+
+
+@media only screen and (max-width: 575px) {
+    .vjs-text-track-display div {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 575px) and (max-width: 767px) {
+    .vjs-text-track-display div {
+        font-size: 25px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .vjs-text-track-display div {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .vjs-text-track-display div {
+        font-size: 35px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .vjs-text-track-display div {
+        font-size: 40px;
+    }
+}
