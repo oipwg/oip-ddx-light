@@ -12,7 +12,7 @@ const config = {
   // whether you want to filter for records with (tmpl_A AND) tmpl_b or (tmpl_A OR tmpl_B)
   templateOperand: 'OR',
   // this is your WIF, your Wallet Import Format. Google for more information. If using flo-qt, use command: dumpprivkey
-  privatekey: 'RCCzW3hy8vuk79RYSjL1naY1PQr91Gjq1MNt4BaL3P7CBDFr4Tga',
+  privatekey: '',
   // this is the txid to a record containing a registerd platform template. needed and used for platform cuts
   platformRegistrationTxid:
     '7b4f590cc82d3a023e5842ab1c9395a216551d085918158fae19a2b4138fe106',
