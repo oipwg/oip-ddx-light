@@ -14,7 +14,7 @@
     "bitcoinjs-lib": "^5.0.5",
     "classnames": "^2.2.6",
     "js-oip": "^2.3.7",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "next": "^8.0.4",
     "oip-exchange-rate": "^1.0.7",
     "oip-hdmw": "^1.3.27",
