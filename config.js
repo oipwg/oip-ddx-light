@@ -15,7 +15,7 @@ const config = {
   privatekey: '',
   // this is the txid to a record containing a registerd platform template. needed and used for platform cuts
   platformRegistrationTxid:
-    '7b4f590cc82d3a023e5842ab1c9395a216551d085918158fae19a2b4138fe106',
+    'e2b1c3e98632db2464cac5a7d3af3210baf769e24160ac335dbb066eb9af769f',
   // this sets the default value for whether you want to show only verified publishers or not
   showOnlyVerifiedPublishers: false,
   // theme information. can set your primary and secondary color here. Two most used theme variables

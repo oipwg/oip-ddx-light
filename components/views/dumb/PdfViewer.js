@@ -18,6 +18,14 @@ const styles = () => ({
       width: [700, '!important']
     }
   },
+  pdfNone: {
+    display: 'none',
+    '& > canvas': {
+      display: 'none',
+      height: [800, '!important'],
+      width: [700, '!important']
+    }
+  },
   '@media (max-device-width: 1600px)': {
     pdfSelf: {
       display: 'flex',
@@ -47,9 +55,30 @@ const PdfViewer = ({ recordPayload, classes }) => {
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
+
+  const nextPage = () => {
+    if (pageNum === numPages || pageNum === numPages - 1) {
+      setPageNum(pageNum);
+    } else if (pageNum > 1) {
+      setPageNum(pageNum + 2);
+    } else {
+      setPageNum(pageNum + 1);
+    }
+  };
+  const backPage = () => {
+    if (pageNum === 2) {
+      setPageNum(pageNum - 1);
+    } else if (pageNum === 1) {
+      setPageNum(pageNum);
+    } else {
+      setPageNum(pageNum - 2);
+    }
+  };
+
   /**Console logs to check if URL and numPages successfully updated*/
-  // console.log(pdfSrc);
+  console.log(pdfSrc);
   // console.log(numPages);
+  console.log(pageNum);
 
   return (
     <div>
@@ -60,22 +89,14 @@ const PdfViewer = ({ recordPayload, classes }) => {
         onLoadSuccess={onDocumentLoadSuccess}
       >
         {/**On click calls setPageNumber to update the state, ternary to stop updating state if no pages to access*/}
-        <button onClick={() => setPageNum(pageNum > 1 ? pageNum - 2 : pageNum)}>
-          Back
-        </button>
+        <button onClick={() => backPage()}>Back</button>
         <Page pageNumber={pageNum} className={classes.pdfSelf} />
         {/**Conditional to show first page if odd number of pages, otherwise you will get No page found, thought it looked good with front and back as end */}
         <Page
           pageNumber={pageNum + 1 > numPages ? 1 : pageNum + 1}
-          className={classes.pdfSelf}
+          className={pageNum > 1 ? classes.pdfSelf : classes.pdfNone}
         />
-        <button
-          onClick={() =>
-            setPageNum(pageNum === numPages ? pageNum : pageNum + 2)
-          }
-        >
-          Next
-        </button>
+        <button onClick={() => nextPage()}>Next</button>
       </Document>
     </div>
   );

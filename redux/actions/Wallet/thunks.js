@@ -36,21 +36,21 @@ export const tip = ({
     );
     return;
   }
-  //! paymentTemplate holds the sugTip array
-  //! tV value is passed up from child PaymentRow depending on which button is clicked
-  //! If template doesnt have sugTip, it will default to .2 cents in PaymentRow
-  // console.log(paymentAddr, paymentTemplate, tipAmountSat);
-  // console.log(tV);
+  // paymentTemplate holds the sugTip array
+  // tV value is passed up from child PaymentRow depending on which button is clicked
+  // If template doesnt have sugTip, it will default to .2 cents in PaymentRow
+
   const TIP_FIAT = tV;
   console.log(`Tip amount: $${tV}`);
   const TIP_FLO_SAT = ((TIP_FIAT * 1e8) / (Wallet.floExchangeRate * 1e8)) * 1e8;
-  // console.log(TIP_FLO_SAT, Wallet.floExchangeRate);
+  //console.log(TIP_FLO_SAT, Wallet.floExchangeRate);
 
   let platformAddr;
-  if (Platform.registered) {
-    // console.log(Platform.registered, Platform.platformData.floPaymentAddress)
-    platformAddr = Platform.platformData.floPaymentAddress;
-  }
+  //! *************** There is currently no platform, when not using a platform we need to change this to ignore the platform cut. It is currently taking a cut
+  // if (Platform.registered) {
+  //   // console.log(Platform.registered, Platform.platformData.floPaymentAddress)
+  //   platformAddr = Platform.platformData.floPaymentAddress;
+  // }
 
   let amount = tipAmountSat || Math.floor(TIP_FLO_SAT);
   // console.log('amount', amount);
