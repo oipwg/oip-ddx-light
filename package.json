@@ -18,7 +18,7 @@
     "next": "^8.0.4",
     "oip-exchange-rate": "^1.0.7",
     "oip-hdmw": "^1.3.27",
-    "oip-react": "^2.0.0-beta.3.9.10",
+    "oip-react": "^2.0.0-beta.3.9.12",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
