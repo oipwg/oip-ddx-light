@@ -23,7 +23,7 @@ const WalletPage = ({ classes }) => {
   return <div className={classes.root}>
     <div className={classes.walletWrapper}>
       <ModuleWallet
-        coins={['flo', 'flo_testnet']}
+        coins={['flo', 'floTestnet']}
         height={'400px'}
         width={'900px'}
         borderRadius={'20px'}
