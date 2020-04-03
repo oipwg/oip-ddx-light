@@ -9,9 +9,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "core-js": "^2.6.11",
+    "core-js": "^3.6.4",
     "@oipwg/exchange-rate": "^2.0.0-beta.1",
-    "@oipwg/hdmw": "^2.0.0-beta.8",
     "@zeit/next-css": "^1.0.1",
     "bip39": "^3.0.2",
     "bitcoinjs-lib": "^5.1.7",
@@ -19,7 +18,7 @@
     "js-oip": "^2.4.4",
     "lodash": "^4.17.15",
     "next": "^9.3.4",
-    "oip-react": "^2.0.0-beta.3.9.16",
+    "oip-react": "^2.0.0-beta.3.9.17",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

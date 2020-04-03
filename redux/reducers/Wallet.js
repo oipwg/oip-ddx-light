@@ -1,5 +1,5 @@
 import { OIP } from 'js-oip'
-import Exchange from 'oip-exchange-rate'
+import Exchange from '@oipwg/exchange-rate'
 
 import config from '../../config.js'
 import * as actions from '../actions/Wallet/creators'
