@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import { RecordTemplate } from 'oip-react'
@@ -25,11 +25,16 @@ const TemplatePublisher = ({
   extendTemplateIds,
   withPublisher = true
 }) => {
+
+  const [feedback, setFeedback] = useState(null)
+
   function handleOnSuccess (txid) {
     console.log('Success: ', txid)
+    setFeedback(`Success: ${txid}`)
   }
 
   function handleOnError (err) {
+    setFeedback(`Error: ${err.message}`)
     console.error(err)
   }
 
@@ -39,6 +44,7 @@ const TemplatePublisher = ({
       onError={handleOnError}
       _extends={extendTemplateIds}
       withPublisher={withPublisher}
+      feedback={feedback}
     />
   </div>
 }

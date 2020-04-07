@@ -24,7 +24,7 @@ const styles = theme => ({
     borderRadius: 25,
     boxShadow: theme.shadows[4],
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   modalHead: {
     display: 'flex',
@@ -63,7 +63,14 @@ const styles = theme => ({
   },
   publishHeader: {
     textTransform: 'capitalize'
-  }
+  },
+  '@media (max-width: 500px)': {
+    modal: {
+      width: '100vw',
+      height: '100vh',
+      marginTop: 0
+    }
+  },
 })
 
 const PublishModal = ({
