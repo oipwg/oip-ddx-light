@@ -176,7 +176,7 @@ const LinkRow = ({ classes, verified, txid }) => {
           </a>
         </button>
       )}
-      <Link prefetch passHref href={`/record?txid=${txid}`}>
+      <Link passHref href={`/record?txid=${txid}`}>
         <button className={classes.actionIconButton}>
           <a className={classes.searchLink}>
             <img src={'/static/assets/icons/expand.png'} alt={'expand'} />
