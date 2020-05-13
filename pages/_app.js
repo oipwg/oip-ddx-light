@@ -20,11 +20,9 @@ class MyApp extends App {
     const { Component, pageProps, reduxStore } = this.props
 
     return (
-      <Container>
         <Provider store={reduxStore}>
           <ThemedApp Component={Component} pageProps={pageProps} />
         </Provider>
-      </Container>
     )
   }
 }
