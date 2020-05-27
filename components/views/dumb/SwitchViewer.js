@@ -3,13 +3,20 @@ import PropTypes from 'prop-types';
 import knownTemplates from '../../../templates/knownTemplates';
 import VideoViewer from './VideoViewer';
 import PdfViewer from './PdfViewer';
+import AudioPlayer from './AudioPlayer';
+import ImageViewer from './ImageViewer';
 import GenericRecordViewer from './GenericRecordViewer';
 
 const SwitchViewer = ({ recordPayload }) => {
-  const { record } = recordPayload;
+  const { record } = recordPayload;''
+
+
   if (!record) {
     return null; // return record viewer error/blank
   }
+
+  console.log(recordPayload)
+
   const { details } = record;
   let isVideo = false;
   let isAudio = false;
@@ -25,9 +32,9 @@ const SwitchViewer = ({ recordPayload }) => {
   if (isVideo) {
     return <VideoViewer recordPayload={recordPayload} />;
   } else if (isAudio) {
-    return null;
+    return <AudioPlayer recordPayload={recordPayload} />;
   } else if (isImage) {
-    return null;
+    return <ImageViewer recordPayload={recordPayload} />;
   } else if (isPdf) {
     return <PdfViewer recordPayload={recordPayload} />;
   } else {

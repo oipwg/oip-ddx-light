@@ -128,8 +128,135 @@ const styles = theme => ({
     '& > img': {
       height: 14
     }
+  },
+  validButton: {
+    display: 'flex',
+    alignSelf: 'flex-end',
+    border: '.5em solid black',
+    borderRadius: '10%',
+    height: '2rem',
+    width: '2rem',
+    padding: '2px',
+    cursor: 'pointer',
+    transition:  'all .2s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.05)'
+    }
+  },
+  triangleUp: {
+    width: '0',
+    height: '0',
+    borderLeft: '1rem solid transparent',
+    borderRight: '1rem solid transparent',
+    borderBottom: '2rem solid rgb(13,112,16)'
+  },
+  triangleDown: {
+    width: '0',
+    height: '0',
+    borderLeft: '1rem solid transparent',
+    borderRight: '1rem solid transparent',
+    borderTop: '2rem solid rgb(179,27,17)'
+  },
+  confirmsUp: {
+    color: '#fff',
+    fontSize: '1.25rem',
+    position: 'relative',
+    right: '72%',
+    top: '25%'
+  },
+  confirmsDown: {
+    color: '#fff',
+    fontSize: '1.25rem',
+    position: 'relative',
+    right: '72%',
+    top: '0%'
+  },
+  dialogBox: {
+    position: 'relative',
+    background: '#fff',
+    border: '4px solid #000',
+    height: '6rem',
+    width: '8rem',
+    padding: '2rem',
+    borderRadius: '5%',
+      '&:after,&:before': {
+        left: '100%',
+        top: '35%',
+        border: 'solid transparent',
+        content: `" "`,
+        height: '0',
+        width: '0',
+        position: 'absolute',
+        pointerEvents: 'none',
+      },
+      '&:after': {
+        borderColor: 'rgba(213,213,213,0)',
+        borderLeftColor: '#fff',
+        borderWidth: '25px',
+        marginTop: '-25px',
+      },
+      '&:before': {
+        borderColor: 'rgba(0,0,0,0)',
+        borderLeftColor: '#000',
+        borderWidth: '31px',
+        marginTop: '-31px',
+      },
   }
-});
+})
+
+
+
+// dialogBox: {
+  //   width: '150px',
+  //   height: '75px',
+  //   backgroundColor: '#fff',
+  //   color: '#000',
+  //   padding: '20px',
+  //   position: 'relative',
+  //   margin: '40px',
+  //   float: 'left',
+  //   border: '2px solid black',
+  //   borderRadius: '10%',
+  //    '&:after': {
+  //       content: `" "`,
+  //       position: 'absolute',
+  //       right: '-15px',
+  //       top: '15px',
+  //       borderTop: '15px solid transparent',
+  //       borderRight: 'none',
+  //       borderLeft: '15px solid black',
+  //       borderBottom: '15px solid transparent',
+  //    },
+
+
+// .arrow_box {
+// 	position: relative;
+// 	background: #d5d5d5;
+// 	border: 5px solid #000000;
+// }
+// .arrow_box:after, .arrow_box:before {
+// 	left: 100%;
+// 	top: 50%;
+// 	border: solid transparent;
+// 	content: " ";
+// 	height: 0;
+// 	width: 0;
+// 	position: absolute;
+// 	pointer-events: none;
+// }
+
+// .arrow_box:after {
+// 	border-color: rgba(213, 213, 213, 0);
+// 	border-left-color: #d5d5d5;
+// 	border-width: 25px;
+// 	margin-top: -25px;
+// }
+// .arrow_box:before {
+// 	border-color: rgba(0, 0, 0, 0);
+// 	border-left-color: #000000;
+// 	border-width: 32px;
+// 	margin-top: -32px;
+// }
 
 const ActionBar = ({ classes, verified, txid }) => {
   let explorerLink;
@@ -150,6 +277,36 @@ const ActionBar = ({ classes, verified, txid }) => {
     </div>
   );
 };
+
+
+
+const ValidIcon = ({classes, confirms, onClick}) => {
+  return ( 
+    <div className={classes.validButton}>
+
+        <div className={classes.triangleUp}></div>
+        <div className={classes.confirmsUp}>{confirms}</div>
+    </div>
+  );
+}
+const InValidIcon = ({classes, confirms, onClick}) => {
+  return ( 
+    <div className={classes.validButton}>
+
+        <div className={classes.triangleDown}></div>
+        <div className={classes.confirmsDown}>{confirms}</div>
+    </div>
+  );
+}
+
+const DialogBox = ({ classes }) => {
+  return (
+    <div className={classes.dialogBox}>
+      Coolbeans
+    </div>
+  )
+}
+
 
 const LinkRow = ({ classes, verified, txid }) => {
   const { twitter, gab } = verified;
@@ -176,7 +333,7 @@ const LinkRow = ({ classes, verified, txid }) => {
           </a>
         </button>
       )}
-      <Link prefetch passHref href={`/record?txid=${txid}`}>
+      <Link passHref href={`/record?txid=${txid}`}>
         <button className={classes.actionIconButton}>
           <a className={classes.searchLink}>
             <img src={'/static/assets/icons/expand.png'} alt={'expand'} />
@@ -311,6 +468,19 @@ const RecordRowData = ({
         signed_by={signed_by}
         verified={verified}
       />
+      {/* TODO  - EDDIE */}
+       {/* <ValidIcon 
+          classes={classes}
+          confirms={4}
+       />
+       <InValidIcon 
+          classes={classes}
+          confirms={4}
+       /> */}
+
+
+       
+
     </div>
   );
 };
@@ -325,6 +495,8 @@ const TableData = ({
   signed_by,
   verified
 }) => {
+      console.log({classes, thumbnail,orderedDetails,details})
+
   return (
     <div className={classes.tableData}>
       {/* thumbnail here */}
