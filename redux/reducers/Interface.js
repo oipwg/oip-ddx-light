@@ -2,7 +2,7 @@ import * as actions from '../actions/Interface/creators'
 import config from '../../config.js'
 
 function Interface (state = {
-  pages: [actions.EXPLORER, actions.PUBLISHER, actions.WALLET],
+  pages: [actions.EXPLORER, actions.PUBLISHER, actions.WALLET, actions.AUTOPAY],
   activePage: actions.EXPLORER,
   mode: actions.DEFAULT,
   defaultRecordPage: 0,

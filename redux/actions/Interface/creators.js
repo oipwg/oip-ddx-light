@@ -1,6 +1,7 @@
 export const EXPLORER = 'explorer'
 export const PUBLISHER = 'publisher'
 export const WALLET = 'wallet'
+export const AUTOPAY = 'autopay'
 
 export const SEARCH = 'SEARCH'
 export const DEFAULT = 'DEFAULT'

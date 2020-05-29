@@ -53,6 +53,8 @@ const SideBarNavLink = ({
     displayName = 'New Record Template'
   } else if (page === 'explorer') {
     displayName = 'Explorers'
+  } else if (page === 'autopay') {
+    displayName = 'Autopay'
   } else displayName = page
 
   return <a

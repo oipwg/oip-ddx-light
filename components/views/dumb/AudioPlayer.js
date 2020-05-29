@@ -1,4 +1,4 @@
-import React, { useRef, useEffect }from 'react';
+import React from 'react';
 import withStyles from 'react-jss';
 import getIpfsUrl from '../../../helpers/getIpfsUrl';
 

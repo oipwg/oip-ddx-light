@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { Explorer, Interface, Publisher, Wallet, Platform } from './reducers'
+import { Explorer, Interface, Publisher, Wallet, Platform, Autopay } from './reducers'
 
 // Create our Store
 const createStoreFn = () => {
@@ -9,7 +9,8 @@ const createStoreFn = () => {
     Interface,
     Publisher,
     Wallet,
-    Platform
+    Platform,
+    Autopay
   }
 
   // Create the logger to log Actions to the console
