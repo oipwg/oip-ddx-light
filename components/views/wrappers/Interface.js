@@ -8,6 +8,7 @@ import WalletPage from '../../WalletPage'
 import PublisherContainer from '../../containers/PublisherContainer'
 import PublishModal from '../dumb/PublishModal'
 import Publisher from './Publisher'
+import AutopayPage from '../../AutopayPage'
 
 const Interface = ({
   classes,
@@ -17,6 +18,8 @@ const Interface = ({
   const explorer = activePage === 'explorer'
   const publisher = activePage === 'publisher'
   const wallet = activePage === 'wallet'
+  const autopay = activePage === 'autopay'
+
   return <div className={classes.root}>
     <SideBar />
     {explorer && <ExplorerContainer />}
@@ -27,6 +30,7 @@ const Interface = ({
       <Publisher {...props} />
     )} />}
     {wallet && <WalletPage />}
+    {autopay && <AutopayPage />}
   </div>
 }
 const styles = theme => ({

@@ -6,6 +6,7 @@ import { FaTwitter } from 'react-icons/fa';
 import config from '../../../config.js';
 import knownTemplates from '../../../templates/knownTemplates';
 import getIpfsUrl from '../../../helpers/getIpfsUrl';
+import { connect } from 'react-redux'
 
 const styles = theme => ({
   root: {
@@ -128,10 +129,138 @@ const styles = theme => ({
     '& > img': {
       height: 14
     }
+  },
+  validButton: {
+    display: 'flex',
+    alignSelf: 'flex-end',
+    border: '.5em solid black',
+    borderRadius: '10%',
+    height: '2rem',
+    width: '2rem',
+    padding: '2px',
+    cursor: 'pointer',
+    transition:  'all .2s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.05)'
+    }
+  },
+  triangleUp: {
+    width: '0',
+    height: '0',
+    borderLeft: '1rem solid transparent',
+    borderRight: '1rem solid transparent',
+    borderBottom: '2rem solid rgb(13,112,16)'
+  },
+  triangleDown: {
+    width: '0',
+    height: '0',
+    borderLeft: '1rem solid transparent',
+    borderRight: '1rem solid transparent',
+    borderTop: '2rem solid rgb(179,27,17)'
+  },
+  confirmsUp: {
+    color: '#fff',
+    fontSize: '1.25rem',
+    position: 'relative',
+    right: '72%',
+    top: '25%'
+  },
+  confirmsDown: {
+    color: '#fff',
+    fontSize: '1.25rem',
+    position: 'relative',
+    right: '72%',
+    top: '0%'
+  },
+  dialogBox: {
+    position: 'relative',
+    background: '#fff',
+    border: '4px solid #000',
+    height: '6rem',
+    width: '8rem',
+    padding: '2rem',
+    borderRadius: '5%',
+      '&:after,&:before': {
+        left: '100%',
+        top: '35%',
+        border: 'solid transparent',
+        content: `" "`,
+        height: '0',
+        width: '0',
+        position: 'absolute',
+        pointerEvents: 'none',
+      },
+      '&:after': {
+        borderColor: 'rgba(213,213,213,0)',
+        borderLeftColor: '#fff',
+        borderWidth: '25px',
+        marginTop: '-25px',
+      },
+      '&:before': {
+        borderColor: 'rgba(0,0,0,0)',
+        borderLeftColor: '#000',
+        borderWidth: '31px',
+        marginTop: '-31px',
+      },
   }
-});
+})
 
-const ActionBar = ({ classes, verified, txid }) => {
+
+
+// dialogBox: {
+  //   width: '150px',
+  //   height: '75px',
+  //   backgroundColor: '#fff',
+  //   color: '#000',
+  //   padding: '20px',
+  //   position: 'relative',
+  //   margin: '40px',
+  //   float: 'left',
+  //   border: '2px solid black',
+  //   borderRadius: '10%',
+  //    '&:after': {
+  //       content: `" "`,
+  //       position: 'absolute',
+  //       right: '-15px',
+  //       top: '15px',
+  //       borderTop: '15px solid transparent',
+  //       borderRight: 'none',
+  //       borderLeft: '15px solid black',
+  //       borderBottom: '15px solid transparent',
+  //    },
+
+
+// .arrow_box {
+// 	position: relative;
+// 	background: #d5d5d5;
+// 	border: 5px solid #000000;
+// }
+// .arrow_box:after, .arrow_box:before {
+// 	left: 100%;
+// 	top: 50%;
+// 	border: solid transparent;
+// 	content: " ";
+// 	height: 0;
+// 	width: 0;
+// 	position: absolute;
+// 	pointer-events: none;
+// }
+
+// .arrow_box:after {
+// 	border-color: rgba(213, 213, 213, 0);
+// 	border-left-color: #d5d5d5;
+// 	border-width: 25px;
+// 	margin-top: -25px;
+// }
+// .arrow_box:before {
+// 	border-color: rgba(0, 0, 0, 0);
+// 	border-left-color: #000000;
+// 	border-width: 32px;
+// 	margin-top: -32px;
+// }
+
+const ActionBar = ({ classes, verified, txid, commercialContent, mediaType, autoPay, amount}) => {
+
   let explorerLink;
   if (config.network === 'testnet') {
     explorerLink = `https://testnet.flocha.in/tx/${txid}`;
@@ -146,13 +275,83 @@ const ActionBar = ({ classes, verified, txid }) => {
         />
       </a>
 
-      <LinkRow classes={classes} verified={verified} txid={txid} />
+      <LinkRow classes={classes} verified={verified} txid={txid} commercialContent={commercialContent} mediaType={mediaType} autoPay={autoPay} amount={amount} />
     </div>
   );
 };
 
-const LinkRow = ({ classes, verified, txid }) => {
+
+
+const ValidIcon = ({classes, confirms, onClick}) => {
+  return ( 
+    <div className={classes.validButton}>
+
+        <div className={classes.triangleUp}></div>
+        <div className={classes.confirmsUp}>{confirms}</div>
+    </div>
+  );
+}
+const InValidIcon = ({classes, confirms, onClick}) => {
+  return ( 
+    <div className={classes.validButton}>
+
+        <div className={classes.triangleDown}></div>
+        <div className={classes.confirmsDown}>{confirms}</div>
+    </div>
+  );
+}
+
+const DialogBox = ({ classes }) => {
+  return (
+    <div className={classes.dialogBox}>
+      Coolbeans
+    </div>
+  )
+}
+
+
+const LinkRow = ({ classes, verified, txid, commercialContent, mediaType, autoPay, amount }) => {
   const { twitter, gab } = verified;
+
+  if(mediaType === undefined){
+    mediaType = 'other'
+  }
+  if(autoPay === undefined){
+    autoPay = null
+  }
+
+  if(amount === undefined){
+    amount = 0;
+  }
+  
+
+  const RenderAutoPay = ({mediaType, amount, autoPay}) => {
+
+      
+      if(!(mediaType && autoPay)){
+          return 
+      }
+
+      if(mediaType in autoPay){
+
+          return (
+            <>
+                <Link passHref href={`/record?txid=${txid}`} onClick={() => {console.log('pay')}}>
+                <button className={classes.actionIconButton} style={{color: 'red'}}>
+                  <a className={classes.searchLink}>
+                    {/* <img src={'/static/assets/icons/expand.png'} alt={'expand'} /> */}
+                      {
+                        autoPay[mediaType] >= amount ? 'autopay' : `Pay ${amount} FLO`
+                      }
+                  </a>
+                </button>
+              </Link>
+            </>
+          )            
+      }
+  }
+
+
 
   return (
     <div className={classes.linkRowRoot}>
@@ -176,32 +375,56 @@ const LinkRow = ({ classes, verified, txid }) => {
           </a>
         </button>
       )}
-      <Link prefetch passHref href={`/record?txid=${txid}`}>
-        <button className={classes.actionIconButton}>
-          <a className={classes.searchLink}>
-            <img src={'/static/assets/icons/expand.png'} alt={'expand'} />
-          </a>
-        </button>
-      </Link>
+      {commercialContent ? (
+          <RenderAutoPay 
+              mediaType={mediaType}
+              amount={amount}
+              autoPay={autoPay}
+
+          />
+      ) :
+        <Link passHref href={`/record?txid=${txid}`}>
+            <button className={classes.actionIconButton}>
+              <a className={classes.searchLink}>
+                {/* <img src={'/static/assets/icons/expand.png'} alt={'expand'} /> */}
+                  view
+              </a>
+            </button>
+        </Link>
+      }
+
+
     </div>
   );
 };
 const BASIC = 'tmpl_66089C48';
 const VIDEO = 'tmpl_4769368E';
 const PAYMENT = 'tmpl_3084380E';
+const COMMERICAL = 'tmpl_D8D0F22C';
 
 const RecordRow = ({
   classes,
   record,
   meta,
   isVerified,
-  showOnlyVerifiedPublishers = false
+  showOnlyVerifiedPublishers = false,
+  autoPay,
+  
 }) => {
   const { details } = record; // tags, payment, permissions
   // eslint-disable-next-line camelcase
   const { signed_by } = meta;
 
   const [verified, setVerified] = useState({ twitter: false, gab: false });
+
+
+
+  let mediaTypes = {
+    audio: knownTemplates.audio,
+    video: knownTemplates.video,
+    image: knownTemplates.image,
+    pdf: knownTemplates.pdf,
+  }
 
   useEffect(() => {
     let current = true;
@@ -228,6 +451,10 @@ const RecordRow = ({
     };
   }, []);
 
+
+
+  let typeOfMedia;
+
   // order template data to start with basic and end with payments
   let tmpDetails = [BASIC, VIDEO, ...Object.keys(details), PAYMENT];
   let orderedDetails = [];
@@ -235,7 +462,16 @@ const RecordRow = ({
     if (!orderedDetails.includes(tmpl)) {
       orderedDetails.push(tmpl);
     }
+
+    for (const media in mediaTypes) {
+      mediaTypes[media].find(x => {
+    if(x == tmpl){
+      return typeOfMedia = media;
+    }
+})
+}
   }
+  
 
   // get VIDEO and thumbnail
   let thumbnail;
@@ -250,6 +486,38 @@ const RecordRow = ({
     }
   }
 
+  if (Object.keys(details).includes(COMMERICAL)) {
+    let amount;
+    for (const item in details){
+        let obj = details[item]
+
+        Object.keys(obj).map(key => {
+            if(key === 'amount'){
+               return amount = obj[key]
+            }
+        })
+    }
+        return (
+          <RecordRowData
+            classes={classes}
+            meta={meta}
+            thumbnail={thumbnail}
+            ipfsUrl={ipfsUrl}
+            orderedDetails={orderedDetails}
+            details={details}
+            // eslint-disable-next-line camelcase
+            signed_by={signed_by}
+            verified={verified}
+            commercialContent={true}
+            mediaType={typeOfMedia}
+            autoPay={autoPay}
+            amount={Number(amount)}
+          />
+        );
+  }
+
+  
+
   if (showOnlyVerifiedPublishers) {
     if (verified.gab || verified.twitter) {
       return (
@@ -263,6 +531,9 @@ const RecordRow = ({
           // eslint-disable-next-line camelcase
           signed_by={signed_by}
           verified={verified}
+          showExpand={true}
+          commercialContent={false}
+
         />
       );
     } else return null;
@@ -278,6 +549,8 @@ const RecordRow = ({
       // eslint-disable-next-line camelcase
       signed_by={signed_by}
       verified={verified}
+      showExpand={true}
+      commercialContent={false}
     />
   );
 };
@@ -291,7 +564,13 @@ const RecordRowData = ({
   ipfsUrl,
   orderedDetails,
   // eslint-disable-next-line camelcase
-  signed_by
+  signed_by,
+  showExpand,
+  commercialContent,
+  mediaType,
+  autoPay,
+  amount
+
 }) => {
   return (
     <div className={classes.root}>
@@ -300,7 +579,11 @@ const RecordRowData = ({
         verified={verified}
         recordDetails={details}
         txid={meta.txid}
-      />
+        commercialContent={commercialContent}
+        mediaType={mediaType}
+        autoPay={autoPay}
+        amount={amount}
+      />  
       <TableData
         classes={classes}
         thumbnail={thumbnail}
@@ -311,6 +594,19 @@ const RecordRowData = ({
         signed_by={signed_by}
         verified={verified}
       />
+      {/* TODO  - EDDIE */}
+       {/* <ValidIcon 
+          classes={classes}
+          confirms={4}
+       />
+       <InValidIcon 
+          classes={classes}
+          confirms={4}
+       /> */}
+
+
+       
+
     </div>
   );
 };
@@ -325,6 +621,7 @@ const TableData = ({
   signed_by,
   verified
 }) => {
+
   return (
     <div className={classes.tableData}>
       {/* thumbnail here */}
@@ -367,6 +664,7 @@ const Thumbnail = ({ src, classes }) => {
 
 const TemplateData = ({ classes, tmpl, details }) => {
   let templateName;
+  let mediaType = ''
 
   if (knownTemplates[tmpl]) {
     templateName = knownTemplates[tmpl].friendly_name;
@@ -398,7 +696,11 @@ const TemplateData = ({ classes, tmpl, details }) => {
       ...details
     };
   }
-  // console.log('details', details)
+  if(tmpl === COMMERICAL){
+    details = {
+      embeddedTerms: details.embeddedTerms
+    }
+  }
   return (
     <div className={classes.templateDataRow}>
       <span className={classes.templateName}>{templateName}:</span>
@@ -418,6 +720,7 @@ const TemplateData = ({ classes, tmpl, details }) => {
 };
 
 const RecordField = ({ classes, recordField, recordFieldData }) => {
+
   if (!recordFieldData) {
     return null;
   }
@@ -432,10 +735,19 @@ const RecordField = ({ classes, recordField, recordFieldData }) => {
   );
 };
 
+
+
 RecordRow.propTypes = {
   classes: PropTypes.object.isRequired,
   record: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(RecordRow);
+function mapStateToProps (state) {
+  return {
+      autoPay: state.Autopay
+  }
+}
+
+
+export default connect(mapStateToProps)(withStyles(styles)(RecordRow))
