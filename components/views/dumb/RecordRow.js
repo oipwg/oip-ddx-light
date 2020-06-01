@@ -6,6 +6,7 @@ import { FaTwitter } from 'react-icons/fa';
 import config from '../../../config.js';
 import knownTemplates from '../../../templates/knownTemplates';
 import getIpfsUrl from '../../../helpers/getIpfsUrl';
+import { connect } from 'react-redux'
 
 const styles = theme => ({
   root: {
@@ -258,7 +259,8 @@ const styles = theme => ({
 // 	margin-top: -32px;
 // }
 
-const ActionBar = ({ classes, verified, txid }) => {
+const ActionBar = ({ classes, verified, txid, commercialContent, mediaType, autoPay, amount}) => {
+
   let explorerLink;
   if (config.network === 'testnet') {
     explorerLink = `https://testnet.flocha.in/tx/${txid}`;
@@ -273,7 +275,7 @@ const ActionBar = ({ classes, verified, txid }) => {
         />
       </a>
 
-      <LinkRow classes={classes} verified={verified} txid={txid} />
+      <LinkRow classes={classes} verified={verified} txid={txid} commercialContent={commercialContent} mediaType={mediaType} autoPay={autoPay} amount={amount} />
     </div>
   );
 };
@@ -308,8 +310,48 @@ const DialogBox = ({ classes }) => {
 }
 
 
-const LinkRow = ({ classes, verified, txid }) => {
+const LinkRow = ({ classes, verified, txid, commercialContent, mediaType, autoPay, amount }) => {
   const { twitter, gab } = verified;
+
+  if(mediaType === undefined){
+    mediaType = 'other'
+  }
+  if(autoPay === undefined){
+    autoPay = null
+  }
+
+  if(amount === undefined){
+    amount = 0;
+  }
+  
+
+  const RenderAutoPay = ({mediaType, amount, autoPay}) => {
+
+      
+      if(!(mediaType && autoPay)){
+          return 
+      }
+
+      if(mediaType in autoPay){
+
+          return (
+            <>
+                <Link passHref href={`/record?txid=${txid}`} onClick={() => {console.log('pay')}}>
+                <button className={classes.actionIconButton} style={{color: 'red'}}>
+                  <a className={classes.searchLink}>
+                    {/* <img src={'/static/assets/icons/expand.png'} alt={'expand'} /> */}
+                      {
+                        autoPay[mediaType] >= amount ? 'autopay' : `Pay ${amount} FLO`
+                      }
+                  </a>
+                </button>
+              </Link>
+            </>
+          )            
+      }
+  }
+
+
 
   return (
     <div className={classes.linkRowRoot}>
@@ -333,32 +375,56 @@ const LinkRow = ({ classes, verified, txid }) => {
           </a>
         </button>
       )}
-      <Link passHref href={`/record?txid=${txid}`}>
-        <button className={classes.actionIconButton}>
-          <a className={classes.searchLink}>
-            <img src={'/static/assets/icons/expand.png'} alt={'expand'} />
-          </a>
-        </button>
-      </Link>
+      {commercialContent ? (
+          <RenderAutoPay 
+              mediaType={mediaType}
+              amount={amount}
+              autoPay={autoPay}
+
+          />
+      ) :
+        <Link passHref href={`/record?txid=${txid}`}>
+            <button className={classes.actionIconButton}>
+              <a className={classes.searchLink}>
+                {/* <img src={'/static/assets/icons/expand.png'} alt={'expand'} /> */}
+                  view
+              </a>
+            </button>
+        </Link>
+      }
+
+
     </div>
   );
 };
 const BASIC = 'tmpl_66089C48';
 const VIDEO = 'tmpl_4769368E';
 const PAYMENT = 'tmpl_3084380E';
+const COMMERICAL = 'tmpl_D8D0F22C';
 
 const RecordRow = ({
   classes,
   record,
   meta,
   isVerified,
-  showOnlyVerifiedPublishers = false
+  showOnlyVerifiedPublishers = false,
+  autoPay,
+  
 }) => {
   const { details } = record; // tags, payment, permissions
   // eslint-disable-next-line camelcase
   const { signed_by } = meta;
 
   const [verified, setVerified] = useState({ twitter: false, gab: false });
+
+
+
+  let mediaTypes = {
+    audio: knownTemplates.audio,
+    video: knownTemplates.video,
+    image: knownTemplates.image,
+    pdf: knownTemplates.pdf,
+  }
 
   useEffect(() => {
     let current = true;
@@ -385,6 +451,10 @@ const RecordRow = ({
     };
   }, []);
 
+
+
+  let typeOfMedia;
+
   // order template data to start with basic and end with payments
   let tmpDetails = [BASIC, VIDEO, ...Object.keys(details), PAYMENT];
   let orderedDetails = [];
@@ -392,7 +462,16 @@ const RecordRow = ({
     if (!orderedDetails.includes(tmpl)) {
       orderedDetails.push(tmpl);
     }
+
+    for (const media in mediaTypes) {
+      mediaTypes[media].find(x => {
+    if(x == tmpl){
+      return typeOfMedia = media;
+    }
+})
+}
   }
+  
 
   // get VIDEO and thumbnail
   let thumbnail;
@@ -407,6 +486,38 @@ const RecordRow = ({
     }
   }
 
+  if (Object.keys(details).includes(COMMERICAL)) {
+    let amount;
+    for (const item in details){
+        let obj = details[item]
+
+        Object.keys(obj).map(key => {
+            if(key === 'amount'){
+               return amount = obj[key]
+            }
+        })
+    }
+        return (
+          <RecordRowData
+            classes={classes}
+            meta={meta}
+            thumbnail={thumbnail}
+            ipfsUrl={ipfsUrl}
+            orderedDetails={orderedDetails}
+            details={details}
+            // eslint-disable-next-line camelcase
+            signed_by={signed_by}
+            verified={verified}
+            commercialContent={true}
+            mediaType={typeOfMedia}
+            autoPay={autoPay}
+            amount={Number(amount)}
+          />
+        );
+  }
+
+  
+
   if (showOnlyVerifiedPublishers) {
     if (verified.gab || verified.twitter) {
       return (
@@ -420,6 +531,9 @@ const RecordRow = ({
           // eslint-disable-next-line camelcase
           signed_by={signed_by}
           verified={verified}
+          showExpand={true}
+          commercialContent={false}
+
         />
       );
     } else return null;
@@ -435,6 +549,8 @@ const RecordRow = ({
       // eslint-disable-next-line camelcase
       signed_by={signed_by}
       verified={verified}
+      showExpand={true}
+      commercialContent={false}
     />
   );
 };
@@ -448,7 +564,13 @@ const RecordRowData = ({
   ipfsUrl,
   orderedDetails,
   // eslint-disable-next-line camelcase
-  signed_by
+  signed_by,
+  showExpand,
+  commercialContent,
+  mediaType,
+  autoPay,
+  amount
+
 }) => {
   return (
     <div className={classes.root}>
@@ -457,7 +579,11 @@ const RecordRowData = ({
         verified={verified}
         recordDetails={details}
         txid={meta.txid}
-      />
+        commercialContent={commercialContent}
+        mediaType={mediaType}
+        autoPay={autoPay}
+        amount={amount}
+      />  
       <TableData
         classes={classes}
         thumbnail={thumbnail}
@@ -495,7 +621,6 @@ const TableData = ({
   signed_by,
   verified
 }) => {
-      console.log({classes, thumbnail,orderedDetails,details})
 
   return (
     <div className={classes.tableData}>
@@ -539,6 +664,7 @@ const Thumbnail = ({ src, classes }) => {
 
 const TemplateData = ({ classes, tmpl, details }) => {
   let templateName;
+  let mediaType = ''
 
   if (knownTemplates[tmpl]) {
     templateName = knownTemplates[tmpl].friendly_name;
@@ -570,7 +696,11 @@ const TemplateData = ({ classes, tmpl, details }) => {
       ...details
     };
   }
-  // console.log('details', details)
+  if(tmpl === COMMERICAL){
+    details = {
+      embeddedTerms: details.embeddedTerms
+    }
+  }
   return (
     <div className={classes.templateDataRow}>
       <span className={classes.templateName}>{templateName}:</span>
@@ -590,6 +720,7 @@ const TemplateData = ({ classes, tmpl, details }) => {
 };
 
 const RecordField = ({ classes, recordField, recordFieldData }) => {
+
   if (!recordFieldData) {
     return null;
   }
@@ -604,10 +735,19 @@ const RecordField = ({ classes, recordField, recordFieldData }) => {
   );
 };
 
+
+
 RecordRow.propTypes = {
   classes: PropTypes.object.isRequired,
   record: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(RecordRow);
+function mapStateToProps (state) {
+  return {
+      autoPay: state.Autopay
+  }
+}
+
+
+export default connect(mapStateToProps)(withStyles(styles)(RecordRow))
