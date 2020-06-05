@@ -14,10 +14,18 @@ const styles = (theme) => ({
   
 
 
-const AudioPlayer = ({recordPayload, classes })  => {
-    const audioLocation = recordPayload.record.details.tmpl_D8D0F22C.location;
+const AudioPlayer = ({recordPayload, classes, src })  => {
+    let audioLocation = ''
+
+    if(src) {
+      audioLocation = src;
+    } else {
+      audioLocation = recordPayload.record.details.tmpl_D8D0F22C.location;
+    }
+
+
     const audioSrc = getIpfsUrl({ dirName: audioLocation });
-    
+
     return (
         <div className={classes.root}>
             <audio

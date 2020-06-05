@@ -9,8 +9,11 @@ import SideBar from '../components/views/dumb/SideBar';
 import {
   getBalance,
   getExchangeRate,
-  tip
+  tip,
+  purchaseRecord,
+  proofOfPurchase
 } from '../redux/actions/Wallet/thunks';
+
 import { setActivePage } from '../redux/actions/Interface/creators';
 
 const styles = (theme) => ({
@@ -60,11 +63,45 @@ const Record = ({
   showOnlyVerifiedPublishers,
   setActivePage,
   getExchangeRate,
-  getBalance
+  getBalance,
+  autoPay,
+  purchaseRecord,
+  proofOfPurchase
 }) => {
   useEffect(() => {
     setActivePage(null);
   }, []);
+
+
+  const [purchasedData, setPurchasedData] = useState({
+    proofTxid: '',
+    data: '',
+    paid: false
+})
+
+
+useEffect(() => {
+if(autoPay.purchased){
+  let { txid } = recordPayload.meta
+
+  let found = autoPay.purchased.find(purchase => {
+     return purchase.txid === txid
+  })
+  
+  if(found){
+    let {txid, payment_txid, terms } = found
+    proofOfPurchase({txid, payment_txid, terms })
+    .then(data => {
+      setPurchasedData({
+        proofTxid: payment_txid,
+        data: data,
+        paid: true
+      })})
+    .catch(err => console.log(err))
+  }
+}
+}, [])
+
 
   // get records by the same publisher
   const [recordsByPublisher, setRecordsByPublisher] = useState([]);
@@ -145,7 +182,7 @@ const Record = ({
       <SideBar reroute />
       <div className={classes.content}>
         <div className={classes.recordViewer}>
-          <SwitchViewer recordPayload={recordPayload} />
+          <SwitchViewer recordPayload={recordPayload} purchasedData={purchasedData} />
           {payment && (
             <PaymentRow
               paymentTemplate={recordPayload.record.details[TMPL_PAYMENT]}
@@ -153,6 +190,7 @@ const Record = ({
               platformData={platformData}
               paymentAddress={recordPayload.meta.signed_by}
               tip={tip}
+              purchasedData={purchasedData}
             />
           )}
         </div>
@@ -161,6 +199,10 @@ const Record = ({
             records={recordsByPublisher}
             isVerified={isVerified}
             showOnlyVerifiedPublishers={showOnlyVerifiedPublishers}
+            autoPay={autoPay}
+            purchaseRecord={purchaseRecord}
+            proofOfPurchase={proofOfPurchase}
+
           />
         </div>
       </div>
@@ -209,14 +251,17 @@ function mapStateToProps(state) {
     registered: state.Platform.registered,
     platformData: state.Platform.platformData,
     showOnlyVerifiedPublishers: state.Interface.showOnlyVerifiedPublishers,
-    daemonApi: state.Explorer.daemonApi
+    daemonApi: state.Explorer.daemonApi,
+    autoPay: state.Autopay
   };
 }
 const mapDispatchToProps = {
   tip,
   setActivePage,
   getExchangeRate,
-  getBalance
+  getBalance,
+  purchaseRecord,
+  proofOfPurchase
 };
 export default connect(
   mapStateToProps,

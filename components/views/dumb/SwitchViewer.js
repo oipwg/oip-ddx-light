@@ -7,15 +7,17 @@ import AudioPlayer from './AudioPlayer';
 import ImageViewer from './ImageViewer';
 import GenericRecordViewer from './GenericRecordViewer';
 
-const SwitchViewer = ({ recordPayload }) => {
+const SwitchViewer = ({ recordPayload, purchasedData }) => {
   const { record } = recordPayload;''
 
+  let location = ''
+  if(purchasedData.paid){
+    location = purchasedData.data.location
+  }
 
   if (!record) {
     return null; // return record viewer error/blank
   }
-
-  console.log(recordPayload)
 
   const { details } = record;
   let isVideo = false;
@@ -30,15 +32,15 @@ const SwitchViewer = ({ recordPayload }) => {
     if (knownTemplates.pdf.includes(tmpl)) isPdf = true;
   }
   if (isVideo) {
-    return <VideoViewer recordPayload={recordPayload} />;
+    return <VideoViewer recordPayload={recordPayload} src={location} />;
   } else if (isAudio) {
-    return <AudioPlayer recordPayload={recordPayload} />;
+    return <AudioPlayer recordPayload={recordPayload} src={location} />;
   } else if (isImage) {
-    return <ImageViewer recordPayload={recordPayload} />;
+    return <ImageViewer recordPayload={recordPayload} src={location} />;
   } else if (isPdf) {
-    return <PdfViewer recordPayload={recordPayload} />;
+    return <PdfViewer recordPayload={recordPayload} src={location} />;
   } else {
-    return <GenericRecordViewer recordPayload={recordPayload} />;
+    return <GenericRecordViewer recordPayload={recordPayload} src={location} />;
   }
 };
 

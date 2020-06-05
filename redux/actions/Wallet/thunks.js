@@ -1,4 +1,4 @@
-import { Networks } from 'js-oip';
+import { Networks, OIP } from 'js-oip';
 import { ECPair, payments } from 'bitcoinjs-lib';
 import config from '../../../config.js';
 import {
@@ -6,8 +6,11 @@ import {
   setFloExchangeRate,
   txError,
   txPending,
-  txSuccess
+  txSuccess,
+  purchase_record
 } from './creators';
+import axios from 'axios'
+import { updatePurchasedTxid } from '../Autopay/creators'
 
 const { floMainnet, floTestnet } = Networks;
 
@@ -152,3 +155,118 @@ export const getExchangeRate = () => async (dispatch, getState) => {
   dispatch(setFloExchangeRate(xr));
   return xr;
 };
+//! ****************************************************PurchaseRecord Function **************************************************/
+
+export const purchaseRecord = ({
+  txid,
+  terms,
+}) => async (dispatch, getState) => {
+  const { Platform, Wallet } = getState();
+  const wallet = Wallet.xWallet;
+  if (!wallet) {
+    console.error(
+      `Failed to send tip. private key is probably not set. Wallet undefined`
+    );
+    return;
+  }
+  
+  const response = await axios.get(`https://api.oip.io/oip/o5/location/request?id=${txid}&terms=${terms}`)
+
+  const { valid_until, pre_image, } = response.data
+
+  const res = await axios.get(`https://api.oip.io/oip/o5/record/get/${txid}`)
+
+  const { amount, destination } = res.data.results[0].record.details.tmpl_DE84D583
+
+  const paymentAddr = destination;
+
+  console.log("PURCHASE REFCORD!")
+  let payment_txid;
+
+
+  try {
+
+    let output = {
+      address: paymentAddr,
+      value: (amount * 1e8) //satoshis
+  }
+
+  // payment_txid = await dispatch(sendTx(output));
+  payment_txid = '24437a89523d10f8f008fadf8e7675a67b01077691c1ee65d51c1133b7c4f5a3'
+
+  console.log(payment_txid)
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    
+    await sleep(10000)
+
+  } catch (err) {
+    console.error(err);
+    return {'error': err}
+  }
+
+  let signature = wallet.signMessage(pre_image)
+  let publicAddress = getPubAddress(config.privatekey)
+  
+  const body = { valid_until, id: txid, term: terms, pre_image, signature, payment_txid, signing_address: publicAddress }
+
+  let res2;
+  
+  try {
+    res2 = await axios.post(`https://api.oip.io/oip/o5/location/proof?id=${txid}&terms=${terms}`, body)
+  } catch(error) {
+    console.log('lame', {error})
+  }
+
+  dispatch(updatePurchasedTxid({txid, payment_txid, terms }))
+
+  setTimeout(() => {
+    dispatch(getBalance());
+  }, 5000);
+
+  return res2.data
+};
+
+
+
+//todo: To grab previous purchases:  find amd search addresses from commerical content; in wallet's transactions if so, grab the txid. push that into...
+// the global state.autoPay.purchased. 
+// UseEffect will call proofOfPurchase and take care of the rest.
+
+export const proofOfPurchase = ({
+  payment_txid,
+  txid,
+  terms
+}) => async (dispatch, getState) => {
+  const { Platform, Wallet } = getState();
+  const wallet = Wallet.xWallet;
+  if (!wallet) {
+    console.error(
+      `Failed to send tip. private key is probably not set. Wallet undefined`
+    );
+    return;
+  }
+
+  const response = await axios.get(`https://api.oip.io/oip/o5/location/request?id=${txid}&terms=${terms}`)
+
+  const { valid_until, pre_image, } = response.data
+
+  let signature = wallet.signMessage(pre_image)
+  let publicAddress = getPubAddress(config.privatekey)
+  
+  const body = { valid_until, id: txid, term: terms, pre_image, signature, payment_txid, signing_address: publicAddress }
+
+  try {
+    const res = await axios.post(`https://api.oip.io/oip/o5/location/proof?id=${txid}&terms=${terms}`, body)
+
+    return res.data
+  } catch(error) {
+    console.log(error)
+  }
+}
+//! ****************************************************END PurchaseRecord Function **************************************************/
+
+

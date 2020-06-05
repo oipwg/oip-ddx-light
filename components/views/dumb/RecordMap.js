@@ -26,7 +26,9 @@ const RecordMap = ({
   classes,
   records,
   isVerified,
-  showOnlyVerifiedPublishers
+  showOnlyVerifiedPublishers,
+  purchasedData,
+  handleClick,
 }) => {
   let recordData = []
   if (Array.isArray(records)) {
@@ -48,6 +50,8 @@ const RecordMap = ({
           isVerified={isVerified}
           key={meta.txid}
           showOnlyVerifiedPublishers={showOnlyVerifiedPublishers}
+          purchasedData={purchasedData}
+          handleClick={handleClick}
         />
       })}
     </div>

@@ -8,3 +8,11 @@ export const updateInput = (payload) => (dispatch) => {
         payload
     })
 }
+
+export const PURCHASED_TXID = 'PURCHASED_TXID';
+export const updatePurchasedTxid = (payload) => (dispatch) => {  
+    dispatch({
+        type: PURCHASED_TXID,
+        payload
+    })
+}
