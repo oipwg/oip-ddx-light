@@ -6,7 +6,11 @@ import { FaTwitter } from 'react-icons/fa';
 import config from '../../../config.js';
 import knownTemplates from '../../../templates/knownTemplates';
 import getIpfsUrl from '../../../helpers/getIpfsUrl';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { purchaseRecord, proofOfPurchase } from '../../../redux/actions/Wallet/thunks.js'
+import { updatePurchasedTxid } from '../../../redux/actions/Autopay/creators'
+
+
 
 const styles = theme => ({
   root: {
@@ -259,7 +263,10 @@ const styles = theme => ({
 // 	margin-top: -32px;
 // }
 
-const ActionBar = ({ classes, verified, txid, commercialContent, mediaType, autoPay, amount}) => {
+
+
+
+const ActionBar = ({ classes, verified, txid, terms, commercialContent, mediaType, autoPay, amount, handleClick, purchasedData }) => {
 
   let explorerLink;
   if (config.network === 'testnet') {
@@ -274,8 +281,7 @@ const ActionBar = ({ classes, verified, txid, commercialContent, mediaType, auto
           alt={`transaction: #${txid}`}
         />
       </a>
-
-      <LinkRow classes={classes} verified={verified} txid={txid} commercialContent={commercialContent} mediaType={mediaType} autoPay={autoPay} amount={amount} />
+      <LinkRow classes={classes} verified={verified} txid={txid} commercialContent={commercialContent} mediaType={mediaType} autoPay={autoPay} amount={amount} handleClick={handleClick} purchasedData={purchasedData} terms={terms} />
     </div>
   );
 };
@@ -310,8 +316,9 @@ const DialogBox = ({ classes }) => {
 }
 
 
-const LinkRow = ({ classes, verified, txid, commercialContent, mediaType, autoPay, amount }) => {
+const LinkRow = ({ classes, verified, txid, terms, commercialContent, mediaType, autoPay, amount, handleClick, purchasedData }) => {
   const { twitter, gab } = verified;
+
 
   if(mediaType === undefined){
     mediaType = 'other'
@@ -325,33 +332,55 @@ const LinkRow = ({ classes, verified, txid, commercialContent, mediaType, autoPa
   }
   
 
-  const RenderAutoPay = ({mediaType, amount, autoPay}) => {
+  const RenderAutoPay = ({mediaType, amount, autoPay, handleClick, purchasedData }) => {
 
-      
-      if(!(mediaType && autoPay)){
+    if(!purchasedData){
+      console.log({purchasedData})
+      return null
+    }
+
+    if(!(mediaType && autoPay)){
           return 
+      }
+
+      if(purchasedData.paid){
+        return (
+          <>
+              <Link passHref href={`/record?txid=${txid}`} >
+              <button className={classes.actionIconButton}>
+                <a className={classes.searchLink}>
+                  {/* <img src={'/static/assets/icons/expand.png'} alt={'expand'} /> */}
+                    paid
+                </a>
+              </button>
+            </Link>
+          </>
+        )
       }
 
       if(mediaType in autoPay){
 
           return (
             <>
-                <Link passHref href={`/record?txid=${txid}`} onClick={() => {console.log('pay')}}>
-                <button className={classes.actionIconButton} style={{color: 'red'}}>
+            {/* passHref href={`/record?txid=${txid}`} */}
+                <div  >
+                <button className={classes.actionIconButton} style={ purchasedData.paid ? {} : {color: 'red'}} 
+                    onClick={() => handleClick(txid, terms)} >
                   <a className={classes.searchLink}>
                     {/* <img src={'/static/assets/icons/expand.png'} alt={'expand'} /> */}
-                      {
-                        autoPay[mediaType] >= amount ? 'autopay' : `Pay ${amount} FLO`
+                      {purchasedData.paid 
+                        ? 'paid'
+                        : autoPay[mediaType] >= amount ? 'autopay' : `Pay ${amount} FLO`
                       }
                   </a>
                 </button>
-              </Link>
+              </div>
             </>
           )            
       }
+
+
   }
-
-
 
   return (
     <div className={classes.linkRowRoot}>
@@ -380,7 +409,8 @@ const LinkRow = ({ classes, verified, txid, commercialContent, mediaType, autoPa
               mediaType={mediaType}
               amount={amount}
               autoPay={autoPay}
-
+              handleClick={handleClick}
+              purchasedData={purchasedData}
           />
       ) :
         <Link passHref href={`/record?txid=${txid}`}>
@@ -397,11 +427,14 @@ const LinkRow = ({ classes, verified, txid, commercialContent, mediaType, autoPa
     </div>
   );
 };
+
 const BASIC = 'tmpl_66089C48';
 const VIDEO = 'tmpl_4769368E';
 const PAYMENT = 'tmpl_3084380E';
 const COMMERICAL = 'tmpl_D8D0F22C';
+const SIMPCOINSALE = 'tmpl_DE84D583'
 
+/******************************************* MAIN COMPONENT ******************************************/ 
 const RecordRow = ({
   classes,
   record,
@@ -409,7 +442,9 @@ const RecordRow = ({
   isVerified,
   showOnlyVerifiedPublishers = false,
   autoPay,
-  
+  purchaseRecord,
+  proofOfPurchase,
+
 }) => {
   const { details } = record; // tags, payment, permissions
   // eslint-disable-next-line camelcase
@@ -417,7 +452,30 @@ const RecordRow = ({
 
   const [verified, setVerified] = useState({ twitter: false, gab: false });
 
+  const [purchasedData, setPurchasedData] = useState({
+      proofTxid: '',
+      data: '',
+      paid: false
+  })
 
+  const handleClick = async (txid, terms) => {
+
+    purchaseRecord({txid, terms})
+      .then(data => {
+        console.log("DATA", data)
+
+        if(data){
+          if(data.id === txid){
+            setPurchasedData({
+              proofTxid: '',
+              data: data,
+              paid: true
+            })
+          }
+        }
+      })
+      .catch(err => console.log(err))
+  }
 
   let mediaTypes = {
     audio: knownTemplates.audio,
@@ -425,6 +483,33 @@ const RecordRow = ({
     image: knownTemplates.image,
     pdf: knownTemplates.pdf,
   }
+
+  
+
+
+useEffect(() => {
+  if(autoPay.purchased){
+    let { txid } = meta
+
+    let found = autoPay.purchased.find(purchase => {
+       return purchase.txid === txid
+    })
+    
+    if(found){
+      let {txid, payment_txid, terms } = found
+      proofOfPurchase({txid, payment_txid, terms })
+      .then(data => {
+        setPurchasedData({
+          proofTxid: payment_txid,
+          data: data,
+          paid: true
+        })})
+      .catch(err => console.log(err))
+    }
+  }
+}, [])
+
+
 
   useEffect(() => {
     let current = true;
@@ -486,12 +571,24 @@ const RecordRow = ({
     }
   }
 
+  // COMMERICAL CONTENT 
   if (Object.keys(details).includes(COMMERICAL)) {
+
+
     let amount;
+    let { txid } = meta;
+    let terms;
+    
     for (const item in details){
         let obj = details[item]
 
+
+
         Object.keys(obj).map(key => {
+            if(key === 'embeddedTerms'){
+              terms = obj[key][0]
+            }
+
             if(key === 'amount'){
                return amount = obj[key]
             }
@@ -512,6 +609,9 @@ const RecordRow = ({
             mediaType={typeOfMedia}
             autoPay={autoPay}
             amount={Number(amount)}
+            handleClick={handleClick}
+            purchasedData={purchasedData}
+            terms={(terms).toString()}
           />
         );
   }
@@ -555,6 +655,10 @@ const RecordRow = ({
   );
 };
 
+
+/******************************************* END MAIN COMPONENT ******************************************/ 
+
+
 const RecordRowData = ({
   classes,
   verified,
@@ -569,9 +673,14 @@ const RecordRowData = ({
   commercialContent,
   mediaType,
   autoPay,
-  amount
+  amount,
+  handleClick,
+  purchasedData,
+  terms
 
 }) => {
+
+
   return (
     <div className={classes.root}>
       <ActionBar
@@ -583,6 +692,9 @@ const RecordRowData = ({
         mediaType={mediaType}
         autoPay={autoPay}
         amount={amount}
+        handleClick={handleClick}
+        purchasedData={purchasedData}
+        terms={terms}       
       />  
       <TableData
         classes={classes}
@@ -593,6 +705,7 @@ const RecordRowData = ({
         // eslint-disable-next-line camelcase
         signed_by={signed_by}
         verified={verified}
+        purchasedData={purchasedData}
       />
       {/* TODO  - EDDIE */}
        {/* <ValidIcon 
@@ -619,7 +732,8 @@ const TableData = ({
   details,
   // eslint-disable-next-line camelcase
   signed_by,
-  verified
+  verified,
+  purchasedData
 }) => {
 
   return (
@@ -635,6 +749,7 @@ const TableData = ({
               tmpl={tmpl}
               details={details[tmpl]}
               key={tmpl}
+              purchasedData={purchasedData}
             />
           );
         })}
@@ -662,9 +777,10 @@ const Thumbnail = ({ src, classes }) => {
   return <img className={classes.thumbnail} src={src} alt={'thumbnail'} />;
 };
 
-const TemplateData = ({ classes, tmpl, details }) => {
+const TemplateData = ({ classes, tmpl, details, purchasedData}) => {
   let templateName;
   let mediaType = ''
+
 
   if (knownTemplates[tmpl]) {
     templateName = knownTemplates[tmpl].friendly_name;
@@ -697,9 +813,37 @@ const TemplateData = ({ classes, tmpl, details }) => {
     };
   }
   if(tmpl === COMMERICAL){
-    details = {
-      embeddedTerms: details.embeddedTerms
+    if(purchasedData.paid && purchasedData.data){
+      details = {
+        location: purchasedData.data.location,
+        network: purchasedData.data.network,
+        embeddedTerms: purchasedData.data.term,
+        valid_until: purchasedData.data.valid_until
+      }
+      } else {
+        details = {
+          embeddedTerms: details.embeddedTerms,
+        }
+      }
+  }
+  if(tmpl === SIMPCOINSALE){
+    let coin = details.coin
+    let flo = 'f9964d1e840608b68a3795fd2597e9b232dfce1029251d481b2110c83a68adf7'
+    let btc = '058bf55be2639673228e1904e2326e13184de08837983cf03cc7fef73ad13d5f'
+    let rvn = ''
+    
+    switch(coin){
+      case flo:
+        details.coin = ' FLO'
+        break;
+      case btc:
+        details.coin = ' BTC'
+        break;
+      // case rvn:
+      //   details.coin = ' RVN'
+      //   break;
     }
+
   }
   return (
     <div className={classes.templateDataRow}>
@@ -750,4 +894,4 @@ function mapStateToProps (state) {
 }
 
 
-export default connect(mapStateToProps)(withStyles(styles)(RecordRow))
+export default connect(mapStateToProps, { purchaseRecord, proofOfPurchase, updatePurchasedTxid })(withStyles(styles)(RecordRow))

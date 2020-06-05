@@ -108,6 +108,8 @@ const Nav = ({ classes, pages, setActivePage }) => {
         displayName = 'New Template'
       } else if (page === 'explorer') {
         displayName = 'Explorers'
+      } else if (page === 'autoPay') {
+        displayName = 'Autopay'
       } else displayName = page
       return <div
         className={classes.navItem}

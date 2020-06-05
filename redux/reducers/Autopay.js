@@ -5,7 +5,10 @@ const initalState = {
     audio: 50,
     photos: 30,
     articles: 15,
-    other: 10
+    other: 10,
+    purchased: [
+    
+    ]
 }
 
 const Autopay = (state = initalState, action) => {
@@ -21,6 +24,17 @@ const Autopay = (state = initalState, action) => {
                 ...state,
                 ...action.payload
                 
+            }
+        }
+        case actions.PURCHASED_TXID: {
+            return {
+                ...state,
+                purchased: [...state.purchased, {
+                    txid: action.payload.txid,
+                    payment_txid: action.payload.payment_txid,
+                    terms: action.payload.terms
+                }]
+
             }
         }
         default:

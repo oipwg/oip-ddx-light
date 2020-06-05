@@ -36,3 +36,11 @@ export const setFloExchangeRate = (xr) => ({
   type: SET_FLO_XR,
   xr
 })
+
+export const PURCHASE_RECORD = 'PURCHASE_RECORD'
+export const purchase_record = (payload) => {
+  return { 
+    type: PURCHASE_RECORD,
+    payload
+  }
+}
