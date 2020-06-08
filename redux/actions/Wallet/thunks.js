@@ -191,10 +191,7 @@ export const purchaseRecord = ({
       value: (amount * 1e8) //satoshis
   }
 
-  // payment_txid = await dispatch(sendTx(output));
-  payment_txid = '24437a89523d10f8f008fadf8e7675a67b01077691c1ee65d51c1133b7c4f5a3'
-
-  console.log(payment_txid)
+  payment_txid = await dispatch(sendTx(output));
 
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
