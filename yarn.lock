@@ -1296,7 +1296,7 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@material-ui/core@^4.9.14":
+"@material-ui/core@^4.10.1":
   version "4.10.1"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.10.1.tgz#e3db4ca55d2af6cc23a1159ef5c32ad97c43c39c"
   integrity sha512-bJb/07JFTht0oSjoWMu0j7r1mx4EbJ2ZHx+OKiY+i6IYW/4JPZ1J6rZuFS2b9jT+slSONPZaZq/kHitbE5lcig==
@@ -1461,7 +1461,7 @@
     bcurl "~0.1.6"
     bsert "~0.0.10"
 
-"@oipwg/hdmw@2.0.0-beta.9":
+"@oipwg/hdmw@2.0.0-beta.9", "@oipwg/hdmw@^2.0.0-beta.9":
   version "2.0.0-beta.9"
   resolved "https://registry.yarnpkg.com/@oipwg/hdmw/-/hdmw-2.0.0-beta.9.tgz#f53d668642e1ef18f6a6ca055a6c2893091ac504"
   integrity sha512-j2BORj5vsg+PDOKQsVSHT+zJjenfPns3Oj2MeTs5m76wYMQAo4HvEgPXK2ld84kjOgxu5wDfgiSi/L7P/rTFYg==
@@ -1479,29 +1479,6 @@
     bip44-constants "^7.1.0"
     blockchain-explorer "git+https://github.com/iameddieyayaya/blockchain-explorer.git"
     blockchain.info "^2.12.1"
-    bs58check "^2.1.2"
-    coininfo "^5.1.0"
-    create-hash "^1.2.0"
-    safe-buffer "^5.2.0"
-    typeforce "^1.18.0"
-    varuint-bitcoin "^1.1.2"
-    wif "^2.0.6"
-
-"@oipwg/hdmw@^2.0.0-beta.8":
-  version "2.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/@oipwg/hdmw/-/hdmw-2.0.0-beta.8.tgz#faaac1d0c15b87f394a7bc22c5d5fbf0783fa66f"
-  integrity sha512-DyEcPFdjtzZV0jwYUTjuOyH2icjlkZOjnNtlv0FHQC1udCscRwCNEKSxF5dTqVe/r2nKxN4lLrqGH3h8/kLhew==
-  dependencies:
-    "@oipwg/bip32-utils" "^0.12.1"
-    "@oipwg/bitcoinjs-lib" "^5.2.0-beta.0"
-    "@oipwg/bitcoinjs-message" "^2.2.0-beta.0"
-    "@oipwg/coinselect" "^3.2.0"
-    "@oipwg/exchange-rate" "^2.0.0-beta.1"
-    "@oipwg/insight-explorer" "^2.0.0-beta.0"
-    bip174 "^1.0.1"
-    bip32 "2.0.5"
-    bip39 "^3.0.2"
-    bip44-constants "^7.1.0"
     bs58check "^2.1.2"
     coininfo "^5.1.0"
     create-hash "^1.2.0"
@@ -3371,15 +3348,6 @@ css-declaration-sorter@^4.0.1:
   dependencies:
     postcss "^7.0.1"
     timsort "^0.3.0"
-
-css-jss@10.1.1:
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/css-jss/-/css-jss-10.1.1.tgz#2863d6e0178cc439c12dc3a0a08edde56801de68"
-  integrity sha512-HrSD06y4dCfZ6nHtG/SucJBG8tbt+lbyBsUbxfqujyycxPLLd/B9mRKW97B8Ua8VWK8LR4i9ur0P8szZEjoqzQ==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    jss "10.1.1"
-    jss-preset-default "10.1.1"
 
 css-jss@10.2.0:
   version "10.2.0"
@@ -5556,15 +5524,6 @@ jss-nested@^6.0.1:
   dependencies:
     warning "^3.0.0"
 
-jss-plugin-camel-case@10.1.1, jss-plugin-camel-case@^10.0.3:
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-plugin-camel-case/-/jss-plugin-camel-case-10.1.1.tgz#8e73ecc4f1d0f8dfe4dd31f6f9f2782588970e78"
-  integrity sha512-MDIaw8FeD5uFz1seQBKz4pnvDLnj5vIKV5hXSVdMaAVq13xR6SVTVWkIV/keyTs5txxTvzGJ9hXoxgd1WTUlBw==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    hyphenate-style-name "^1.0.3"
-    jss "10.1.1"
-
 jss-plugin-camel-case@10.2.0:
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-camel-case/-/jss-plugin-camel-case-10.2.0.tgz#ff60104a8b951a1faec12884bf7fd63a36946e4f"
@@ -5574,14 +5533,14 @@ jss-plugin-camel-case@10.2.0:
     hyphenate-style-name "^1.0.3"
     jss "10.2.0"
 
-jss-plugin-compose@10.1.1:
+jss-plugin-camel-case@^10.0.3:
   version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-plugin-compose/-/jss-plugin-compose-10.1.1.tgz#86309068ba33297d5096ffc2482e2d69cd4bb950"
-  integrity sha512-0fD+YVGk0fVnsLiNf7CG4Lv7lYwmNyeE62Fbccx8k1mMdFoE7he0hpx37tudsfKW2ArCE+hf4fmJDXPW8l6LBw==
+  resolved "https://registry.yarnpkg.com/jss-plugin-camel-case/-/jss-plugin-camel-case-10.1.1.tgz#8e73ecc4f1d0f8dfe4dd31f6f9f2782588970e78"
+  integrity sha512-MDIaw8FeD5uFz1seQBKz4pnvDLnj5vIKV5hXSVdMaAVq13xR6SVTVWkIV/keyTs5txxTvzGJ9hXoxgd1WTUlBw==
   dependencies:
     "@babel/runtime" "^7.3.1"
+    hyphenate-style-name "^1.0.3"
     jss "10.1.1"
-    tiny-warning "^1.0.2"
 
 jss-plugin-compose@10.2.0:
   version "10.2.0"
@@ -5592,14 +5551,6 @@ jss-plugin-compose@10.2.0:
     jss "10.2.0"
     tiny-warning "^1.0.2"
 
-jss-plugin-default-unit@10.1.1, jss-plugin-default-unit@^10.0.3:
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-plugin-default-unit/-/jss-plugin-default-unit-10.1.1.tgz#2df86016dfe73085eead843f5794e3890e9c5c47"
-  integrity sha512-UkeVCA/b3QEA4k0nIKS4uWXDCNmV73WLHdh2oDGZZc3GsQtlOCuiH3EkB/qI60v2MiCq356/SYWsDXt21yjwdg==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    jss "10.1.1"
-
 jss-plugin-default-unit@10.2.0:
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-default-unit/-/jss-plugin-default-unit-10.2.0.tgz#d8defa4f04c33d4fa9e047709a28f058bdc7385a"
@@ -5608,10 +5559,10 @@ jss-plugin-default-unit@10.2.0:
     "@babel/runtime" "^7.3.1"
     jss "10.2.0"
 
-jss-plugin-expand@10.1.1:
+jss-plugin-default-unit@^10.0.3:
   version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-plugin-expand/-/jss-plugin-expand-10.1.1.tgz#ed3f28b0bbe8105230d34af720fe645e4f37e5d0"
-  integrity sha512-ITO3RR4eTB3628B+gx8gLI7TKKE0TsFDBJ7BA648ZhXjHWQ5uxdC1bZld+++xnFL1l4kerj5tuWmZxS64C1Kcg==
+  resolved "https://registry.yarnpkg.com/jss-plugin-default-unit/-/jss-plugin-default-unit-10.1.1.tgz#2df86016dfe73085eead843f5794e3890e9c5c47"
+  integrity sha512-UkeVCA/b3QEA4k0nIKS4uWXDCNmV73WLHdh2oDGZZc3GsQtlOCuiH3EkB/qI60v2MiCq356/SYWsDXt21yjwdg==
   dependencies:
     "@babel/runtime" "^7.3.1"
     jss "10.1.1"
@@ -5624,15 +5575,6 @@ jss-plugin-expand@10.2.0:
     "@babel/runtime" "^7.3.1"
     jss "10.2.0"
 
-jss-plugin-extend@10.1.1:
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-plugin-extend/-/jss-plugin-extend-10.1.1.tgz#254999b7313055a127a9743480d32fb185de0c24"
-  integrity sha512-dZl0hNsndP9GJM6yqA7lZmnx6KJHo/13Zeo5B3i2uaDNO9jd5Y3pp1XHURGfbFG3K29XsYBQPTgfBwQ7e7+nyA==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    jss "10.1.1"
-    tiny-warning "^1.0.2"
-
 jss-plugin-extend@10.2.0:
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-extend/-/jss-plugin-extend-10.2.0.tgz#052bacafc262d17bb899a0f8a790a9976df75cc1"
@@ -5642,14 +5584,6 @@ jss-plugin-extend@10.2.0:
     jss "10.2.0"
     tiny-warning "^1.0.2"
 
-jss-plugin-global@10.1.1, jss-plugin-global@^10.0.3:
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-plugin-global/-/jss-plugin-global-10.1.1.tgz#36b0d6d9facb74dfd99590643708a89260747d14"
-  integrity sha512-VBG3wRyi3Z8S4kMhm8rZV6caYBegsk+QnQZSVmrWw6GVOT/Z4FA7eyMu5SdkorDlG/HVpHh91oFN56O4R9m2VA==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    jss "10.1.1"
-
 jss-plugin-global@10.2.0:
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-global/-/jss-plugin-global-10.2.0.tgz#fda990bf9880c394eeb06969b3809a88ad5d0aa0"
@@ -5658,14 +5592,13 @@ jss-plugin-global@10.2.0:
     "@babel/runtime" "^7.3.1"
     jss "10.2.0"
 
-jss-plugin-nested@10.1.1, jss-plugin-nested@^10.0.3:
+jss-plugin-global@^10.0.3:
   version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-plugin-nested/-/jss-plugin-nested-10.1.1.tgz#5c3de2b8bda344de1ebcef3a4fd30870a29a8a8c"
-  integrity sha512-ozEu7ZBSVrMYxSDplPX3H82XHNQk2DQEJ9TEyo7OVTPJ1hEieqjDFiOQOxXEj9z3PMqkylnUbvWIZRDKCFYw5Q==
+  resolved "https://registry.yarnpkg.com/jss-plugin-global/-/jss-plugin-global-10.1.1.tgz#36b0d6d9facb74dfd99590643708a89260747d14"
+  integrity sha512-VBG3wRyi3Z8S4kMhm8rZV6caYBegsk+QnQZSVmrWw6GVOT/Z4FA7eyMu5SdkorDlG/HVpHh91oFN56O4R9m2VA==
   dependencies:
     "@babel/runtime" "^7.3.1"
     jss "10.1.1"
-    tiny-warning "^1.0.2"
 
 jss-plugin-nested@10.2.0:
   version "10.2.0"
@@ -5676,13 +5609,14 @@ jss-plugin-nested@10.2.0:
     jss "10.2.0"
     tiny-warning "^1.0.2"
 
-jss-plugin-props-sort@10.1.1, jss-plugin-props-sort@^10.0.3:
+jss-plugin-nested@^10.0.3:
   version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-plugin-props-sort/-/jss-plugin-props-sort-10.1.1.tgz#34bddcbfaf9430ec8ccdf92729f03bb10caf1785"
-  integrity sha512-g/joK3eTDZB4pkqpZB38257yD4LXB0X15jxtZAGbUzcKAVUHPl9Jb47Y7lYmiGsShiV4YmQRqG1p2DHMYoK91g==
+  resolved "https://registry.yarnpkg.com/jss-plugin-nested/-/jss-plugin-nested-10.1.1.tgz#5c3de2b8bda344de1ebcef3a4fd30870a29a8a8c"
+  integrity sha512-ozEu7ZBSVrMYxSDplPX3H82XHNQk2DQEJ9TEyo7OVTPJ1hEieqjDFiOQOxXEj9z3PMqkylnUbvWIZRDKCFYw5Q==
   dependencies:
     "@babel/runtime" "^7.3.1"
     jss "10.1.1"
+    tiny-warning "^1.0.2"
 
 jss-plugin-props-sort@10.2.0:
   version "10.2.0"
@@ -5692,10 +5626,10 @@ jss-plugin-props-sort@10.2.0:
     "@babel/runtime" "^7.3.1"
     jss "10.2.0"
 
-jss-plugin-rule-value-function@10.1.1, jss-plugin-rule-value-function@^10.0.3:
+jss-plugin-props-sort@^10.0.3:
   version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-plugin-rule-value-function/-/jss-plugin-rule-value-function-10.1.1.tgz#be00dac6fc394aaddbcef5860b9eca6224d96382"
-  integrity sha512-ClV1lvJ3laU9la1CUzaDugEcwnpjPTuJ0yGy2YtcU+gG/w9HMInD5vEv7xKAz53Bk4WiJm5uLOElSEshHyhKNw==
+  resolved "https://registry.yarnpkg.com/jss-plugin-props-sort/-/jss-plugin-props-sort-10.1.1.tgz#34bddcbfaf9430ec8ccdf92729f03bb10caf1785"
+  integrity sha512-g/joK3eTDZB4pkqpZB38257yD4LXB0X15jxtZAGbUzcKAVUHPl9Jb47Y7lYmiGsShiV4YmQRqG1p2DHMYoK91g==
   dependencies:
     "@babel/runtime" "^7.3.1"
     jss "10.1.1"
@@ -5709,14 +5643,13 @@ jss-plugin-rule-value-function@10.2.0:
     jss "10.2.0"
     tiny-warning "^1.0.2"
 
-jss-plugin-rule-value-observable@10.1.1:
+jss-plugin-rule-value-function@^10.0.3:
   version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-plugin-rule-value-observable/-/jss-plugin-rule-value-observable-10.1.1.tgz#c4552167f7b84395fbbe77344f5b6186bdd51235"
-  integrity sha512-l1zmLfS5Ks6CrthOIVTokHkDoI01ymnwNBlciN+IlaR4UsLEQBBL0+3BfQjOPvIYRAYXxYx3G7ebUHebr8mWyA==
+  resolved "https://registry.yarnpkg.com/jss-plugin-rule-value-function/-/jss-plugin-rule-value-function-10.1.1.tgz#be00dac6fc394aaddbcef5860b9eca6224d96382"
+  integrity sha512-ClV1lvJ3laU9la1CUzaDugEcwnpjPTuJ0yGy2YtcU+gG/w9HMInD5vEv7xKAz53Bk4WiJm5uLOElSEshHyhKNw==
   dependencies:
     "@babel/runtime" "^7.3.1"
     jss "10.1.1"
-    symbol-observable "^1.2.0"
 
 jss-plugin-rule-value-observable@10.2.0:
   version "10.2.0"
@@ -5727,15 +5660,6 @@ jss-plugin-rule-value-observable@10.2.0:
     jss "10.2.0"
     symbol-observable "^1.2.0"
 
-jss-plugin-template@10.1.1:
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-plugin-template/-/jss-plugin-template-10.1.1.tgz#1153a58b1ee7de122e3f46223c041b5f808f2924"
-  integrity sha512-CPhNapLDgj6gIJOi3vj/QPohF/1OHuLQj8ZjBYqrnzCDSfYV5s2Rzp1TicFGxUb07BRLh62ymU+MgH1hbKGSTQ==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    jss "10.1.1"
-    tiny-warning "^1.0.2"
-
 jss-plugin-template@10.2.0:
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-template/-/jss-plugin-template-10.2.0.tgz#7bb04981716e183bd2fdf89a2a6179a6d26ef671"
@@ -5744,15 +5668,6 @@ jss-plugin-template@10.2.0:
     "@babel/runtime" "^7.3.1"
     jss "10.2.0"
     tiny-warning "^1.0.2"
-
-jss-plugin-vendor-prefixer@10.1.1, jss-plugin-vendor-prefixer@^10.0.3:
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-plugin-vendor-prefixer/-/jss-plugin-vendor-prefixer-10.1.1.tgz#8348b20749f790beebab3b6a8f7075b07c2cfcfd"
-  integrity sha512-09MZpQ6onQrhaVSF6GHC4iYifQ7+4YC/tAP6D4ZWeZotvCMq1mHLqNKRIaqQ2lkgANjlEot2JnVi1ktu4+L4pw==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    css-vendor "^2.0.7"
-    jss "10.1.1"
 
 jss-plugin-vendor-prefixer@10.2.0:
   version "10.2.0"
@@ -5763,25 +5678,14 @@ jss-plugin-vendor-prefixer@10.2.0:
     css-vendor "^2.0.8"
     jss "10.2.0"
 
-jss-preset-default@10.1.1:
+jss-plugin-vendor-prefixer@^10.0.3:
   version "10.1.1"
-  resolved "https://registry.yarnpkg.com/jss-preset-default/-/jss-preset-default-10.1.1.tgz#71f3108398ed04e2bed598a7b3accb7cb3c9ddcd"
-  integrity sha512-YwQp/BZ8IiBwxDTQ4uPAjzI2k2njrw6RJegAPvhCB1MTmWN2oR9Dhb5aN3RtepUf/agUkewTMwQqoS6PijgVMg==
+  resolved "https://registry.yarnpkg.com/jss-plugin-vendor-prefixer/-/jss-plugin-vendor-prefixer-10.1.1.tgz#8348b20749f790beebab3b6a8f7075b07c2cfcfd"
+  integrity sha512-09MZpQ6onQrhaVSF6GHC4iYifQ7+4YC/tAP6D4ZWeZotvCMq1mHLqNKRIaqQ2lkgANjlEot2JnVi1ktu4+L4pw==
   dependencies:
     "@babel/runtime" "^7.3.1"
+    css-vendor "^2.0.7"
     jss "10.1.1"
-    jss-plugin-camel-case "10.1.1"
-    jss-plugin-compose "10.1.1"
-    jss-plugin-default-unit "10.1.1"
-    jss-plugin-expand "10.1.1"
-    jss-plugin-extend "10.1.1"
-    jss-plugin-global "10.1.1"
-    jss-plugin-nested "10.1.1"
-    jss-plugin-props-sort "10.1.1"
-    jss-plugin-rule-value-function "10.1.1"
-    jss-plugin-rule-value-observable "10.1.1"
-    jss-plugin-template "10.1.1"
-    jss-plugin-vendor-prefixer "10.1.1"
 
 jss-preset-default@10.2.0:
   version "10.2.0"
@@ -6334,7 +6238,7 @@ mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@~0.5.1:
   dependencies:
     minimist "^1.2.5"
 
-moment@^2.25.3:
+moment@^2.26.0:
   version "2.26.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
   integrity sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
@@ -6775,12 +6679,12 @@ object.values@^1.1.0:
     function-bind "^1.1.1"
     has "^1.0.3"
 
-oip-protobufjs@^1.6.15:
-  version "1.6.15"
-  resolved "https://registry.yarnpkg.com/oip-protobufjs/-/oip-protobufjs-1.6.15.tgz#18af833c7cf5c092de2dcfdbf004be35ac05e91d"
-  integrity sha512-5iroUb+j8l7uU2ubF80B+9FE3Ylu4PnariCFjv/BJYuP29r6PKp+7DgiBrW+eyjfpavvkMJbuZ68/7VHrb7/3g==
+oip-protobufjs@^1.6.16:
+  version "1.6.16"
+  resolved "https://registry.yarnpkg.com/oip-protobufjs/-/oip-protobufjs-1.6.16.tgz#bdd2f52e40f04b083a45c31029de86aeea501da4"
+  integrity sha512-VLFIh7gkDVMP3zxh8B74tCCKk5LcSSD9nCowy3Kms/Xn3lWH5U+uTyBBbV/2xIrp2/vXGEWu/deqtRsO98oR2w==
   dependencies:
-    bitcoinjs-lib "^5.1.7"
+    bitcoinjs-lib "^5.1.10"
     bitcoinjs-message "^2.1.0"
     js-oip "^2.4.6"
     js-pascalcase "^1.2.1"
@@ -6788,17 +6692,17 @@ oip-protobufjs@^1.6.15:
     protobufjs "^6.9.0"
     wif "^2.0.6"
 
-oip-react@^2.0.0-beta.3.9.24:
-  version "2.0.0-beta.3.9.24"
-  resolved "https://registry.yarnpkg.com/oip-react/-/oip-react-2.0.0-beta.3.9.24.tgz#7e9cc3766d6da4b3214c54521181d7938bb9bf25"
-  integrity sha512-z8EpcrWAUQIeAxUBxgodUyOFc+X5/3Xb5Cgy+O0DCSNnIt+gRCiL1cA0H/z3O53b/7fgXgwAkzZOmZcs4eDAvg==
+oip-react@^2.0.0-beta.3.9.25:
+  version "2.0.0-beta.3.9.25"
+  resolved "https://registry.yarnpkg.com/oip-react/-/oip-react-2.0.0-beta.3.9.25.tgz#9f3e02f86218f7924c0f14515627e84a83b52df0"
+  integrity sha512-/2lqBcsScoVxqyVdpyzE2zPFCOd8keE9RghKUWjpDKnHRNXP4fx7DNoBi7erG7HynbNy+UAlQ7MbapVz6vrCmg==
   dependencies:
     uid "^1.0.0"
-    "@material-ui/core" "^4.9.14"
+    "@material-ui/core" "^4.10.1"
     "@material-ui/icons" "^4.9.1"
-    "@oipwg/hdmw" "^2.0.0-beta.8"
+    "@oipwg/hdmw" "^2.0.0-beta.9"
     bip39 "^3.0.2"
-    bitcoinjs-lib "^5.1.7"
+    bitcoinjs-lib "^5.1.10"
     bitcoinjs-message "^2.1.0"
     chroma-js "^2.1.0"
     classnames "^2.2.6"
@@ -6807,13 +6711,13 @@ oip-react@^2.0.0-beta.3.9.24:
     js-oip "^2.4.6"
     js-pascalcase "^1.2.1"
     lodash "^4.17.15"
-    moment "^2.25.3"
-    oip-protobufjs "^1.6.15"
+    moment "^2.26.0"
+    oip-protobufjs "^1.6.16"
     prop-types "^15.7.2"
     protobufjs "~6.9.0"
     react "^16.13.1"
     react-dom "^16.13.1"
-    react-jss "^10.1.1"
+    react-jss "^10.2.0"
     styled-jss "^2.2.3"
     wif "^2.0.6"
 
@@ -7757,23 +7661,6 @@ react-is@16.13.1, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
-
-react-jss@^10.1.1:
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/react-jss/-/react-jss-10.1.1.tgz#1877b3c8587eb39ef37d0ea58cdb4d0ac469cf5f"
-  integrity sha512-GCSKkyj6/bDNNgK1KtaU1FbTAKJ7CQE83p34qKpCc4tVPRi1wCfopyKot1cW/YYJizqltc2MaKzGqFK5eZhBSQ==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    "@emotion/is-prop-valid" "^0.7.3"
-    css-jss "10.1.1"
-    hoist-non-react-statics "^3.2.0"
-    is-in-browser "^1.1.3"
-    jss "10.1.1"
-    jss-preset-default "10.1.1"
-    prop-types "^15.6.0"
-    shallow-equal "^1.2.0"
-    theming "3.2.0"
-    tiny-warning "^1.0.2"
 
 react-jss@^10.2.0:
   version "10.2.0"
