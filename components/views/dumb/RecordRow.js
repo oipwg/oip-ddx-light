@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import withStyles from 'react-jss';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import Router from 'next/router'
 import { FaTwitter } from 'react-icons/fa';
 import config from '../../../config.js';
 import knownTemplates from '../../../templates/knownTemplates';
@@ -28,7 +29,7 @@ const styles = theme => ({
   },
   thumbnail: {
     width: 300,
-    float: 'left',
+    float: 'right',
     paddingRight: 16,
     paddingBottom: 10,
     marginTop: 10
@@ -462,19 +463,22 @@ const RecordRow = ({
 
     purchaseRecord({txid, terms})
       .then(data => {
-        console.log("DATA", data)
+      //   console.log("DATA", data)
 
-        if(data){
-          if(data.id === txid){
-            setPurchasedData({
-              proofTxid: '',
-              data: data,
-              paid: true
-            })
-          }
-        }
+      Router.push(`/record?txid=${txid}`)
+      //   if(data){
+      //     if(data.id === txid){
+      //       setPurchasedData({
+      //         proofTxid: '',
+      //         data: data,
+      //         paid: true
+      //       })
+      //     }
+      //   }
       })
       .catch(err => console.log(err))
+
+
   }
 
   let mediaTypes = {
