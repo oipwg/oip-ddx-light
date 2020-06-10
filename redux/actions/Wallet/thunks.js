@@ -198,7 +198,7 @@ export const purchaseRecord = ({
     }
     
     
-    await sleep(10000)
+    await sleep(2000)
 
   } catch (err) {
     console.error(err);
@@ -206,28 +206,12 @@ export const purchaseRecord = ({
   }
 
 
-  dispatch(updatePurchasedTxid({txid, payment_txid, terms }))
+  return dispatch(updatePurchasedTxid({txid, payment_txid, terms }))
 
+  // setTimeout(() => {
+  //   dispatch(getBalance());
+  // }, 5000);
 
-  let signature = wallet.signMessage(pre_image)
-  let publicAddress = getPubAddress(config.privatekey)
-  
-  const body = { valid_until, id: txid, term: terms, pre_image, signature, payment_txid, signing_address: publicAddress }
-
-  let res2;
-  
-  try {
-    res2 = await axios.post(`https://api.oip.io/oip/o5/location/proof?id=${txid}&terms=${terms}`, body)
-  } catch(error) {
-    console.log('lame', {error})
-  }
-
-
-  setTimeout(() => {
-    dispatch(getBalance());
-  }, 5000);
-
-  return res2.data
 };
 
 
