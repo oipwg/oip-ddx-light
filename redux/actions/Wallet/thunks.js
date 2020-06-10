@@ -205,6 +205,10 @@ export const purchaseRecord = ({
     return {'error': err}
   }
 
+
+  dispatch(updatePurchasedTxid({txid, payment_txid, terms }))
+
+
   let signature = wallet.signMessage(pre_image)
   let publicAddress = getPubAddress(config.privatekey)
   
@@ -218,7 +222,6 @@ export const purchaseRecord = ({
     console.log('lame', {error})
   }
 
-  dispatch(updatePurchasedTxid({txid, payment_txid, terms }))
 
   setTimeout(() => {
     dispatch(getBalance());
