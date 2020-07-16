@@ -18,7 +18,7 @@
     "classnames": "^2.2.6",
     "core-js": "^3.6.5",
     "js-oip": "2.4.6",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "next": "^9.4.4",
     "oip-react": "^2.0.0-beta.3.9.25",
     "prop-types": "^15.7.2",
