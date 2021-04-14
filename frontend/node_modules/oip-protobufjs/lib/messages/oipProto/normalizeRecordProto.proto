@@ -1,0 +1,69 @@
+syntax = "proto3";
+package oipProto;
+
+option go_package = "oip5";
+
+
+message NormalizeRecordProto {
+    // standard template ID which triggers this meta-type
+    uint64 mainTemplate = 1;
+    // fields comprising this new meta-type
+    repeated NormalField fields = 2;
+}
+
+message NormalField {
+    // new ES compatible name
+    string name = 1;
+    // path to the source value
+    repeated Field path = 2;
+}
+
+message Field {
+    // Tag number in prior Proto message
+    int32 tag = 1;
+
+    // Expected type
+    // if type_message resolution proceeds into the message
+    // if type_message and type_name == oipProto.txid resolves linked record before proceeding
+    // if type doesn't match field is ignored
+    Type type = 2;
+
+    // https://github.com/golang/protobuf/blob/882cf97/protoc-gen-go/descriptor/descriptor.proto#L136-L168
+    enum Type {
+        // 0 is reserved for errors.
+        TYPE_ERROR = 0;
+        // Order is weird for historical reasons.
+        TYPE_DOUBLE = 1;
+        TYPE_FLOAT = 2;
+        // Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT64 if
+        // negative values are likely.
+        TYPE_INT64 = 3;
+        TYPE_UINT64 = 4;
+        // Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT32 if
+        // negative values are likely.
+        TYPE_INT32 = 5;
+        TYPE_FIXED64 = 6;
+        TYPE_FIXED32 = 7;
+        TYPE_BOOL = 8;
+        TYPE_STRING = 9;
+        // Tag-delimited aggregate.
+        // Group type is deprecated and not supported in proto3. However, Proto3
+        // implementations should still be able to parse the group wire format and
+        // treat group fields as unknown fields.
+        TYPE_GROUP = 10;
+        TYPE_MESSAGE = 11; // Length-delimited aggregate.
+
+        // New in version 2.
+        TYPE_BYTES = 12;
+        TYPE_UINT32 = 13;
+        TYPE_ENUM = 14;
+        TYPE_SFIXED32 = 15;
+        TYPE_SFIXED64 = 16;
+        TYPE_SINT32 = 17; // Uses ZigZag encoding.
+        TYPE_SINT64 = 18; // Uses ZigZag encoding.
+    };
+
+    // Enter specified details template
+    // Set either tag/type OR template
+    uint64 template = 3;
+}

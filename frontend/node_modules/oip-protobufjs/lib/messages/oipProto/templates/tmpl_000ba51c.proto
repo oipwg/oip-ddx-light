@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package oipProto.templates;
+
+option go_package = "github.com/oipwg/oip/proto/templates";
+
+message tmpl_000BA51C {
+    // Record title
+    string title = 1;
+
+    // Record description
+    string description = 2;
+
+    // Original publication year
+    int64 year = 3;
+}

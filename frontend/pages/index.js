@@ -12,7 +12,7 @@ import {
   setDefaultTemplates
 } from '../redux/actions/Explorer/creators'
 import { getDefaultRecords, getDefaultTemplates } from '../redux/actions/Explorer/thunks'
-import { getBalance, getExchangeRate } from '../redux/actions/Wallet/thunks'
+import { getBalance, getExchangeRate } from '../redux/modules/Wallet/thunks'
 import useRegisterPlatform from '../helpers/hooks/useRegisterPlatform'
 import { registerPlatform, setPlatformData } from '../redux/actions/Platform/creators'
 

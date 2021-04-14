@@ -1,18 +1,13 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { Explorer, Interface, Publisher, Wallet, Platform, Autopay } from './reducers'
+import * as reducers from './reducers'
+
+
 
 // Create our Store
 const createStoreFn = () => {
-  const reducers = {
-    Explorer,
-    Interface,
-    Publisher,
-    Wallet,
-    Platform,
-    Autopay
-  }
 
+  console.log("this be the log: ", reducers);
   // Create the logger to log Actions to the console
   let middleware = [thunkMiddleware]
   if (process.env.NODE_ENV !== 'production') {

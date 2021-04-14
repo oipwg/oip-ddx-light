@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package oipProto;
+
+option go_package = "oipProto";
+
+import "txid.proto";
+
+message MultiPart {
+    uint32 currentPart = 1;
+    uint32 countParts = 2;
+    bytes rawData = 3;
+    Txid reference = 4;
+}
+

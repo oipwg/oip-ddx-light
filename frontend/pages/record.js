@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import withStyles from 'react-jss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SwitchViewer from '../components/views/dumb/SwitchViewer';
-import RecordMap from '../components/views/dumb/RecordMap';
-import PaymentRow from '../components/views/dumb/PaymentRow';
-import SideBar from '../components/views/dumb/SideBar';
+import SwitchViewer from '../components/views/dumb/switchViewer/SwitchViewer';
+import RecordMap from '../components/views/dumb/recordMap/RecordMap';
+import PaymentRow from '../components/views/dumb/paymentRow/PaymentRow';
+import SideBar from '../components/views/dumb/sideBar/SideBar';
 import {
   getBalance,
   getExchangeRate,
   tip,
   purchaseRecord,
   proofOfPurchase
-} from '../redux/actions/Wallet/thunks';
+} from '../redux/modules/Wallet/thunks';
 
 import { setActivePage } from '../redux/actions/Interface/creators';
 

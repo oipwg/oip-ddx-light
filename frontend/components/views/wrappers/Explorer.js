@@ -1,9 +1,9 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
-import ExplorerHeader from '../dumb/ExplorerHeader'
-import ExplorerBody from '../dumb/ExplorerBody'
-import ExplorerFooter from '../dumb/ExplorerFooter'
+import ExplorerHeader from '../dumb/explorerHeader/ExplorerHeader'
+import ExplorerBody from '../dumb/explorerBody/ExplorerBody'
+import ExplorerFooter from '../dumb/explorerFooter/ExplorerFooter'
 
 const styles = theme => ({
   root: {
