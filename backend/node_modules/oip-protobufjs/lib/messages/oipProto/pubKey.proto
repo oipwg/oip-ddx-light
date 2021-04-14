@@ -1,0 +1,17 @@
+syntax = "proto3";
+package oipProto;
+
+option go_package = "oipProto";
+
+message PubKey {
+    NetworkTypes network = 1;
+    bytes raw = 2;
+}
+
+// Currently supported message types
+enum NetworkTypes {
+    // Invalid
+    InvalidNetwork = 0;
+    // FLO address message signing
+    Flo = 1;
+}

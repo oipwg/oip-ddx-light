@@ -4,3 +4,5 @@ node_modules/*
 src/components/AudioViewer/scratch.js
 localStorage/
 .next
+DOD.md
+.vscode
