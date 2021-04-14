@@ -6,3 +6,4 @@ localStorage/
 .next
 DOD.md
 .vscode
+.env
