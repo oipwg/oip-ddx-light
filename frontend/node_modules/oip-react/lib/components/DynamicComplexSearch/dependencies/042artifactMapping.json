@@ -1,0 +1,293 @@
+{
+  "mainnet-oip042_artifact" : {
+    "aliases" : { },
+    "mappings" : {
+      "_doc" : {
+        "dynamic" : "strict",
+        "properties" : {
+          "artifact" : {
+            "properties" : {
+              "details" : {
+                "dynamic" : "true",
+                "properties" : {
+                  "NBCItaxID" : {
+                    "type" : "long"
+                  },
+                  "NCBItaxID" : {
+                    "type" : "long"
+                  },
+                  "artNotes" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "artist" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "date" : {
+                    "type" : "long"
+                  },
+                  "defocus" : {
+                    "type" : "long"
+                  },
+                  "dosage" : {
+                    "type" : "long"
+                  },
+                  "genre" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "institution" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "lab" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "magnification" : {
+                    "type" : "long"
+                  },
+                  "microscopist" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "roles" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "scopeName" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "sid" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "speciesName" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "strain" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "tiltConstant" : {
+                    "type" : "long"
+                  },
+                  "tiltMax" : {
+                    "type" : "long"
+                  },
+                  "tiltMin" : {
+                    "type" : "long"
+                  },
+                  "tiltSingleDual" : {
+                    "type" : "long"
+                  },
+                  "tiltStep" : {
+                    "type" : "long"
+                  }
+                }
+              },
+              "floAddress" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              },
+              "info" : {
+                "properties" : {
+                  "description" : {
+                    "type" : "text",
+                    "fields" : {
+                      "keyword" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                      }
+                    }
+                  },
+                  "tags" : {
+                    "type" : "text",
+                    "fields" : {
+                      "keyword" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                      }
+                    }
+                  },
+                  "title" : {
+                    "type" : "text",
+                    "fields" : {
+                      "keyword" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                      }
+                    }
+                  },
+                  "year" : {
+                    "type" : "date",
+                    "format" : "year"
+                  }
+                }
+              },
+              "payment" : {
+                "properties" : {
+                  "fiat" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "maxdisc" : {
+                    "type" : "long"
+                  },
+                  "promoter" : {
+                    "type" : "long"
+                  },
+                  "retailer" : {
+                    "type" : "long"
+                  },
+                  "scale" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  }
+                }
+              },
+              "signature" : {
+                "type" : "text",
+                "index" : false
+              },
+              "storage" : {
+                "properties" : {
+                  "files" : {
+                    "properties" : {
+                      "cType" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                      },
+                      "dname" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                      },
+                      "fName" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                      },
+                      "fNotes" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                      },
+                      "fSize" : {
+                        "type" : "long"
+                      },
+                      "fname" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                      },
+                      "fsize" : {
+                        "type" : "long"
+                      },
+                      "location" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                      },
+                      "software" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                      },
+                      "subtype" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                      },
+                      "type" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                      }
+                    }
+                  },
+                  "location" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  },
+                  "network" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  }
+                }
+              },
+              "subType" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              },
+              "subtype" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              },
+              "timestamp" : {
+                "type" : "date",
+                "format" : "epoch_second"
+              },
+              "type" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "meta" : {
+            "properties" : {
+              "blacklist" : {
+                "properties" : {
+                  "blacklisted" : {
+                    "type" : "boolean"
+                  },
+                  "filter" : {
+                    "type" : "keyword",
+                    "ignore_above" : 64
+                  }
+                }
+              },
+              "block" : {
+                "type" : "long"
+              },
+              "block_hash" : {
+                "type" : "keyword",
+                "ignore_above" : 64
+              },
+              "deactivated" : {
+                "type" : "boolean"
+              },
+              "signature" : {
+                "type" : "text",
+                "index" : false
+              },
+              "time" : {
+                "type" : "date",
+                "format" : "epoch_second"
+              },
+              "tx" : {
+                "type" : "object",
+                "enabled" : false
+              },
+              "txid" : {
+                "type" : "keyword",
+                "ignore_above" : 64
+              },
+              "type" : {
+                "type" : "keyword",
+                "ignore_above" : 16
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings" : {
+      "index" : {
+        "creation_date" : "1551827214766",
+        "number_of_shards" : "2",
+        "number_of_replicas" : "1",
+        "uuid" : "BXvoA72nQJao9QwxFzBgeg",
+        "version" : {
+          "created" : "6060199"
+        },
+        "provided_name" : "mainnet-oip042_artifact"
+      }
+    }
+  }
+}

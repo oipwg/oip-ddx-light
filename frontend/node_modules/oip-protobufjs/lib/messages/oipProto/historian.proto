@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package oipProto;
+
+option go_package = "oipProto";
+
+message HistorianDataPoint {
+    int32 Version = 1;
+    bytes PubKey = 2;
+    double MiningRigRentalsLast10 = 3;
+    double MiningRigRentalsLast24Hr = 4;
+    double AutominerPoolHashrate = 5;
+    double FloNetHashRate = 6;
+    double FloMarketPriceBTC = 7;
+    double FloMarketPriceUSD = 8;
+    double LtcMarketPriceUSD = 9;
+    double NiceHashLast = 10;
+    double NiceHash24hr = 11;
+}
+
+
+message HistorianPayout {
+    int32 Version = 1;
+}

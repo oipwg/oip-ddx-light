@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package oipProto;
+
+option go_package = "oipProto";
+
+message SignedMessage {
+    // Raw Data that was signed by this message
+    bytes SerializedMessage = 1;
+    // Specifies the type of contained data for further deserialization
+    MessageTypes MessageType = 2;
+    // Identifies signature type for verification
+    SignatureTypes SignatureType = 3;
+    // Public Key used in the signing of original message
+    bytes PubKey = 4;
+    // Signature of signed message
+    bytes Signature = 5;
+}
+
+// Currently supported message types
+enum MessageTypes {
+    // Invalid
+    InvalidMessage = 0;
+    // OIP 0.5 record message
+    OIP05 = 1;
+    // Historian record
+    Historian = 2;
+    // Multipart
+    Multipart = 3;
+}
+
+// Currently supported signature verification means
+enum SignatureTypes {
+    // Invalid
+    InvalidSignature = 0;
+    // FLO address message signing
+    Flo = 1;
+    // Bitcoin address message signing
+    // https://tools.bitcoin.com/verify-message/
+    Btc = 2;
+    // Raven address message signing - ToDo
+    Rvn = 3;
+    // Flo transaction is the signature - ToDo
+    Tx = 4;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package oipProto;
+
+option go_package = "oipProto";
+
+message Txid {
+    bytes raw = 1;
+}

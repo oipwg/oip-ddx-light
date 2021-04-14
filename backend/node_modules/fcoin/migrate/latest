@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const cp = require('child_process');
+const fs = require('bfile');
+const {resolve} = require('path');
+const {argv} = process;
+
+if (argv.length < 3) {
+  console.error('Usage: $ ./migrate/latest [bcoin-prefix]');
+  console.error('Example: $ ./migrate/latest ~/.bcoin');
+  process.exit(1);
+  return;
+}
+
+function exec(file, ...args) {
+  try {
+    const result = cp.spawnSync(file, args, {
+      stdio: 'inherit',
+      env: process.env,
+      maxBuffer: -1 >>> 0,
+      windowsHide: true
+    });
+    if (result.error)
+      console.error(result.error.message);
+  } catch (e) {
+    console.error(e.message);
+  }
+}
+
+const node = argv[0];
+const prefix = argv[2];
+
+const chain = resolve(prefix, 'chain');
+const spvchain = resolve(prefix, 'spvchain');
+
+(async () => {
+  if (await fs.exists(chain))
+    exec(node, resolve(__dirname, 'chaindb4to6.js'), chain);
+
+  if (await fs.exists(spvchain))
+    exec(node, resolve(__dirname, 'chaindb4to6.js'), spvchain);
+})().catch((err) => {
+  console.error(err.stack);
+  process.exit(1);
+});

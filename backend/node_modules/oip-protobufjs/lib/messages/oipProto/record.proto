@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package oipProto;
+
+option go_package = "oipProto";
+
+import "google/protobuf/any.proto";
+
+message RecordProto {
+    // Searchable user-tags
+    repeated string tags = 4;
+
+    // Payment terms
+    Payment payment = 6;
+
+    // Record specific additional information
+    OipDetails details = 7;
+
+    Permissions permissions = 8;
+}
+
+message Permissions {
+
+}
+
+message Payment {
+
+}
+
+message OipDetails {
+    repeated google.protobuf.Any details = 1;
+}
