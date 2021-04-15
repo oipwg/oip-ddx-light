@@ -10,7 +10,6 @@ Inside the **.env** file you just created, copy and paste the code below:
 MONGO_URL=<YOUR MONGO URL HERE>
 NODE_ENV=development
 JWT_SECRET=<YOUR JWT SECRET HERE>
-SESS_SECRET=<YOUR SESSION SECRET HERE>
 ```
 
 Make sure to replace text contained between < > with your URL/keys
