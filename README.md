@@ -1,6 +1,14 @@
 # oip-ddx-light
 platform to publish oip types
 
+## Installing oip-ddx-light
+Node module installation needs to happen in both **/frontend** and **/backend** seperately
+
+1. Navigate to the **/frontend** directory and run **npm install** 
+2. Wait for installation to be completed
+3. Navigate to the **/backend** directory and run **npm install**
+4. Wait for installation to be completed
+
 ## Adding enviornment variables
 Navigate to the **/backend** directory in the root of the project. Add a new file in **/backend** called **.env**.
 
@@ -13,6 +21,14 @@ JWT_SECRET=<YOUR JWT SECRET HERE>
 ```
 
 Make sure to replace text contained between < > with your URL/keys
+
+## Running the application
+To start the application properly, you must seperatly start both the **/frontend** and **/backend** directories 
+
+1. Navigate to the **/frontend** directory and run **npm run dev** 
+2. Open a seperate terminal session
+3. In the newly opened terminal session, navigate to the **/backend** directory and run **npm run dev** 
+
 
 ## Creating a free MongoDB atlas cluster and connecting oip-ddx-light
 If you need to a database in which to store information about the application and its users, consider signing up for MongoDB Atlas.
