@@ -10,7 +10,9 @@ module.exports = ({
     // Example using webpack option
     config.node = { fs: 'empty' }
     // config.devtool = false
-
+    resolve: {
+      extensions: ['', '.js', '.jsx']
+  }
     // disable soucemaps of babel-loader
     // for (const r of config.module.rules) {
     //   if (r.loader === 'babel-loader') {
