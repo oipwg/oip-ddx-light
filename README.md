@@ -22,7 +22,7 @@ JWT_SECRET=<YOUR JWT SECRET HERE>
 
 Make sure to replace text contained between < > with your URL/keys
 
-##Running the application
+## Running the application
 To start the application properly, you must seperatly start both the **/frontend** and **/backend** directories 
 
 1. Navigate to the **/frontend** directory and run **npm run dev** 
