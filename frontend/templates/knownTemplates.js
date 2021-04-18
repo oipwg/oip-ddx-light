@@ -213,6 +213,14 @@ const knownTemplates = {
         'CmoKB3AucHJvdG8SEm9pcFByb3RvLnRlbXBsYXRlcyJDCgFQEgwKBG5hbWUYASABKAkSDgoGdGlja2VyGAIgASgJEg4KBnNvdXJjZRgDIAEoCRIQCghob21lcGFnZRgEIAEoCWIGcHJvdG8z="',
       identifier: 704210705
     },
+    tmpl_59D7EAFD: {
+      friendly_name: "article",
+      name: 'tmpl_59D7EAFD',
+      description: 'extends basic, use for written articles, with or without commercial terms',
+      "file_descriptor_set":
+        'CuUBCgdwLnByb3RvEhJvaXBQcm90by50ZW1wbGF0ZXMivQEKAVASGgoMYnlsaW5lV3JpdGVyGAEgASgLMgRUeGlkEhoKEmJ5bGluZVdyaXRlcnNUaXRsZRgCIAEoCRIdChVieWxpbmVXcml0ZXJzTG9jYXRpb24YAyABKAkSGQoLYXJ0aWNsZVRleHQYBCABKAsyBFR4aWQSFwoJaW1hZ2VMaXN0GAUgAygLMgRUeGlkEhgKEGltYWdlQ2FwdGlvbkxpc3QYBiADKAkaEwoEVHhpZBILCgNyYXcYASABKAxiBnByb3RvMw==',
+      identifier: 1507322621
+    },
   }
 };
 

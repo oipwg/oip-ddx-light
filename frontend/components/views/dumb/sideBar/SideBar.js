@@ -1,13 +1,13 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { withRouter } from 'next/router'
+import {connect} from 'react-redux'
+import {withRouter} from 'next/router'
 import NavMenu from '../navMenu/NavMenu'
 import NavMenuMobile from '../navMenuMobile/NavMenuMobile'
-import { setActivePage, toggleVerifiedPublishers } from '../../../../redux/actions/Interface/creators'
+import {setActivePage, toggleVerifiedPublishers} from '../../../../redux/actions/Interface/creators'
 import ToggleSwitch from '../../../ui/ToggleSwitch'
-import { getDefaultRecords, getDefaultTemplates } from '../../../../redux/actions/Explorer/thunks'
+import {getDefaultRecords, getDefaultTemplates} from '../../../../redux/actions/Explorer/thunks'
 import Link from 'next/link'
 
 const styles = theme => {
@@ -106,8 +106,11 @@ const SideBar = ({
   }
 
   return (
-    <div id='sidebar' className={classes.root}>
 
+    <div id='sidebar' className={classes.root}>
+      <div className={classes.loginButton}>
+        <img src='https://www.albawaba.com/themes/custom/abn/logo-new.png' />
+      </div>
       <div>
         <div className={classes.loginButton}>
           <Link passHref href={`/login`}><a>Login</a></Link>

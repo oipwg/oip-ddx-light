@@ -19,8 +19,8 @@ const config = {
   // this sets the default value for whether you want to show only verified publishers or not
   showOnlyVerifiedPublishers: false,
   // theme information. can set your primary and secondary color here. Two most used theme variables
-  primaryColor: '#3688aa',
-  secondaryColor: '#d8443a'
+  primaryColor: '#939598',
+  secondaryColor: '#D0262B'
 };
 
 export default config;
