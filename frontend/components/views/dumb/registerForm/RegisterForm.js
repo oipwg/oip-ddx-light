@@ -69,7 +69,7 @@ const RegisterForm = ({
   };
 
   const sendUser = () => {
-    fetch("http://localhost:5000/api/users/signup", {
+    fetch("https://dev.oip.io/api/users/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
