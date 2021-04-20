@@ -1,4 +1,6 @@
 const config = {
+  // 
+  backendApiUrl: 'http://localhost:5000',
   // this is the enpoint the api will use to fetch records/templates. ex. a running oipd node
   daemonApiUrl: 'https://api.oip.io/oip',
   // a url to a running Insight explorer endpoint

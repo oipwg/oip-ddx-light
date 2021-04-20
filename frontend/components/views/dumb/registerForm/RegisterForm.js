@@ -5,8 +5,9 @@ import withStyles from 'react-jss'
 //import { useHistory } from "react-router-dom";
 
 import Link from "next/link";
-import Alert from "../../../shared/Alert";
 import Router from "next/router";
+import Alert from "../../../shared/Alert";
+import config from "../../../../config";
 
 const styles = theme => ({
   root: {
@@ -55,6 +56,8 @@ const RegisterForm = ({
 
   const [reg_success, setRegSuccess] = useState(false);
 
+  const BACKEND_API_URL = config.backendApiUrl;
+
   const validateForm = (e) => {
     if (email !== reEmail) {
       setEmailErrorMessage("Emails do not match!");
@@ -69,7 +72,7 @@ const RegisterForm = ({
   };
 
   const sendUser = () => {
-    fetch("https://dev.oip.io/api/users/signup", {
+    fetch(`${BACKEND_API_URL}/api/users/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

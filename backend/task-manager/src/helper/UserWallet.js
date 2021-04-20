@@ -3,6 +3,7 @@ const { Modules } = require("js-oip");
 const wallet = require("./Wallet");
 const { AES } = require("crypto-js");
 const fetch = require("node-fetch");
+const config = require("../../../config.json");
 const basic = {
   myMainAddress: "",
   descriptor:
@@ -16,6 +17,8 @@ const basic = {
 /*****************************STATE SECTION******************************/
 const { createMnemonic, createRegistration, publishRecord } = wallet;
 
+const DOMAIN_URL = config.DOMAIN_URL;
+
 const encrypt = (nmonic, password) => {
   let encryption = AES.encrypt(nmonic, password).toString();
   return encryption;
@@ -28,7 +31,7 @@ const sendMulti = async (mpx) => {
   let floDataArr = [];
 
   const sendFloPost = async (floData) => {
-    const response = await fetch(`http://localhost:5000/sendflo`, {
+    const response = await fetch(`${DOMAIN_URL}/sendflo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -123,7 +126,7 @@ const walletData = (password = "mypass", username = "useName", _id) => {
       sendToBlockChain(signed64, walletdata);
     })
     .then(() => {
-      fetch(`http://localhost:5000/users/storePubAndWallet`, {
+      fetch(`${DOMAIN_URL}/users/storePubAndWallet`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

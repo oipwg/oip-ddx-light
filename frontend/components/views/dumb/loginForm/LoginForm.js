@@ -57,9 +57,11 @@ const LoginForm = ({
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const BACKEND_API_URL = config.backendApiUrl;
+
   const onLogin = async () => {
     try {
-      const response = await fetch("https://dev.oip.io/api/users/login", {
+      const response = await fetch(`${BACKEND_API_URL}/api/users/login`, { //https://dev.oip.io/api/users/login
         method: "POST",
         headers: {
           "Content-Type": "application/json",
