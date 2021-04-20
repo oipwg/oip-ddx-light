@@ -22,6 +22,21 @@ JWT_SECRET=<YOUR JWT SECRET HERE>
 
 Make sure to replace text contained between < > with your URL/keys
 
+## Defining Frontend and Backend domain urls
+1. In the **/frontend** folder, find the **config.js** file
+2. Enter the approriate domain connection within the **backendApiUrl** variable
+
+```bash
+backendApiUrl: '<ENTER DOMAIN URL HERE>',
+```
+
+3. In the **/backend** folder, find the **config.json** file
+4. Enter the approriate domain connection within the **DOMAIN_URL** variable 
+
+```bash
+"DOMAIN_URL": "<ENTER DOMAIN URL HERE>",
+```
+
 ## Running the application
 To start the application properly, you must seperatly start both the **/frontend** and **/backend** directories 
 
