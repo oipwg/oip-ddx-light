@@ -17,6 +17,7 @@
     "bip39": "^3.0.2",
     "bitcoinjs-lib": "^5.1.10",
     "classnames": "^2.2.6",
+    "clsx": "^1.1.1",
     "core-js": "^3.6.5",
     "crypto-js": "^4.0.0",
     "js-oip": "2.4.6",

@@ -1,3 +1,9 @@
+export const TMP_ARTICLE = 'tmpl_59D7EAFD'
+export const TMPL_PAYMENT = 'tmpl_3084380E'
+export const TMP_PERSON = 'tmpl_B6E9AF9B'
+export const TMP_TEXT = 'tmpl_30BDF5A4'
+export const TMP_IMAGE = 'tmpl_1AC73C98'
+
 const templates = {
   video: ['tmpl_4769368E', 'tmpl_5679C4E4', 'tmpl_5D503849'],
   audio: ['tmpl_2670B072'],
@@ -213,9 +219,9 @@ const templates = {
         'CmoKB3AucHJvdG8SEm9pcFByb3RvLnRlbXBsYXRlcyJDCgFQEgwKBG5hbWUYASABKAkSDgoGdGlja2VyGAIgASgJEg4KBnNvdXJjZRgDIAEoCRIQCghob21lcGFnZRgEIAEoCWIGcHJvdG8z="',
       identifier: 704210705
     },
-    tmpl_59D7EAFD: {
+    [TMP_ARTICLE]: {
       friendly_name: "article",
-      name: 'tmpl_59D7EAFD',
+      name: TMP_ARTICLE,
       description: 'extends basic, use for written articles, with or without commercial terms',
       "file_descriptor_set":
         'CuUBCgdwLnByb3RvEhJvaXBQcm90by50ZW1wbGF0ZXMivQEKAVASGgoMYnlsaW5lV3JpdGVyGAEgASgLMgRUeGlkEhoKEmJ5bGluZVdyaXRlcnNUaXRsZRgCIAEoCRIdChVieWxpbmVXcml0ZXJzTG9jYXRpb24YAyABKAkSGQoLYXJ0aWNsZVRleHQYBCABKAsyBFR4aWQSFwoJaW1hZ2VMaXN0GAUgAygLMgRUeGlkEhgKEGltYWdlQ2FwdGlvbkxpc3QYBiADKAkaEwoEVHhpZBILCgNyYXcYASABKAxiBnByb3RvMw==',
@@ -223,5 +229,6 @@ const templates = {
     },
   }
 };
+
 
 export default templates;

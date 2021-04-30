@@ -1,7 +1,7 @@
 
 import React, { useRef, useEffect }from 'react';
 import withStyles from 'react-jss';
-import getIpfsUrl from '../../../../util/getIpfsUrl';
+import getIpfsUrl from '../../../../util/get-ipfs-url';
 
 
 const styles = (theme) => ({

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import getIpfsUrl from '../../../../util/getIpfsUrl';
+import getIpfsUrl from '../../../../util/get-ipfs-url';
 import withStyles from 'react-jss';
 import { Document, Page } from 'react-pdf';
 

@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import withStyles from 'react-jss';
 import PropTypes from 'prop-types';
 import videojs from 'video.js';
-import getIpfsUrl from '../../../../util/getIpfsUrl';
+import getIpfsUrl from '../../../../util/get-ipfs-url';
 
 const styles = (theme) => ({
   root: {
