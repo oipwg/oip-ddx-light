@@ -16,6 +16,7 @@ export default class JssDocument extends Document {
             },
           `}
           </style>
+          <title>DDX</title>
         </Head>
         <body>
           <Main />

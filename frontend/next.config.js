@@ -13,7 +13,7 @@ module.exports = ({
     resolve: {
       extensions: ['', '.js', '.jsx']
   }
-    // disable soucemaps of babel-loader
+    // disable sourcemaps of babel-loader
     // for (const r of config.module.rules) {
     //   if (r.loader === 'babel-loader') {
     //     r.options.sourceMaps = false

@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import withStyles from 'react-jss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SwitchViewer from '../components/views/dumb/switchViewer/SwitchViewer';
-import RecordMap from '../components/views/dumb/recordMap/RecordMap';
-import PaymentRow from '../components/views/dumb/paymentRow/PaymentRow';
-import SideBar from '../components/views/dumb/sideBar/SideBar';
+import SwitchViewer from '../src/components/library/switchViewer/SwitchViewer';
+import RecordMap from '../src/components/library/recordMap/RecordMap';
+import PaymentRow from '../src/components/library/paymentRow/PaymentRow';
+import SideBar from '../src/components/library/sideBar/SideBar';
 import {
   getBalance,
   getExchangeRate,
   tip,
   purchaseRecord,
   proofOfPurchase
-} from '../redux/modules/Wallet/thunks';
+} from '../src/redux/modules/Wallet/thunks';
 
-import { setActivePage } from '../redux/actions/Interface/creators';
+import { setActivePage } from '../src/redux/actions/Interface/creators';
 
 const styles = (theme) => ({
   root: {
@@ -87,7 +87,7 @@ if(autoPay.purchased){
   let found = autoPay.purchased.find(purchase => {
      return purchase.txid === txid
   })
-  
+
   if(found){
     let {txid, payment_txid, terms } = found
     proofOfPurchase({txid, payment_txid, terms })

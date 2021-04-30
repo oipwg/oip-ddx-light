@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginForm from '../components/views/dumb/loginForm/LoginForm'
+import LoginForm from '../src/components/library/loginForm/LoginForm'
 
 //import LoginForm from '../auth/Login'
 
