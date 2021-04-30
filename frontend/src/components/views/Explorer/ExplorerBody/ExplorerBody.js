@@ -1,8 +1,8 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
-import TemplateMap from '../../../library/templateMap/TemplateMap'
-import RecordMap from '../../../library/recordMap/RecordMap'
+import TemplateMap from '../../../library/TemplateMap/TemplateMap'
+import RecordMap from '../../../library/RecordMap/RecordMap'
 import Explorer from '../Explorer'
 
 const styles = theme => ({

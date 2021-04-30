@@ -1,8 +1,8 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
-import isObjEmpty from '../../../../util/isObjEmpty'
-import RecordRow from '../recordRow/RecordRow'
+import isObjEmpty from '../../../../util/is-obj-empty'
+import RecordRow from '../RecordRow/RecordRow'
 
 const styles = theme => ({
   root: {

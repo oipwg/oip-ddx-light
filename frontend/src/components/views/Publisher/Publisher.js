@@ -1,7 +1,7 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
-import TemplatePublisher from '../../library/templatePublisher/TemplatePublisher'
+import TemplatePublisher from '../../library/TemplatePublisher/TemplatePublisher'
 
 const styles = theme => ({
   root: {

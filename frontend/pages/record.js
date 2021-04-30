@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import withStyles from 'react-jss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SwitchViewer from '../src/components/library/switchViewer/SwitchViewer';
-import RecordMap from '../src/components/library/recordMap/RecordMap';
-import PaymentRow from '../src/components/library/paymentRow/PaymentRow';
-import SideBar from '../src/components/library/sideBar/SideBar';
+import SwitchViewer from '../src/components/library/SwitchViewer/SwitchViewer';
+import RecordMap from '../src/components/library/RecordMap/RecordMap';
+import PaymentRow from '../src/components/library/PaymentRow/PaymentRow';
+import SideBar from '../src/components/library/SideBar/SideBar';
 import {
   getBalance,
   getExchangeRate,

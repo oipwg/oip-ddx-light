@@ -1,5 +1,5 @@
 import React from 'react';
-import RegisterForm from '../src/components/library/registerForm/RegisterForm'
+import RegisterForm from '../src/components/library/RegisterForm/RegisterForm'
 
 //import RegisterForm from '../auth/Register'
 

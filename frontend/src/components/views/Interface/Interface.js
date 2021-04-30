@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import withStyles from 'react-jss'
 
 import ExplorerContainer from '../Explorer/ExplorerContainer'
-import SideBar from '../../library/sideBar/SideBar'
+import SideBar from '../../library/SideBar/SideBar'
 import WalletPage from '../../pages/WalletPage'
 import PublisherContainer from '../Publisher/PublisherContainer'
-import PublishModal from '../../library/publishModal/PublishModal'
+import PublishModal from '../../library/PublishModal/PublishModal'
 import Publisher from '../Publisher/Publisher'
 import AutopayPage from '../../pages/AutopayPage'
 

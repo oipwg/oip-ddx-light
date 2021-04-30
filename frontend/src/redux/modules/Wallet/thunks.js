@@ -16,7 +16,7 @@ import {
   purchase_record,
   setExplorerWallet, setHdmwWallet
 } from './actions'
-import getFloWif from '../../../../util/getWif';
+import getFloWif from '../../../../util/get-wif';
 
 
 

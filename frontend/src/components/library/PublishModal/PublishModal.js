@@ -3,10 +3,10 @@ import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import { MdClose } from 'react-icons/md'
 import { TEMPLATE, RECORD } from '../../../redux/reducers/Publisher'
-import TemplatePublisher from '../templatePublisher/TemplatePublisher'
-import RecordPublisher from '../recordPublisher/RecordPublisher'
+import TemplatePublisher from '../TemplatePublisher/TemplatePublisher'
+import RecordPublisher from '../RecordPublisher/RecordPublisher'
 import { useSelector } from 'react-redux'
-import getFloWif from '../../../../util/getWif'
+import getFloWif from '../../../../util/get-wif'
 
 const styles = theme => ({
   modalBackground: {

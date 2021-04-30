@@ -1,7 +1,7 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
-import SideBarNavLink from '../sidebarNavLink/SideBarNavLink'
+import SideBarNavLink from '../SidebarNavLink/SideBarNavLink'
 
 const styles = theme => ({
   root: {},

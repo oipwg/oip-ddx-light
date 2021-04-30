@@ -3,7 +3,7 @@ import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import { RecordTemplate } from 'oip-react'
 import { useSelector } from 'react-redux'
-import getFloWif from '../../../../util/getWif'
+import getFloWif from '../../../../util/get-wif'
 
 const styles = {
   root: {

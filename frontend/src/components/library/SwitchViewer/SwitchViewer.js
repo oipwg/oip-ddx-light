@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import index from '../../../../../templates/knownTemplates';
-import VideoViewer from '../videoViewer/VideoViewer';
-import PdfViewer from '../pdfViewer/PdfViewer';
-import AudioPlayer from '../audioPlayer/AudioPlayer';
-import ImageViewer from '../imageViewer/ImageViewer';
-import GenericRecordViewer from '../genericRecordViewer/GenericRecordViewer';
+import VideoViewer from '../VideoViewer/VideoViewer';
+import PdfViewer from '../PdfViewer/PdfViewer';
+import AudioPlayer from '../AudioPlayer/AudioPlayer';
+import ImageViewer from '../ImageViewer/ImageViewer';
+import GenericRecordViewer from '../GenericRecordViewer/GenericRecordViewer';
 
 const SwitchViewer = ({ recordPayload, purchasedData }) => {
   const { record } = recordPayload;''

@@ -1,8 +1,8 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
-import TemplateCard from '../templateCard/TemplateCard'
-import isObjEmpty from '../../../../util/isObjEmpty'
+import TemplateCard from '../TemplateCard/TemplateCard'
+import isObjEmpty from '../../../../util/is-obj-empty'
 
 const styles = theme => ({
   root: {

@@ -6,7 +6,7 @@ import Router from 'next/router'
 import { FaTwitter } from 'react-icons/fa';
 import config from '../../../../config';
 import index from '../../../../templates';
-import getIpfsUrl from '../../../../util/getIpfsUrl';
+import getIpfsUrl from '../../../../util/get-ipfs-url';
 import { connect } from 'react-redux';
 import { purchaseRecord, proofOfPurchase } from '../../../redux/modules/Wallet/thunks';
 import { updatePurchasedTxid } from '../../../redux/actions/Autopay/creators'
