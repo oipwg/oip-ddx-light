@@ -5,18 +5,16 @@ import clsx from 'clsx'
 import styles from './styles'
 
 const ArticleHeader = ({
-  bylineWritersTitle,
-  bylineWriter,
-  bylineWritersLocation,
+  title,
+  subtitle,
   children,
   className,
   style
 }) => {
   const c = styles()
   return <div className={clsx(c.root, className)} style={style}>
-    {bylineWritersTitle}
-    {bylineWriter}
-    {bylineWritersLocation}
+    <div className={c.title}>{title}</div>
+    <div className={c.subtitle}>{subtitle}</div>
     {children}
   </div>
 }

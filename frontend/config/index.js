@@ -6,7 +6,8 @@ const config = {
 	// a url to a running Insight explorer endpoint
 	explorerUrl: 'https://livenet.flocha.in/api',
 	// ipfs gateway url
-	ipfsGatewayUrl: 'https://ipfs.io/ipfs',
+	// ipfsGatewayUrl: 'https://ipfs.io/ipfs',
+	ipfsGatewayUrl: 'http://localhost:8080/ipfs',
 	// testnet will not offer full functionality. but if you're using this you can probably figure out how to add what you want
 	network: 'mainnet',
 	// an array of string template names (tmpl_XXXXXXXX) to filter

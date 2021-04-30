@@ -31,7 +31,7 @@ const RecordView = ({
 	const { record } = recordPayload
 	const isArticleTemplate = record?.details?.[TMP_ARTICLE]
 
-	return <div className={clsx(c.root, className)} style={style}>
+	return <div id={'record-view'} className={clsx(c.root, className)} style={style}>
 		{
 			isArticleTemplate ?
 				<ArticleViewer

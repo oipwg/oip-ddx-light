@@ -7,6 +7,7 @@ import styles from './styles'
 import getTemplateData from '../../../../util/template/get-template-data'
 import useOip5RecordsByTxid from '../../../hooks/useOip5RecordByTxid'
 import useIpfsRecord from '../../../hooks/useIpfsRecord'
+import clsx from 'clsx'
 
 const ArticleViewer = ({
 	recordPayload,
@@ -51,16 +52,20 @@ const ArticleViewer = ({
 	const loadingOr = (data, loading) => {
 		return loading ? 'Loading...' : data
 	}
-	return <div className={className} style={style}>
+	return <div className={clsx(className, c.root)} style={style}>
 		<Article className={c.article}>
 			<Article.Header
-				bylineWritersTitle={
-					<h1>
+				title={
+					<h1 className={c.title}>
 						{articleTemplateData.bylineWritersTitle}
 					</h1>
 				}
-				bylineWriter={<span>{loadingOr(byLineWriter, writerQuery.isLoading)}</span>}
-				bylineWritersLocation={<span>{articleTemplateData.bylineWritersLocation}</span>}
+				subtitle={
+					<>
+						<span style={{ marginRight: 5 }}>{byLineWriter},</span>
+						<span>{articleTemplateData.bylineWritersLocation}</span>
+					</>
+				}
 			/>
 			<Article.MediaView
 				imageList={articleTemplateData.imageList}

@@ -10,7 +10,7 @@ const ArticleBody = ({
   style
 }) => {
   const c = styles()
-  return <div className={clsx(c.root, className)} style={style}>
+  return <div className={clsx(c.body, className)} style={style}>
     {articleText}
   </div>
 }

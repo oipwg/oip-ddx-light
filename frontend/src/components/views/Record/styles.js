@@ -1,6 +1,10 @@
-import createUseStyles from 'react-jss'
+import { createUseStyles } from 'react-jss'
 
 export default createUseStyles(theme => ({
+	root: {
+		height: '100%',
+		width: '100%'
+	},
 	content: {
 		display: 'flex',
 		flexDirection: 'column',
