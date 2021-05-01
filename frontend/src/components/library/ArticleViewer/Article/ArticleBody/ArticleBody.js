@@ -5,13 +5,13 @@ import clsx from 'clsx'
 import styles from './styles'
 
 const ArticleBody = ({
-  articleText,
+  children,
   className,
   style
 }) => {
   const c = styles()
   return <div className={clsx(c.body, className)} style={style}>
-    {articleText}
+    {children}
   </div>
 }
 

@@ -22,9 +22,9 @@ const ArticleViewer = ({
 	const imageListOipRef = articleTemplateData.imageList
 	const articleTextOipRef = articleTemplateData.articleText
 
-	const [bylineWriterRecord, writerQuery] = useOip5RecordsByTxid(bylineWriterOipRef)
-	const [imageListRecord, imageListQuery] = useOip5RecordsByTxid(imageListOipRef)
-	const [articleTextRecord, articleTextQuery] = useOip5RecordsByTxid(articleTextOipRef)
+	const [bylineWriterRecord, writerQuery] = useOip5RecordsByTxid(bylineWriterOipRef, 'bylineWriterOipRef')
+	const [imageListRecord, imageListQuery] = useOip5RecordsByTxid(imageListOipRef, 'imageListOipRef')
+	const [articleTextRecord, articleTextQuery] = useOip5RecordsByTxid(articleTextOipRef, 'articleTextOipRef')
 
 	const byLineWriterTemplateData = getTemplateData(bylineWriterRecord, TMP_PERSON)
 	const byLineWriter = byLineWriterTemplateData?.surname
@@ -36,18 +36,9 @@ const ArticleViewer = ({
 	const articleTextTemplateData = getTemplateData(articleTextRecord, TMP_TEXT)
 	const articleTextIpfsAddress = articleTextTemplateData?.textAddress
 
-	const [articleTextIpfsRecord, articleTextIpfsQuery] = useIpfsRecord(articleTextIpfsAddress, 'articleTextIpfsAddress')
+	const [articleTextIpfsRecord, articleTextIpfsQuery] = useIpfsRecord(articleTextIpfsAddress)
 	const [imageListIpfsRecord, imageListIpfsQuery] = useIpfsRecord(imageListIpfsAddress, 'imageListIpfsAddress')
 	const [imageThumbnailIpfsRecord, imageThumbnailIpfsQuery] = useIpfsRecord(imageThumbnailIpfsAddress, 'imageThumbnailIpfsAddress')
-
-	// console.log('Article Text', articleTextIpfsRecord)
-	// console.log('Image', imageListIpfsRecord)
-	// console.log('Thumbnail', imageThumbnailIpfsRecord)
-
-
-	// console.log('writer', bylineWriterRecord)
-	// console.log('imagelist', imageListRecord)
-	// console.log('articletext', articleTextRecord)
 
 	const loadingOr = (data, loading) => {
 		return loading ? 'Loading...' : data
@@ -71,13 +62,9 @@ const ArticleViewer = ({
 				imageList={articleTemplateData.imageList}
 				imageCaptionList={articleTemplateData.imageCaptionList}
 			/>
-			<Article.Body
-				articleText={
-					<pre>
-						{loadingOr('Body', articleTextQuery.isLoading)}
-					</pre>
-				}
-			/>
+			<Article.Body>
+				<div className={c.body} dangerouslySetInnerHTML={{ __html: articleTextIpfsRecord }} />
+			</Article.Body>
 		</Article>
 	</div>
 }

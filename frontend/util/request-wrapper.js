@@ -12,15 +12,10 @@ const requestWrapper = async (method, options) => {
 		json: options.contentType === 'application/json',
 		responseType: options.responseType === 'application/json' ? 'json' : options.responseType,
 		headers: {
-			Authorization: `Bearer ${options.token}`,
 			'content-type': options.contentType || 'application/json',
 			Accept: options.contentType || 'application/json',
-			'Cache-Control':
-				'no-cache, no-store, must-revalidate, private, max-age=0',
 			...options.headers
-		},
-		withCredentials: options.withCredentials,
-		auth: options.auth
+		}
 	})
 
 	return response.data

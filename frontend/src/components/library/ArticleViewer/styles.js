@@ -7,11 +7,15 @@ export default createUseStyles(theme => {
 			width: '100%',
 		},
 		article: {
-			padding: '20px 80px'
+			padding: '20px 80px',
+			overflow: 'auto'
 		},
 		title: {
 			fontWeight: 500,
 			marginBottom: 8
+		},
+		body: {
+			padding: '20px 0'
 		}
 	}
 })

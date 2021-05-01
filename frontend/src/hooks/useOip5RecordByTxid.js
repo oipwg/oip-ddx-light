@@ -36,7 +36,10 @@ export default function useOip5RecordsByTxid (txid, log) {
 				setSettled(true)
 			}
 		}
-		getRecord()
+		if (txid) {
+			console.log('found txid for ', txid, log)
+			getRecord()
+		}
 	}, [txid])
 
 	return [record, { isLoading, isError, isSettled }]
