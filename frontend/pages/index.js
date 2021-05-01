@@ -2,19 +2,19 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import config from '../config.js'
-import InterfaceContainer from '../components/containers/InterfaceContainer'
+import config from '../config'
+import InterfaceContainer from '../src/components/views/Interface/InterfaceContainer'
 
 import {
   fetchingRecordsError,
   fetchingTemplatesError,
   setDefaultRecords,
   setDefaultTemplates
-} from '../redux/actions/Explorer/creators'
-import { getDefaultRecords, getDefaultTemplates } from '../redux/actions/Explorer/thunks'
-import { getBalance, getExchangeRate } from '../redux/modules/Wallet/thunks'
-import useRegisterPlatform from '../helpers/hooks/useRegisterPlatform'
-import { registerPlatform, setPlatformData } from '../redux/actions/Platform/creators'
+} from '../src/redux/actions/Explorer/creators'
+import { getDefaultRecords, getDefaultTemplates } from '../src/redux/actions/Explorer/thunks'
+import { getBalance, getExchangeRate } from '../src/redux/modules/Wallet/thunks'
+import useRegisterPlatform from '../src/hooks/useRegisterPlatform'
+import { registerPlatform, setPlatformData } from '../src/redux/actions/Platform/creators'
 
 const Index = ({
   defaultRecords,

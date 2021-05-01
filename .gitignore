@@ -3,9 +3,10 @@ frontend/node_modules/*
 **/node_modules
 .DS_Store
 .idea
-src/components/AudioViewer/scratch.js
+frontend/src/components/AudioViewer/scratch.js
 localStorage/
-.next
+frontend/.next
 DOD.md
 .vscode
 .env
+node_modules

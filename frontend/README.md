@@ -6,11 +6,11 @@ If not done so already, [install yarn here](https://yarnpkg.com/en/docs/install#
 
 `cd oip-ddx-light`
 
-`yarn install`
+`npm install`
 
 ##### Run
 
-`yarn dev`
+`npm run dev`
 
 ### Important Config Settings!
 
