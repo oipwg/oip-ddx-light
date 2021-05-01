@@ -1,25 +1,35 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import clsx from 'clsx'
 import * as PropTypes from 'prop-types'
 import Article from './Article'
-import { TMP_ARTICLE, TMP_IMAGE, TMP_PERSON, TMP_TEXT } from '../../../../templates'
+import { TMP_ARTICLE, TMP_BASIC, TMP_IMAGE, TMP_PERSON, TMP_TEXT } from '../../../../templates'
 
 import styles from './styles'
 import getTemplateData from '../../../../util/template/get-template-data'
 import useOip5RecordsByTxid from '../../../hooks/useOip5RecordByTxid'
 import useIpfsRecord from '../../../hooks/useIpfsRecord'
-import clsx from 'clsx'
+import createObjectUrl from '../../../../util/file/create-object-url'
 
 const ArticleViewer = ({
 	recordPayload,
 	className,
 	style
 }) => {
-	// console.log('record payload', recordPayload)
 	const c = styles()
+
+	const { meta } = recordPayload
+	const timeUnix = meta?.time
+	let datePublished
+	if (timeUnix) {
+		datePublished = new Date(timeUnix * 1e3)
+	}
 	const articleTemplateData = getTemplateData(recordPayload, TMP_ARTICLE)
+	const basicTemplateData = getTemplateData(recordPayload, TMP_BASIC)
+	const title = basicTemplateData?.name
 
 	const bylineWriterOipRef = articleTemplateData.bylineWriter
 	const imageListOipRef = articleTemplateData.imageList
+	const imageCaptionList = articleTemplateData.imageCaptionList
 	const articleTextOipRef = articleTemplateData.articleText
 
 	const [bylineWriterRecord, writerQuery] = useOip5RecordsByTxid(bylineWriterOipRef, 'bylineWriterOipRef')
@@ -30,40 +40,44 @@ const ArticleViewer = ({
 	const byLineWriter = byLineWriterTemplateData?.surname
 
 	const imageListTemplateData = getTemplateData(imageListRecord, TMP_IMAGE)
+
 	const imageListIpfsAddress = imageListTemplateData?.imageAddress
-	const imageThumbnailIpfsAddress = imageListTemplateData?.thumbnailAddress
+	const [imageBlob, imageListIpfsQuery] = useIpfsRecord(imageListIpfsAddress, 'blob',)
+	const imageUrl = createObjectUrl({ blob: imageBlob })
+
+	// const imageThumbnailIpfsAddress = imageListTemplateData?.thumbnailAddress
+	// const [thumbnailBlob, imageThumbnailIpfsQuery] = useIpfsRecord(imageThumbnailIpfsAddress, 'blob')
+	// const thumbnailUrl = createObjectUrl({ blob: imageBlob })
 
 	const articleTextTemplateData = getTemplateData(articleTextRecord, TMP_TEXT)
 	const articleTextIpfsAddress = articleTextTemplateData?.textAddress
-
 	const [articleTextIpfsRecord, articleTextIpfsQuery] = useIpfsRecord(articleTextIpfsAddress)
-	const [imageListIpfsRecord, imageListIpfsQuery] = useIpfsRecord(imageListIpfsAddress, 'imageListIpfsAddress')
-	const [imageThumbnailIpfsRecord, imageThumbnailIpfsQuery] = useIpfsRecord(imageThumbnailIpfsAddress, 'imageThumbnailIpfsAddress')
 
-	const loadingOr = (data, loading) => {
-		return loading ? 'Loading...' : data
-	}
 	return <div className={clsx(className, c.root)} style={style}>
 		<Article className={c.article}>
 			<Article.Header
 				title={
 					<h1 className={c.title}>
-						{articleTemplateData.bylineWritersTitle}
+						{title}
 					</h1>
 				}
 				subtitle={
 					<>
-						<span style={{ marginRight: 5 }}>{byLineWriter},</span>
-						<span>{articleTemplateData.bylineWritersLocation}</span>
+						<span>
+							{byLineWriter}, {articleTemplateData.bylineWritersTitle}, {articleTemplateData.bylineWritersLocation} / Published {datePublished.toUTCString()}
+						</span>
 					</>
 				}
 			/>
 			<Article.MediaView
-				imageList={articleTemplateData.imageList}
-				imageCaptionList={articleTemplateData.imageCaptionList}
-			/>
+				body={<img alt={'article-image'} src={imageUrl}/>}
+				caption={<span>
+					{imageCaptionList?.join(', ')}
+				</span>}
+			>
+			</Article.MediaView>
 			<Article.Body>
-				<div className={c.body} dangerouslySetInnerHTML={{ __html: articleTextIpfsRecord }} />
+				<div className={c.body} dangerouslySetInnerHTML={{ __html: articleTextIpfsRecord }}/>
 			</Article.Body>
 		</Article>
 	</div>

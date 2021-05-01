@@ -13,9 +13,6 @@ export default createUseStyles(theme => {
 		title: {
 			fontWeight: 500,
 			marginBottom: 8
-		},
-		body: {
-			padding: '20px 0'
 		}
 	}
 })

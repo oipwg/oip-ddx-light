@@ -1,4 +1,5 @@
-export const TMP_ARTICLE = 'tmpl_59D7EAFD'
+export const TMP_BASIC = 'tmpl_20AD45E7'
+export const TMP_ARTICLE = 'tmpl_D019F2E1'
 export const TMPL_PAYMENT = 'tmpl_3084380E'
 export const TMP_PERSON = 'tmpl_B6E9AF9B'
 export const TMP_TEXT = 'tmpl_30BDF5A4'

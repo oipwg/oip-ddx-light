@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import getIpfsObject from '../api/ipfs/get-ipfs-object'
 
-export default function useIpfsRecord (address, log) {
+export default function useIpfsRecord (address, responseType, log) {
 	const [isLoading, setLoading] = useState(false)
 	const [isError, setError] = useState('')
 	const [isSettled, setSettled] = useState(false)
@@ -14,10 +14,10 @@ export default function useIpfsRecord (address, log) {
 			setSettled(false)
 			setError('')
 			try {
-				const res = await getIpfsObject(address)
+				const res = await getIpfsObject(address, { responseType })
 				setRecord(res)
 				if (log) {
-					console.log(log, res)
+					console.log('ipfs: ', log , res)
 				}
 			} catch (err) {
 				setError(err)
@@ -26,8 +26,10 @@ export default function useIpfsRecord (address, log) {
 				setSettled(true)
 			}
 		}
+		if (log) {
+			console.log(log, address)
+		}
 		if (address) {
-			console.log('found addy for', log)
 			getRecord()
 		}
 	}, [address])

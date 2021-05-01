@@ -5,12 +5,17 @@ import clsx from 'clsx'
 import styles from './styles'
 
 const ArticleMediaView = ({
+  body,
+  caption,
   className,
   style
 }) => {
   const c = styles()
   return <div className={clsx(c.root, className)} style={style}>
-
+    <div className={c.body}>
+      {body}
+    </div>
+    <span className={c.caption}>{caption}</span>
   </div>
 }
 
