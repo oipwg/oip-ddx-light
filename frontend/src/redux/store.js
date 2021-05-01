@@ -7,7 +7,6 @@ import * as reducers from './reducers'
 // Create our Store
 const createStoreFn = () => {
 
-  console.log("this be the log: ", reducers);
   // Create the logger to log Actions to the console
   let middleware = [thunkMiddleware]
   if (process.env.NODE_ENV !== 'production') {
