@@ -32,17 +32,19 @@ const ArticleViewer = ({
 	const imageCaptionList = articleTemplateData.imageCaptionList
 	const articleTextOipRef = articleTemplateData.articleText
 
-	const [bylineWriterRecord, writerQuery] = useOip5RecordsByTxid(bylineWriterOipRef, 'bylineWriterOipRef')
-	const [imageListRecord, imageListQuery] = useOip5RecordsByTxid(imageListOipRef, 'imageListOipRef')
-	const [articleTextRecord, articleTextQuery] = useOip5RecordsByTxid(articleTextOipRef, 'articleTextOipRef')
+	const [bylineWriterRecord, writerQuery] = useOip5RecordsByTxid(bylineWriterOipRef)
+	const [imageListRecord, imageListQuery] = useOip5RecordsByTxid(imageListOipRef)
+	const [articleTextRecord, articleTextQuery] = useOip5RecordsByTxid(articleTextOipRef)
 
 	const byLineWriterTemplateData = getTemplateData(bylineWriterRecord, TMP_PERSON)
+	const byLineWriterFirstName = getTemplateData(bylineWriterRecord, TMP_BASIC)
+	const firstName = byLineWriterFirstName?.name
 	const byLineWriter = byLineWriterTemplateData?.surname
 
 	const imageListTemplateData = getTemplateData(imageListRecord, TMP_IMAGE)
 
 	const imageListIpfsAddress = imageListTemplateData?.imageAddress
-	const [imageBlob, imageListIpfsQuery] = useIpfsRecord(imageListIpfsAddress, 'blob',)
+	const [imageBlob, imageListIpfsQuery] = useIpfsRecord(imageListIpfsAddress, 'blob')
 	const imageUrl = createObjectUrl({ blob: imageBlob })
 
 	// const imageThumbnailIpfsAddress = imageListTemplateData?.thumbnailAddress
@@ -64,7 +66,7 @@ const ArticleViewer = ({
 				subtitle={
 					<>
 						<span>
-							{byLineWriter}, {articleTemplateData.bylineWritersTitle}, {articleTemplateData.bylineWritersLocation} / Published {datePublished.toUTCString()}
+							{firstName} {byLineWriter}, {articleTemplateData.bylineWritersTitle}, {articleTemplateData.bylineWritersLocation} / Published {datePublished.toUTCString()}
 						</span>
 					</>
 				}
