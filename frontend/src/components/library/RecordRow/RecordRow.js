@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
 import config from '../../../../config'
-import templates, { BASIC, COMMERICAL, PAYMENT, VIDEO } from '../../../../templates'
+import templates, { BASIC, COMMERICAL, PAYMENT, SIMPCOINSALE, VIDEO } from '../../../../templates'
 import getIpfsUrl from '../../../../util/get-ipfs-url'
 import { connect } from 'react-redux'
 import { purchaseRecord, proofOfPurchase } from '../../../redux/modules/Wallet/thunks'
@@ -143,23 +143,12 @@ const RecordRow = ({
   }
 
   // COMMERCIAL CONTENT
-  if (Object.keys(details).includes(COMMERICAL)) {
-    let amount
-    // const { txid } = meta
-    let terms
-
-    for (const item in details) {
-      const obj = details[item]
-
-      Object.keys(obj).map(key => {
-        if (key === 'embeddedTerms') {
-          terms = obj[key][0]
-        }
-
-        if (key === 'amount') {
-          amount = obj[key]
-        }
-      })
+  if (details[COMMERICAL]) {
+    // COMMERCIAL CONTENT
+    const terms = details[COMMERICAL].embeddedTerms?.[0]
+    let amount = 0
+    if (details[SIMPCOINSALE]) {
+      amount = details[COMMERICAL].amount || 0
     }
     return (
       <RecordRowData
@@ -178,7 +167,7 @@ const RecordRow = ({
         amount={Number(amount)}
         handleClick={handleClick}
         purchasedData={purchasedData}
-        terms={(terms).toString()}
+        terms={terms?.toString()}
       />
     )
   }

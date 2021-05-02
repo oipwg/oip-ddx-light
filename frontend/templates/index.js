@@ -22,7 +22,7 @@ const templates = {
   audio: ['tmpl_2670B072'],
   image: ['tmpl_1AC73C98'],
   pdf: ['tmpl_8EE48C00'],
-  commercialContent: ['tmpl_D8D0F22C', TMP_COMMERCIAL_CONTENT],
+  commercialContent: [COMMERICAL, TMP_COMMERCIAL_CONTENT],
   tmpl_66089C48: {
     friendly_name: 'Basic',
     name: 'tmpl_66089C48',
