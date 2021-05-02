@@ -1,6 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import * as PropTypes from 'prop-types'
+import ReactMarkdown from 'react-markdown'
 import Article from './Article'
 import { TMP_ARTICLE, TMP_BASIC, TMP_IMAGE, TMP_PERSON, TMP_TEXT_IS_PREVIEW } from '../../../../templates'
 
@@ -114,7 +115,12 @@ const ArticleViewer = ({
           <br />
           Error: {articleTextIpfsQuery.isError}
         </p>}
-        {articleTextLoaded && <div className={c.body} dangerouslySetInnerHTML={{ __html: purchasedText || articleTextIpfsRecord }}/>}
+        {articleTextLoaded && <div
+          className={c.body}
+          // dangerouslySetInnerHTML={{ __html: purchasedText || articleTextIpfsRecord }}
+        >
+          <ReactMarkdown>{purchasedText || articleTextIpfsRecord}</ReactMarkdown>
+        </div>}
       </Article.Body>
     </Article>
   </div>
