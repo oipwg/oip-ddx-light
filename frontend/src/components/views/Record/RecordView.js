@@ -36,6 +36,7 @@ const RecordView = ({
       isArticleTemplate
         ? <ArticleViewer
           recordPayload={recordPayload}
+          purchasedData={purchasedData}
         />
         : <>
           <div className={c.recordViewer}>

@@ -223,7 +223,8 @@ export const purchaseRecord = ({
 // UseEffect will call proofOfPurchase and take care of the rest.
 
 export const proofOfPurchase = ({
-  paymentTxid,
+  // eslint-disable-next-line camelcase
+  payment_txid,
   txid,
   terms
 }) => async (dispatch, getState) => {
@@ -244,7 +245,7 @@ export const proofOfPurchase = ({
   const signature = wallet.signMessage(pre_image)
   const publicAddress = getPubAddress(getFloWif(Wallet.hdmwWallet))
 
-  const body = { valid_until, id: txid, term: terms, pre_image, signature, payment_txid: paymentTxid, signing_address: publicAddress }
+  const body = { valid_until, id: txid, term: terms, pre_image, signature, payment_txid, signing_address: publicAddress }
 
   try {
     const res = await axios.post(`https://api.oip.io/oip/o5/location/proof?id=${txid}&terms=${terms}`, body)

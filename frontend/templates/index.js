@@ -2,9 +2,10 @@ export const TMP_BASIC = 'tmpl_20AD45E7'
 export const TMP_ARTICLE = 'tmpl_D019F2E1'
 export const TMPL_PAYMENT = 'tmpl_3084380E'
 export const TMP_PERSON = 'tmpl_B6E9AF9B'
-export const TMP_TEXT = 'tmpl_30BDF5A4'
-export const TMP_TEXT_IS_PREVIEW = 'tmpl_79BE2E9E'
+export const TMP_TEXT_IS_PREVIEW = 'tmpl_769D8FBC'
 export const TMP_IMAGE = 'tmpl_1AC73C98'
+
+export const TMP_COMMERCIAL_CONTENT = 'tmpl_90A3E94D'
 
 /**
  * Added to retain backwards compatibility with Template Data file
@@ -21,7 +22,7 @@ const templates = {
   audio: ['tmpl_2670B072'],
   image: ['tmpl_1AC73C98'],
   pdf: ['tmpl_8EE48C00'],
-  commercialContent: ['tmpl_D8D0F22C', 'tmpl_90A3E94D'],
+  commercialContent: ['tmpl_D8D0F22C', TMP_COMMERCIAL_CONTENT],
   tmpl_66089C48: {
     friendly_name: 'Basic',
     name: 'tmpl_66089C48',

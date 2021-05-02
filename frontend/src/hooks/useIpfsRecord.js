@@ -44,9 +44,11 @@ export default function useIpfsRecord (address, options = {}) {
       }
       l('done')
     }
-    l(log, address)
+    l('address for: ', log, address)
     if (address && current) {
       getRecord()
+    } else {
+      setSettled(true)
     }
     return () => {
       current = false

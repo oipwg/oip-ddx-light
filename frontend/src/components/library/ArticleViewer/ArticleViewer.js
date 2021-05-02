@@ -2,7 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import * as PropTypes from 'prop-types'
 import Article from './Article'
-import { TMP_ARTICLE, TMP_BASIC, TMP_IMAGE, TMP_PERSON, TMP_TEXT } from '../../../../templates'
+import { TMP_ARTICLE, TMP_BASIC, TMP_IMAGE, TMP_PERSON, TMP_TEXT_IS_PREVIEW } from '../../../../templates'
 
 import styles from './styles'
 import getTemplateData from '../../../../util/template/get-template-data'
@@ -12,6 +12,7 @@ import createObjectUrl from '../../../../util/file/create-object-url'
 
 const ArticleViewer = ({
   recordPayload,
+  purchasedData,
   className,
   style
 }) => {
@@ -37,6 +38,8 @@ const ArticleViewer = ({
   const [imageListRecord, imageListQuery] = useOip5RecordsByTxid(imageListOipRef)
   // eslint-disable-next-line no-unused-vars
   const [articleTextRecord, articleTextQuery] = useOip5RecordsByTxid(articleTextOipRef)
+  // const previewTemplate = getTemplateData(articleTextRecord, TMP_TEXT_IS_PREVIEW)
+  // const isPreview = previewTemplate?.isPreview || false
 
   /**
    * Byline caption
@@ -61,9 +64,13 @@ const ArticleViewer = ({
   /**
    * TEXT BODY
    */
-  const articleTextTemplateData = getTemplateData(articleTextRecord, TMP_TEXT)
+  const articleTextTemplateData = getTemplateData(articleTextRecord, TMP_TEXT_IS_PREVIEW)
   const articleTextIpfsAddress = articleTextTemplateData?.textAddress
   const [articleTextIpfsRecord, articleTextIpfsQuery] = useIpfsRecord(articleTextIpfsAddress)
+
+  const [purchasedText, purchaseTextQuery] = useIpfsRecord(purchasedData?.data?.location)
+
+  const textLoading = purchaseTextQuery.isLoading || articleTextIpfsQuery.isLoading
 
   const articleTextDoesNotExists = articleTextIpfsQuery?.isSettled && !articleTextIpfsRecord
   const articleTextLoaded = articleTextIpfsQuery.isSettled && articleTextIpfsRecord
@@ -100,13 +107,14 @@ const ArticleViewer = ({
       >
       </Article.MediaView>
       <Article.Body>
-        {articleTextIpfsQuery.isLoading && 'Loading article text...'}
+        {textLoading && 'Loading article text...'}
         {articleTextDoesNotExists &&
         <p>
-          Failed to load article text at ipfs address: {articleTextIpfsAddress}
-          Error?: {articleTextIpfsQuery.isError}
+          Failed to load article text at ipfs address: {articleTextIpfsAddress || 'unknown'}
+          <br />
+          Error: {articleTextIpfsQuery.isError}
         </p>}
-        {articleTextLoaded && <div className={c.body} dangerouslySetInnerHTML={{ __html: articleTextIpfsRecord }}/>}
+        {articleTextLoaded && <div className={c.body} dangerouslySetInnerHTML={{ __html: purchasedText || articleTextIpfsRecord }}/>}
       </Article.Body>
     </Article>
   </div>
