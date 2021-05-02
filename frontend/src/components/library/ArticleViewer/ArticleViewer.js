@@ -32,13 +32,15 @@ const ArticleViewer = ({
   const imageCaptionList = articleTemplateData.imageCaptionList
   const articleTextOipRef = articleTemplateData.articleText
 
-  // eslint-disable-next-line no-unused-vars
   const [bylineWriterRecord, writerQuery] = useOip5RecordsByTxid(bylineWriterOipRef)
   // eslint-disable-next-line no-unused-vars
   const [imageListRecord, imageListQuery] = useOip5RecordsByTxid(imageListOipRef)
   // eslint-disable-next-line no-unused-vars
   const [articleTextRecord, articleTextQuery] = useOip5RecordsByTxid(articleTextOipRef)
 
+  /**
+   * Byline caption
+   */
   const byLineWriterTemplateData = getTemplateData(bylineWriterRecord, TMP_PERSON)
   const byLineWriterFirstName = getTemplateData(bylineWriterRecord, TMP_BASIC)
   const firstName = byLineWriterFirstName?.name
@@ -49,7 +51,6 @@ const ArticleViewer = ({
    */
   const imageListTemplateData = getTemplateData(imageListRecord, TMP_IMAGE)
   const imageListIpfsAddress = imageListTemplateData?.imageAddress
-  // eslint-disable-next-line no-unused-vars
   const [imageBlob, imageListIpfsQuery] = useIpfsRecord(imageListIpfsAddress, { responseType: 'blob' })
   const imageUrl = createObjectUrl({ blob: imageBlob })
 
@@ -72,19 +73,27 @@ const ArticleViewer = ({
       <Article.Header
         title={
           <h1 className={c.title}>
-            {title}
+            {title || '[Title missing in record]'}
           </h1>
         }
         subtitle={
           <>
-            <span>
+            {writerQuery.isLoading && 'Loading byline writer...'}
+            {writerQuery.isError && <span style={{ color: 'red' }}>'Error fetching byline writer...'}</span>}
+            {writerQuery.isSettled && !writerQuery.isError && <span>
               {firstName} {byLineWriter}, {articleTemplateData.bylineWritersTitle}, {articleTemplateData.bylineWritersLocation} / Published {datePublished.toUTCString()}
-            </span>
+            </span>}
           </>
         }
       />
       <Article.MediaView
-        body={<img alt={'article-image'} src={imageUrl}/>}
+        body={
+          <>
+            { imageListIpfsQuery.isLoading && <div style={{ height: 300, width: '100%', backgroundColor: '#b8c6db', backgroundImage: 'linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%)' }} /> }
+            { imageListIpfsQuery.isSettled && !imageListIpfsQuery.isError && <img alt={'article-image'} src={imageUrl}/> }
+            { imageListIpfsQuery.isError && <span style={{ color: 'red' }}>Error fetching image at location: {imageListIpfsAddress}</span> }
+          </>
+        }
         caption={<span>
           {imageCaptionList?.join(', ')}
         </span>}

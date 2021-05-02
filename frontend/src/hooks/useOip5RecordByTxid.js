@@ -10,6 +10,7 @@ export default function useOip5RecordsByTxid (txid, log) {
   const daemonApi = useSelector(state => state.Explorer.daemonApi)
 
   useEffect(() => {
+    let current = true
     async function getRecord () {
       setLoading(true)
       setSettled(false)
@@ -39,8 +40,12 @@ export default function useOip5RecordsByTxid (txid, log) {
     if (log) {
       console.log('oip5record: ', log, txid)
     }
-    if (txid) {
+    if (txid && current) {
       getRecord()
+    }
+
+    return () => {
+      current = false
     }
   }, [daemonApi, log, txid])
 

@@ -6,7 +6,7 @@ import LoginForm from '../src/components/library/LoginForm/LoginForm'
 export default function LoginPage () {
   return (
     <div>
-      <LoginForm></LoginForm>
+      <LoginForm/>
     </div>
   )
 }

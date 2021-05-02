@@ -123,7 +123,7 @@ const RecordRow = ({
     for (const media in mediaTypes) {
       mediaTypes[media].find(x => {
         if (x === tmpl) {
-          // return typeOfMedia = media
+          typeOfMedia = media
         }
       })
     }
@@ -157,7 +157,7 @@ const RecordRow = ({
         }
 
         if (key === 'amount') {
-          // return amount = obj[key]
+          amount = obj[key]
         }
       })
     }
@@ -221,7 +221,6 @@ const RecordRow = ({
 }
 
 RecordRow.propTypes = {
-  classes: PropTypes.object.isRequired,
   record: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
   autoPay: PropTypes.object.isRequired
