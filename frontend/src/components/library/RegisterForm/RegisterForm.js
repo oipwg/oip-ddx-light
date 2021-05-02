@@ -1,13 +1,9 @@
-import React, { useState } from "react";
-import PropTypes from 'prop-types';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import withStyles from 'react-jss'
-
-//import { useHistory } from "react-router-dom";
-
-import Link from "next/link";
-import Router from "next/router";
-import Alert from "../Alert";
-import config from "../../../../config";
+import Router from 'next/router'
+import Alert from '../Alert'
+import config from '../../../../config'
 
 const styles = theme => ({
   root: {
@@ -33,66 +29,66 @@ const styles = theme => ({
 })
 
 const RegisterForm = ({
-  classes,
+  classes
 }) => {
-  //var location = useHistory();
-  /**************************STATE SECTION************************/
-  //**Display Name States */
-  const [username, setUsername] = useState("");
-  const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
+  // var location = useHistory();
+  /** ************************STATE SECTION************************/
+  //* *Display Name States */
+  const [username, setUsername] = useState('')
+  const [usernameErrorMessage, setUsernameErrorMessage] = useState('')
 
-  //**Password States */
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
-  const [passErrorMessage, setPassErrorMessage] = useState("");
+  //* *Password States */
+  const [password, setPassword] = useState('')
+  const [password2, setPassword2] = useState('')
+  const [passErrorMessage, setPassErrorMessage] = useState('')
 
-  //**Email States */
-  const [email, setEmail] = useState("");
-  const [reEmail, setReEmail] = useState("");
-  const [emailErrorMessage, setEmailErrorMessage] = useState("");
+  //* *Email States */
+  const [email, setEmail] = useState('')
+  const [reEmail, setReEmail] = useState('')
+  const [emailErrorMessage, setEmailErrorMessage] = useState('')
 
-  //**Mnemonic States */
-  const [mnemonic, setMnemonic] = useState("");
+  //* *Mnemonic States */
+  const [mnemonic, setMnemonic] = useState('')
 
-  const [reg_success, setRegSuccess] = useState(false);
+  const [regSuccess, setRegSuccess] = useState(false)
 
-  const BACKEND_API_URL = config.backendApiUrl;
+  const BACKEND_API_URL = config.backendApiUrl
 
   const validateForm = (e) => {
     if (email !== reEmail) {
-      setEmailErrorMessage("Emails do not match!");
-      setUsernameErrorMessage("");
+      setEmailErrorMessage('Emails do not match!')
+      setUsernameErrorMessage('')
     } else if (password !== password2) {
-      setEmailErrorMessage("");
-      setPassErrorMessage("Passwords do not match!");
+      setEmailErrorMessage('')
+      setPassErrorMessage('Passwords do not match!')
     } else {
-      setPassErrorMessage("");
-      sendUser();
+      setPassErrorMessage('')
+      sendUser()
     }
-  };
+  }
 
   const sendUser = () => {
     fetch(`${BACKEND_API_URL}/api/users/signup`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         displayName: username,
         email: email,
         password: password,
         mnemonic: mnemonic
-      }),
+      })
     })
       .then((response) => response.json())
       .then((message) => {
         if (message.error) {
-          setUsernameErrorMessage(message.error);
+          setUsernameErrorMessage(message.error)
         }
         if (message.success) {
-          setUsernameErrorMessage("");
-          setPassErrorMessage(`User Created, redirecting to dashboard...`);
-          setRegSuccess(true);
+          setUsernameErrorMessage('')
+          setPassErrorMessage('User Created, redirecting to dashboard...')
+          setRegSuccess(true)
           // walletData();
           /*
           setTimeout(() => {
@@ -101,8 +97,8 @@ const RegisterForm = ({
           }, 5000);
           */
         }
-      });
-  };
+      })
+  }
   /*
   const sendUser = async () => {
     try {
@@ -130,13 +126,13 @@ const RegisterForm = ({
   */
 
   const onFormSubmit = (e) => {
-    e.preventDefault();
-    validateForm(e);
+    e.preventDefault()
+    validateForm(e)
     Router.push('/')
-  };
+  }
 
-  /*************The placeholders are fontawesome unicode, allows them to show in the placeholder field *****************/
-  /*************Password fields get set to state to compare before submit*/
+  /** ***********The placeholders are fontawesome unicode, allows them to show in the placeholder field *****************/
+  /** ***********Password fields get set to state to compare before submit */
   return (
     <div className={classes.root}>
       {/*  */}
@@ -156,7 +152,7 @@ const RegisterForm = ({
                         placeholder="Username"
                         className="form-control"
                         onChange={(e) => {
-                          setUsername(e.target.value);
+                          setUsername(e.target.value)
                         }}
                       />
                     </div>
@@ -165,7 +161,7 @@ const RegisterForm = ({
                         <Alert
                           content={usernameErrorMessage}
                           setAlert={() => {
-                            setUsernameErrorMessage("");
+                            setUsernameErrorMessage('')
                           }}
                         />
                       ) : null}
@@ -176,7 +172,7 @@ const RegisterForm = ({
                         placeholder="Email"
                         className="form-control"
                         onChange={(e) => {
-                          setEmail(e.target.value);
+                          setEmail(e.target.value)
                         }}
                       />
                     </div>
@@ -186,7 +182,7 @@ const RegisterForm = ({
                         placeholder="Confirm Email"
                         className="form-control"
                         onChange={(e) => {
-                          setReEmail(e.target.value);
+                          setReEmail(e.target.value)
                         }}
                       />
                     </div>
@@ -195,7 +191,7 @@ const RegisterForm = ({
                         <Alert
                           content={emailErrorMessage}
                           setAlert={() => {
-                            setEmailErrorMessage("");
+                            setEmailErrorMessage('')
                           }}
                         />
                       ) : null}
@@ -207,7 +203,7 @@ const RegisterForm = ({
                         placeholder="Password"
                         className="form-control"
                         onChange={(e) => {
-                          setPassword(e.target.value);
+                          setPassword(e.target.value)
                         }}
                       />
                     </div>
@@ -218,7 +214,7 @@ const RegisterForm = ({
                         placeholder="Confirm Password"
                         className="form-control"
                         onChange={(e) => {
-                          setPassword2(e.target.value);
+                          setPassword2(e.target.value)
                         }}
                       />
                     </div>
@@ -227,7 +223,7 @@ const RegisterForm = ({
                         <Alert
                           content={passErrorMessage}
                           setAlert={() => {
-                            setPassErrorMessage("");
+                            setPassErrorMessage('')
                           }}
                         />
                       ) : null}
@@ -238,7 +234,7 @@ const RegisterForm = ({
                         placeholder="Mnemonic (optional)"
                         className="form-control"
                         onChange={(e) => {
-                          setMnemonic(e.target.value);
+                          setMnemonic(e.target.value)
                           localStorage.setItem('mnemonic', e.target.value)
                         }}
                       />
@@ -255,7 +251,7 @@ const RegisterForm = ({
           </div>
         </div>
 
-        {reg_success ? (
+        {regSuccess ? (
           <div className="thanks-popup">
             <div className="thanks-content">
 
@@ -277,11 +273,11 @@ const RegisterForm = ({
         ) : null}
       </div>
     </div>
-  );
-};
-
-RegisterForm.propTypes = {
-  classes: PropTypes.object.isRequired,
+  )
 }
 
-export default withStyles(styles, { injectTheme: true }) (RegisterForm);
+RegisterForm.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles, { injectTheme: true })(RegisterForm)

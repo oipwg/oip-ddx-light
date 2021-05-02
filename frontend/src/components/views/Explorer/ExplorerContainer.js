@@ -59,7 +59,7 @@ const ExplorerContainer = ({
 
   function handleSelectTemplate ({ id, template }) {
     if (selectedTemplates[id]) {
-      let { [id]: _, ...newSelection } = selectedTemplates
+      const { [id]: _, ...newSelection } = selectedTemplates
       setSelectedTemplates(newSelection)
     } else {
       setSelectedTemplates(prevState => {
@@ -72,9 +72,10 @@ const ExplorerContainer = ({
   }
 
   function handlePublishRecordWithTemplates () {
-    let templates = []
-    for (let tmpl in selectedTemplates) {
-      if (selectedTemplates.hasOwnProperty(tmpl)) {
+    const templates = []
+    for (const tmpl in selectedTemplates) {
+      // eslint-disable-next-line no-prototype-builtins
+      if (Object.hasOwnProperty.call(selectedTemplates, tmpl)) {
         templates.push(selectedTemplates[tmpl])
       }
     }
@@ -83,9 +84,9 @@ const ExplorerContainer = ({
 
   function handleExtendTemplates () {
     // get template IDs
-    let ids = []
-    for (let tmpl in selectedTemplates) {
-      if (selectedTemplates.hasOwnProperty(tmpl)) {
+    const ids = []
+    for (const tmpl in selectedTemplates) {
+      if (Object.hasOwnProperty.call(selectedTemplates, tmpl)) {
         ids.push(selectedTemplates[tmpl].identifier)
       }
     }

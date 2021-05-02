@@ -12,7 +12,7 @@ const styles = theme => ({
   inputBase: {
     height: 21,
     borderRadius: '3px',
-    outline: 'none',
+    outline: 'none'
   },
   buttonBase: {},
   templateFieldRow: {

@@ -13,7 +13,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'row',
     flex: '0 0 50px',
-    borderBottom: `1px solid lightgrey`,
+    borderBottom: '1px solid lightgrey',
     alignItems: 'center',
     fontSize: 12
   },
@@ -51,8 +51,8 @@ const TemplateTable = ({
   if (!results) {
     results = []
   }
-  let templates = []
-  for (let result of results) {
+  const templates = []
+  for (const result of results) {
     const { template } = result
     templates.push(template)
   }

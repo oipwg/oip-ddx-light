@@ -12,7 +12,7 @@ const styles = theme => ({
     padding: [0, 20],
     flex: 1
   },
-  [`@media (max-width: ${theme.breakpoints['sm']}px)`]: {
+  [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
     root: {
       justifyContent: 'center'
     }
@@ -35,7 +35,7 @@ const TemplateMap = ({
   return <div className={classes.root}>
     {templateData.map(payload => {
       if (!payload.template) {
-        console.error(`missing template data for following payload: `, payload)
+        console.error('missing template data for following payload: ', payload)
         return null
       }
       return <TemplateCard

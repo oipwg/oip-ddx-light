@@ -1,47 +1,47 @@
-import React, { Component } from "react";
-import axios from 'axios';
-import Link from "next/link";
+import React, { Component } from 'react'
+import axios from 'axios'
+import Link from 'next/link'
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
-      email: "",
-      password: "",
-      loginErrors: ""
-    };
+      email: '',
+      password: '',
+      loginErrors: ''
+    }
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(event) {
+  handleChange (event) {
     this.setState({
       [event.target.name]: event.target.value
-    });
-  }
-
-  handleSubmit(event) {
-    const { email, password }
-
-    axios.post("https://dev.oip.io/login",
-    {
-      user: {}
     })
   }
 
-  render() {
-    const { errors } = this.state;
+  handleSubmit (event) {
+    // const { email, password }
+
+    axios.post('https://dev.oip.io/login',
+      {
+        user: {}
+      })
+  }
+
+  render () {
+    const { errors } = this.state
     return (
       <div className="container">
-        <div style={{ marginTop: "4rem" }} className="row">
+        <div style={{ marginTop: '4rem' }} className="row">
           <div className="col s8 offset-s2">
-            <Link passHref href={`/`} className="btn-flat waves-effect">
+            <Link passHref href={'/'} className="btn-flat waves-effect">
               <i className="material-icons left">keyboard_backspace</i> Back to
               home
             </Link>
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+            <div className="col s12" style={{ paddingLeft: '11.250px' }}>
               <h4>
                 <b>Login</b> below
               </h4>
@@ -70,13 +70,13 @@ class Login extends Component {
                 />
                 <label htmlFor="password">Password</label>
               </div>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <div className="col s12" style={{ paddingLeft: '11.250px' }}>
                 <button
                   style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    marginTop: "1rem"
+                    width: '150px',
+                    borderRadius: '3px',
+                    letterSpacing: '1.5px',
+                    marginTop: '1rem'
                   }}
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
@@ -88,7 +88,7 @@ class Login extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
-export default Login;
+export default Login

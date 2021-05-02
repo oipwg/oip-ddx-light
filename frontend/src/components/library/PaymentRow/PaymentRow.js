@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import withStyles from 'react-jss';
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react'
+import withStyles from 'react-jss'
+import PropTypes from 'prop-types'
+// import { useSelector } from 'react-redux'
 
 const styles = (theme) => ({
   root: {
@@ -39,33 +39,33 @@ const styles = (theme) => ({
     borderBottom: 'none',
     color: theme.palette.primary.main
   }
-});
+})
 
 const PaymentRow = ({ classes, paymentTemplate, paymentAddress, tip }) => {
-  const user = useSelector(state => state.User.user);
-  const [txid, setTxid] = useState(undefined);
-  const [showTxid, setShowTxid] = useState(false);
-  async function sendTip(tV) {
-    let tx = await tip({
+  // const user = useSelector(state => state.User.user)
+  const [txid, setTxid] = useState(undefined)
+  const [showTxid, setShowTxid] = useState(false)
+  async function sendTip (tV) {
+    const tx = await tip({
       paymentAddr: paymentAddress,
       paymentTemplate,
       tV
-    });
-    console.log('tip txid: ', tx);
+    })
+    console.log('tip txid: ', tx)
     if (tx) {
-      setTxid(tx);
-      setShowTxid(true);
+      setTxid(tx)
+      setShowTxid(true)
     }
     setTimeout(() => {
-      setShowTxid(false);
-    }, 20000);
+      setShowTxid(false)
+    }, 20000)
   }
 
-  /**Storing sugTip amounts in suggestedTips */
-  let suggestedTips = paymentTemplate.sugTip;
+  /** Storing sugTip amounts in suggestedTips */
+  const suggestedTips = paymentTemplate.sugTip
   // console.log(suggestedTips);
 
-  /**Mapping over suggestedTips and returning a button for each with the suggested tip, if no suggestedTip return default button */
+  /** Mapping over suggestedTips and returning a button for each with the suggested tip, if no suggestedTip return default button */
   if (suggestedTips) {
     return (
       <div className={classes.root}>
@@ -80,7 +80,7 @@ const PaymentRow = ({ classes, paymentTemplate, paymentAddress, tip }) => {
               <h4>${tipValue}</h4>
               <img src={'/static/assets/icons/tip.png'} alt={'tip'} />
             </button>
-          );
+          )
         })}
         <div className={classes.transactionContainer}>
           {showTxid && (
@@ -94,7 +94,7 @@ const PaymentRow = ({ classes, paymentTemplate, paymentAddress, tip }) => {
           )}
         </div>
       </div>
-    );
+    )
   } else {
     return (
       <div className={classes.root}>
@@ -114,15 +114,15 @@ const PaymentRow = ({ classes, paymentTemplate, paymentAddress, tip }) => {
           )}
         </div>
       </div>
-    );
+    )
   }
-};
+}
 
 PaymentRow.propTypes = {
   classes: PropTypes.object.isRequired,
   paymentTemplate: PropTypes.object.isRequired,
   paymentAddress: PropTypes.string.isRequired,
   tip: PropTypes.func.isRequired
-};
+}
 
-export default withStyles(styles)(PaymentRow);
+export default withStyles(styles)(PaymentRow)

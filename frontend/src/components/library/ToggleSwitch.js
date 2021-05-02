@@ -13,7 +13,7 @@ const ToggleSwitch = ({ classes, onSwitch, defaultState = false }) => {
     if (onSwitch) {
       onSwitch(state)
     }
-  }, [state])
+  }, [onSwitch, state])
 
   return <div className={classes.root}>
     <label className={classes.switch}>
@@ -89,7 +89,7 @@ const styles = theme => ({
         '-moz-transform': 'translateX(26px)',
         '-o-transform': 'translateX(26px)',
         '-ms-transform': 'translateX(26px)',
-        'transform': 'translateX(26px)'
+        transform: 'translateX(26px)'
       }
     }
   },

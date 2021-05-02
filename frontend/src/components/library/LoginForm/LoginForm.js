@@ -1,22 +1,17 @@
-import React, { useState } from "react";
-//import { useHistory } from "react-router-dom";
-import Link from 'next/link';
-import { useDispatch } from "react-redux";
-import Router from "next/router";
-import { sortedLastIndex } from "lodash";
-import PropTypes from 'prop-types';
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import Router from 'next/router'
+import PropTypes from 'prop-types'
 import withStyles from 'react-jss'
-import axios from 'axios'
-import { MdCropSquare } from "react-icons/md";
-import { Wallet } from '@oipwg/hdmw';
-import { setUser } from "../../../redux/modules/User/actions";
-import config from "../../../../config";
-import Alert from "../Alert";
-import { decrypt } from "../../../../util/crypto";
-import { setHdmwWallet } from "../../../redux/modules/Wallet/actions";
-import { initExplorerWallet } from "../../../redux/modules/Wallet/thunks";
+import { Wallet } from '@oipwg/hdmw'
+import { setUser } from '../../../redux/modules/User/actions'
+import config from '../../../../config'
+import Alert from '../Alert'
+import { decrypt } from '../../../../util/crypto'
+import { setHdmwWallet } from '../../../redux/modules/Wallet/actions'
+import { initExplorerWallet } from '../../../redux/modules/Wallet/thunks'
 
-//const history = useHistory();
+// const history = useHistory();
 
 const styles = theme => ({
   root: {
@@ -43,40 +38,38 @@ const styles = theme => ({
   }
 })
 
-
 // Move to Helpers directory
 
 const LoginForm = ({
   classes
 }) => {
-  //let history = useHistory();
-  const dispatch = useDispatch();
+  // let history = useHistory();
+  const dispatch = useDispatch()
 
-  const [displayName, setDisplayName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [displayName, setDisplayName] = useState('')
+  // const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
-  const BACKEND_API_URL = config.backendApiUrl;
+  const BACKEND_API_URL = config.backendApiUrl
 
   const onLogin = async () => {
     try {
-      const response = await fetch(`${BACKEND_API_URL}/api/users/login`, { //https://dev.oip.io/api/users/login
-        method: "POST",
+      const response = await fetch(`${BACKEND_API_URL}/api/users/login`, { // https://dev.oip.io/api/users/login
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           displayName: displayName,
-          password: password,
-        }),
-      });
-      const data = await response.json();
+          password: password
+        })
+      })
+      const data = await response.json()
 
-      console.log("this is the data: ", data)
-      console.log(data.displayName);
-      console.log("setUser: ", setUser(data.user));
-
+      console.log('this is the data: ', data)
+      console.log(data.displayName)
+      console.log('setUser: ', setUser(data.user))
 
       dispatch(setUser(data.user))
 
@@ -84,20 +77,18 @@ const LoginForm = ({
       // derive privatekey from mnemonic
       //
 
-
-
       const mnemonic = decrypt(data.user.mnemonic, password)
       const hdmwWallet = new Wallet(mnemonic, { discover: false })
       dispatch(setHdmwWallet(hdmwWallet))
-      //console.log(hdmwWallet);
+      // console.log(hdmwWallet);
 
-      const mainAddress = hdmwWallet.getCoin('flo').getMainAddress();
+      const mainAddress = hdmwWallet.getCoin('flo').getMainAddress()
 
-      //console.log("test 1", hdmwWallet.getCoin('flo'));
-      //console.log("test 2", mainAddress);
+      // console.log("test 1", hdmwWallet.getCoin('flo'));
+      // console.log("test 2", mainAddress);
 
       const privatekey = mainAddress.getPrivateAddress()
-      //console.log("private key: ", privatekey);
+      // console.log("private key: ", privatekey);
 
       // Todo:
       // set HDMW wallet to redux store
@@ -109,20 +100,20 @@ const LoginForm = ({
 
       dispatch(initExplorerWallet({ privatekey, network: config.network, options: { explorerUrl: config.explorerUrl } }))
 
-      if (data.msg === "Please enter correct credentials") {
-        setError(data.msg);
-        window.localStorage.removeItem("token");
-        window.localStorage.removeItem("displayName");
+      if (data.msg === 'Please enter correct credentials') {
+        setError(data.msg)
+        window.localStorage.removeItem('token')
+        window.localStorage.removeItem('displayName')
       } else if (data.activated === false) {
-        window.localStorage.removeItem("token");
-        window.localStorage.removeItem("displayName");
-        setVerified(true);
+        window.localStorage.removeItem('token')
+        window.localStorage.removeItem('displayName')
+        // setVerified(true)
       } else {
-        window.localStorage.setItem("token", JSON.stringify(data.token));
-        window.localStorage.setItem("displayName", data.displayName);
-        dispatch({ type: "LOGIN", payload: true });
-        //socket.emit("login");
-        //history.push("/");
+        window.localStorage.setItem('token', JSON.stringify(data.token))
+        window.localStorage.setItem('displayName', data.displayName)
+        dispatch({ type: 'LOGIN', payload: true })
+        // socket.emit("login");
+        // history.push("/");
       }
 
       /*
@@ -145,8 +136,7 @@ const LoginForm = ({
         }
       */
 
-
-      //const { mnemonic } = data;
+      // const { mnemonic } = data;
 
       /*
       // handle error response
@@ -161,29 +151,28 @@ const LoginForm = ({
         }),
       });
 
-
       const wifJson = await createWalletData.json();
       console.log("wifJson", wifJson);
 
       localStorage.setItem("userAddress", JSON.stringify(wifJson.wif));
       */
-     console.log("success")
+      console.log('success')
     } catch (err) {
-      console.log("onLogin error" + err);
+      console.log('onLogin error' + err)
     }
-  };
+  }
 
   const onFormSubmit = (e) => {
-    e.preventDefault();
-    onLogin();
+    e.preventDefault()
+    onLogin()
     Router.push('/')
-  };
+  }
 
-  return(
+  return (
     <div className={classes.root}>
       <div className={classes.backgroundSlate}>
         <div className="card-header">
-            <h3>Sign In</h3>
+          <h3>Sign In</h3>
         </div>
         <form onSubmit={onFormSubmit} href="https://google.com">
           <div className={classes.inputField}>
@@ -191,7 +180,7 @@ const LoginForm = ({
               placeholder="Display Name"
               className="form-control"
               onChange={(e) => {
-                setDisplayName(e.target.value.trim());
+                setDisplayName(e.target.value.trim())
               }}
             />
           </div>
@@ -201,7 +190,7 @@ const LoginForm = ({
               placeholder="Password"
               className="form-control"
               onChange={(e) => {
-                setPassword(e.target.value);
+                setPassword(e.target.value)
               }}
             />
           </div>
@@ -214,7 +203,7 @@ const LoginForm = ({
               <Alert
                 content={error}
                 setAlert={() => {
-                  setError("");
+                  setError('')
                 }}
               />
             ) : null}
@@ -230,11 +219,8 @@ const LoginForm = ({
   )
 }
 
-
-
 LoginForm.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 }
 
-
-export default withStyles(styles, { injectTheme: true }) (LoginForm);
+export default withStyles(styles, { injectTheme: true })(LoginForm)

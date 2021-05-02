@@ -26,7 +26,7 @@ const styles = theme => ({
     borderRadius: 25,
     boxShadow: theme.shadows[4],
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   modalHead: {
     display: 'flex',
@@ -72,7 +72,7 @@ const styles = theme => ({
       height: '100vh',
       marginTop: 0
     }
-  },
+  }
 })
 
 const PublishModal = ({

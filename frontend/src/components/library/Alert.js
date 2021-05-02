@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-function Alert({
+function Alert ({
   content,
   show,
   setAlert,
   textBox,
   onTextChange,
   heading,
-  content1,
+  content1
 }) {
   return (
     <div className="required-popup">
@@ -27,14 +27,14 @@ function Alert({
                 type="password"
                 className="form-control"
                 onChange={(e) => {
-                  onTextChange(e);
+                  onTextChange(e)
                 }}
               />
             </div>
           ) : null}
           <a
             onClick={() => {
-              setAlert(false);
+              setAlert(false)
             }}
             href="#"
             className="btn btn-primary"
@@ -44,13 +44,13 @@ function Alert({
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 Alert.propTypes = {
   content: PropTypes.string.isRequired,
 
-  setAlert: PropTypes.func.isRequired,
-};
+  setAlert: PropTypes.func.isRequired
+}
 
-export default Alert;
+export default Alert

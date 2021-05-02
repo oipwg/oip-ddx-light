@@ -22,7 +22,7 @@ const styles = theme => ({
     cursor: 'pointer',
     fontSize: 31
   },
-  [`@media (max-width: ${theme.breakpoints['md']}px)`]: {
+  [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     root: {
       display: 'flex'
     }

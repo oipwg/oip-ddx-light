@@ -44,8 +44,8 @@ const SideBarNavLink = ({
       }
     } else return {}
   }
-  let floDec = floBalanceSat / 1e8
-  let fiat = (floDec * floExchangeRate).toFixed(2)
+  const floDec = floBalanceSat / 1e8
+  const fiat = (floDec * floExchangeRate).toFixed(2)
   const wallet = page === 'wallet'
 
   let displayName

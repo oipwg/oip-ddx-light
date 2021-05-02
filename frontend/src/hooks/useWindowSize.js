@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 
-const useWindowSize = ({ breakpoints = {
-  xs: 0,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-  xl: 1920
-}, initialWidth = Infinity, initialHeight = Infinity }) => {
+const useWindowSize = ({
+  breakpoints = {
+    xs: 0,
+    sm: 600,
+    md: 960,
+    lg: 1280,
+    xl: 1920
+  }, initialWidth = Infinity, initialHeight = Infinity
+}) => {
   const isClient = typeof window === 'object'
   const [state, setState] = useState({
     width: isClient ? window.innerWidth : initialWidth,
@@ -26,17 +28,17 @@ const useWindowSize = ({ breakpoints = {
     } else {
       return undefined
     }
-  }, [])
+  }, [isClient])
   const { height, width } = state
 
   let breakpoint
-  if (width < breakpoints['sm']) {
+  if (width < breakpoints.sm) {
     breakpoint = 'xs'
-  } else if (width < breakpoints['md'] && width >= breakpoints['sm']) {
+  } else if (width < breakpoints.md && width >= breakpoints.sm) {
     breakpoint = 'sm'
-  } else if (width < breakpoints['lg'] && width >= breakpoints['md']) {
+  } else if (width < breakpoints.lg && width >= breakpoints.md) {
     breakpoint = 'md'
-  } else if (width < breakpoints['xl'] && width >= breakpoints['lg']) {
+  } else if (width < breakpoints.xl && width >= breakpoints.lg) {
     breakpoint = 'lg'
   } else breakpoint = 'xl'
 

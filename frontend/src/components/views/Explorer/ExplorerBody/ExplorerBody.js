@@ -3,7 +3,6 @@ import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import TemplateMap from '../../../library/TemplateMap/TemplateMap'
 import RecordMap from '../../../library/RecordMap/RecordMap'
-import Explorer from '../Explorer'
 
 const styles = theme => ({
   root: {
@@ -25,8 +24,8 @@ const ExplorerBody = ({
   isVerified,
   showOnlyVerifiedPublishers
 }) => {
-  let displayRecords = activeSelection === 'Records'
-  let displayTemplates = activeSelection === 'Templates'
+  const displayRecords = activeSelection === 'Records'
+  const displayTemplates = activeSelection === 'Templates'
   return <div className={classes.root}>
     {displayRecords && <RecordMap
       records={records}

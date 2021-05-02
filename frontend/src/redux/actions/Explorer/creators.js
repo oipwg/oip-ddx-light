@@ -8,7 +8,6 @@ export const LATEST_TEMPLATES_KEYS = 'defaultTemplateKeys'
 export const SEARCHED_RECORDS_KEYS = 'searchedRecordsKeys'
 export const SEARCHED_TEMPLATES_KEYS = 'searchedTemplatesKeys'
 
-
 export const FETCHING_RECORDS = 'FETCHING_RECORDS'
 export const fetchingRecords = () => ({
   type: FETCHING_RECORDS
@@ -54,7 +53,7 @@ export const setDefaultTemplates = (payload) => ({
 })
 
 export const SET_SEARCHED_RECORDS = 'SET_SEARCHED_RECORDS'
-export const setSearchedRecords = (payload ) => ({
+export const setSearchedRecords = (payload) => ({
   type: SET_SEARCHED_RECORDS,
   payload
 })

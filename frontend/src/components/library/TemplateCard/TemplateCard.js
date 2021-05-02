@@ -134,7 +134,7 @@ const Selector = ({
     >
       <MdRadioButtonUnchecked />
     </span>}
-    </>
+  </>
 }
 
 TemplateCard.propTypes = {

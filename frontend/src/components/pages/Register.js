@@ -1,44 +1,44 @@
-import React, { Component } from "react";
-import Link from "next/link";
+import React, { Component } from 'react'
+import Link from 'next/link'
 
 class Register extends Component {
-  constructor() {
-    super();
+  constructor () {
+    super()
     this.state = {
-      name: "",
-      email: "",
-      password: "",
-      password2: "",
+      name: '',
+      email: '',
+      password: '',
+      password2: '',
       errors: {}
-    };
+    }
   }
 
   onChange = e => {
-    this.setState({ [e.target.id]: e.target.value });
+    this.setState({ [e.target.id]: e.target.value })
   };
 
   onSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     const newUser = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2
-    };
-    console.log(newUser);
+    }
+    console.log(newUser)
   };
 
-  render() {
-    const { errors } = this.state;
+  render () {
+    const { errors } = this.state
     return (
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">
-            <Link passHref href={`/`} className="btn-flat waves-effect">
+            <Link passHref href={'/'} className="btn-flat waves-effect">
               <i className="material-icons left">keyboard_backspace</i> Back to
               home
             </Link>
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+            <div className="col s12" style={{ paddingLeft: '11.250px' }}>
               <h4>
                 <b>Register</b> below
               </h4>
@@ -87,13 +87,13 @@ class Register extends Component {
                 />
                 <label htmlFor="password2">Confirm Password</label>
               </div>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <div className="col s12" style={{ paddingLeft: '11.250px' }}>
                 <button
                   style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    marginTop: "1rem"
+                    width: '150px',
+                    borderRadius: '3px',
+                    letterSpacing: '1.5px',
+                    marginTop: '1rem'
                   }}
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
@@ -105,7 +105,7 @@ class Register extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
-export default Register;
+export default Register

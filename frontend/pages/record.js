@@ -21,7 +21,7 @@ const styles = (theme) => ({
 		flexDirection: 'row',
 		height: '100%'
 	},
-	[`@media (max-width: ${theme.breakpoints['md']}px)`]: {
+	[`@media (max-width: ${theme.breakpoints.md}px)`]: {
 		root: {
 			flexDirection: 'column'
 		}
@@ -55,14 +55,14 @@ const Record = ({
 
 	useEffect(() => {
 		if (autoPay.purchased) {
-			let { txid } = recordPayload.meta
+			const { txid } = recordPayload.meta
 
-			let found = autoPay.purchased.find(purchase => {
+			const found = autoPay.purchased.find(purchase => {
 				return purchase.txid === txid
 			})
 
 			if (found) {
-				let { txid, payment_txid, terms } = found
+				const { txid, payment_txid, terms } = found
 				proofOfPurchase({ txid, payment_txid, terms })
 					.then(data => {
 						setPurchasedData({
@@ -176,12 +176,12 @@ Record.getInitialProps = async (ctx) => {
 	const { getState } = reduxStore
 	// const isServer = !!req
 
-	let state = getState()
+	const state = getState()
 	const { Explorer } = state
 
 	const txid = query.txid
 
-	let response = await Explorer.daemonApi.getOip5Record(txid)
+	const response = await Explorer.daemonApi.getOip5Record(txid)
 	const { success, payload, error } = response
 	if (success) {
 		const { results } = payload

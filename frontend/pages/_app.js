@@ -16,6 +16,7 @@ class MyApp extends App {
       style.parentNode.removeChild(style)
     }
   }
+
   render () {
     const { Component, pageProps, reduxStore } = this.props
 

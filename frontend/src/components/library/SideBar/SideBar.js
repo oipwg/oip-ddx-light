@@ -1,13 +1,13 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {withRouter} from 'next/router'
+import { connect } from 'react-redux'
+import { withRouter } from 'next/router'
 import NavMenu from '../NavMenu/NavMenu'
 import NavMenuMobile from '../NavMenuMobile/NavMenuMobile'
-import {setActivePage, toggleVerifiedPublishers} from '../../../redux/actions/Interface/creators'
+import { setActivePage, toggleVerifiedPublishers } from '../../../redux/actions/Interface/creators'
 import ToggleSwitch from '../ToggleSwitch'
-import {getDefaultRecords, getDefaultTemplates} from '../../../redux/actions/Explorer/thunks'
+import { getDefaultRecords, getDefaultTemplates } from '../../../redux/actions/Explorer/thunks'
 import Link from 'next/link'
 
 const styles = theme => {
@@ -54,7 +54,7 @@ const styles = theme => {
       borderRadius: '3px',
       backgroundColor: 'white'
     },
-    [`@media (max-width: ${theme.breakpoints['md']}px)`]: {
+    [`@media (max-width: ${theme.breakpoints.md}px)`]: {
       root: {
         flexDirection: 'row',
         flex: '0 0 70px',
@@ -113,11 +113,11 @@ const SideBar = ({
       </div>
       <div>
         <div className={classes.loginButton}>
-          <Link passHref href={`/login`}><a>Login</a></Link>
+          <Link passHref href={'/login'}><a>Login</a></Link>
         </div>
 
         <div className={classes.loginButton}>
-          <Link passHref href={`/register`}><a>Sign Up</a></Link>
+          <Link passHref href={'/register'}><a>Sign Up</a></Link>
         </div>
       </div>
 

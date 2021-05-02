@@ -27,13 +27,12 @@ const TemplatePublisher = ({
   extendTemplateIds,
   withPublisher = true
 }) => {
-
   const hdmwWallet = useSelector(state => state.Wallet.hdmwWallet)
   const wif = getFloWif(hdmwWallet)
 
   const user = useSelector(state => state.User.user)
-  console.log("user: ", user);
-  console.log("wif: ", wif);
+  console.log('user: ', user)
+  console.log('wif: ', wif)
 
   const [feedback, setFeedback] = useState(null)
 

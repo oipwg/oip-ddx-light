@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 import RegisterForm from '../src/components/library/RegisterForm/RegisterForm'
 
-//import RegisterForm from '../auth/Register'
+// import RegisterForm from '../auth/Register'
 
-export default function RegisterPage() {
+export default function RegisterPage () {
   return (
     <div>
       <RegisterForm/>

@@ -22,7 +22,7 @@ const useRegisterPlatform = ({
       const { success, payload } = res
       if (success) {
         let httpUrl
-        let { results } = payload
+        const { results } = payload
         if (results[0]) {
           const { record } = results[0]
           const { details } = record
@@ -40,7 +40,7 @@ const useRegisterPlatform = ({
       }
     }
     getPlatformRecord(txid)
-  }, [])
+  }, [daemon, platformData.httpUrl, txid])
 
   return { registered, platformData }
 }

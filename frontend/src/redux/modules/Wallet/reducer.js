@@ -1,18 +1,18 @@
-import { OIP } from 'js-oip'
+// import { OIP } from 'js-oip'
 import Exchange from '@oipwg/exchange-rate'
 
-import config from '../../../../config'
+// import config from '../../../../config'
 import * as actions from './actions'
 
-let explorerWallet
+// let explorerWallet
 // if statement below should not exist since user should not be putting private key in .env file
 // instead, when logging in, the user should have a wallet created automatically, and data pulled from there
-if (config.privatekey) {
-  explorerWallet = new OIP(config.privatekey, config.network, { explorerUrl: config.explorerUrl }).wallet
-}
+// if (config.privatekey) {
+// explorerWallet = new OIP(config.privatekey, config.network, { explorerUrl: config.explorerUrl }).wallet
+// }
 
 const initialState = {
-  //xWallet: explorerWallet, --- edited by truedev
+  // xWallet: explorerWallet, --- edited by truedev
   xWallet: undefined,
   hdmwWallet: undefined,
   _exchange: new Exchange(),
