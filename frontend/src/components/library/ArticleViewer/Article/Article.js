@@ -8,19 +8,19 @@ import ArticleMediaView from './ArticleMediaView'
 import ArticleBody from './ArticleBody'
 
 const Article = ({
-	children,
-	className,
-	style
+  children,
+  className,
+  style
 }) => {
-	const c = styles()
-	return <div className={clsx(c.root, className)} style={style}>
-		{children}
-	</div>
+  const c = styles()
+  return <div className={clsx(c.root, className)} style={style}>
+    {children}
+  </div>
 }
 
 Article.propTypes = {
-	className: PropTypes.string,
-	style: PropTypes.object
+  className: PropTypes.string,
+  style: PropTypes.object
 }
 
 Article.Header = ArticleHeader

@@ -15,7 +15,7 @@ import {
 
 const EXISTS = '_exists_'
 const limit = 100
-const sort = `meta.time:d`
+const sort = 'meta.time:d'
 
 export const applyTemplateFilter = query => (_, getState) => {
   const { templateFilter, templateOperand } = getState().Explorer
@@ -23,9 +23,9 @@ export const applyTemplateFilter = query => (_, getState) => {
   if (templateFilter.length === 0) {
     return query
   }
-  let queryArray = []
-  for (let template of templateFilter) {
-    let tmpFilter = `${EXISTS}:record.details.${template}`
+  const queryArray = []
+  for (const template of templateFilter) {
+    const tmpFilter = `${EXISTS}:record.details.${template}`
     queryArray.push(tmpFilter)
   }
   let queryString = queryArray.join(` ${templateOperand} `)
@@ -77,7 +77,7 @@ export const getOip5Records = query => async (dispatch, getState) => {
   const { templateFilter, daemonApi } = getState().Explorer
   // if query or filter, search artifacts
   if (query || templateFilter.length > 0) {
-    let q = dispatch(applyTemplateFilter(query))
+    const q = dispatch(applyTemplateFilter(query))
     try {
       return daemonApi.searchOip5Records({ q, limit, sort })
     } catch (err) {

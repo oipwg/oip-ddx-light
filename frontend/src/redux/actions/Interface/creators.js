@@ -31,7 +31,7 @@ export const setDefaultRecordsPage = (pageIndex) => ({
 })
 
 export const SET_DEFAULT_TEMPLATES_PAGE = 'SET_DEFAULT_TEMPLATES_PAGE'
-export const setTemplatesPage = (pageIndex ) => ({
+export const setTemplatesPage = (pageIndex) => ({
   type: SET_DEFAULT_TEMPLATES_PAGE,
   pageIndex
 })
@@ -43,7 +43,7 @@ export const setSearchedRecordsPage = (pageIndex) => ({
 })
 
 export const SET_SEARCHED_TEMPLATES_PAGE = 'SET_SEARCHED_TEMPLATES_PAGE'
-export const setSearchedTemplatesPage = (pageIndex ) => ({
+export const setSearchedTemplatesPage = (pageIndex) => ({
   type: SET_SEARCHED_TEMPLATES_PAGE,
   pageIndex
 })

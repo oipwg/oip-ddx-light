@@ -2,13 +2,10 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import * as reducers from './reducers'
 
-
-
 // Create our Store
 const createStoreFn = () => {
-
   // Create the logger to log Actions to the console
-  let middleware = [thunkMiddleware]
+  const middleware = [thunkMiddleware]
   if (process.env.NODE_ENV !== 'production') {
     const reduxLogger = require('redux-logger')
     const logger = reduxLogger.createLogger({

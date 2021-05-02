@@ -1,4 +1,4 @@
-import React , { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import { MdSearch } from 'react-icons/md'
@@ -21,11 +21,11 @@ const ExplorerHeader = ({
   const [displayName, setDisplayName] = useState()
 
   useEffect(() => {
-    const displayName = localStorage.getItem("displayName")
+    const displayName = localStorage.getItem('displayName')
     if (displayName) {
       setDisplayName(displayName)
     }
-  }, []);
+  }, [])
 
   function handleOnEnter (e) {
     if (e.keyCode === 13 && !fetching) {
@@ -37,22 +37,22 @@ const ExplorerHeader = ({
     handleSearchSubmit()
   }
 
-  function UserGreeting(props) {
+  function UserGreeting (props) {
     if (!displayName) return null
-    //return <h3>{window.localStorage.getItem("displayName")} is logged in</h3>;
+    // return <h3>{window.localStorage.getItem("displayName")} is logged in</h3>;
     return <div>{displayName} is logged in!</div>
   }
 
-  function GuestGreeting(props) {
-    return <h3>Not Logged In.</h3>;
+  function GuestGreeting (props) {
+    return <h3>Not Logged In.</h3>
   }
 
-  function Greeting(props) {
-    const isLoggedIn = props.isLoggedIn;
-    if (true) {
-      return <UserGreeting />;
+  function Greeting (props) {
+    const isLoggedIn = props.isLoggedIn
+    if (isLoggedIn) {
+      return <UserGreeting />
     }
-    return <GuestGreeting />;
+    return <GuestGreeting />
   }
 
   return <div className={classes.root}>
@@ -63,7 +63,7 @@ const ExplorerHeader = ({
           value={searchInput}
           onChange={handleSearchInput}
           type='text'
-          placeholder={`Search`}
+          placeholder={'Search'}
           onKeyUp={handleOnEnter}
         />
       </div>

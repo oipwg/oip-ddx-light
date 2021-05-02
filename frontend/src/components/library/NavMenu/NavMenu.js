@@ -9,7 +9,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column'
   },
-  [`@media (max-width: ${theme.breakpoints['md']}px)`]: {
+  [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     root: {
       display: 'none'
     }

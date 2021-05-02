@@ -15,7 +15,7 @@ const styles = theme => ({
       borderSpacing: 0
     }
   },
-  [`@media (max-width: ${theme.breakpoints['sm']}px)`]: {
+  [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
     root: {
       // justifyContent: 'center'
     }
@@ -28,7 +28,7 @@ const RecordMap = ({
   isVerified,
   showOnlyVerifiedPublishers,
   purchasedData,
-  handleClick,
+  handleClick
 }) => {
   let recordData = []
   if (Array.isArray(records)) {

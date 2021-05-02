@@ -3,7 +3,7 @@ import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 
 const BASIC_TEMPLATE = 'tmpl_00000000000BA51C'
-const FILE_TEMPLATE = 'tmpl_000000000000F113'
+// const FILE_TEMPLATE = 'tmpl_000000000000F113'
 
 const styles = theme => ({
   root: {
@@ -58,7 +58,7 @@ const RecordCard = ({ classes, record, meta }) => {
   </div>
 }
 const DumbTemplate = ({ classes, record }) => {
-  let details = record.details
+  const details = record.details
   return <div className={classes.basicTemplateRoot}>
     {Object.keys(details).map((tmpl, i) => {
       return <div key={i}>{tmpl}</div>

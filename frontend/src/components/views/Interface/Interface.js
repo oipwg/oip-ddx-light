@@ -39,7 +39,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'row'
   },
-  [`@media (max-width: ${theme.breakpoints['md']}px)`]: {
+  [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     root: {
       flexDirection: 'column'
     }
