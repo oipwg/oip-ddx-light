@@ -13,6 +13,20 @@ export default createUseStyles(theme => {
     title: {
       fontWeight: 500,
       marginBottom: 8
+    },
+    body: {
+      position: 'relative'
+    },
+    preview: {
+      pointerEvent: 'none',
+      userSelect: 'none',
+      position: 'absolute',
+      height: '100%',
+      width: '100%',
+      backgroundImage: 'linear-gradient(' +
+        'to bottom, ' +
+        'rgba(255,255,255, 0), ' +
+        'rgba(255,255,255, 1) 90%)'
     }
   }
 })
