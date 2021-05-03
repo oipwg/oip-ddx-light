@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - renders article preview txt looking at `TMP_TEXT_IS_PREVIEW:tmpl_769D8FBC`
     - displays the paid content after an autobuy
     - renders title, byline, writer, and image, and obviously text body
+    - text fade out for article preview
     
  - eslint
     - `npm run lint` will run now on pre-push (currently only lints src folder)
