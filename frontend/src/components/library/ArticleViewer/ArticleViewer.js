@@ -66,6 +66,8 @@ const ArticleViewer = ({
    * TEXT BODY
    */
   const articleTextTemplateData = getTemplateData(articleTextRecord, TMP_TEXT_IS_PREVIEW)
+  const isPreview = articleTextTemplateData?.isPreview && !purchasedData?.paid
+
   const articleTextIpfsAddress = articleTextTemplateData?.textAddress
   const [articleTextIpfsRecord, articleTextIpfsQuery] = useIpfsRecord(articleTextIpfsAddress)
 
@@ -119,6 +121,7 @@ const ArticleViewer = ({
           className={c.body}
           // dangerouslySetInnerHTML={{ __html: purchasedText || articleTextIpfsRecord }}
         >
+          <div className={clsx(isPreview && c.preview)} />
           <ReactMarkdown>{purchasedText || articleTextIpfsRecord}</ReactMarkdown>
         </div>}
       </Article.Body>
