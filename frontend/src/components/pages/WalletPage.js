@@ -1,7 +1,7 @@
 import React from 'react'
 import withStyles from 'react-jss'
 import { ModuleWallet } from 'oip-react'
-import config from '../config'
+import config from '../../../config'
 
 const BACKEND_API_URL = config.backendApiUrl;
 
