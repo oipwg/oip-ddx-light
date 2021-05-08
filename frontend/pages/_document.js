@@ -16,7 +16,10 @@ export default class JssDocument extends Document {
             },
           `}
           </style>
+
           <title>DDX</title>
+
+          <meta name="monetization" id="paymentPointerHead" content=""></meta>
         </Head>
         <body>
           <Main />

@@ -2,5 +2,6 @@
 {
   "DOMAIN_URL": "http://localhost:5000",
   "API_OIP_URL": "https://api.oip.io/oip",
-  "LIVENET_URL": "https://livenet.flocha.in/api"
+  "LIVENET_URL": "https://livenet.flocha.in/api",
+  "REDIRECT_URL": "http://localhost:3000"
 }

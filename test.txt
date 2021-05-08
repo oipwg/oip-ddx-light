@@ -1,0 +1,9 @@
+https://coil.com/oauth/auth?response_type=code
+scope=simple_wm+openid
+client_id=b32b7850-f943-4384-b41d-4a60c9c56cdd
+state=state
+redirect_url=https%3A%2F%2Fdev.oip.io%2Flogin
+
+
+
+http://localhost:3000/api/users/coilLogin

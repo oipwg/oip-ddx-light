@@ -40,6 +40,14 @@ const userSchema = new mongoose.Schema(
     date: {
       type: Date,
       default: Date.now,
+    },
+    coilCredentials: {
+      displayName: {
+        type: String
+      },
+      password: {
+        type: String
+      }
     }
   }
 );

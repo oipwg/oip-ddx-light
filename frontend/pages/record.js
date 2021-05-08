@@ -51,6 +51,30 @@ const Record = ({
     proofTxid: '',
     data: '',
     paid: false
+})
+
+useEffect(() => {
+  if (recordPayload.record.details.tmpl_4BC3CC71 && recordPayload.record.details.tmpl_4BC3CC71.paymentPointer) {
+    document.getElementById("paymentPointerHead").setAttribute("content", recordPayload.record.details.tmpl_4BC3CC71.paymentPointer)
+  } else {
+    document.getElementById("paymentPointerHead").setAttribute("content", "")
+  }
+})
+
+/*
+componentWillUnmount(() => {
+  document.getElementById("paymentPointerHead").setAttribute("content", "")
+})
+*/
+
+useEffect(() => {
+  if(autoPay.purchased){
+    let { txid } = recordPayload.meta
+
+    let found = autoPay.purchased.find(purchase => {
+      return purchase.txid === txid
+    })
+  }
   })
 
   useEffect(() => {

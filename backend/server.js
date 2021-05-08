@@ -14,11 +14,6 @@ const ONE_HOUR = 1000 * 60 * 60;
 
 app.use(cors())
 
-var corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
 app.use(
   bodyParser.urlencoded({
     extended: false
@@ -39,26 +34,6 @@ mongoose
   .then(() => console.log("MongoDB successfully connected!"))
   .catch(err => console.log(err));
 
-/*
-app.use(
-  session({
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      ttl: 30 * 60, //Time To Live is set to 30min if remember me isnt checked
-      touchAfter: 30 * 60, //Stops session from refreshing with API calls to server
-    }),
-    name: SESS_NAME,
-    resave: false, //Dont save back to store
-    saveUninitialized: false, //Don't save any new sessions without any data in it
-    secret: SESS_SECRET,
-    cookie: {
-      maxAge: ONE_HOUR,
-      sameSite: false,
-      //secure: secure, //production or development
-    },
-  })
-);
-*/
 
 // Passport middleware
 //app.use(passport.initialize());
@@ -66,6 +41,7 @@ app.use(
 //require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
+//app.use("/api/coilUsers", coilUsers)
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server up and running on port ${port}!`));

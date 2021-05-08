@@ -10,27 +10,8 @@ const validateLoginInput = require("../../validation/login");
 const User = require("../../task-manager/src/models/user.js");
 
 const UsersController = require("../../task-manager/src/controller/user");
+const CoilUsersController = require("../../task-manager/src/controller/coilUser")
 
-/*
-const redirectLogin = (req, res, next) => {
-  if (!req.session.userId) {
-    res.redirect('/login')
-  } else {
-    next()
-  }
-}
-
-const redirectHome = (req, res, next) => {
-  if (req.session.userId) {
-    res.redirect('/home')
-  } else {
-    next()
-  }
-}
-*/
-
-//router.post("/signup", UsersController.user_sign_up);
-//router.get("/signup", UsersController.signUp);
 
 router.get("/login", UsersController.loginGet)
 
@@ -40,11 +21,13 @@ router.post("/login", UsersController.loginPost)
 
 router.post("/logout", UsersController.logoutPost)
 
-router.post("/test", (req, res, next) => {
+router.get("/test", (req, res, next) => {
   return res.status(500).json({thing: "hello worlasdasdasd"})
 })
 
-//router.post("/login", UsersController.user_login_post);
+router.get("/coilLogin", CoilUsersController.loginPost)
+
+router.get("/coilLoginToken", CoilUsersController.loginTokenPost)
 
 
 // @route POST api/users/register
@@ -54,54 +37,5 @@ router.post("/test", (req, res, next) => {
 // @route POST api/users/login
 // @desc Login user and return JWT token
 // @access Public
-
-/*
-router.post("/login", (req, res) => {
-  // Form validation
-  const { errors, isValid } = validateLoginInput(req.body);
-  // Check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-  const email = req.body.email;
-  const password = req.body.password;
-  // Find user by email
-  User.findOne({ email }).then(user => {
-    // Check if user exists
-    if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
-    }
-    // Check password
-    bcrypt.compare(password, user.password).then(isMatch => {
-      if (isMatch) {
-        // User matched
-        // Create JWT Payload
-        const payload = {
-          id: user.id,
-          displayName: user.displayName
-        };
-        // Sign token
-        jwt.sign(
-          payload,
-          keys.secretOrKey,
-          {
-            expiresIn: 31556926 // 1 year in seconds
-          },
-          (err, token) => {
-            res.json({
-              success: true,
-              token: "Bearer " + token
-            });
-          }
-        );
-      } else {
-        return res
-          .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
-      }
-    });
-  });
-});
-*/
 
 module.exports = router;
