@@ -27,7 +27,7 @@ router.get("/test", (req, res, next) => {
 
 router.get("/coilLogin", CoilUsersController.loginPost)
 
-router.get("/coilLoginToken", CoilUsersController.loginTokenPost)
+router.post("/coilLoginToken", CoilUsersController.loginTokenPost)
 
 
 // @route POST api/users/register

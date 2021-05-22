@@ -1,6 +1,7 @@
 import React from 'react'
 import ActionBar from '../Actionbar'
 import TableData from '../TableData'
+//import ArticleMediaView from '../../ArticleViewer'
 
 const RecordRowData = ({
   classes,
@@ -47,8 +48,16 @@ const RecordRowData = ({
         verified={verified}
         purchasedData={purchasedData}
       />
+      
     </div>
   )
 }
 
 export default RecordRowData
+
+
+/*
+<ArticleMediaView
+        body={thumbnail}
+      />
+*/

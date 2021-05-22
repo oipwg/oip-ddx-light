@@ -17,10 +17,9 @@ export default class JssDocument extends Document {
           `}
           </style>
 
-          <title>DDX</title>
-
-          <meta name="monetization" id="paymentPointerHead" content=""></meta>
+          <meta name="monetization" id="paymentPointerHead" content="$ilp.uphold.com/mrq3JQe4KHMK"></meta>
         </Head>
+        <title>DDX</title>
         <body>
           <Main />
           <NextScript />

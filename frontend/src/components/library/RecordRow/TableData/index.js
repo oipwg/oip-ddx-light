@@ -1,6 +1,7 @@
 import React from 'react'
 import TemplateData from '../TemplateData'
 import Thumbnail from '../Thumbnail'
+import ArticleMediaView from '../../ArticleViewer/Article/ArticleMediaView/ArticleMediaView'
 
 const TableData = ({
   classes,
@@ -13,6 +14,7 @@ const TableData = ({
   verified,
   purchasedData
 }) => {
+  //console.log("Order Details: ", orderedDetails)
   return (
     <div className={classes.tableData}>
       {/* thumbnail here */}
@@ -39,6 +41,7 @@ const TableData = ({
             <span>{signed_by}</span>
           </>
         )}
+        
         {verified.name && (
           <div style={{ marginTop: '7px' }}>
             <span className={classes.templateName}>verified name:</span>

@@ -68,8 +68,16 @@ const LoginForm = ({
       const data = await response.json()
 
       console.log('this is the data: ', data)
+
+      document.cookie = "token="+data.token+";max-age=31536000"
+      console.log(data.token)
       console.log(data.displayName)
+
+      var storedCookie = document.cookie
+      console.log("cookie: ", storedCookie)
       console.log('setUser: ', setUser(data.user))
+
+      data.user.token = data.token
 
       dispatch(setUser(data.user))
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-
+import { useRouter } from 'next/router'
 import config from '../config'
 import InterfaceContainer from '../src/components/views/Interface/InterfaceContainer'
 
@@ -29,6 +29,49 @@ const Index = ({
   setPlatformData,
   registerPlatform
 }) => {
+
+  // work on this
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  const router = useRouter()
+  console.log(router.query);
+
+  if (router.query.code && router.query.state && router.query.scope) {
+    let coilTokenRequest = ''
+    
+    fetch(`${config.backendApiUrl}/api/users/coilLoginToken`, {
+      method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(router.query)
+    }).then(rsp => {
+      coilTokenRequest = rsp
+    })
+
+    console.log(coilTokenRequest)
+  }
+  
+  useEffect(() => {
+    if(document.cookie) {
+      // Edit here 1203i102930129301923091230912039120931029301293
+    }
+  })
+
   const { registered, platformData } = useRegisterPlatform({
     txid: config.platformRegistrationTxid,
     daemon: daemonApi

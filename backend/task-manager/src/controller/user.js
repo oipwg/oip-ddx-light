@@ -308,7 +308,7 @@ exports.loginPost = async (req, res, next) => {
       }, 
       JWT_SECRET, 
       {
-        expiresIn: "1h"
+        expiresIn: "24h"
       }
     )
     //res.send(user[0].name)
@@ -323,6 +323,15 @@ exports.loginPost = async (req, res, next) => {
   res.status(401).json({
     message: 'Auth failed 3'
   })
+}
+
+exports.getUserInfo = async (req, res, next) => {
+  // validate JWT expiration and signature
+  // get userId from JWT token 
+  // const user = await User.find(_id:userId)
+  // return res.json(user)
+
+  // this should be a POST request
 }
 
 exports.logoutPost = async (req, res, next) => {

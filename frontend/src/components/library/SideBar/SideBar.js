@@ -37,14 +37,26 @@ const styles = theme => {
       display: 'flex',
       width: 180,
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      position: 'relative',
+      bottom: 0
+    },
+    buttonContainer: {
+      marginBottom: 30,
+      marginTop: 'auto',
+      display: 'flex',
+      position: 'relative',
+      bottom: 80,
+      display: 'flex',
+      left: 15,
+      width: 300
     },
     toggleSwitchText: {
       fontSize: 12,
       color: 'white',
       margin: [0, 5]
     },
-    loginButton: {
+    logo: {
       margin: 16,
       padding: 4,
       border: 1,
@@ -53,6 +65,19 @@ const styles = theme => {
       textAlign: 'center',
       borderRadius: '3px',
       backgroundColor: 'white'
+    },
+    loginButton: {
+      margin: 16,
+      padding: 4,
+      textAlign: 'center',
+      position: 'relative',
+    },
+    registerButton: {
+      margin: 16,
+      padding: 4,
+      textAlign: 'center',
+      position: 'relative',
+      
     },
     [`@media (max-width: ${theme.breakpoints.md}px)`]: {
       root: {
@@ -108,18 +133,10 @@ const SideBar = ({
   return (
 
     <div id='sidebar' className={classes.root}>
-      <div className={classes.loginButton}>
+      <div className={classes.logo}>
         <img src='https://www.albawaba.com/themes/custom/abn/logo-new.png' />
       </div>
-      <div>
-        <div className={classes.loginButton}>
-          <Link passHref href={'/login'}><a>Login</a></Link>
-        </div>
-
-        <div className={classes.loginButton}>
-          <Link passHref href={'/register'}><a>Sign Up</a></Link>
-        </div>
-      </div>
+      
 
       <div className={classes.titleSpace}>
         <h1 className={classes.titleHeader}>OIP</h1>
@@ -136,6 +153,17 @@ const SideBar = ({
         setActivePage={handleSetActivePage}
         pages={pages}
       />
+
+      <div className={classes.buttonContainer}>
+        <div className={classes.loginButton}>
+          <Link passHref href={'/login'}><a>Login</a></Link>
+        </div>
+
+        <div className={classes.registerButton}>
+          <Link passHref href={'/register'}><a>Sign Up</a></Link>
+        </div>
+      </div>
+      
       <div className={classes.toggleSwitch}>
         <span className={classes.toggleSwitchText}>All</span>
 

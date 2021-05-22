@@ -33,6 +33,7 @@ export default function useIpfsRecord (address, options = {}) {
         l('get ipfs obj for', log)
         const res = await getIpfsObject(address, { responseType })
         setRecord(res)
+        console.log("res: ", res)
         l('ipfs response for: ', log, res)
       } catch (err) {
         l(err)

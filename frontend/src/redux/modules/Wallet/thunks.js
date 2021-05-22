@@ -250,6 +250,7 @@ export const proofOfPurchase = ({
   try {
     const res = await axios.post(`https://api.oip.io/oip/o5/location/proof?id=${txid}&terms=${terms}`, body)
 
+    // res.data is the json object returned, giving the location of the unlocked record: 
     return res.data
   } catch (error) {
     console.log(error)

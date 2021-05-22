@@ -71,6 +71,9 @@ exports.loginTokenPost = async (req, res, next) => {
       }
     });
 
+    console.log(tokenRequest);
+    
+
     res.send(tokenRequest)
   } catch (err) {
     console.log(err)

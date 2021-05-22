@@ -89,7 +89,7 @@ const ArticleViewer = ({
         subtitle={
           <>
             {writerQuery.isLoading && 'Loading byline writer...'}
-            {writerQuery.isError && <span style={{ color: 'red' }}>'Error fetching byline writer...'}</span>}
+            {writerQuery.isError && <span style={{ color: 'red' }}>'Error fetching byline writer...'</span>}
             {writerQuery.isSettled && !writerQuery.isError && <span>
               {firstName} {byLineWriter}, {articleTemplateData.bylineWritersTitle}, {articleTemplateData.bylineWritersLocation} / Published {datePublished.toUTCString()}
             </span>}

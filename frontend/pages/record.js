@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import ReactLoader from '../src/components/library/ReactLoader' //import ReactLoader from '../../../library/ReactLoader'
+import { MdSearch } from 'react-icons/md'
+
 import SideBar from '../src/components/library/SideBar/SideBar'
 import {
   getBalance,
@@ -41,8 +44,26 @@ const Record = ({
   getBalance,
   autoPay,
   purchaseRecord,
-  proofOfPurchase
+  proofOfPurchase,
+  searchInput,
+  handleSearchInput,
+  recordsFetching,
+  templatesFetching,
+  theme
 }) => {
+
+  const fetching = recordsFetching || templatesFetching
+
+  function handleOnEnter (e) {
+    if (e.keyCode === 13 && !fetching) {
+      handleSubmit()
+    }
+  }
+
+  function handleSubmit () {
+    handleSearchSubmit()
+  }
+  
   useEffect(() => {
     setActivePage(null)
   }, [])
@@ -177,6 +198,29 @@ useEffect(() => {
   return (
     <div className={classes.root}>
       <SideBar reroute/>
+      <div className={classes.searchContainer}>
+        <div className={classes.inputContainer}>
+          <input
+            className={classes.textInput}
+            value={searchInput}
+            onChange={handleSearchInput}
+            type='text'
+            placeholder={'Search'}
+            onKeyUp={handleOnEnter}
+          />
+        </div>
+        <button
+          onClick={handleSubmit}
+          className={classes.submitInput}
+          disabled={fetching}
+        >
+          {fetching ? <ReactLoader
+            size={14}
+            color={theme.palette.primary.main}
+          /> : <MdSearch /> }
+
+        </button>
+      </div>
       <RecordView
         recordPayload={recordPayload}
         purchasedData={purchasedData}
@@ -252,4 +296,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(Record))
+)(withStyles(styles, { injectTheme: true})(Record))
