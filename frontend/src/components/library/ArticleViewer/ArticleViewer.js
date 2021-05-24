@@ -122,14 +122,14 @@ const ArticleViewer = ({
         "To view the full article, you can send " +
         recordPayload.record.details.tmpl_DE84D583.amount /
           recordPayload.record.details.tmpl_DE84D583.scale +
-        " "+ coin.name +
+        " "+ coin.ticker +
         " to " +
         recordPayload.record.details.tmpl_DE84D583.destination +
         " OR show you are currently holding " +
         recordPayload.record.details.tmpl_EE0D326B.amount /
           recordPayload.record.details.tmpl_EE0D326B.scale +
         " of the " +
-        asset.name +
+        asset.ticker +
         " assets called " +
         recordPayload.record.details.tmpl_EE0D326B.asset
       );
