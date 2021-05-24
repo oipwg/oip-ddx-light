@@ -8,6 +8,9 @@ const ActionBar = ({ classes, verified, txid, terms, commercialContent, mediaTyp
     explorerLink = `https://testnet.flocha.in/tx/${txid}`
   } else explorerLink = `https://livenet.flocha.in/tx/${txid}`
 
+  // <div className={classes.actionBarRoot}>
+  // <a className={classes.txidHeader} href={explorerLink} target='_blank'>
+
   return (
     <div className={classes.actionBarRoot}>
       <a className={classes.txidHeader} href={explorerLink} target='_blank'>

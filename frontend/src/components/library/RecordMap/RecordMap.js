@@ -3,6 +3,9 @@ import withStyles from 'react-jss'
 import PropTypes from 'prop-types'
 import isObjEmpty from '../../../../util/is-obj-empty'
 import RecordRow from '../RecordRow/RecordRow'
+import ArticleRecordRow from '../ArticleRecordRow'
+import getTemplateData from '../../../../util/template/get-template-data'
+import { TMP_ARTICLE } from '../../../../templates'
 
 const styles = theme => ({
   root: {
@@ -44,9 +47,15 @@ const RecordMap = ({
           // console.error('Missing record data for following payload:', payload)
           return null
         }
-        return <RecordRow
-          record={record}
-          meta={meta}
+        const articleTemplateData = getTemplateData(payload, TMP_ARTICLE)
+
+        if(!articleTemplateData) {
+          return null
+        }
+        return <ArticleRecordRow
+          //record={record}
+          //meta={meta}
+          record={{record, meta}}
           isVerified={isVerified}
           key={meta.txid}
           showOnlyVerifiedPublishers={showOnlyVerifiedPublishers}

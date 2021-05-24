@@ -198,29 +198,7 @@ useEffect(() => {
   return (
     <div className={classes.root}>
       <SideBar reroute/>
-      <div className={classes.searchContainer}>
-        <div className={classes.inputContainer}>
-          <input
-            className={classes.textInput}
-            value={searchInput}
-            onChange={handleSearchInput}
-            type='text'
-            placeholder={'Search'}
-            onKeyUp={handleOnEnter}
-          />
-        </div>
-        <button
-          onClick={handleSubmit}
-          className={classes.submitInput}
-          disabled={fetching}
-        >
-          {fetching ? <ReactLoader
-            size={14}
-            color={theme.palette.primary.main}
-          /> : <MdSearch /> }
-
-        </button>
-      </div>
+      
       <RecordView
         recordPayload={recordPayload}
         purchasedData={purchasedData}
@@ -296,4 +274,5 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles, { injectTheme: true})(Record))
+)(withStyles(styles, { injectTheme: true })(Record)) 
+// withStyles(styles, { injectTheme: true })(Record)

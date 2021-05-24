@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import * as PropTypes from 'prop-types'
-import ReactMarkdown from 'react-markdown'
-import Article from './Article'
+//import PaymentRow from '../../'
+
 import { TMP_ARTICLE, TMP_BASIC, TMP_IMAGE, TMP_PERSON, TMP_TEXT_IS_PREVIEW } from '../../../../templates'
 import ExplorerHeader from '../../views/Explorer/ExplorerHeader/ExplorerHeader'
 
@@ -11,16 +11,33 @@ import getTemplateData from '../../../../util/template/get-template-data'
 import useOip5RecordsByTxid from '../../../hooks/useOip5RecordByTxid'
 import useIpfsRecord from '../../../hooks/useIpfsRecord'
 import createObjectUrl from '../../../../util/file/create-object-url'
+import ActionBar from '../RecordRow/Actionbar/index'
 
-const ArticleViewer = ({
-  recordPayload,
+const ArticleRecordRow = ({
+  record: recordPayload,
   purchasedData,
   className,
   style,
   searchInput,
-  handleSearchInput
+  handleSearchInput,
+  details,
+  thumbnail,
+  ipfsUrl,
+  orderedDetails,
+  // eslint-disable-next-line camelcase
+  signed_by,
+  showExpand,
+  commercialContent,
+  mediaType,
+  autoPay,
+  amount,
+  handleClick,
+  terms
 }) => {
-  const c = styles()
+  const classes = styles()
+
+  // TODO: implement verification of social media
+  const [verified, setVerified] = useState({ twitter: false, gab: false })
 
   const { meta } = recordPayload
   const timeUnix = meta?.time
@@ -29,13 +46,14 @@ const ArticleViewer = ({
     datePublished = new Date(timeUnix * 1e3)
   }
   const articleTemplateData = getTemplateData(recordPayload, TMP_ARTICLE)
+
   const basicTemplateData = getTemplateData(recordPayload, TMP_BASIC)
   const title = basicTemplateData?.name
 
-  const bylineWriterOipRef = articleTemplateData.bylineWriter
-  const imageListOipRef = articleTemplateData.imageList
-  const imageCaptionList = articleTemplateData.imageCaptionList
-  const articleTextOipRef = articleTemplateData.articleText
+  const bylineWriterOipRef = articleTemplateData?.bylineWriter
+  const imageListOipRef = articleTemplateData?.imageList
+  const imageCaptionList = articleTemplateData?.imageCaptionList
+  const articleTextOipRef = articleTemplateData?.articleText
 
   const [bylineWriterRecord, writerQuery] = useOip5RecordsByTxid(bylineWriterOipRef)
   // eslint-disable-next-line no-unused-vars
@@ -59,7 +77,14 @@ const ArticleViewer = ({
   const imageListTemplateData = getTemplateData(imageListRecord, TMP_IMAGE)
   const imageListIpfsAddress = imageListTemplateData?.imageAddress
   const [imageBlob, imageListIpfsQuery] = useIpfsRecord(imageListIpfsAddress, { responseType: 'blob' })
+  const imageLoading = imageListIpfsQuery.isLoading
   const imageUrl = createObjectUrl({ blob: imageBlob })
+
+  useEffect(() => {
+    if(imageUrl) {
+      console.log(imageUrl, imageListIpfsAddress)
+    }
+  }, [imageUrl, imageListIpfsAddress])
 
   // const imageThumbnailIpfsAddress = imageListTemplateData?.thumbnailAddress
   // const [thumbnailBlob, imageThumbnailIpfsQuery] = useIpfsRecord(imageThumbnailIpfsAddress, 'blob')
@@ -81,70 +106,40 @@ const ArticleViewer = ({
   const articleTextDoesNotExists = articleTextIpfsQuery?.isSettled && !articleTextIpfsRecord
   const articleTextLoaded = articleTextIpfsQuery.isSettled && articleTextIpfsRecord
 
-  return <div className={clsx(className, c.root)} style={style}>
-    <Article className={c.article}>
-      <ExplorerHeader
-          searchInput={searchInput}
-          handleSearchInput={handleSearchInput}
-          style={{ marginTop: "20px" }}
-          // selectOption={selectOption}
-          // handleSelectOption={handleSelectOption}
-          // handleSearchSubmit={handleSearchSubmit}
-          // recordsFetching={recordsFetching}
-          // templatesFetching={templatesFetching}
+  //console.log("REEEEEEE: ", articleTextIpfsRecord)
+
+  return (
+    <div className={clsx(className, classes.root)} style={style}>
+      <ActionBar
+        classes={classes}
+        verified={verified}
+        recordDetails={details}
+        txid={meta.txid}
+        commercialContent={commercialContent}
+        mediaType={mediaType}
+        autoPay={autoPay}
+        amount={amount}
+        handleClick={handleClick}
+        purchasedData={purchasedData}
+        terms={terms}
       />
-      <Article.Header
-        title={
-          <h1 className={c.title}>
-            {title || '[Title missing in record]'}
-          </h1>
-        }
-        subtitle={
-          <>
-            {writerQuery.isLoading && 'Loading byline writer...'}
-            {writerQuery.isError && <span style={{ color: 'red' }}>'Error fetching byline writer...'</span>}
-            {writerQuery.isSettled && !writerQuery.isError && <span>
-              {firstName} {byLineWriter}, {articleTemplateData.bylineWritersTitle}, {articleTemplateData.bylineWritersLocation} / Published {datePublished.toUTCString()}
-            </span>}
-          </>
-        }
-      />
-      <Article.MediaView
-        body={
-          <>
-            { imageListIpfsQuery.isLoading && <div style={{ height: 300, width: '100%', backgroundColor: '#b8c6db', backgroundImage: 'linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%)' }} /> }
-            { imageListIpfsQuery.isSettled && !imageListIpfsQuery.isError && <img alt={'article-image'} src={imageUrl}/> }
-            { imageListIpfsQuery.isError && <span style={{ color: 'red' }}>Error fetching image at location: {imageListIpfsAddress}</span> }
-          </>
-        }
-        caption={<span>
-          {imageCaptionList?.join(', ')}
-        </span>}
-      >
-      </Article.MediaView>
-      <Article.Body>
-        {textLoading && 'Loading article text...'}
-        {articleTextDoesNotExists &&
-        <p>
-          Failed to load article text at ipfs address: {articleTextIpfsAddress || 'unknown'}
-          <br />
-          Error: {articleTextIpfsQuery.isError}
-        </p>}
-        {articleTextLoaded && <div
-          className={c.body}
-          // dangerouslySetInnerHTML={{ __html: purchasedText || articleTextIpfsRecord }}
-        >
-          <div className={clsx(isPreview && c.preview)} />
-          <ReactMarkdown>{purchasedText || articleTextIpfsRecord}</ReactMarkdown>
-        </div>}
-      </Article.Body>
-    </Article>
-  </div>
+      <div className={classes.titleContainer}>
+        <h2 className={classes.title}>{title}</h2>
+      </div>
+      <div className={classes.summaryContainer}>
+        <p className={classes.summary}>{articleTextLoaded && articleTextIpfsRecord.substr(0, 250)} 
+          ... 
+        </p>  
+      </div>
+      
+      <img src={imageUrl} alt="string" className={classes.image}/>
+    </div>
+  )
 }
 
-ArticleViewer.propTypes = {
+ArticleRecordRow.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object
 }
 
-export default ArticleViewer
+export default ArticleRecordRow

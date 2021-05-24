@@ -163,8 +163,32 @@ export const getExchangeRate = () => async (dispatch, getState) => {
   dispatch(setFloExchangeRate(xr))
   return xr
 }
-//! ****************************************************PurchaseRecord Function **************************************************/
 
+export const proveRvnAsset = ({
+  address,
+  txid,
+  terms
+}) => async (dispatch, getState) => {
+  if (!wallet) {
+    console.error(
+      'Failed to check if NFT exists. Private key is probably not set. Wallet undefined'
+    )
+    return
+  }
+  const addressBalance = await axios.get(`https://explorer-api.ravenland.org/address/${rvnAddress}/balances`)
+  
+  if (addressBalance.data.ALBAWABA2021 >= 1) {
+    console.log("NFT balance sufficient")
+
+    let res = await axios.get(`https://api.oip.io/oip/o5/location/request?id=${txid}&terms=${terms}`)
+    const { amount, scale, asset } = res.data.results[0].record.details.tmpl_EE0D326B
+    preImage = res.pre_image
+
+    console.log("pre_image: ", preImage)
+  }
+}
+
+//! ****************************************************PurchaseRecord Function **************************************************/
 export const purchaseRecord = ({
   txid,
   terms
@@ -178,13 +202,13 @@ export const purchaseRecord = ({
     return
   }
 
-  await axios.get(`https://api.oip.io/oip/o5/location/request?id=${txid}&terms=${terms}`)
+  //await axios.get(`https://api.oip.io/oip/o5/location/request?id=${txid}&terms=${terms}`)
 
-  // const { valid_until, pre_image } = response.data
+  //const { valid_until, pre_image } = response.data
 
   const res = await axios.get(`https://api.oip.io/oip/o5/record/get/${txid}`)
 
-  const { amount, destination } = res.data.results[0].record.details.tmpl_DE84D583
+  const { amount, scale, destination } = res.data.results[0].record.details.tmpl_DE84D583
 
   const paymentAddr = destination
 
@@ -195,7 +219,7 @@ export const purchaseRecord = ({
   try {
     const output = {
       address: paymentAddr,
-      value: (amount * 1e8) // satoshis
+      value: (amount/scale * 1e8) // satoshis
     }
 
     // eslint-disable-next-line camelcase
