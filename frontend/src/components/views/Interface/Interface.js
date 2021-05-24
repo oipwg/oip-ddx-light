@@ -24,15 +24,15 @@ const Interface = ({
   openPublisherModal
 }) => {
   const explorer = activePage === 'explorer'
-  const publisher = activePage === 'publisher'
-  const wallet = activePage === 'wallet'
+  //const publisher = activePage === 'publisher'
+  //const wallet = activePage === 'wallet'
   const autopay = activePage === 'autopay'
-  const news = activePage === 'news'
-  const business = activePage === 'business'
-  const entertainment = activePage === 'entertainment'
-  const sports = activePage === 'sports'
-  const opinion = activePage === 'opinion'
-  const theNode = activePage === 'theNode'
+  // const news = activePage === 'news'
+  // const business = activePage === 'business'
+  // const entertainment = activePage === 'entertainment'
+  // const sports = activePage === 'sports'
+  // const opinion = activePage === 'opinion'
+  // const theNode = activePage === 'theNode'
 
   return (
     <div className={classes.root}>
@@ -41,22 +41,22 @@ const Interface = ({
         <SideBar />
 
         {explorer && <ExplorerContainer />}
-        {(openPublisherModal) && <PublisherContainer render={props => (
+        {/* {(openPublisherModal) && <PublisherContainer render={props => (
           <PublishModal {...props} />
         )} />}
         {(publisher) && <PublisherContainer render={props => (
           <Publisher {...props} />
-        )} />}
+        )} />} */}
         
-        {news && <NewsPage />}
-        {wallet && <WalletPage />}
+        {/* {wallet && <WalletPage />} */}
         {autopay && <AutopayPage />}
-        
+
+        {/* {news && <NewsPage />}
         {business && <BusinessPage />}
         {entertainment && <EntertainmentPage />}
         {sports && <SportsPage />}
         {opinion && <OpinionPage />}
-        {theNode && <TheNodePage />}
+        {theNode && <TheNodePage />} */}
       </div>
     </div>
   )

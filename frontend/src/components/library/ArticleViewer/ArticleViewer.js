@@ -23,7 +23,11 @@ const ArticleViewer = ({
   const c = styles()
 
   const { meta } = recordPayload
-  const timeUnix = meta?.time
+  // const timeUnix = meta?.time
+
+  console.log(recordPayload)
+
+  const timeUnix = recordPayload?.record?.details?.tmpl_20AD45E7?.date
   let datePublished
   if (timeUnix) {
     datePublished = new Date(timeUnix * 1e3)

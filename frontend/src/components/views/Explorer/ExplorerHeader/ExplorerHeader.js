@@ -38,7 +38,9 @@ const ExplorerHeader = ({
   }
 
   function UserGreeting (props) {
-    if (!displayName) return null
+    if (!displayName) {
+      return null
+    }
     // return <h3>{window.localStorage.getItem("displayName")} is logged in</h3>;
     return <div>{displayName} is logged in!</div>
   }
@@ -50,7 +52,7 @@ const ExplorerHeader = ({
   function Greeting (props) {
     const isLoggedIn = props.isLoggedIn
     if (isLoggedIn) {
-      return <UserGreeting />
+      return null
     }
     return <GuestGreeting />
   }

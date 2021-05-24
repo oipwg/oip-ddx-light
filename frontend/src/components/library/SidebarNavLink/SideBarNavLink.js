@@ -49,6 +49,14 @@ const SideBarNavLink = ({
   const wallet = page === 'wallet'
 
   let displayName
+  // if (page === 'publisher') {
+  //   displayName = 'New Record Template'
+  // } else if (page === 'explorer') {
+  //   displayName = 'Explorers'
+  // } else if (page === 'autopay') {
+  //   displayName = 'Autopay'
+  // } else displayName = page
+
   if (page === 'publisher') {
     displayName = 'New Record Template'
   } else if (page === 'explorer') {
@@ -64,7 +72,7 @@ const SideBarNavLink = ({
     style={getStyleIfActive()}
   >
     <span className={classes.pageLinkName}>{displayName}</span>
-    {wallet && <span className={classes.fiatPrice}>${fiat}</span>}
+    {/* {wallet && <span className={classes.fiatPrice}>${fiat}</span>} */}
   </a>
 }
 

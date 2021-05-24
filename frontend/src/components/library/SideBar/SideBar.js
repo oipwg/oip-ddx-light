@@ -42,14 +42,10 @@ const styles = theme => {
       bottom: 0
     },
     buttonContainer: {
-      marginBottom: 30,
-      marginTop: 'auto',
-      display: 'flex',
-      position: 'relative',
-      bottom: 80,
       display: 'flex',
       left: 15,
-      width: 300
+      width: 300,
+      textDecoration: 'none'
     },
     toggleSwitchText: {
       fontSize: 12,
@@ -69,15 +65,17 @@ const styles = theme => {
     loginButton: {
       margin: 16,
       padding: 4,
-      textAlign: 'center',
       position: 'relative',
+      background: 'white'
     },
     registerButton: {
       margin: 16,
       padding: 4,
-      textAlign: 'center',
       position: 'relative',
-      
+      background: 'white'
+    },
+    tag: {
+      textDecoration: 'none'
     },
     [`@media (max-width: ${theme.breakpoints.md}px)`]: {
       root: {
@@ -156,11 +154,11 @@ const SideBar = ({
 
       <div className={classes.buttonContainer}>
         <div className={classes.loginButton}>
-          <Link passHref href={'/login'}><a>Login</a></Link>
+          <Link passHref href={'/login'}><a className={classes.tag}>Login</a></Link>
         </div>
 
         <div className={classes.registerButton}>
-          <Link passHref href={'/register'}><a>Sign Up</a></Link>
+          <Link passHref href={'/register'}><a className={classes.tag}>Sign Up</a></Link>
         </div>
       </div>
       

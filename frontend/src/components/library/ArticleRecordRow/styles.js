@@ -3,35 +3,43 @@ import { createUseStyles } from 'react-jss'
 export default createUseStyles(theme => {
   return {
     root: {
-      position: 'relative'
+      position: 'relative',
+      width: 600
     },
     image: {
-      width: 800,
+      width: '100%',
       zIndex: -1,
+      borderRadius: 6
     },
     titleContainer: {
-      backgroundColor: 'black'
+      width: 400
     },
     title: {
       position: 'absolute',
       color: 'white',
       zIndex: 100,
       whiteSpace: 'normal',
-      width: 600,
-      marginTop: 50,
-      backgroundColor: 'black'
+      width: '65%',
+      marginTop: 30,
+      backgroundColor: 'rgba(50, 50, 50, 0.85)',
+      borderRadius: 5,
+      padding: 10,
+      margin: 10
     },
     summaryContainer: {
-      backgroundColor: 'black'
+      width: 400
     },
     summary: {
       position: 'absolute',
-      backgroundColor: 'black',
       color: 'white',
       zIndex: 100,
       whiteSpace: 'normal',
       marginTop: 150,
-      width: 600
+      width: '80%',
+      backgroundColor: 'rgba(50, 50, 50, 0.85)',
+      borderRadius: 6,
+      padding: 10,
+      margin: 10
     }
   }
 })
