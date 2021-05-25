@@ -49,6 +49,7 @@ const ArticleRecordRow = ({
 
   const basicTemplateData = getTemplateData(recordPayload, TMP_BASIC)
   const title = basicTemplateData?.name
+  const description = basicTemplateData?.description
 
   const bylineWriterOipRef = articleTemplateData?.bylineWriter
   const imageListOipRef = articleTemplateData?.imageList
@@ -101,10 +102,11 @@ const ArticleRecordRow = ({
 
   const [purchasedText, purchaseTextQuery] = useIpfsRecord(purchasedData?.data?.location)
 
-  const textLoading = purchaseTextQuery.isLoading || articleTextIpfsQuery.isLoading
+  // const textLoading = purchaseTextQuery.isLoading || articleTextIpfsQuery.isLoading
 
   const articleTextDoesNotExists = articleTextIpfsQuery?.isSettled && !articleTextIpfsRecord
-  const articleTextLoaded = articleTextIpfsQuery.isSettled && articleTextIpfsRecord
+  // const articleTextLoaded = articleTextIpfsQuery.isSettled && articleTextIpfsRecord
+  // const articleTextIpfsRecord = description
 
   //console.log("REEEEEEE: ", articleTextIpfsRecord)
 
@@ -127,7 +129,7 @@ const ArticleRecordRow = ({
         <h2 className={classes.title}>{title}</h2>
       </div>
       <div className={classes.summaryContainer}>
-        <p className={classes.summary}>{articleTextLoaded && articleTextIpfsRecord.substr(0, 250)} 
+        <p className={classes.summary}>{description} 
           ... 
         </p>  
       </div>
