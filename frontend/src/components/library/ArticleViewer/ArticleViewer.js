@@ -9,6 +9,9 @@ import {
   TMP_IMAGE,
   TMP_PERSON,
   TMP_TEXT_IS_PREVIEW,
+  SIMPCOINSALE,
+  SIMPASSETHELD,
+  COMMERICAL
 } from "../../../../templates";
 
 import styles from "./styles";
@@ -39,14 +42,28 @@ const ArticleViewer = ({
   if (timeUnix) {
     datePublished = new Date(timeUnix * 1e3);
   }
+
+  const simpleCoinSaleData = getTemplateData(recordPayload, SIMPCOINSALE);
+
+  // const simpleAssetHeldData = getTemplateData(recordPayload, SIMPASSETHELD);
+  
+  const commercialTerms = getTemplateData(recordPayload, COMMERICAL);
+
   const articleTemplateData = getTemplateData(recordPayload, TMP_ARTICLE);
   const basicTemplateData = getTemplateData(recordPayload, TMP_BASIC);
+  
+  const commercialTermsOptions = commercialTerms.embeddedTerms
+  const commercialTermsSCSisTrue = commercialTermsOptions.includes(3733247363)
+  const commercialTermsSAHisTrue = commercialTermsOptions.includes(3993842283)
+
   const title = basicTemplateData?.name;
 
   const bylineWriterOipRef = articleTemplateData.bylineWriter;
   const imageListOipRef = articleTemplateData.imageList;
   const imageCaptionList = articleTemplateData.imageCaptionList;
   const articleTextOipRef = articleTemplateData.articleText;
+  
+  const simpleCoinSaleOipRef = (commercialTermsSCSisTrue) ? (simpleCoinSaleData.coin) : (null);
 
   const [bylineWriterRecord, writerQuery] =
     useOip5RecordsByTxid(bylineWriterOipRef);
@@ -57,22 +74,24 @@ const ArticleViewer = ({
   const [articleTextRecord, articleTextQuery] =
     useOip5RecordsByTxid(articleTextOipRef);
 
-  const [simpleCoinSaleName, coinTextQuery] = useOip5RecordsByTxid(
-    recordPayload.record.details.tmpl_DE84D583.coin
-  );
-  const coin = getTemplateData(simpleCoinSaleName, "tmpl_29F96711");
-  const [simpleAssetHeldName, assetTextQuery] = useOip5RecordsByTxid(
-    recordPayload.record.details.tmpl_EE0D326B.coin
-  );
-  const asset = getTemplateData(simpleAssetHeldName, "tmpl_29F96711");
-  console.log("record", JSON.stringify(coin));
-  // console.log("coin", coin);
+  const [simpleCoinSaleRecord, scsTickerQuery] =
+    useOip5RecordsByTxid(simpleCoinSaleOipRef);
+
+  // const simpleCoinSaleTicker = (commercialTermsSCSisTrue) ? (simpleCoinSaleRecord.record.details.tmpl_29F96711.ticker) : (null)
+  const simpleCoinSaleQty = (commercialTermsSCSisTrue) ? (recordPayload.record.details.tmpl_DE84D583.amount / recordPayload.record.details.tmpl_DE84D583.scale) : (0)
+  const simpleAssetHeldQty = (commercialTermsSAHisTrue) ? (recordPayload.record.details.tmpl_EE0D326B.amount / recordPayload.record.details.tmpl_EE0D326B.scale) : (0)
+  
   // const previewTemplate = getTemplateData(articleTextRecord, TMP_TEXT_IS_PREVIEW)
   // const isPreview = previewTemplate?.isPreview || false
 
   /**
    * Byline caption
    */
+   const scsData = getTemplateData(
+    simpleCoinSaleRecord,
+    SIMPCOINSALE
+    )
+
   const byLineWriterTemplateData = getTemplateData(
     bylineWriterRecord,
     TMP_PERSON
@@ -122,25 +141,40 @@ const ArticleViewer = ({
     articleTextIpfsQuery.isSettled && articleTextIpfsRecord;
 
   function showCommercialTerms() {
-    if (coin && asset) {
-      return (
-        "To view the full article, you can send " +
-        recordPayload.record.details.tmpl_DE84D583.amount /
-          recordPayload.record.details.tmpl_DE84D583.scale +
-        " "+ coin.ticker +
-        " to " +
-        recordPayload.record.details.tmpl_DE84D583.destination +
-        " OR show you are currently holding " +
-        recordPayload.record.details.tmpl_EE0D326B.amount /
-          recordPayload.record.details.tmpl_EE0D326B.scale +
-        " of the " +
-        asset.ticker +
-        " assets called " +
-        recordPayload.record.details.tmpl_EE0D326B.asset
-      );
-    } else {
-      return "error loading commercial terms";
+    let ret_string = 
+    // "scs:" + JSON.stringify(commercialTermsSCSisTrue) + ", sah:" + JSON.stringify(commercialTermsSAHisTrue) + 
+    "This is a commercial record. To view the full article, "
+    ;
+    if (commercialTermsSCSisTrue && !commercialTermsSAHisTrue){
+      ret_string += "you can send " + simpleCoinSaleQty
+       + " FLO to "
+       // + " " + simpleCoinSaleTicker + " to "
+        + recordPayload.record.details.tmpl_DE84D583.destination + "."
+
     }
+    else if(!commercialTermsSCSisTrue && commercialTermsSAHisTrue){
+      ret_string += " show you are currently holding " + simpleAssetHeldQty + " of the " +
+        // asset.ticker +
+        " Ravencoin assets called " +
+        recordPayload.record.details.tmpl_EE0D326B.asset + "."
+
+    }
+    else if(commercialTermsSAHisTrue && commercialTermsSCSisTrue){
+      ret_string += "you can send " + simpleCoinSaleQty
+       + " FLO to "
+       // + " " + simpleCoinSaleTicker + " to "
+        + recordPayload.record.details.tmpl_DE84D583.destination +
+      ". OR, show you are currently holding " + simpleAssetHeldQty + " of the " +
+        // asset.ticker +
+        " Ravencoin assets called " +
+        recordPayload.record.details.tmpl_EE0D326B.asset
+    }
+    
+    else {
+      ret_string = "error loading commercial terms";
+    }
+    return (ret_string)
+    
   }
   const displayCommercialTerms = showCommercialTerms();
 

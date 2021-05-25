@@ -16,6 +16,7 @@ export const VIDEO = 'tmpl_4769368E'
 export const PAYMENT = 'tmpl_3084380E'
 export const COMMERICAL = 'tmpl_D8D0F22C'
 export const SIMPCOINSALE = 'tmpl_DE84D583'
+export const SIMPASSETHELD = 'tmpl_EE0D326B'
 
 const templates = {
   video: ['tmpl_4769368E', 'tmpl_5679C4E4', 'tmpl_5D503849'],
