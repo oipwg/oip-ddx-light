@@ -85,7 +85,7 @@ Many OIP records include entirely public data, with no limits on who has access 
 
 OIP requires a publishing fee to be paid for a record to be valid. The fee goes to the miner of the block in which the record is confirmed. The fee helps to support the health and defense of the blockchain upon which the index data depends. For non-commercial records, the fee is equal to the minimum tx fee required for the transaction to be mined. For commercial records, the fee is equal to the price of the content. For example, if a video costs $0.25, the publishing fee would also be $0.25, and if a music album is $9.99, so is the publishing fee.  
 
-￼![](https://raw.githubusercontent.com/oipwg/oip-ddx-light/master/ZcashIntegrationOIPPlatformDataFlow.jpg)
+![](https://raw.githubusercontent.com/oipwg/oip-ddx-light/master/ZcashIntegrationOIPPlatformDataFlow.jpg)
 
 **Phase 1:***We propose to add both transparent & shielded Zcash payments to unlock content to the OIP daemon, build a Zcash branded web app (Ztube) for content distribution & publishing with private payments, and build upon [Zcash’s past work with ZEC-BTC atomic swaps](https://news.bitcoin.com/engineers-demonstrate-zcashbitcoin-atomic-swaps/) to integrate ZEC into a PIN-based DEX so that ZEC token holders can publish content to the public index and avoid additional KYC/AML hurdles involved in joining another exchange.*
 
