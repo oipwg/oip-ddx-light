@@ -143,9 +143,9 @@ As horrifying as these threats can be, it’s important to remember these issues
   
 	- 1: Project start
 	- 2: Records can be unlocked using a shielded or transparent ZEC payment at the API level. Can be verified by anyone holding enough ZEC to send a required payment to unlock a record and reveal its encrypted content. Release first video.
-	- 3. Records can be unlocked using a shielded or transparent ZEC payment via the Ztube interface. Can be verified by anyone holding enough ZEC to send a required payment to unlock a record and reveal its encrypted content. Release second video.
-	- 4. PIN holders can publish video content via the Ztube interface. Can be verified by following the process to upload and describe the content and pay the publishing fee using PIN tokens. Release third video.
-	- 5. ZEC holders can publish video content via the Ztube interface. Can be verified by following the process to upload and describe the content and pay the publishing fee using ZEC tokens. Release fourth video. 
+	- 3: Records can be unlocked using a shielded or transparent ZEC payment via the Ztube interface. Can be verified by anyone holding enough ZEC to send a required payment to unlock a record and reveal its encrypted content. Release second video.
+	- 4: PIN holders can publish video content via the Ztube interface. Can be verified by following the process to upload and describe the content and pay the publishing fee using PIN tokens. Release third video.
+	- 5: ZEC holders can publish video content via the Ztube interface. Can be verified by following the process to upload and describe the content and pay the publishing fee using ZEC tokens. Release fourth video. 
 	
 - Once Ztube is in use, we can track:
     - Number of monthly active users
