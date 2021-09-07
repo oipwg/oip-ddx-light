@@ -19,8 +19,6 @@ The ZOMG white paper says “the time to take back our freedom is now” - we ag
 Now censorship is a frequent topic of YouTube videos as well as main stream media segments, the US government has been discussing changes to section 230, OnlyFans flipflopped on their terms because of payment processor pressure, and apps like Rumble, BitChute, Signal & Telegram prove users want privacy & freedom. While these new platforms profess to offer freedom, it isn’t baked into the technical design so they are still vulnerable. If a new platform gets big enough or experiences some kind of controversy, they will likely face pressure from payment processors, server hosts, CDNs or domain registrars.
 
 # Proposed Solution
-
-
 To live freely, we need to be able to speak, share and transact in both private and public. Private finances & private spaces need to be interoperable with public transactions and a public space.
 
 We propose to add interoperability with Zcash to Open Index Protocol (OIP) - initially for private payments to unlock indexed information, and ultimately to create private indexing of information using the Zcash encrypted memo field. In Phase 1 of our work, we'll also build a Zcash branded Youtube-style web app we've been calling "Ztube."
@@ -53,7 +51,7 @@ By the end of this project, a YouTube-like platform (we’ve been calling it Ztu
 
 *We have heard private assets on Zcash will be released soon ("Shielded Assets") and would like to implement this option for content unlocks as well (we already support public NFTs on RVN). This is not an official part of our proposal at this time as we will need to see the relase and learn more about it before we can evaluate the work involved.
  
-Additionally, we’ll create 4 videos, released as part of our [What Kind of Internet Do You Want? series] (https://www.youtube.com/channel/UCwR-u1AGVYre-vBYskIklrg):
+Additionally, we’ll create 4 videos, released as part of our [What Kind of Internet Do You Want? series](https://www.youtube.com/channel/UCwR-u1AGVYre-vBYskIklrg):
 
 -  2 videos detailing our experience working with Zcash 
 (see [Web Monetization series](https://youtu.be/RVCGVitPdvs) for example)
