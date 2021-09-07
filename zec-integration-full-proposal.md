@@ -133,12 +133,12 @@ Centralization and censorship on the web threatens privacy, information freedom,
 We don’t have prior experience working with Zcash, so there could be unknowns in implementing shielded payments for content unlocks that cause delays. We’ve allocated time for research, and will draw on the experience of advisor Ryan Taylor as needed.
 
 
-#Unintended Consequences 
+# Unintended Consequences 
 Public content distribution and private payments could be used by criminals to attempt to distribute illegal content like underage pornography or pirated materials. However, evidence of these crimes will be available to prosecute them because the index is public and indelible. 
 
 As horrifying as these threats can be, it’s important to remember these issues have been a concern with all new distribution technology, since the introduction of the printing press.
 
-#Evaluation plan
+# Evaluation plan
 - Each milestone has objective metrics for testing software development success and includes one video release.
   
 	- 1: Project start
