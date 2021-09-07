@@ -4,9 +4,9 @@
 # Applicant background
 Hi, we’re Amy & Devon James. We had the idea for using a blockchain to index metadata with file and value transfer addresses to facilitate completely decentralized media distrubution in 2014 and built the first implementation with Ryan Taylor (Web Developer, formally at ECC & Livestreamer for Zcash Foundation). We released the first decentralized client in Spring 2015 and quickly learned no one really cared about information censorship online yet. We also saw that the project was being pigeon-holed as a “decentralized YouTube” rather than an index of everything, so we shifted focus to other use-cases that would show the specification is for all kinds of data, with an initial focus on public data. In 2016 we changed the name of the project from “The Decentralized Library of Alexandria” to “Open Index Protocol” (OIP) on the advice of Sir Tim Berners-Lee after our presentation at the Decentralized Web Summit. Bitspill is a co-founder of Alexandria Labs, the Lead Protocol Developer and has been working with us since 2017.
 
-We’ve worked with large and small companies as well as government and academic institutions on data ranging from scientific records, to influencer content, to property records, to news. Here is a [list of project highlights & links to apps and demos.](https://bit.ly/3n7CcfS)
+We’ve worked with large and small companies as well as government and academic institutions on data ranging from scientific records, to influencer content, to property records, to news. Here is a [list of project highlights & links to apps and demos.](https://docs.google.com/document/d/1UEYtFvRbArr7rF-DgrrhyNnKz-Vpbn-N5VwoLUt-KVM/edit)
 
-Also, this exciting news just came out -  [NYC property records will be published to OIP](https://bit.ly/3h6FNXx), building on [our work with Wyoming & Overstock subsidiary Medici Land Governance.](https://bit.ly/3BLEzcn)
+Also, this exciting news just came out -  [NYC property records will be published to OIP](https://www.coindesk.com/policy/2021/08/05/new-york-city-to-explore-blockchain-for-preventing-deed-fraud-in-land-sales/), building on [our work with Wyoming & Overstock subsidiary Medici Land Governance.](https://www.coindesk.com/markets/2018/12/21/wyoming-county-moves-to-put-land-records-on-blockchain/)
 
 # Description of Problem or Opportunity
 There are not decentralized public and private spaces on the web. 
@@ -16,12 +16,16 @@ Information access and communication on the web is dominated by siloed, centrali
 To solve this, private finances & private spaces need to be interoperable with public transactions and a public space. 
 The ZOMG white paper says “the time to take back our freedom is now” - we agree. When we began working on an uncensorable pubic index in 2014, no one thought that censorship or demonetization would become a serious problem. 
 
-Now, it’s common knowledge - censorship is a frequent topic of YouTube videos as well as main stream media segments, the US government has been frequently discussing changes to section 230, OnlyFans just changed their terms because of pressure from their payment processor and then changed them back when the pressure was removed, and apps like Rumble, Gab, BitChute, Signal & Telegram prove users want freedom and privacy. While these new platforms profess to offer freedom, it isn’t transparently baked into the technical design, so they are still vulnerable to these problems. If a new platform gets big enough or experiences some kind of controversy, they will likely face pressure to demonetize or censor from payment processors, server hosts, CDNs or domain registrars.
+Now censorship is a frequent topic of YouTube videos as well as main stream media segments, the US government has been discussing changes to section 230, OnlyFans flipflopped on their terms because of payment processor pressure, and apps like Rumble, BitChute, Signal & Telegram prove users want privacy & freedom. While these new platforms profess to offer freedom, it isn’t baked into the technical design so they are still vulnerable. If a new platform gets big enough or experiences some kind of controversy, they will likely face pressure from payment processors, server hosts, CDNs or domain registrars.
 
 # Proposed Solution
-To live freely, we need to be able to speak, share and transact in both private and public. We propose to add interoperability with Zcash to the Open Index Protocol specification. 
 
-Open Index Protocol is a layer two specification for how to index information in a fully decentralized way. It currently uses the Public Index Network (formerly Florincoin) to store public metadata, initially used BitTorrent & currently uses IPFS for file storage and distribution, and uses BTC, RVN & PIN for payments. Here are some demos of other projects that have used it:
+
+To live freely, we need to be able to speak, share and transact in both private and public. Private finances & private spaces need to be interoperable with public transactions and a public space.
+
+We propose to add interoperability with Zcash to Open Index Protocol (OIP) - initially for private payments to unlock indexed information, and ultimately to create private indexing of information using the Zcash encrypted memo field. In Phase 1 of our work, we'll also build a Zcash branded Youtube-style web app we've been calling "Ztube."
+
+OIP is an open source specification for a fully decentralized worldwide index and file library for data publishing, file distribution and facilitating direct payments. Here are some demos of other projects using it:
 
 * [Property records - Medici demo](https://www.youtube.com/watch?v=EA8Qshjqs_E)
 * [Influencer content - Streambed demo](https://www.youtube.com/watch?v=60sYPGWol5c)
@@ -30,11 +34,13 @@ Open Index Protocol is a layer two specification for how to index information in
 * [Music with Purchases - Alexandria Proof of Concept](https://www.youtube.com/watch?v=ri68oXYjVkI)
 * [Publisher module with support for many media types - Alexandria Proof of Concept](https://www.youtube.com/watch?v=RZv7OmSvaNA)
 
-We would like to integrate Zcash with OIP — initially for private payments to unlock indexed information, and ultimately to create private indexing of information using the Zcash encrypted memo field. We broke the work into 2 phases, our thinking is that the work to integrate private payments will give us experience working with Zcash so that we are prepared to do the more difficult work of building private indexing as a second effort. 
+We propose to begin by 1) integrating Zcash shielded payments for content unlocks, 2) creating a Zcash branded YouTube-like content viewing & publishing web app that uses Zcash to unlock content, and 3) integrating ZEC into OIP's DEX to streamline the user experience. 
 
-We propose to begin by integrating Zcash shielded payments for content unlocks, creating a Zcash branded YouTube-like content viewing & publishing web app that uses Zcash to unlock content, and integrating ZEC into OIP's DEX to streamline the user experience. The web app will be open source and documented so it can be forked and reskinned by anyone to make their own web app. The documentaries, videos and other media that have been commissioned by ZOMG could be distributed via this platform, the creators could fork it to make their own distribution platform, or they could do both. 
+The web app will be open source and documented so it can be forked and reskinned by anyone to make their own web app. The documentaries, videos and other media commissioned by ZOMG could be distributed via this platform, the creators could fork it to make their own distribution platform, or they could do both. 
 
 Further, most web apps have some kind of content distribution aspect, so even if it is not their primary purpose, components of what we build could be used by them as well. For example, while Zcash can facilitate the payments side of an ecommerce site, product photos and pricing could be indexed in OIP. Additionally, many NFTs depend on the web to store GIFs and JPEGs, OIP can decentralize the storage of these assets as well.
+
+*We broke the work into 2 phases, our thinking is that the work to integrate private payments will give us experience working with Zcash so that we are prepared to do the more difficult work of building private indexing as a second effort.*
 
 **Phase 1:**
 By the end of this project, a YouTube-like platform (we’ve been calling it Ztube as a working title, but would love community ideas) will be released with the following minimum feature list:
@@ -56,7 +62,7 @@ Additionally, we’ll create 4 videos, released as part of our [What Kind of Int
 - 1 video about our experience with the ZOMG process 
 (See [video about our work with Grant for the Web](https://youtu.be/9_b-31014XY) for example) 
 
-**Phase 2:** To be discussed after phase 1, please see technical approach section for details about using Zcash shielded payments encrypted memo field to extend OIP’s capabilities to private groups. 
+**Phase 2:** To be discussed after Phase 1 - please see technical approach section for details about using Zcash shielded payments encrypted memo field to extend OIP’s capabilities to private groups. 
 
 # Solution Format 
 We’ll deliver open source code and documentation to run “Ztube” on a web server, including:
@@ -66,25 +72,25 @@ We’ll deliver open source code and documentation to run “Ztube” on a web s
 - PIN QT full node & explorer
 - Zcashd full node & Zcash explorer
 
-The four videos will be released via multiple channels:
+The four videos will be released via:
 
-- Platforms including [YouTube](https://bit.ly/3jSRW4u), [Instagram](https://bit.ly/3nf2D3d) & Ztube (others TBD).
-- Promoted on social media. 
+- [YouTube](https://www.youtube.com/channel/UCwR-u1AGVYre-vBYskIklrg), [Instagram](https://www.instagram.com/amyofalexandria/) & Ztube (others TBD).
+- Promoted on social media
 - We will also give ZOMG mp4 files of the videos under a Creative Commons license **"Attribution: CC BY"**.
 
 # Technical approach
-OIP stores public index data in the metadata field of transactions in the Public Index Network (formerly Florincoin) blockchain and currently uses IPFS for file storage and distribution and Bitcoin, RVN & PIN for payments. 
+OIP is a layer two specification for how to index information in a fully decentralized way. It uses the Public Index Network (formerly Florincoin) to store public metadata, initially used BitTorrent & currently uses IPFS for file storage & distribution, and uses BTC, RVN & PIN for payments.
 
 Architecturally, OIP separates protocol layer logic from application layer logic by providing get/post/await API endpoints for interacting with index data scraped from the blockchain by the OIP daemon (written in Go) and stored in a local ElasticSearch database, and allowing applications to differentiate their own experience functionality using the open source reference libraries contained in DDX (Decentralized Database of ‘X’). DDX was built using react and redux and has a MongoDB user database. It currently has a very bare bones interface, but it's been used to make demo platforms for viewing video content, web comics, news articles, scientists and organizations. 
 
 Many OIP records include entirely public data, with no limits on who has access to view them, but some include commercial terms under which the content must be unlocked before a user can access its media. OIP and DDX currently support three kinds of content unlocks 1) sending a direct cryptocurrency payment of a minimum amount, 2) proving that you hold a designated token on the Ravencoin network, or 3) sending a streaming payment via the Web Monetization Standard on Interledger. 
 
-OIP requires a publishing fee to be paid for a record to be valid. The fee goes to the miner of the block in which the record is confirmed. The fee helps to support the health and defense of the blockchain upon which the index data depends. For non-commercial records, the fee is equal to the minimum tx fee required for the transaction to be mined. For commercial records, the fee is equal to the price of the content. For example, if a video costs $0.25, the publishing fee would also be $0.25, and if a music album is $9.99, so is the publishing fee. 
+OIP requires a publishing fee to be paid for a record to be valid. The fee goes to the miner of the block in which the record is confirmed. The fee helps to support the health and defense of the blockchain upon which the index data depends. For non-commercial records, the fee is equal to the minimum tx fee required for the transaction to be mined. For commercial records, the fee is equal to the price of the content. For example, if a video costs $0.25, the publishing fee would also be $0.25, and if a music album is $9.99, so is the publishing fee.  
 
-For this project, we propose to 1) add both transparent & shielded Zcash payments to unlock content to the OIP daemon 2) build a Zcash branded web app (Ztube) for content distribution with private payments, and 3) build upon [Zcash’s past work with ZEC-BTC atomic swaps](https://news.bitcoin.com/engineers-demonstrate-zcashbitcoin-atomic-swaps/) to integrate ZEC into a PIN-based DEX so that ZEC token holders can publish content to the public index and avoid additional KYC/AML hurdles involved in joining another exchange. 
+￼![](https://raw.githubusercontent.com/oipwg/oip-ddx-light/master/ZcashIntegrationOIPPlatformDataFlow.jpg)
 
-![](https://raw.githubusercontent.com/oipwg/oip-ddx-light/master/ZcashIntegrationOIPPlatformDataFlow.jpg)
-**Phase 1:**
+**Phase 1:***We propose to add both transparent & shielded Zcash payments to unlock content to the OIP daemon, build a Zcash branded web app (Ztube) for content distribution & publishing with private payments, and build upon [Zcash’s past work with ZEC-BTC atomic swaps](https://news.bitcoin.com/engineers-demonstrate-zcashbitcoin-atomic-swaps/) to integrate ZEC into a PIN-based DEX so that ZEC token holders can publish content to the public index and avoid additional KYC/AML hurdles involved in joining another exchange.*
+
 
 **OIP Record Unlocks using ZEC - enables platforms to unlock record content, giving users the option to send payments both privately & publicly.**
 	
@@ -126,22 +132,27 @@ Using Zcashs encrypted memo field to create private spaces for information and c
 Centralization and censorship on the web threatens privacy, information freedom, and freedom of speech. Online freedom is at stake and losing freedom online could threaten our ability to live freely in our real lives as well.
 
 # Execution risks
-We will need to hire a new developer for this project, and new hires always present a potential risk. We’ve hired many developers over the years and have mostly been lucky to work with good people who did great work, but there have been a few bad apples who have burned time and didn’t finish the job. Fortunately this integration would only require one new hire so the potential risk is small. We will also mitigate this risk by looking for someone with good communication and remote working skills.
+We don’t have prior experience working with Zcash, so there could be unknowns in implementing shielded payments for content unlocks that cause delays. We’ve allocated time for research, and will draw on the experience of advisor Ryan Taylor as needed.
 
 
-# Unintended Consequences 
-Public content distribution and private payments could be used by criminals to attempt to distribute illegal content such as underage pornography or pirated materials. As horrifying as some of these threats can be, it’s also important to remember that issues like this have been a concern with new distribution technology since the introduction of the printing press. The good news is that, because the index is public and indelible, there would be evidence of the crimes that could be used to prosecute the criminals. Other platforms would easily be able to filter out the illegal content.
+#Unintended Consequences 
+Public content distribution and private payments could be used by criminals to attempt to distribute illegal content like underage pornography or pirated materials. However, evidence of these crimes will be available to prosecute them because the index is public and indelible. 
 
-# Evaluation plan
-- Each milestone has objective metrics for testing software development success and includes one video release: 
-	- Records can be unlocked using a shielded or transparent ZEC payment at the API level. Can be verified by anyone holding enough ZEC to send a required payment to unlock a record and reveal its encrypted content.
-	- Records can be unlocked using a shielded or transparent ZEC payment via the Ztube interface. Can be verified by anyone holding enough ZEC to send a required payment to unlock a record and reveal its encrypted content.
-	- PIN holders can publish video content via the Ztube interface. Can be verified by following the process to upload and describe the content and pay the publishing fee using PIN tokens.
-	- ZEC holders can publish video content via the Ztube interface. Can be verified by following the process to upload and describe the content and pay the publishing fee using ZEC tokens. 
+As horrifying as these threats can be, it’s important to remember these issues have been a concern with all new distribution technology, since the introduction of the printing press.
+
+#Evaluation plan
+- Each milestone has objective metrics for testing software development success and includes one video release.
+  
+	- 1: Project start
+	- 2: Records can be unlocked using a shielded or transparent ZEC payment at the API level. Can be verified by anyone holding enough ZEC to send a required payment to unlock a record and reveal its encrypted content. Release first video.
+	- 3. Records can be unlocked using a shielded or transparent ZEC payment via the Ztube interface. Can be verified by anyone holding enough ZEC to send a required payment to unlock a record and reveal its encrypted content. Release second video.
+	- 4. PIN holders can publish video content via the Ztube interface. Can be verified by following the process to upload and describe the content and pay the publishing fee using PIN tokens. Release third video.
+	- 5. ZEC holders can publish video content via the Ztube interface. Can be verified by following the process to upload and describe the content and pay the publishing fee using ZEC tokens. Release fourth video. 
 	
-- In addition, other metrics we can measure include:
-    - Number of monthly active users on ZTube
+- Once Ztube is in use, we can track:
+    - Number of monthly active users
     - Amount of monthly payments to ZTube content creators
+
 
 # Schedule and Milestones
 
@@ -166,19 +177,19 @@ Public content distribution and private payments could be used by criminals to a
 
 * Develop & Publish a new OIP record template for PIN token trade open offers (1-2 weeks)
 * Using the XCAT approach, implement a function for instantly swapping ZEC for available PIN tokens into OIP’s HDMW (~6 weeks)
-* Design & implement an additional tab for the content publishing process, where users can trade for the PIN tokens required for their publishing fees using the ZEC already in their wallet or by sending to an address presented on screen with a QR code (~2 weeks)
+* Design & implement an additional tab for the content publishing process, where users can trade for the PIN tokens required for their publishing fees using the ZEC already in their wallet or by sending to an address presented on screen with a QR code (~5 weeks)
 
-**Milestone 5 ( ~38 weeks into project):** *Users can publish content to OIP and pay their publishing fees using the ZEC they already hold. Using the same hosted application, anyone will be able to verify this functionality by following the process to publish a piece of content and paying for its publishing fee using a ZEC shielded payment. When the record then shows up in the platform’s content list within the next few minutes, the user will then be able to inspect it to see the actual encoded data in the PIN blockchain, as well as the publishing fee attached to it, to confirm personally that it lives in a decentralized public index which cannot be censored. Release fourth video and publish all four videos to Ztube.*
+**Milestone 5 ( ~41 weeks into project):** *Users can publish content to OIP and pay their publishing fees using the ZEC they already hold. Using the same hosted application, anyone will be able to verify this functionality by following the process to publish a piece of content and paying for its publishing fee using a ZEC shielded payment. When the record then shows up in the platform’s content list within the next few minutes, the user will then be able to inspect it to see the actual encoded data in the PIN blockchain, as well as the publishing fee attached to it, to confirm personally that it lives in a decentralized public index which cannot be censored. Release fourth video and publish all four videos to Ztube.*
 
 
 # Budget 
 
-We budget $46,585 per month. This is based on 3 developers at $11,220 per month, a part-time sysadmin at $500 per month, a video creator & project manager at $4000 per month, part-time production contractor at $2000 per month, a Zcash advisor at $200 per month, and 10% overhead. Our budget for each milestone is:
+We budget $46,584 per month for 9.5 months. This is based on 3 developers at an average of $11,219 per month, a part-time sysadmin at $500 per month, a video creator & project manager at $4000 per month, part-time production contractor at $2000 per month, a Zcash advisor at $200 per month, and 10% overhead. Our budget for each milestone is:
 
-* Milestone 1: $139,752
-* Milestone 2: $93,168
-* Milestone 3: $93,168
-* Milestone 4: $93,168
-* Milestone 5: $23,292
+* Milestone 1: $129,526
+* Milestone 2: $86,351
+* Milestone 3: $86,351
+* Milestone 4: $86,351
+* Milestone 5: $53,969
 
 The project total budget is: $442,548
