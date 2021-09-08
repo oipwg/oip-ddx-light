@@ -40,8 +40,7 @@ Further, most web apps have some kind of content distribution aspect, so even if
 
 *We broke the work into 2 phases, our thinking is that the work to integrate private payments will give us experience working with Zcash so that we are prepared to do the more difficult work of building private indexing as a second effort.*
 
-**Phase 1:**
-By the end of this project, a YouTube-like platform (we’ve been calling it Ztube as a working title, but would love community ideas) will be released with the following minimum feature list:
+**Phase 1:** *By the end of this project, a YouTube-like platform (we’ve been calling it Ztube as a working title, but would love community ideas) will be released with the following minimum feature list:*
 
 - Grid & list view of videos, sorted by release-date or popularity
 - Content creator pages, with their bio and all of their videos
@@ -60,7 +59,7 @@ Additionally, we’ll create 4 videos, released as part of our [What Kind of Int
 - 1 video about our experience with the ZOMG process 
 (See [video about our work with Grant for the Web](https://youtu.be/9_b-31014XY) for example) 
 
-**Phase 2:** To be discussed after Phase 1 - please see technical approach section for details about using Zcash shielded payments encrypted memo field to extend OIP’s capabilities to private groups. 
+**Phase 2:** *To be discussed after Phase 1 - please see technical approach section for details about using Zcash shielded payments encrypted memo field to extend OIP’s capabilities to private groups.* 
 
 # Solution Format 
 We’ll deliver open source code and documentation to run “Ztube” on a web server, including:
@@ -87,7 +86,7 @@ OIP requires a publishing fee to be paid for a record to be valid. The fee goes 
 
 ![](https://raw.githubusercontent.com/oipwg/oip-ddx-light/master/ZcashIntegrationOIPPlatformDataFlow.jpg)
 
-**Phase 1:***We propose to add both transparent & shielded Zcash payments to unlock content to the OIP daemon, build a Zcash branded web app (Ztube) for content distribution & publishing with private payments, and build upon [Zcash’s past work with ZEC-BTC atomic swaps](https://news.bitcoin.com/engineers-demonstrate-zcashbitcoin-atomic-swaps/) to integrate ZEC into a PIN-based DEX so that ZEC token holders can publish content to the public index and avoid additional KYC/AML hurdles involved in joining another exchange.*
+**Phase 1:** *We propose to add both transparent & shielded Zcash payments to unlock content to the OIP daemon, build a Zcash branded web app (Ztube) for content distribution & publishing with private payments, and build upon [Zcash’s past work with ZEC-BTC atomic swaps](https://news.bitcoin.com/engineers-demonstrate-zcashbitcoin-atomic-swaps/) to integrate ZEC into a PIN-based DEX so that ZEC token holders can publish content to the public index and avoid additional KYC/AML hurdles involved in joining another exchange.*
 
 
 **OIP Record Unlocks using ZEC - enables platforms to unlock record content, giving users the option to send payments both privately & publicly.**
@@ -115,9 +114,7 @@ OIP requires a publishing fee to be paid for a record to be valid. The fee goes 
 
 
 ********************************************************************************************************************************************************
-**Phase 2:** *To be discussed upon completion of Phase 1*
-
-**Use Zcash shielded payments encrypted memo field to extend OIP’s capabilities into private groups.**
+**Phase 2:** *To be discussed upon completion of Phase 1. Use Zcash shielded payments encrypted memo field to extend OIP’s capabilities into private groups.*
 
 Enabling applications to read from both the public index data in PIN as well as the private index data in ZEC limited to applications/users who have cryptographic access to it - ie, the permissions aren’t controlled by settings, but by access to decryption keys. 
 
