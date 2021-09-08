@@ -28,7 +28,7 @@ OIP is an open source specification for a fully decentralized worldwide index an
 * [Property records - Medici demo](https://www.youtube.com/watch?v=EA8Qshjqs_E)
 * [Influencer content - Streambed demo](https://www.youtube.com/watch?v=60sYPGWol5c)
 * [News - Al Bawaba demo](https://www.youtube.com/watch?v=imnOPo588rM)
-* [Scientific Records - Caltech demo](https://www.youtube.com/watch?v=6kzAk79w7PI)
+* [Scientific Records - Caltech demo](https://www.youtube.com/watch?v=7V4XRM0X6qI) | [talk](https://www.youtube.com/watch?v=6kzAk79w7PI)
 * [Music with Purchases - Alexandria Proof of Concept](https://www.youtube.com/watch?v=ri68oXYjVkI)
 * [Publisher module with support for many media types - Alexandria Proof of Concept](https://www.youtube.com/watch?v=RZv7OmSvaNA)
 
