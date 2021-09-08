@@ -156,29 +156,32 @@ As horrifying as these threats can be, it’s important to remember these issues
 
 **Milestone 1:** *Project start*
 
-* Hire new developer, setup SOPs and remote workflow (~2 weeks)
-* Research into open source wallet and block explorer implementations for Zcash (~2 weeks)
-* Implement Zcash wallet functions into OIP’s Hierarchical-Deterministic Multi Wallet (~3 weeks)
-* Develop & Publish a new OIP record template that defines terms for Zcash shielded payment unlocks (1-2 weeks)
-* Add Zcash shielded payments to record unlock endpoint functionality (~3 weeks)
+* Hire new developer, setup SOPs and remote workflow
 
-**Milestone 2 ( ~12 weeks into project):** *OIP Records can be unlocked using a shielded payment at the API level. This will be able to be verified by anyone holding enough ZEC to send a required payment to unlock a record and reveal its encrypted content. Release first video.*
+**Milestone 2:** *Zcash unlocks OIP records at API level*
+* Research into open source wallet and block explorer implementations for Zcash
+* Implement Zcash wallet functions into OIP’s Hierarchical-Deterministic Multi Wallet
+* Develop & publish a new OIP record template that defines terms for Zcash unlocks
+* Add Zcash payments to record unlock endpoint functionality
+* Release first video
 
-* Implement a simple interface to allow users to send Zcash shielded payments for a locked record (~2 weeks)
-* Design & implement a modern YouTube-style interface for our open source reference client, DDX (~6 weeks)
+**Milestone 3:** *Un-censorable media platform for Zcash*
 
-**Milestone 3 ( ~20 weeks into project):** *Release a Zcash branded modern YouTube-style platform for censorship-free media distribution. We’ll host this application on the web during the grant period so that anyone can verify its functionality, and the code will be available on GitHub for anyone who wishes to review or audit it. Release second video.*
+* Design & implement a modern YouTube-style interface for our open source reference client, DDX
+* Implement a simple interface to allow users to send Zcash payments for a locked record
+* Release second video
 
-* Design & implement a publishing side to the application, with resumable file uploads and a simple drop-zone based interface (~8 weeks)
+**Milestone 4:** *Add publishing functionality to platform*
 
-**Milestone 4 ( ~28 weeks into project):** *Update platform with publishing functionality. Our hosted application will be updated with this functionality and anyone will be able to verify this by following the simple process to upload and describe a piece of content and pay its publishing fee using PIN tokens from a built in wallet. Release third video.*
+* Design & implement a publishing side to the application, with resumable file uploads and a simple drop-zone based interface
+* Release third video
 
-* Develop & Publish a new OIP record template for PIN token trade open offers (1-2 weeks)
-* Using the XCAT approach, implement a function for instantly swapping ZEC for available PIN tokens into OIP’s HDMW (~6 weeks)
-* Design & implement an additional tab for the content publishing process, where users can trade for the PIN tokens required for their publishing fees using the ZEC already in their wallet or by sending to an address presented on screen with a QR code (~5 weeks)
+**Milestone 5:** *Use ZEC for OIP publishing fees*
 
-**Milestone 5 ( ~41 weeks into project):** *Users can publish content to OIP and pay their publishing fees using the ZEC they already hold. Using the same hosted application, anyone will be able to verify this functionality by following the process to publish a piece of content and paying for its publishing fee using a ZEC shielded payment. When the record then shows up in the platform’s content list within the next few minutes, the user will then be able to inspect it to see the actual encoded data in the PIN blockchain, as well as the publishing fee attached to it, to confirm personally that it lives in a decentralized public index which cannot be censored. Release fourth video and publish all four videos to Ztube.*
-
+* Develop & publish a new OIP record template for PIN token trade open offers
+* Using the XCAT approach, implement a function for instantly swapping ZEC for available PIN tokens into OIP’s HDMW
+* Design & implement an additional tab for the content publishing process, where users can trade for the PIN tokens required for their publishing fees using the ZEC already in their wallet or by sending to an address presented on screen with a QR code
+* Release fourth video and publish all four videos to Ztube.
 
 # Budget 
 
