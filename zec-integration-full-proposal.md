@@ -51,12 +51,12 @@ By the end of this project, a YouTube-like platform (we’ve been calling it Ztu
 
 *We have heard private assets on Zcash will be released soon ("Shielded Assets") and would like to implement this option for content unlocks as well (we already support public NFTs on RVN). This is not an official part of our proposal at this time as we will need to see the relase and learn more about it before we can evaluate the work involved.
  
-Additionally, we’ll create 4 videos, released as part of our [What Kind of Internet Do You Want? series](https://www.youtube.com/playlist?list=PLmgfR0C8e5zmA1L_CJVi_CzSKCB0yd0r3):
+Additionally, we’ll create 4 videos, released as part of our [What Kind of Internet Do You Want? series](https://www.youtube.com/channel/UCwR-u1AGVYre-vBYskIklrg):
 
 -  2 videos detailing our experience working with Zcash 
 (see [Web Monetization series](https://youtu.be/RVCGVitPdvs) for example)
 - 1 interview video with someone from the Zcash community 
-(see [interviews with Stefan Thomas, BostWiki, Bailey Reutzel, Dr. Robert Epstein & Michael Casey](https://www.youtube.com/playlist?list=PLmgfR0C8e5zmA1L_CJVi_CzSKCB0yd0r3) for examples 
+(see [interviews with Stefan Thomas, BostWiki, Bailey Reutzel, Dr. Robert Epstein & Michael Casey](https://www.youtube.com/channel/UCwR-u1AGVYre-vBYskIklrg) for examples 
 - 1 video about our experience with the ZOMG process 
 (See [video about our work with Grant for the Web](https://youtu.be/9_b-31014XY) for example) 
 
