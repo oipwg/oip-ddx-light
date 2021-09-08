@@ -86,7 +86,7 @@ OIP requires a publishing fee to be paid for a record to be valid. The fee goes 
 
 ![](https://raw.githubusercontent.com/oipwg/oip-ddx-light/master/ZcashIntegrationOIPPlatformDataFlow.jpg)
 
-**Phase 1:** *We propose to add both transparent & shielded Zcash payments to unlock content to the OIP daemon, build a Zcash branded web app (Ztube) for content distribution & publishing with private payments, and build upon [Zcash’s past work with ZEC-BTC atomic swaps](https://news.bitcoin.com/engineers-demonstrate-zcashbitcoin-atomic-swaps/) to integrate ZEC into a PIN-based DEX so that ZEC token holders can publish content to the public index and avoid additional KYC/AML hurdles involved in joining another exchange.*
+**Phase 1:** *We propose to add both transparent & shielded Zcash payments to unlock content to the OIP daemon, build a Zcash branded web app (Ztube) for content distribution & publishing with private payments, and build upon Zcash’s past work with ZEC-BTC atomic swaps to integrate ZEC into a PIN-based DEX so that ZEC token holders can publish content to the public index and avoid additional KYC/AML hurdles involved in joining another exchange.*
 
 
 **OIP Record Unlocks using ZEC - enables platforms to unlock record content, giving users the option to send payments both privately & publicly.**
